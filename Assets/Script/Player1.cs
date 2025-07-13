@@ -66,85 +66,88 @@ public class Player1 : MonoBehaviour
     }
 
     void HandleMelee()
-{
-    // Animation di chuyển khi đánh
-    if (Input.GetAxisRaw("Horizontal") > 0)
     {
-        ani2.SetBool("chayad", true);
+        ngang = Input.GetAxisRaw("Horizontal");
+        doc = Input.GetAxisRaw("Vertical");
+        Play.velocity = new Vector2(ngang * move, doc * move);
 
-        // ✅ Flip sprite: không lật scale nữa
-        spriteRenderer.flipX = false;
-
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetAxisRaw("Horizontal") > 0)
         {
-            is_attack = true;
-            source.PlayOneShot(hit);
-            ani2.SetTrigger("danhad");
-            hit_right.SetActive(is_attack);
+
+            ani2.SetBool("chayad", true);
+            transform.localScale = new Vector3(5, 5, 5);
+
+            if (Input.GetMouseButtonDown(0))
+            {
+                is_attack = true;
+                source.PlayOneShot(hit);
+                ani2.SetTrigger("danhad");
+                hit_right.SetActive(is_attack);
+
+            }
+            timer = 0;
         }
-        timer = 0;
-    }
-    else if (Input.GetAxisRaw("Horizontal") < 0)
-    {
-        ani2.SetBool("chaya", true);
-        ani2.SetBool("chayad", false);
-
-        // ✅ Flip sprite: không lật scale nữa
-        spriteRenderer.flipX = true;
-
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetAxisRaw("Horizontal") < 0)
         {
-            is_attack = true;
-            source.PlayOneShot(hit);
-            ani2.SetTrigger("danha");
-            hit_right.SetActive(is_attack);
-        }
-        timer = 0;
-    }
-    else
-    {
-        ani2.SetBool("chaya", false);
-        ani2.SetBool("chayad", false);
-    }
+            ani2.SetBool("chayad", true);
 
+            transform.localScale = new Vector3(-5, 5, 5);
+            if (Input.GetMouseButtonDown(0))
+            {
+                is_attack = true;
+                source.PlayOneShot(hit);
+                ani2.SetTrigger("danhad");
+                hit_right.SetActive(is_attack);
+
+            }
+            timer = 0;
+        }
+        if (Input.GetAxisRaw("Horizontal") == 0)
+        {
+            ani2.SetBool("chayad", false);
+
+        }
         if (Input.GetAxisRaw("Vertical") > 0)
         {
             ani2.SetBool("chayw", true);
-            ani2.SetBool("chays", false);
 
+            ani2.SetBool("chays", false);
             if (Input.GetMouseButtonDown(0))
             {
                 is_attack = true;
                 source.PlayOneShot(hit);
                 ani2.SetTrigger("danhw");
                 hit_up.SetActive(is_attack);
+
             }
             timer = 0;
         }
-        else if (Input.GetAxisRaw("Vertical") < 0)
+
+        if (Input.GetAxisRaw("Vertical") < 0)
         {
             ani2.SetBool("chays", true);
-            ani2.SetBool("chayw", false);
 
+            ani2.SetBool("chayw", false);
             if (Input.GetMouseButtonDown(0))
             {
                 is_attack = true;
                 source.PlayOneShot(hit);
                 ani2.SetTrigger("danhs");
                 hit_down.SetActive(is_attack);
+
             }
             timer = 0;
         }
-        else
+        if (Input.GetAxisRaw("Vertical") == 0)
         {
             ani2.SetBool("chays", false);
             ani2.SetBool("chayw", false);
-        }
 
+        }
         if (is_attack)
         {
             timer += Time.deltaTime;
-            if (timer > 0.1f) // Tắt vùng đánh
+            if (timer > 0.1f)
             {
                 is_attack = false;
                 hit_right.SetActive(is_attack);
@@ -152,7 +155,8 @@ public class Player1 : MonoBehaviour
                 hit_down.SetActive(is_attack);
             }
         }
-    }
+            
+}
 
     void HandleShooting()
     {
