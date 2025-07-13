@@ -7,7 +7,7 @@ public class Bullet : MonoBehaviour
     // Start is called before the first frame update
     [SerializeField] private float Move = 25f;
     [SerializeField] private float timeDestroy = 0.5f;
-
+    public Animation nie;
 
     void Start()
     {
@@ -29,6 +29,7 @@ public class Bullet : MonoBehaviour
         // Nếu chạm Boss hoặc Enemy, hủy đạn
         if ( other.CompareTag("enermy"))
         {
+            
             Destroy(gameObject);
         }
     }

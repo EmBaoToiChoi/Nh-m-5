@@ -15,8 +15,10 @@ public class Player1 : MonoBehaviour
     [SerializeField] private AudioClip hit;
     [SerializeField] private AudioSource source;
     [HideInInspector] public SpriteRenderer spriteRenderer;
-
-
+    public ThanhMauPl_1 thanhmau;
+    public float mauhientai;
+    public float mautoida;
+    [SerializeField]
     private bool isMelee = true; // Mặc định là đánh
 
     private void Awake()
@@ -31,7 +33,28 @@ public class Player1 : MonoBehaviour
         Vector2 input = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
         Play.velocity = input.normalized * move;
     }
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("enermy"))
+        {
+            mauhientai -= 10;
 
+            // Cập nhật thanh máu UI
+            thanhmau.Capnhatthanhmau(mauhientai, mautoida);
+
+            if (mauhientai <= 0)
+            {
+                Destroy(this.gameObject);
+            }
+        }
+    }
+
+    void Start()
+    {
+        mauhientai = mautoida;
+        GetComponent<Rigidbody2D>();
+        thanhmau.Capnhatthanhmau(mauhientai, mautoida);
+    }
 
     void Update()
     {
