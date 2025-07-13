@@ -2,33 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Slime_1_Y : MonoBehaviour
+public class Slime_Y_spoin : MonoBehaviour
 {
     [SerializeField] private GameObject goldPrefab;
-    [SerializeField] private int spawnCount = 3;
-    [SerializeField] private GameObject slimePrefab;
     public float start, end;
- private bool checkdoc;
- public Animator anie;
- void OnTriggerEnter2D(Collider2D other)
+    private bool checkdoc;
+    public Animator anie;
+    void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.CompareTag("Hit"))
         {
             anie.SetTrigger("die");
-            SpawnSlimes();
             SpawnGold();
             Destroy(this.gameObject, 1f);
-        }
-    }
-    void SpawnSlimes()
-    {
-        for (int i = 0; i < spawnCount; i++)
-        {
-            Vector3 spawnPos = transform.position + (Vector3)(Random.insideUnitCircle * 0.5f);
-            GameObject slimeCon = Instantiate(slimePrefab, spawnPos, Quaternion.identity);
-
-            // Giảm kích thước slime con
-            slimeCon.transform.localScale = transform.localScale * 0.5f;
         }
     }
     void SpawnGold()
@@ -37,9 +23,6 @@ public class Slime_1_Y : MonoBehaviour
         Vector3 spawnPos = transform.position;
         Instantiate(goldPrefab, spawnPos, Quaternion.identity);
     }
-
-
-    // Update is called once per frame
     void Update()
     {
         var position_enermy = transform.position.y;

@@ -12,8 +12,8 @@ public class SlimeSpon_X : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Hit"))
         {
-            SpawnGold();
             anie.SetTrigger("die");
+            SpawnGold();
            
             Destroy(this.gameObject, 1f);
         }
