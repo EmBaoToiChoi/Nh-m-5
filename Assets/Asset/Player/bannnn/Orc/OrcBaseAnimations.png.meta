@@ -1,0 +1,3550 @@
+fileFormatVersion: 2
+guid: 69d3d0f7fd7efa346ae005d23180aca2
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 1
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: iPhone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: OrcBaseAnimations_0
+      rect:
+        serializedVersion: 2
+        x: 12
+        y: 749
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3e445a2ed1760fd4f9828420e1402407
+      internalID: 2077584631
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OrcBaseAnimations_1
+      rect:
+        serializedVersion: 2
+        x: 44
+        y: 749
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9c65c04c402c49a4a89bed7be83361d8
+      internalID: 1130348677
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OrcBaseAnimations_2
+      rect:
+        serializedVersion: 2
+        x: 78
+        y: 749
+        width: 12
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e89e999df447e4340a06daa0f6d27d12
+      internalID: 965811886
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OrcBaseAnimations_3
+      rect:
+        serializedVersion: 2
+        x: 111
+        y: 746
+        width: 11
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f73de26008d0106469e9a6478f318769
+      internalID: -1703472459
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OrcBaseAnimations_4
+      rect:
+        serializedVersion: 2
+        x: 12
+        y: 717
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f59fdd67f3b801145a1a17ae1020461e
+      internalID: 1502634372
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OrcBaseAnimations_5
+      rect:
+        serializedVersion: 2
+        x: 44
+        y: 717
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 93a95340aa4179b42b34313b459ef5ce
+      internalID: -592179415
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OrcBaseAnimations_6
+      rect:
+        serializedVersion: 2
+        x: 70
+        y: 717
+        width: 12
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b60cc4ec7e952464aaa06d8a5b7cd762
+      internalID: 1552273775
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OrcBaseAnimations_7
+      rect:
+        serializedVersion: 2
+        x: 102
+        y: 714
+        width: 11
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f245c7e3a3c3c0e45803c30c208684a7
+      internalID: -831137790
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OrcBaseAnimations_8
+      rect:
+        serializedVersion: 2
+        x: 12
+        y: 685
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 89e6a757fa2cfda4bb98de046ab91bc1
+      internalID: -1956666250
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OrcBaseAnimations_9
+      rect:
+        serializedVersion: 2
+        x: 44
+        y: 685
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 498eba268fe70d84aab50d5e78a19a0d
+      internalID: 1002388009
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OrcBaseAnimations_10
+      rect:
+        serializedVersion: 2
+        x: 78
+        y: 685
+        width: 12
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4d1b9ede890aab84d90cc1d9551e7acf
+      internalID: 2050363304
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OrcBaseAnimations_11
+      rect:
+        serializedVersion: 2
+        x: 111
+        y: 685
+        width: 11
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 55fe345760d260e41baff6816f0689a4
+      internalID: -1920491292
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OrcBaseAnimations_12
+      rect:
+        serializedVersion: 2
+        x: 12
+        y: 653
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f3979ca1ae592004196ed912ae36147e
+      internalID: 558875502
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OrcBaseAnimations_13
+      rect:
+        serializedVersion: 2
+        x: 44
+        y: 653
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 93eca73737772f647bbf81d1463e2bf4
+      internalID: -687918735
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OrcBaseAnimations_14
+      rect:
+        serializedVersion: 2
+        x: 70
+        y: 653
+        width: 12
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4bc674d659e7efe4bbb2973c186d33fe
+      internalID: 334624143
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OrcBaseAnimations_15
+      rect:
+        serializedVersion: 2
+        x: 102
+        y: 653
+        width: 11
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4a6952c87877bc64b8223b6f18232998
+      internalID: -771123955
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OrcBaseAnimations_16
+      rect:
+        serializedVersion: 2
+        x: 12
+        y: 621
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e7cff149eb6d3bb4d962de9054e827da
+      internalID: -1930591260
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OrcBaseAnimations_17
+      rect:
+        serializedVersion: 2
+        x: 44
+        y: 621
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1763ac7199d94ef49b8dc474f93ba2a7
+      internalID: 1543462422
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OrcBaseAnimations_18
+      rect:
+        serializedVersion: 2
+        x: 76
+        y: 621
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ae57aed85fb0b394aa9ad309deef6820
+      internalID: 1229630816
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OrcBaseAnimations_19
+      rect:
+        serializedVersion: 2
+        x: 108
+        y: 621
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 68eddcc07eb6e4b4e8a19f3f20996c21
+      internalID: 1079035357
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OrcBaseAnimations_20
+      rect:
+        serializedVersion: 2
+        x: 140
+        y: 621
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e7e0dffc65ffe734f8714f2245612fa1
+      internalID: -1485842393
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OrcBaseAnimations_21
+      rect:
+        serializedVersion: 2
+        x: 172
+        y: 621
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c97663fe0b00c8f49b4b9a04bd4ef109
+      internalID: -487988662
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OrcBaseAnimations_22
+      rect:
+        serializedVersion: 2
+        x: 12
+        y: 589
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7c9287ca676fd264287fa2cae50f06ac
+      internalID: -900689327
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OrcBaseAnimations_23
+      rect:
+        serializedVersion: 2
+        x: 44
+        y: 589
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 65ddd1a85ac78fa468428981a3a6a30f
+      internalID: -534038561
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OrcBaseAnimations_24
+      rect:
+        serializedVersion: 2
+        x: 76
+        y: 589
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0b6fe401a201e094c999cd0877e12896
+      internalID: -183355583
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OrcBaseAnimations_25
+      rect:
+        serializedVersion: 2
+        x: 108
+        y: 589
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 98e7536febf072e46bf9082aa2999deb
+      internalID: -1500674417
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OrcBaseAnimations_26
+      rect:
+        serializedVersion: 2
+        x: 140
+        y: 589
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4c31fbe75ebab3b47bda62c3909324c7
+      internalID: 1052817899
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OrcBaseAnimations_27
+      rect:
+        serializedVersion: 2
+        x: 172
+        y: 589
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 94da45258ea8b1b448233ba37359b3c7
+      internalID: 87316398
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OrcBaseAnimations_28
+      rect:
+        serializedVersion: 2
+        x: 13
+        y: 557
+        width: 12
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 48c7268259b450e4797e61fdce655ea6
+      internalID: -1369432162
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OrcBaseAnimations_29
+      rect:
+        serializedVersion: 2
+        x: 46
+        y: 554
+        width: 11
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 32df0d7315f81f64eb81c606acff7b96
+      internalID: -687335958
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OrcBaseAnimations_30
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 554
+        width: 11
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 58529415ccf373b4aa4fc831dc6836e3
+      internalID: -1041675158
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OrcBaseAnimations_31
+      rect:
+        serializedVersion: 2
+        x: 104
+        y: 557
+        width: 11
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 99c2d23efcf3c0342895fb756b98afee
+      internalID: 214861366
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OrcBaseAnimations_32
+      rect:
+        serializedVersion: 2
+        x: 141
+        y: 557
+        width: 11
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6fa13a2641c29044aa54ac4e66358e8c
+      internalID: -1742921906
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OrcBaseAnimations_33
+      rect:
+        serializedVersion: 2
+        x: 173
+        y: 557
+        width: 11
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6b3c4a10c3293084e9238f8e738f1cef
+      internalID: 969968771
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OrcBaseAnimations_34
+      rect:
+        serializedVersion: 2
+        x: 12
+        y: 525
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3063b6a5745779646ac3325d1450d800
+      internalID: -1960869809
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OrcBaseAnimations_35
+      rect:
+        serializedVersion: 2
+        x: 43
+        y: 525
+        width: 10
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 96b18cc31da8bb4479a354c585d73922
+      internalID: -2029804897
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OrcBaseAnimations_36
+      rect:
+        serializedVersion: 2
+        x: 76
+        y: 525
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1b77fcddbf8269b40be540e97dfd1224
+      internalID: -768747855
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OrcBaseAnimations_37
+      rect:
+        serializedVersion: 2
+        x: 108
+        y: 525
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 345379533de6cc24493f2325543dc022
+      internalID: -628477899
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OrcBaseAnimations_38
+      rect:
+        serializedVersion: 2
+        x: 12
+        y: 493
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 339b22abcdc06b042acccb05641d6a6c
+      internalID: -967492017
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OrcBaseAnimations_39
+      rect:
+        serializedVersion: 2
+        x: 43
+        y: 493
+        width: 10
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f1484e36b6869dd4dac4400313b21050
+      internalID: 224444800
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OrcBaseAnimations_40
+      rect:
+        serializedVersion: 2
+        x: 77
+        y: 493
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 69394a95f728070499b3c6a7e8f5d26c
+      internalID: 1290983018
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OrcBaseAnimations_41
+      rect:
+        serializedVersion: 2
+        x: 109
+        y: 493
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 061d739d59cf4944e9e8d7be3d17d1fe
+      internalID: 1327477616
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OrcBaseAnimations_42
+      rect:
+        serializedVersion: 2
+        x: 12
+        y: 461
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 116fbcd0aa0c4194ea483116afc9a571
+      internalID: 1741146651
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OrcBaseAnimations_43
+      rect:
+        serializedVersion: 2
+        x: 43
+        y: 461
+        width: 10
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aa351f08916348e4c965c59ee655a795
+      internalID: 564115945
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OrcBaseAnimations_44
+      rect:
+        serializedVersion: 2
+        x: 76
+        y: 461
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5c8032f0aa3e4d54b91048b448b2bb67
+      internalID: -1591612896
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OrcBaseAnimations_45
+      rect:
+        serializedVersion: 2
+        x: 108
+        y: 461
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1d76f4ca6dfbcd34588889d5d14ed49f
+      internalID: -55093025
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OrcBaseAnimations_46
+      rect:
+        serializedVersion: 2
+        x: 12
+        y: 429
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 88f32d0b37032184ebf50879ccf5043a
+      internalID: -388096735
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OrcBaseAnimations_47
+      rect:
+        serializedVersion: 2
+        x: 43
+        y: 429
+        width: 10
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3a52321484f375542afd72af5c87d530
+      internalID: 519341736
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OrcBaseAnimations_48
+      rect:
+        serializedVersion: 2
+        x: 77
+        y: 429
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 000000d92152eae43bf3010e2d146964
+      internalID: 1408053463
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OrcBaseAnimations_49
+      rect:
+        serializedVersion: 2
+        x: 109
+        y: 429
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bf5580ec70530494f91e6100ce3677a8
+      internalID: -1816782345
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OrcBaseAnimations_50
+      rect:
+        serializedVersion: 2
+        x: 12
+        y: 397
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 68f6d48bd0992bd429306c2005130617
+      internalID: 1881419937
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OrcBaseAnimations_51
+      rect:
+        serializedVersion: 2
+        x: 44
+        y: 397
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 97cf0ceb6a110d548aacc93d9c214bd9
+      internalID: -137343606
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OrcBaseAnimations_52
+      rect:
+        serializedVersion: 2
+        x: 76
+        y: 397
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cc7e2782ed25c5b4fa2470e19bad455d
+      internalID: 1463894152
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OrcBaseAnimations_53
+      rect:
+        serializedVersion: 2
+        x: 108
+        y: 397
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bac727e7290cd304d9f14bf4ccff25e4
+      internalID: 1509465720
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OrcBaseAnimations_54
+      rect:
+        serializedVersion: 2
+        x: 140
+        y: 397
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 18cd3002d5093a148893581620aee037
+      internalID: 1207495354
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OrcBaseAnimations_55
+      rect:
+        serializedVersion: 2
+        x: 172
+        y: 397
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4fcbce63154588742a5ab4cf53921d88
+      internalID: 1475690946
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OrcBaseAnimations_56
+      rect:
+        serializedVersion: 2
+        x: 204
+        y: 397
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 030ba49ae98d49046a48dc8f2bfb421f
+      internalID: -832795582
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OrcBaseAnimations_57
+      rect:
+        serializedVersion: 2
+        x: 236
+        y: 397
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f30457f0638a99745b730ff16e11e3e2
+      internalID: -1377251454
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OrcBaseAnimations_58
+      rect:
+        serializedVersion: 2
+        x: 268
+        y: 397
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 67915e403d471dd42be88d670d6b9df9
+      internalID: -563627409
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OrcBaseAnimations_59
+      rect:
+        serializedVersion: 2
+        x: 300
+        y: 397
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 52ab8cb2614b937438d84a24f50457fc
+      internalID: 1901386295
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OrcBaseAnimations_60
+      rect:
+        serializedVersion: 2
+        x: 332
+        y: 397
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 93ecddfccb6d8f64b99e2708d8b7a577
+      internalID: 159440907
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OrcBaseAnimations_61
+      rect:
+        serializedVersion: 2
+        x: 364
+        y: 397
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 270a080187a091b42b2d65130245f3d1
+      internalID: 690410872
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OrcBaseAnimations_62
+      rect:
+        serializedVersion: 2
+        x: 396
+        y: 397
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6e3a99d6771a17b4f8a161303c303538
+      internalID: -1096174527
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OrcBaseAnimations_63
+      rect:
+        serializedVersion: 2
+        x: 428
+        y: 397
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 175022f78092e7f43b8f046f631f08b3
+      internalID: 1676598700
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OrcBaseAnimations_64
+      rect:
+        serializedVersion: 2
+        x: 460
+        y: 397
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a9d756fe6694ed044b34a180d5257c87
+      internalID: 1339410189
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OrcBaseAnimations_65
+      rect:
+        serializedVersion: 2
+        x: 492
+        y: 397
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2920245916111de4f950b76efc4a461b
+      internalID: 1262737055
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OrcBaseAnimations_66
+      rect:
+        serializedVersion: 2
+        x: 13
+        y: 365
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c2aa0263f017ffd4eb7cc8b3318917a0
+      internalID: -1118992634
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OrcBaseAnimations_67
+      rect:
+        serializedVersion: 2
+        x: 45
+        y: 365
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 12917b2f50b6e78429ef7009bebf1d52
+      internalID: 1636451897
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OrcBaseAnimations_68
+      rect:
+        serializedVersion: 2
+        x: 77
+        y: 365
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a2a571df4766e764988833d187a8d070
+      internalID: -981698285
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OrcBaseAnimations_69
+      rect:
+        serializedVersion: 2
+        x: 109
+        y: 365
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b15a4c1f59eac7f46b2fabcd642f6370
+      internalID: -1395939934
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OrcBaseAnimations_70
+      rect:
+        serializedVersion: 2
+        x: 141
+        y: 365
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1b5c8c458765413479c55cd123501ff5
+      internalID: -1120777108
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OrcBaseAnimations_71
+      rect:
+        serializedVersion: 2
+        x: 173
+        y: 365
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d56e6ca04fb9f124eb4f9cbbb0bc55d9
+      internalID: 2128258016
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OrcBaseAnimations_72
+      rect:
+        serializedVersion: 2
+        x: 205
+        y: 365
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 14158f4488821924a95363d3d082bb6c
+      internalID: 2133264722
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OrcBaseAnimations_73
+      rect:
+        serializedVersion: 2
+        x: 237
+        y: 365
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bcc3b094cdcc66c479c4da4491222181
+      internalID: -1019727751
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OrcBaseAnimations_74
+      rect:
+        serializedVersion: 2
+        x: 269
+        y: 365
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b97365a3adc23964fac6f13ef60d4e93
+      internalID: -515452295
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OrcBaseAnimations_75
+      rect:
+        serializedVersion: 2
+        x: 301
+        y: 365
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7603a4806d9f09b4ca448eaaffe66864
+      internalID: 2877470
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OrcBaseAnimations_76
+      rect:
+        serializedVersion: 2
+        x: 333
+        y: 365
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 08304fc069407e04eb532bdca25bc2ea
+      internalID: 514025226
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OrcBaseAnimations_77
+      rect:
+        serializedVersion: 2
+        x: 365
+        y: 365
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4689d687a5417e4428bb9e3c75d66bfa
+      internalID: -1223829837
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OrcBaseAnimations_78
+      rect:
+        serializedVersion: 2
+        x: 397
+        y: 365
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 723386be993a4754b9cf59e344a18f8a
+      internalID: -1359004503
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OrcBaseAnimations_79
+      rect:
+        serializedVersion: 2
+        x: 429
+        y: 365
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aaff7d66bef63444dbc30d63d95df443
+      internalID: 1480469877
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OrcBaseAnimations_80
+      rect:
+        serializedVersion: 2
+        x: 461
+        y: 365
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 220d7003b82cc8941b8a6432accd95a8
+      internalID: 137735702
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OrcBaseAnimations_81
+      rect:
+        serializedVersion: 2
+        x: 493
+        y: 365
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: caa43ade7ffacfb45a9b6e263c2142cf
+      internalID: 923850273
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OrcBaseAnimations_82
+      rect:
+        serializedVersion: 2
+        x: 12
+        y: 333
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c870cdac3e23d1449841846fc29e0238
+      internalID: -615053922
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OrcBaseAnimations_83
+      rect:
+        serializedVersion: 2
+        x: 44
+        y: 333
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3558e628afbc51c4a89bf5ebf47b3d04
+      internalID: 789059400
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OrcBaseAnimations_84
+      rect:
+        serializedVersion: 2
+        x: 76
+        y: 333
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 109ab24bb6929bb4bb551c46444dd9fc
+      internalID: 1293004501
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OrcBaseAnimations_85
+      rect:
+        serializedVersion: 2
+        x: 108
+        y: 333
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a23d1b9413b3f2f4292650908c27e905
+      internalID: 1826087913
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OrcBaseAnimations_86
+      rect:
+        serializedVersion: 2
+        x: 140
+        y: 333
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b90c471cf41b8104fa9fb6220438303e
+      internalID: -1720650829
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OrcBaseAnimations_87
+      rect:
+        serializedVersion: 2
+        x: 172
+        y: 333
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5ce3a0076b1dae24291ee112c0330d99
+      internalID: 2065504649
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OrcBaseAnimations_88
+      rect:
+        serializedVersion: 2
+        x: 204
+        y: 333
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 90acf7ed84f1dad4ca9ddbcb28433dac
+      internalID: 560537651
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OrcBaseAnimations_89
+      rect:
+        serializedVersion: 2
+        x: 236
+        y: 333
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9bc646d6c51f4fb468555265e7374f87
+      internalID: -585145607
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OrcBaseAnimations_90
+      rect:
+        serializedVersion: 2
+        x: 268
+        y: 333
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9471aab2d8b841c4f8051356c9326dec
+      internalID: -1179867401
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OrcBaseAnimations_91
+      rect:
+        serializedVersion: 2
+        x: 300
+        y: 333
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4313ad06a332ef947be5023ba9b4246a
+      internalID: 133703911
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OrcBaseAnimations_92
+      rect:
+        serializedVersion: 2
+        x: 332
+        y: 333
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a9aad32d0f2c96e4caa0e4d5dc87971e
+      internalID: -458350893
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OrcBaseAnimations_93
+      rect:
+        serializedVersion: 2
+        x: 364
+        y: 333
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4faf095a7dc7f3b45b22dba70c53fbf9
+      internalID: -1774568838
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OrcBaseAnimations_94
+      rect:
+        serializedVersion: 2
+        x: 396
+        y: 333
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 143246251ac2b384fad52e7b01d84ee0
+      internalID: -1996941529
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OrcBaseAnimations_95
+      rect:
+        serializedVersion: 2
+        x: 428
+        y: 333
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0640d37d34f6c6f41af6b5f9279da777
+      internalID: -1216114852
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OrcBaseAnimations_96
+      rect:
+        serializedVersion: 2
+        x: 460
+        y: 333
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7e2404781fb722449ac916d90bc25407
+      internalID: 75885791
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OrcBaseAnimations_97
+      rect:
+        serializedVersion: 2
+        x: 492
+        y: 333
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2d97239900a33d344a134d3fcf98b566
+      internalID: 819658418
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OrcBaseAnimations_98
+      rect:
+        serializedVersion: 2
+        x: 13
+        y: 301
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ea2662e621c996b4e891defa620a674f
+      internalID: 783960084
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OrcBaseAnimations_99
+      rect:
+        serializedVersion: 2
+        x: 45
+        y: 301
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a1c6f25cea578694ca4b53a731cc256e
+      internalID: 1148515315
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OrcBaseAnimations_100
+      rect:
+        serializedVersion: 2
+        x: 77
+        y: 301
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b8db7add788dbbf4fb681aeb73490983
+      internalID: 696197980
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OrcBaseAnimations_101
+      rect:
+        serializedVersion: 2
+        x: 109
+        y: 301
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f7c554cc726c02143ac5521d31eece63
+      internalID: 1933860776
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OrcBaseAnimations_102
+      rect:
+        serializedVersion: 2
+        x: 141
+        y: 301
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 37491cd713ef5864498b559e93404088
+      internalID: 720732747
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OrcBaseAnimations_103
+      rect:
+        serializedVersion: 2
+        x: 173
+        y: 301
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4e94dff33c46c3a43b6c7c30960ae1c2
+      internalID: 1027409425
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OrcBaseAnimations_104
+      rect:
+        serializedVersion: 2
+        x: 205
+        y: 301
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 460260f523efd93469b4d81d99cd80ac
+      internalID: -1637403007
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OrcBaseAnimations_105
+      rect:
+        serializedVersion: 2
+        x: 237
+        y: 301
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 848b4b9a9625c694aafcdf9459103c8d
+      internalID: 915750062
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OrcBaseAnimations_106
+      rect:
+        serializedVersion: 2
+        x: 269
+        y: 301
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cdec659ef8ea1b849a4f1beec96f5bf5
+      internalID: 2098563338
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OrcBaseAnimations_107
+      rect:
+        serializedVersion: 2
+        x: 301
+        y: 301
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7e3995c095cd4de48aadfe57a74fd69d
+      internalID: 1648169296
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OrcBaseAnimations_108
+      rect:
+        serializedVersion: 2
+        x: 333
+        y: 301
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 69e66483ab7ea9245ac9e78e99612eaf
+      internalID: 1350310308
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OrcBaseAnimations_109
+      rect:
+        serializedVersion: 2
+        x: 365
+        y: 301
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f92c6fc44d6e63d4da88f83d6e56646c
+      internalID: 371133400
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OrcBaseAnimations_110
+      rect:
+        serializedVersion: 2
+        x: 397
+        y: 301
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6dec4aaf97721d8459fb5e9476114947
+      internalID: -1213530895
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OrcBaseAnimations_111
+      rect:
+        serializedVersion: 2
+        x: 429
+        y: 301
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f99e8312451c14345b7957cc1d7be7da
+      internalID: 1215710087
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OrcBaseAnimations_112
+      rect:
+        serializedVersion: 2
+        x: 461
+        y: 301
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1362ac91046c13546be6e561d4d9f95b
+      internalID: -2136797138
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OrcBaseAnimations_113
+      rect:
+        serializedVersion: 2
+        x: 493
+        y: 301
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4ca601fbd6d4495409ca8f7829645b7d
+      internalID: 816692675
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OrcBaseAnimations_114
+      rect:
+        serializedVersion: 2
+        x: 12
+        y: 269
+        width: 7
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9c529c6618fee61498137979cb9a9f61
+      internalID: -1720938891
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OrcBaseAnimations_115
+      rect:
+        serializedVersion: 2
+        x: 44
+        y: 272
+        width: 7
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f3b3dff477d98ef45bf637cc14926963
+      internalID: 429536908
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OrcBaseAnimations_116
+      rect:
+        serializedVersion: 2
+        x: 76
+        y: 271
+        width: 7
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 790cc9636a264244e85170944aee521a
+      internalID: -1877734945
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OrcBaseAnimations_117
+      rect:
+        serializedVersion: 2
+        x: 108
+        y: 269
+        width: 7
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0dcebaa4b0576ab4db87aac410a879f9
+      internalID: -750914693
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OrcBaseAnimations_118
+      rect:
+        serializedVersion: 2
+        x: 13
+        y: 237
+        width: 7
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 86acd37409d10924194535e7ebabe257
+      internalID: -1828898709
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OrcBaseAnimations_119
+      rect:
+        serializedVersion: 2
+        x: 45
+        y: 240
+        width: 7
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ae7d370bd834a9e48b71f76f06cfdc20
+      internalID: 1532351807
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OrcBaseAnimations_120
+      rect:
+        serializedVersion: 2
+        x: 77
+        y: 239
+        width: 7
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f7be65c2ff0daf248aca69883fb6f838
+      internalID: -1083741609
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OrcBaseAnimations_121
+      rect:
+        serializedVersion: 2
+        x: 109
+        y: 237
+        width: 7
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 572dcf088bdb5fb4885ebace7109f6bd
+      internalID: 1561342606
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OrcBaseAnimations_122
+      rect:
+        serializedVersion: 2
+        x: 12
+        y: 205
+        width: 7
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dffb51d96c3ec4a44b6cd49a31fbea48
+      internalID: -362251416
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OrcBaseAnimations_123
+      rect:
+        serializedVersion: 2
+        x: 44
+        y: 208
+        width: 7
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 22b58ad54fc207d48b34d967b9c430ab
+      internalID: -1518416787
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OrcBaseAnimations_124
+      rect:
+        serializedVersion: 2
+        x: 76
+        y: 207
+        width: 7
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ee9c6fa1b4097864e803e5257c36901e
+      internalID: -1471782388
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OrcBaseAnimations_125
+      rect:
+        serializedVersion: 2
+        x: 108
+        y: 205
+        width: 7
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6e92b656f78e6074f9365d2a40b9708d
+      internalID: -825673570
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OrcBaseAnimations_126
+      rect:
+        serializedVersion: 2
+        x: 13
+        y: 173
+        width: 7
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5bddf585d3a027f418f99ed711719a4a
+      internalID: 1742813544
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OrcBaseAnimations_127
+      rect:
+        serializedVersion: 2
+        x: 45
+        y: 176
+        width: 7
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9af03cfc390bcc443b8a164aad3239f7
+      internalID: -1993060861
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OrcBaseAnimations_128
+      rect:
+        serializedVersion: 2
+        x: 77
+        y: 175
+        width: 7
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 85e8d67283802364a9dff5502b3c2ad8
+      internalID: 906182048
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OrcBaseAnimations_129
+      rect:
+        serializedVersion: 2
+        x: 109
+        y: 173
+        width: 7
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 81f8bc80532decb4db2bf7cea2ba0638
+      internalID: -592993618
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OrcBaseAnimations_130
+      rect:
+        serializedVersion: 2
+        x: 12
+        y: 141
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4b8261b218d67894aa842f4e85d946fe
+      internalID: -1918821353
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OrcBaseAnimations_131
+      rect:
+        serializedVersion: 2
+        x: 43
+        y: 141
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 66adc42df556e6049aa953d89c99d032
+      internalID: -258462131
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OrcBaseAnimations_132
+      rect:
+        serializedVersion: 2
+        x: 74
+        y: 141
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8e92bf253912d7147825437a6dc06750
+      internalID: -2125012114
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OrcBaseAnimations_133
+      rect:
+        serializedVersion: 2
+        x: 107
+        y: 141
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bf2a905fcd572b74fa82ba2b2c08f528
+      internalID: -1350138294
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OrcBaseAnimations_134
+      rect:
+        serializedVersion: 2
+        x: 139
+        y: 141
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4c513f2e77096ce4396e99e97b7ba69a
+      internalID: -1934358637
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OrcBaseAnimations_135
+      rect:
+        serializedVersion: 2
+        x: 169
+        y: 141
+        width: 9
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cdcfecc143fe9684eb672a406e68162e
+      internalID: 351919656
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OrcBaseAnimations_136
+      rect:
+        serializedVersion: 2
+        x: 202
+        y: 140
+        width: 8
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3f0945df102d638469f60c88820103c7
+      internalID: 748595584
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OrcBaseAnimations_137
+      rect:
+        serializedVersion: 2
+        x: 234
+        y: 140
+        width: 7
+        height: 5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0af6143bd1a42f74aa3a68dd006f0ec2
+      internalID: -1888538345
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OrcBaseAnimations_138
+      rect:
+        serializedVersion: 2
+        x: 266
+        y: 140
+        width: 98
+        height: 4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 44477f1f2fa2b404ab0efedb0ef3cc26
+      internalID: -36165116
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OrcBaseAnimations_139
+      rect:
+        serializedVersion: 2
+        x: 12
+        y: 109
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6452a4f778b95ce4ab185aa163032c45
+      internalID: -52204363
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OrcBaseAnimations_140
+      rect:
+        serializedVersion: 2
+        x: 44
+        y: 109
+        width: 7
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b78ddd728c2dc6c46ad33d659552e7ef
+      internalID: 666642320
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OrcBaseAnimations_141
+      rect:
+        serializedVersion: 2
+        x: 76
+        y: 109
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 320502b7f17da6e4a8d4b0929f4268ec
+      internalID: 2122668979
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OrcBaseAnimations_142
+      rect:
+        serializedVersion: 2
+        x: 108
+        y: 109
+        width: 7
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 55ad45dbcbd91e74c8aa679b36676448
+      internalID: 209632034
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OrcBaseAnimations_143
+      rect:
+        serializedVersion: 2
+        x: 13
+        y: 77
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 81a63c02955a3034796b56c43fabee9c
+      internalID: 1544588097
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OrcBaseAnimations_144
+      rect:
+        serializedVersion: 2
+        x: 45
+        y: 77
+        width: 7
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 316cdc5e9096c584ebab2235e61f38df
+      internalID: 1522972822
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OrcBaseAnimations_145
+      rect:
+        serializedVersion: 2
+        x: 77
+        y: 77
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e10d3b76dc4f96440be68c25dcc13814
+      internalID: -130408514
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OrcBaseAnimations_146
+      rect:
+        serializedVersion: 2
+        x: 109
+        y: 77
+        width: 7
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 998c6f94b24638049a8e5885555464b4
+      internalID: -174464538
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OrcBaseAnimations_147
+      rect:
+        serializedVersion: 2
+        x: 12
+        y: 45
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 60d14208287dbb3488b24cf09afcdd9b
+      internalID: 1719302509
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OrcBaseAnimations_148
+      rect:
+        serializedVersion: 2
+        x: 44
+        y: 45
+        width: 7
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9f2c11d45743ded4db7dd1354479ba66
+      internalID: 593695757
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OrcBaseAnimations_149
+      rect:
+        serializedVersion: 2
+        x: 76
+        y: 45
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 062910442b69ff74da82af77773ae376
+      internalID: 649910060
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OrcBaseAnimations_150
+      rect:
+        serializedVersion: 2
+        x: 108
+        y: 45
+        width: 7
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 45fa0a1e13df91349a37b10cf76e1a75
+      internalID: -1305496953
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OrcBaseAnimations_151
+      rect:
+        serializedVersion: 2
+        x: 13
+        y: 13
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2f0fe426c7106d54ab78e07c4354d6de
+      internalID: 1579012352
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OrcBaseAnimations_152
+      rect:
+        serializedVersion: 2
+        x: 44
+        y: 13
+        width: 7
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2864e915c62653c4d9657e2a86d435f8
+      internalID: 1436333423
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OrcBaseAnimations_153
+      rect:
+        serializedVersion: 2
+        x: 76
+        y: 13
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d289f7e9f5c72ff4191f826ad59f9d8e
+      internalID: 2140910110
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OrcBaseAnimations_154
+      rect:
+        serializedVersion: 2
+        x: 108
+        y: 13
+        width: 7
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f67a73efac7106e468c06714644d9462
+      internalID: -1069364111
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      OrcBaseAnimations_0: 2077584631
+      OrcBaseAnimations_1: 1130348677
+      OrcBaseAnimations_10: 2050363304
+      OrcBaseAnimations_100: 696197980
+      OrcBaseAnimations_101: 1933860776
+      OrcBaseAnimations_102: 720732747
+      OrcBaseAnimations_103: 1027409425
+      OrcBaseAnimations_104: -1637403007
+      OrcBaseAnimations_105: 915750062
+      OrcBaseAnimations_106: 2098563338
+      OrcBaseAnimations_107: 1648169296
+      OrcBaseAnimations_108: 1350310308
+      OrcBaseAnimations_109: 371133400
+      OrcBaseAnimations_11: -1920491292
+      OrcBaseAnimations_110: -1213530895
+      OrcBaseAnimations_111: 1215710087
+      OrcBaseAnimations_112: -2136797138
+      OrcBaseAnimations_113: 816692675
+      OrcBaseAnimations_114: -1720938891
+      OrcBaseAnimations_115: 429536908
+      OrcBaseAnimations_116: -1877734945
+      OrcBaseAnimations_117: -750914693
+      OrcBaseAnimations_118: -1828898709
+      OrcBaseAnimations_119: 1532351807
+      OrcBaseAnimations_12: 558875502
+      OrcBaseAnimations_120: -1083741609
+      OrcBaseAnimations_121: 1561342606
+      OrcBaseAnimations_122: -362251416
+      OrcBaseAnimations_123: -1518416787
+      OrcBaseAnimations_124: -1471782388
+      OrcBaseAnimations_125: -825673570
+      OrcBaseAnimations_126: 1742813544
+      OrcBaseAnimations_127: -1993060861
+      OrcBaseAnimations_128: 906182048
+      OrcBaseAnimations_129: -592993618
+      OrcBaseAnimations_13: -687918735
+      OrcBaseAnimations_130: -1918821353
+      OrcBaseAnimations_131: -258462131
+      OrcBaseAnimations_132: -2125012114
+      OrcBaseAnimations_133: -1350138294
+      OrcBaseAnimations_134: -1934358637
+      OrcBaseAnimations_135: 351919656
+      OrcBaseAnimations_136: 748595584
+      OrcBaseAnimations_137: -1888538345
+      OrcBaseAnimations_138: -36165116
+      OrcBaseAnimations_139: -52204363
+      OrcBaseAnimations_14: 334624143
+      OrcBaseAnimations_140: 666642320
+      OrcBaseAnimations_141: 2122668979
+      OrcBaseAnimations_142: 209632034
+      OrcBaseAnimations_143: 1544588097
+      OrcBaseAnimations_144: 1522972822
+      OrcBaseAnimations_145: -130408514
+      OrcBaseAnimations_146: -174464538
+      OrcBaseAnimations_147: 1719302509
+      OrcBaseAnimations_148: 593695757
+      OrcBaseAnimations_149: 649910060
+      OrcBaseAnimations_15: -771123955
+      OrcBaseAnimations_150: -1305496953
+      OrcBaseAnimations_151: 1579012352
+      OrcBaseAnimations_152: 1436333423
+      OrcBaseAnimations_153: 2140910110
+      OrcBaseAnimations_154: -1069364111
+      OrcBaseAnimations_16: -1930591260
+      OrcBaseAnimations_17: 1543462422
+      OrcBaseAnimations_18: 1229630816
+      OrcBaseAnimations_19: 1079035357
+      OrcBaseAnimations_2: 965811886
+      OrcBaseAnimations_20: -1485842393
+      OrcBaseAnimations_21: -487988662
+      OrcBaseAnimations_22: -900689327
+      OrcBaseAnimations_23: -534038561
+      OrcBaseAnimations_24: -183355583
+      OrcBaseAnimations_25: -1500674417
+      OrcBaseAnimations_26: 1052817899
+      OrcBaseAnimations_27: 87316398
+      OrcBaseAnimations_28: -1369432162
+      OrcBaseAnimations_29: -687335958
+      OrcBaseAnimations_3: -1703472459
+      OrcBaseAnimations_30: -1041675158
+      OrcBaseAnimations_31: 214861366
+      OrcBaseAnimations_32: -1742921906
+      OrcBaseAnimations_33: 969968771
+      OrcBaseAnimations_34: -1960869809
+      OrcBaseAnimations_35: -2029804897
+      OrcBaseAnimations_36: -768747855
+      OrcBaseAnimations_37: -628477899
+      OrcBaseAnimations_38: -967492017
+      OrcBaseAnimations_39: 224444800
+      OrcBaseAnimations_4: 1502634372
+      OrcBaseAnimations_40: 1290983018
+      OrcBaseAnimations_41: 1327477616
+      OrcBaseAnimations_42: 1741146651
+      OrcBaseAnimations_43: 564115945
+      OrcBaseAnimations_44: -1591612896
+      OrcBaseAnimations_45: -55093025
+      OrcBaseAnimations_46: -388096735
+      OrcBaseAnimations_47: 519341736
+      OrcBaseAnimations_48: 1408053463
+      OrcBaseAnimations_49: -1816782345
+      OrcBaseAnimations_5: -592179415
+      OrcBaseAnimations_50: 1881419937
+      OrcBaseAnimations_51: -137343606
+      OrcBaseAnimations_52: 1463894152
+      OrcBaseAnimations_53: 1509465720
+      OrcBaseAnimations_54: 1207495354
+      OrcBaseAnimations_55: 1475690946
+      OrcBaseAnimations_56: -832795582
+      OrcBaseAnimations_57: -1377251454
+      OrcBaseAnimations_58: -563627409
+      OrcBaseAnimations_59: 1901386295
+      OrcBaseAnimations_6: 1552273775
+      OrcBaseAnimations_60: 159440907
+      OrcBaseAnimations_61: 690410872
+      OrcBaseAnimations_62: -1096174527
+      OrcBaseAnimations_63: 1676598700
+      OrcBaseAnimations_64: 1339410189
+      OrcBaseAnimations_65: 1262737055
+      OrcBaseAnimations_66: -1118992634
+      OrcBaseAnimations_67: 1636451897
+      OrcBaseAnimations_68: -981698285
+      OrcBaseAnimations_69: -1395939934
+      OrcBaseAnimations_7: -831137790
+      OrcBaseAnimations_70: -1120777108
+      OrcBaseAnimations_71: 2128258016
+      OrcBaseAnimations_72: 2133264722
+      OrcBaseAnimations_73: -1019727751
+      OrcBaseAnimations_74: -515452295
+      OrcBaseAnimations_75: 2877470
+      OrcBaseAnimations_76: 514025226
+      OrcBaseAnimations_77: -1223829837
+      OrcBaseAnimations_78: -1359004503
+      OrcBaseAnimations_79: 1480469877
+      OrcBaseAnimations_8: -1956666250
+      OrcBaseAnimations_80: 137735702
+      OrcBaseAnimations_81: 923850273
+      OrcBaseAnimations_82: -615053922
+      OrcBaseAnimations_83: 789059400
+      OrcBaseAnimations_84: 1293004501
+      OrcBaseAnimations_85: 1826087913
+      OrcBaseAnimations_86: -1720650829
+      OrcBaseAnimations_87: 2065504649
+      OrcBaseAnimations_88: 560537651
+      OrcBaseAnimations_89: -585145607
+      OrcBaseAnimations_9: 1002388009
+      OrcBaseAnimations_90: -1179867401
+      OrcBaseAnimations_91: 133703911
+      OrcBaseAnimations_92: -458350893
+      OrcBaseAnimations_93: -1774568838
+      OrcBaseAnimations_94: -1996941529
+      OrcBaseAnimations_95: -1216114852
+      OrcBaseAnimations_96: 75885791
+      OrcBaseAnimations_97: 819658418
+      OrcBaseAnimations_98: 783960084
+      OrcBaseAnimations_99: 1148515315
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
