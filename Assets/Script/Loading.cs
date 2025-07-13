@@ -12,7 +12,7 @@ public class Loading : MonoBehaviour
     private float fixedLoadingtime = 3f;
     private void Start()
     {
-        StartCoroutine(LoadScene(Next_Scene));
+        StartCoroutine(LoadScene2(Next_Scene));
     }
     public IEnumerator LoadScene(string sceneName)
     {
@@ -26,6 +26,19 @@ public class Loading : MonoBehaviour
             yield return null;
         }
 
+    }
+    public IEnumerator LoadScene2(string sceneName)
+    {
+        float elapsedTime = 0f;
+        while (elapsedTime < fixedLoadingtime)
+        {
+            float progress = Mathf.Clamp01(elapsedTime / fixedLoadingtime);
+            progressBar.GetComponent<Image>().fillAmount = progress;
+            text.text = (progress * 100).ToString(format: "0") + "%";
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+        SceneManager.LoadScene(sceneName);
     }
 }
 
