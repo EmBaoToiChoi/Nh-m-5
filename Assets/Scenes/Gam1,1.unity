@@ -18803,7 +18803,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -241185383
-  m_SortingLayer: 3
+  m_SortingLayer: 6
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 2b9533ea5d65b9744bc82b0f7c2d0423, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -18844,11 +18844,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b755ad74b0f630b4dae527ce6cb2c529, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  firePos: {fileID: 1019849344}
-  bulletPrefab: {fileID: 7352260520854424543, guid: e02fc8d84eb220245a19289a711381a5, type: 3}
-  shootSound: {fileID: 8300000, guid: 05f6082061522e744ac48638a333b480, type: 3}
-  source: {fileID: 561696587}
-  shootDelay: 0.15
 --- !u!1 &603095221
 GameObject:
   m_ObjectHideFlags: 0
@@ -19702,17 +19697,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4965262f0dce1e24d90ffaacfb92bbc9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  start: -1.88
-  end: 5.89
-  anie: {fileID: 847113826}
-  slimePrefab: {fileID: 4481574370428352474, guid: 448fca8346692284195c5b3d92a934d4, type: 3}
-  goldPrefab: {fileID: 6185698996354407225, guid: dbd5008486b3a4d4ca1a0e00bdf54eb9, type: 3}
-  spawnCount: 3
---- !u!95 &847113826 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 154030549286852967, guid: a4df6c765b960ef41839bef4cc5b4064, type: 3}
-  m_PrefabInstance: {fileID: 1745918883}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1019849343
 GameObject:
   m_ObjectHideFlags: 0
@@ -20152,7 +20136,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: acb5c5d7e61f940468c5d507cef913fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  thanhmau1: {fileID: 127662528}
 --- !u!1 &1306378531
 GameObject:
   m_ObjectHideFlags: 3
@@ -33594,7 +33577,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -203604301
-  m_SortingLayer: 1
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 1222591065, guid: 98a44ee3eb009684b9bb41c322800f08, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -33638,22 +33621,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 560b5446133da6d4fbaa83c5be9d535f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Play: {fileID: 1706431833}
-  move: 4
-  ngang: 0
-  doc: 0
-  ani2: {fileID: 1706431835}
-  hit_right: {fileID: 1214364734}
-  hit_up: {fileID: 1058419721}
-  hit_down: {fileID: 1793032353}
-  gunObject: {fileID: 561696586}
-  hit: {fileID: 8300000, guid: 0b500d8a67967f947a9f9f76fac5fffa, type: 3}
-  source: {fileID: 1706431831}
-  spriteRenderer: {fileID: 0}
-  thanhmau: {fileID: 1221083120}
-  mauhientai: 100
-  mautoida: 100
-  isMelee: 1
 --- !u!1001 &1745918883
 PrefabInstance:
   m_ObjectHideFlags: 0
