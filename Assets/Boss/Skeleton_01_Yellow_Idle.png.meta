@@ -34,7 +34,11 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
+<<<<<<< Updated upstream
     filterMode: 0
+=======
+    filterMode: 1
+>>>>>>> Stashed changes
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -124,8 +128,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
+<<<<<<< Updated upstream
       spriteID: 84d9533acb061a24688d2658c678fd16
       internalID: -209249290
+=======
+      spriteID: bbce1df361a49f542bc0c91ba4ba07d4
+      internalID: -581274255
+>>>>>>> Stashed changes
       vertices: []
       indices: 
       edges: []
@@ -145,8 +154,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
+<<<<<<< Updated upstream
       spriteID: d03e83409fae35844be8816a9007011e
       internalID: -1164442403
+=======
+      spriteID: e9e0e1cd8976ef4428f8baf69da598b9
+      internalID: 952911981
+>>>>>>> Stashed changes
       vertices: []
       indices: 
       edges: []
@@ -166,8 +180,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
+<<<<<<< Updated upstream
       spriteID: 8ed694f11ece3a84380f84ba7a07f92d
       internalID: 617525689
+=======
+      spriteID: fdb17a95da615e542b0554897d2191bf
+      internalID: 1431138067
+>>>>>>> Stashed changes
       vertices: []
       indices: 
       edges: []
@@ -187,8 +206,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
+<<<<<<< Updated upstream
       spriteID: ebafec3fc004a224d92614cdb3385012
       internalID: -1493853816
+=======
+      spriteID: 031be6596cfb1b448833121d918b826b
+      internalID: 965156647
+>>>>>>> Stashed changes
       vertices: []
       indices: 
       edges: []
@@ -208,8 +232,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
+<<<<<<< Updated upstream
       spriteID: a7f3eaa2f71b41b45873b56902b0d468
       internalID: 1321947100
+=======
+      spriteID: e23a3ebc71e2c8e47820974a6a3a1255
+      internalID: 1202807652
+>>>>>>> Stashed changes
       vertices: []
       indices: 
       edges: []
@@ -229,8 +258,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
+<<<<<<< Updated upstream
       spriteID: c998f2db8df7ea34786efa50c37f9535
       internalID: 2097347195
+=======
+      spriteID: c8a1a31dacec9834db374d4be17bf91f
+      internalID: -836953191
+>>>>>>> Stashed changes
       vertices: []
       indices: 
       edges: []
@@ -250,8 +284,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
+<<<<<<< Updated upstream
       spriteID: 8939ea0783e95a44f85a6391f9cd5beb
       internalID: 538984156
+=======
+      spriteID: 5fc175961cc0b9b4781b2da28678917f
+      internalID: 428236899
+>>>>>>> Stashed changes
       vertices: []
       indices: 
       edges: []
@@ -271,8 +310,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
+<<<<<<< Updated upstream
       spriteID: 18a47b0aa879a0d46acf9eb185325b22
       internalID: -677878527
+=======
+      spriteID: 81a8b51fcfac82d438168189373acc82
+      internalID: 1417846520
+>>>>>>> Stashed changes
       vertices: []
       indices: 
       edges: []
@@ -288,6 +332,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
+<<<<<<< Updated upstream
       Skeleton_01_Yellow_Idle_0: -209249290
       Skeleton_01_Yellow_Idle_1: -1164442403
       Skeleton_01_Yellow_Idle_2: 617525689
@@ -296,6 +341,16 @@ TextureImporter:
       Skeleton_01_Yellow_Idle_5: 2097347195
       Skeleton_01_Yellow_Idle_6: 538984156
       Skeleton_01_Yellow_Idle_7: -677878527
+=======
+      Skeleton_01_Yellow_Idle_0: -581274255
+      Skeleton_01_Yellow_Idle_1: 952911981
+      Skeleton_01_Yellow_Idle_2: 1431138067
+      Skeleton_01_Yellow_Idle_3: 965156647
+      Skeleton_01_Yellow_Idle_4: 1202807652
+      Skeleton_01_Yellow_Idle_5: -836953191
+      Skeleton_01_Yellow_Idle_6: 428236899
+      Skeleton_01_Yellow_Idle_7: 1417846520
+>>>>>>> Stashed changes
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

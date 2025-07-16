@@ -124,92 +124,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 95d12c1b52adf774284c549816f3f443
-      internalID: -1644346917
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Skeleton_01_Yellow_Hurt_1
-      rect:
-        serializedVersion: 2
-        x: 126
-        y: 0
-        width: 27
-        height: 42
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 3fd57410a9d2f3e4b8d83088db06bf51
-      internalID: 1890522311
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Skeleton_01_Yellow_Hurt_2
-      rect:
-        serializedVersion: 2
-        x: 224
-        y: 0
-        width: 26
-        height: 43
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: f8dda645afdf094428a6f47d6c9d49d1
-      internalID: 1740633853
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Skeleton_01_Yellow_Hurt_3
-      rect:
-        serializedVersion: 2
-        x: 322
-        y: 0
-        width: 32
-        height: 45
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: aa848f238b48c6e408291881533db08e
-      internalID: -371419745
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Skeleton_01_Yellow_Hurt_4
-      rect:
-        serializedVersion: 2
-        x: 418
-        y: 0
-        width: 34
-        height: 46
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: d9d614df1f24de74e8eb176e6809a557
-      internalID: -983286616
+      spriteID: 5aaef64a673f47950800000000000000
+      internalID: 6446044657564510885
       vertices: []
       indices: 
       edges: []
@@ -217,7 +133,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 5e97eb03825dee720800000000000000
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -225,11 +141,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Skeleton_01_Yellow_Hurt_0: -1644346917
-      Skeleton_01_Yellow_Hurt_1: 1890522311
-      Skeleton_01_Yellow_Hurt_2: 1740633853
-      Skeleton_01_Yellow_Hurt_3: -371419745
-      Skeleton_01_Yellow_Hurt_4: -983286616
+      Skeleton_01_Yellow_Hurt_0: 6446044657564510885
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
