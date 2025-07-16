@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 154030549286852967}
   - component: {fileID: 8921568088669782526}
   - component: {fileID: 7451455292378237104}
-  - component: {fileID: 7211858271916087278}
+  - component: {fileID: 1371468827715094863}
   m_Layer: 0
   m_Name: Slime_1_X
   m_TagString: enermy
@@ -74,8 +74,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1665054555
+  m_SortingLayer: 8
   m_SortingOrder: 0
   m_Sprite: {fileID: 1209329221, guid: a3d8897e2eef68c409ff971002f4e825, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -124,7 +124,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -135,7 +135,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!61 &7451455292378237104
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -181,7 +181,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.2, y: 0.26}
   m_EdgeRadius: 0
---- !u!114 &7211858271916087278
+--- !u!114 &1371468827715094863
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -193,9 +193,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9111919890a8e0a46b12eccc8c7d06d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  start: -6.72
-  end: 7.24
+  start: -1.06
+  end: 10.82
   anie: {fileID: 154030549286852967}
-  slimePrefab: {fileID: 3050081568939874693, guid: 427aabd9157b6dc46a12c18d5de18732, type: 3}
+  slimePrefab: {fileID: 0}
   goldPrefab: {fileID: 0}
   spawnCount: 3
