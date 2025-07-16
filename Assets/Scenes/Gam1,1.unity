@@ -18784,6 +18784,7 @@ GameObject:
   - component: {fileID: 561696589}
   - component: {fileID: 561696588}
   - component: {fileID: 561696587}
+  - component: {fileID: 561696591}
   m_Layer: 0
   m_Name: Gun
   m_TagString: Untagged
@@ -18967,6 +18968,23 @@ Transform:
   - {fileID: 1019849344}
   m_Father: {fileID: 1706431837}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &561696591
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 561696586}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b755ad74b0f630b4dae527ce6cb2c529, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  firePos: {fileID: 1019849344}
+  bulletPrefab: {fileID: 7352260520854424543, guid: e02fc8d84eb220245a19289a711381a5, type: 3}
+  shootSound: {fileID: 8300000, guid: 05f6082061522e744ac48638a333b480, type: 3}
+  source: {fileID: 561696587}
+  shootDelay: 0.15
 --- !u!1 &603095221
 GameObject:
   m_ObjectHideFlags: 0
