@@ -14,6 +14,8 @@ TagManager:
   - Gam1,1
   - Gam1,2
   - Gam1,3
+  - BoxBack
+  - Player1
   layers:
   - Default
   - TransparentFX
@@ -68,4 +70,7 @@ TagManager:
     locked: 0
   - name: Trap
     uniqueID: 4082768313
+    locked: 0
+  - name: Gold
+    uniqueID: 565008311
     locked: 0
