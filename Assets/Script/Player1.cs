@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player1 : MonoBehaviour
 {
@@ -19,7 +20,27 @@ public class Player1 : MonoBehaviour
     public float mauhientai;
     public float mautoida;
     [SerializeField]
-    private bool isMelee = true; // Mặc định là đánh
+    private bool isMelee = true;
+     void loadsence1(){
+        SceneManager.LoadScene("Gam1,1");
+        
+    }
+    void loadsence2(){
+        SceneManager.LoadScene("Gam1,2");
+        
+    }
+    void loadsence3(){
+        SceneManager.LoadScene("Gam1,3");
+        
+    }
+    void loadsence4(){
+        SceneManager.LoadScene("Gam1");
+        
+    }
+
+
+        
+    
 
     private void Awake()
     {
@@ -35,7 +56,7 @@ public class Player1 : MonoBehaviour
     }
     void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("enermy"))
+        if (collision.gameObject.CompareTag("enermy") || collision.gameObject.CompareTag("Trap"))
         {
             mauhientai -= 10;
 
@@ -47,6 +68,24 @@ public class Player1 : MonoBehaviour
                 Destroy(this.gameObject);
             }
         }
+        if (collision.gameObject.CompareTag("Gam1,1"))
+        {
+            loadsence1();
+        }
+        if (collision.gameObject.CompareTag("Gam1,2"))
+        {
+            loadsence2();
+        }
+        if (collision.gameObject.CompareTag("Gam1,3"))
+        {
+            loadsence3();
+        }
+        if (collision.gameObject.CompareTag("BoxBack"))
+        {
+            loadsence4();
+        }
+        
+
     }
 
     void Start()

@@ -10,6 +10,12 @@ TagManager:
   - item
   - Box
   - Hit
+  - Trap
+  - Gam1,1
+  - Gam1,2
+  - Gam1,3
+  - BoxBack
+  - Player1
   layers:
   - Default
   - TransparentFX
@@ -47,6 +53,15 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Ground
+    uniqueID: 1925317331
+    locked: 0
+  - name: Walkind
+    uniqueID: 1218736783
+    locked: 0
+  - name: Collision
+    uniqueID: 4042155251
+    locked: 0
   - name: Player
     uniqueID: 4091362995
     locked: 0
@@ -55,4 +70,22 @@ TagManager:
     locked: 0
   - name: Gun
     uniqueID: 4053781913
+    locked: 0
+  - name: UI
+    uniqueID: 197906189
+    locked: 0
+  - name: Enermy
+    uniqueID: 1665054555
+    locked: 0
+  - name: Trap
+    uniqueID: 4082768313
+    locked: 0
+  - name: Gold
+    uniqueID: 565008311
+    locked: 0
+  - name: Walbehind
+    uniqueID: 30520475
+    locked: 0
+  - name: deco
+    uniqueID: 885478963
     locked: 0
