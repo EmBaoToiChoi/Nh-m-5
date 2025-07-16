@@ -11,17 +11,17 @@ public class Vang : MonoBehaviour
 
     void Start()
     {
-        int savedScore = PlayerPrefs.GetInt("Player");
+        int savedScore = PlayerPrefs.GetInt("Player1");
         UpdateScoreText(savedScore);
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player1"))
         {
-            int currentScore = PlayerPrefs.GetInt("Player");
+            int currentScore = PlayerPrefs.GetInt("Player1");
             currentScore += scoreValue;
-            PlayerPrefs.SetInt("Player", currentScore);
+            PlayerPrefs.SetInt("Player1", currentScore);
             PlayerPrefs.Save();
             UpdateScoreText(currentScore);
             Destroy(this.gameObject);
