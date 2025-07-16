@@ -10,6 +10,10 @@ TagManager:
   - item
   - Box
   - Hit
+  - Trap
+  - Gam1,1
+  - Gam1,2
+  - Gam1,3
   layers:
   - Default
   - TransparentFX
@@ -55,4 +59,13 @@ TagManager:
     locked: 0
   - name: Gun
     uniqueID: 4053781913
+    locked: 0
+  - name: UI
+    uniqueID: 197906189
+    locked: 0
+  - name: Enermy
+    uniqueID: 1665054555
+    locked: 0
+  - name: Trap
+    uniqueID: 4082768313
     locked: 0
