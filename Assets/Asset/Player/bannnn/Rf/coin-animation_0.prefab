@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 412930105912510003}
   - component: {fileID: 7114060851349755521}
   - component: {fileID: 6808446119869610766}
-  - component: {fileID: 7852746471211405135}
+  - component: {fileID: 6326143789776859561}
   m_Layer: 0
   m_Name: coin-animation_0
   m_TagString: item
@@ -75,7 +75,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 565008311
-  m_SortingLayer: 7
+  m_SortingLayer: 10
   m_SortingOrder: 0
   m_Sprite: {fileID: 8980438598086963491, guid: ede4b03d4049f481a80ce6756418b385, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -171,7 +171,7 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &7852746471211405135
+--- !u!114 &6326143789776859561
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -180,7 +180,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 6185698996354407225}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3dc37cb66ee72d04ab336882c808c549, type: 3}
+  m_Script: {fileID: 11500000, guid: 10ba005ab451b15449a68c8236c23f87, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   scoreText: {fileID: 0}

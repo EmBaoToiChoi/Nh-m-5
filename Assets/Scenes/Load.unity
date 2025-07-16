@@ -134,7 +134,6 @@ GameObject:
   - component: {fileID: 114479252}
   - component: {fileID: 114479251}
   - component: {fileID: 114479253}
-  - component: {fileID: 114479254}
   m_Layer: 5
   m_Name: loading
   m_TagString: Untagged
@@ -211,18 +210,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 215a0260a0ff7104e97cc411b37dab6d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &114479254
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 114479249}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b4ccb5baaffebab4caa63379c029cd98, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   progressBar: {fileID: 1299246697}

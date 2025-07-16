@@ -1260,7 +1260,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1104768889}
+      - m_Target: {fileID: 1104768887}
         m_TargetAssemblyTypeName: LoadScene, Assembly-CSharp
         m_MethodName: play
         m_Mode: 5
@@ -1269,7 +1269,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: Gam1
+          m_StringArgument: Load
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &431987792
@@ -1811,8 +1811,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ace93cdd79465c8429e67955eeb1dd28, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  volumeSlider: {fileID: 1719914466}
-  audioSource: {fileID: 190980633}
 --- !u!1 &794230544
 GameObject:
   m_ObjectHideFlags: 0
@@ -2094,7 +2092,6 @@ GameObject:
   m_Component:
   - component: {fileID: 916703376}
   - component: {fileID: 916703375}
-  - component: {fileID: 916703377}
   m_Layer: 0
   m_Name: code cai dat
   m_TagString: Untagged
@@ -2130,19 +2127,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &916703377
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 916703374}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ef150995dc2b07648bd38a910f929818, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  UI: {fileID: 367136236}
 --- !u!1 &924478236
 GameObject:
   m_ObjectHideFlags: 0
@@ -2857,7 +2841,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1104768888}
   - component: {fileID: 1104768887}
-  - component: {fileID: 1104768889}
   m_Layer: 0
   m_Name: loading
   m_TagString: Untagged
@@ -2892,18 +2875,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1104768889
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1104768886}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3aaae948f26143f4aa7a01aa08ef9830, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1111505666
 GameObject:
   m_ObjectHideFlags: 0
