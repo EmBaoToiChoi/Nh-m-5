@@ -19680,23 +19680,6 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
---- !u!1 &847113821 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2204013345913167884, guid: a4df6c765b960ef41839bef4cc5b4064, type: 3}
-  m_PrefabInstance: {fileID: 1745918883}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &847113822
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 847113821}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4965262f0dce1e24d90ffaacfb92bbc9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1019849343
 GameObject:
   m_ObjectHideFlags: 0
@@ -33675,7 +33658,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8070253734223716208, guid: a4df6c765b960ef41839bef4cc5b4064, type: 3}
       propertyPath: m_SortingLayer
-      value: 5
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 8070253734223716208, guid: a4df6c765b960ef41839bef4cc5b4064, type: 3}
       propertyPath: m_SortingLayerID
@@ -33697,10 +33680,7 @@ PrefabInstance:
     - {fileID: 7211858271916087278, guid: a4df6c765b960ef41839bef4cc5b4064, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 2204013345913167884, guid: a4df6c765b960ef41839bef4cc5b4064, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 847113822}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a4df6c765b960ef41839bef4cc5b4064, type: 3}
 --- !u!1 &1793032353
 GameObject:
@@ -35973,7 +35953,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Slime_1_Y
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 719114438049487451, guid: e752da26a64c0d846b3346afc9acce63, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
