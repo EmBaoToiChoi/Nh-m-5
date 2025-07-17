@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-public class LoaddingScene : MonoBehaviour
+
+public class Loading : MonoBehaviour
 {
     public static string Next_Scene = "Gam1";
     public GameObject progressBar;
@@ -40,3 +41,4 @@ public class LoaddingScene : MonoBehaviour
         SceneManager.LoadScene(sceneName);
     }
 }
+
