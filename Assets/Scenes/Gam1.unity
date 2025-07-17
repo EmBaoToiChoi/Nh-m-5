@@ -9111,7 +9111,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 40487037}
         m_TargetAssemblyTypeName: CAI_DAT, Assembly-CSharp
         m_MethodName: HidePanel
         m_Mode: 1
@@ -24432,7 +24432,7 @@ MonoBehaviour:
   hit_up: {fileID: 1801587590}
   hit_down: {fileID: 36480984}
   gunObject: {fileID: 1906629659}
-  hit: {fileID: 0}
+  hit: {fileID: 8300000, guid: 0b500d8a67967f947a9f9f76fac5fffa, type: 3}
   source: {fileID: 1732023652}
   spriteRenderer: {fileID: 0}
   thanhmau: {fileID: 297739483}
@@ -24781,15 +24781,15 @@ GameObject:
   m_Component:
   - component: {fileID: 1906629663}
   - component: {fileID: 1906629662}
-  - component: {fileID: 1906629661}
   - component: {fileID: 1906629660}
+  - component: {fileID: 1906629664}
   m_Layer: 0
   m_Name: Gun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!82 &1906629660
 AudioSource:
   m_ObjectHideFlags: 0
@@ -24886,18 +24886,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &1906629661
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1906629659}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b5dc1cd6385d3e64daac84635a37387a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!212 &1906629662
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -24966,6 +24954,23 @@ Transform:
   - {fileID: 1246100956}
   m_Father: {fileID: 1732023651}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1906629664
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1906629659}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5665666984c350e41937d787b6b1904e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  firePos: {fileID: 1246100956}
+  bulletPrefab: {fileID: 1783767720546997880, guid: e02fc8d84eb220245a19289a711381a5, type: 3}
+  shootSound: {fileID: 8300000, guid: 05f6082061522e744ac48638a333b480, type: 3}
+  source: {fileID: 1906629660}
+  shootDelay: 0.15
 --- !u!1 &1921361986
 GameObject:
   m_ObjectHideFlags: 0
