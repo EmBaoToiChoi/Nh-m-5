@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CaiDat : MonoBehaviour
+public class CAI_DAT : MonoBehaviour
 {
     public GameObject UI; 
 
