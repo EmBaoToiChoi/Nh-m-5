@@ -21,26 +21,30 @@ public class Player1 : MonoBehaviour
     public float mautoida;
     [SerializeField]
     private bool isMelee = true;
-     void loadsence1(){
+    void loadsence1()
+    {
         SceneManager.LoadScene("Gam1,1");
-        
+
     }
-    void loadsence2(){
+    void loadsence2()
+    {
         SceneManager.LoadScene("Gam1,2");
-        
+
     }
-    void loadsence3(){
+    void loadsence3()
+    {
         SceneManager.LoadScene("Gam1,3");
-        
+
     }
-    void loadsence4(){
+    void loadsence4()
+    {
         SceneManager.LoadScene("Gam1");
-        
+
     }
 
 
-        
-    
+
+
 
     private void Awake()
     {
@@ -84,7 +88,7 @@ public class Player1 : MonoBehaviour
         {
             loadsence4();
         }
-        
+
 
     }
 
@@ -217,8 +221,8 @@ public class Player1 : MonoBehaviour
                 hit_down.SetActive(is_attack);
             }
         }
-            
-}
+
+    }
 
     void HandleShooting()
     {
@@ -260,4 +264,14 @@ public class Player1 : MonoBehaviour
             Debug.Log("Bắn đạn!");
         }
     }
+    public void TakeDamage(int damage)
+{
+    mauhientai -= damage;
+    thanhmau.Capnhatthanhmau(mauhientai, mautoida);
+
+    if (mauhientai <= 0)
+    {
+        Destroy(this.gameObject);
+    }
+}
 }
