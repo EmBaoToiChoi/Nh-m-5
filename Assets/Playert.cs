@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class Player1 : MonoBehaviour
+public class Playert : MonoBehaviour
 {
     public Rigidbody2D Play;
     public float move = 4f;
@@ -16,7 +16,7 @@ public class Player1 : MonoBehaviour
     [SerializeField] private AudioClip hit;
     [SerializeField] private AudioSource source;
     [HideInInspector] public SpriteRenderer spriteRenderer;
-    public ThanhMauPl_1 thanhmau;
+    public CodeThanhMau thanhmau;
     public float mauhientai;
     public float mautoida;
     [SerializeField]
@@ -261,3 +261,4 @@ public class Player1 : MonoBehaviour
         }
     }
 }
+

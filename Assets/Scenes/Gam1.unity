@@ -227,9 +227,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73563c9529198f442a755d4094aa437a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  start: -9.86
-  end: 3.82
-  speed: 4
 --- !u!95 &32060008
 Animator:
   serializedVersion: 5
@@ -583,9 +580,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73563c9529198f442a755d4094aa437a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  start: -9.86
-  end: 3.82
-  speed: 3
 --- !u!95 &70708375
 Animator:
   serializedVersion: 5
@@ -1325,9 +1319,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73563c9529198f442a755d4094aa437a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  start: -9.86
-  end: 3.82
-  speed: 2
 --- !u!95 &223966924
 Animator:
   serializedVersion: 5
@@ -1521,9 +1512,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73563c9529198f442a755d4094aa437a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  start: -9.86
-  end: 3.82
-  speed: 3
 --- !u!95 &248284516
 Animator:
   serializedVersion: 5
@@ -1621,7 +1609,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 297739482}
-  - component: {fileID: 297739481}
+  - component: {fileID: 297739483}
   m_Layer: 0
   m_Name: code hp
   m_TagString: Untagged
@@ -1629,19 +1617,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &297739481
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 297739480}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2501c505474faa64a883703c6a26e971, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  thanhmau1: {fileID: 753902881}
 --- !u!4 &297739482
 Transform:
   m_ObjectHideFlags: 0
@@ -1657,6 +1632,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1784264248}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &297739483
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 297739480}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7abb6a31f7a43d0458169aa988427b1f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  thanhmau1: {fileID: 753902881}
 --- !u!1 &310355149
 GameObject:
   m_ObjectHideFlags: 0
@@ -2188,9 +2176,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73563c9529198f442a755d4094aa437a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  start: -9.96
-  end: 3.82
-  speed: 2
 --- !u!95 &456464458
 Animator:
   serializedVersion: 5
@@ -7952,9 +7937,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73563c9529198f442a755d4094aa437a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  start: -9.86
-  end: 3.82
-  speed: 2
 --- !u!95 &1610731149
 Animator:
   serializedVersion: 5
@@ -23137,10 +23119,10 @@ GameObject:
   - component: {fileID: 1732023651}
   - component: {fileID: 1732023650}
   - component: {fileID: 1732023649}
-  - component: {fileID: 1732023655}
   - component: {fileID: 1732023654}
   - component: {fileID: 1732023653}
   - component: {fileID: 1732023652}
+  - component: {fileID: 1732023655}
   m_Layer: 0
   m_Name: Player1
   m_TagString: Player
@@ -23417,7 +23399,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1732023648}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5b4e3fc52c5fea148a882db4b269afbd, type: 3}
+  m_Script: {fileID: 11500000, guid: 88af41c149babd34186a8256fd56fdfd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Play: {fileID: 1732023654}
@@ -23429,12 +23411,12 @@ MonoBehaviour:
   hit_up: {fileID: 1801587590}
   hit_down: {fileID: 36480984}
   gunObject: {fileID: 1906629659}
-  hit: {fileID: 8300000, guid: 0b500d8a67967f947a9f9f76fac5fffa, type: 3}
+  hit: {fileID: 0}
   source: {fileID: 1732023652}
   spriteRenderer: {fileID: 0}
-  thanhmau: {fileID: 297739481}
-  mauhientai: 100
-  mautoida: 100
+  thanhmau: {fileID: 297739483}
+  mauhientai: 0
+  mautoida: 0
   isMelee: 1
 --- !u!1 &1771234642
 GameObject:
@@ -23723,9 +23705,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73563c9529198f442a755d4094aa437a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  start: -9.86
-  end: 3.82
-  speed: 4
 --- !u!95 &1793365062
 Animator:
   serializedVersion: 5
@@ -24011,9 +23990,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73563c9529198f442a755d4094aa437a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  start: -9.86
-  end: 3.82
-  speed: 4
 --- !u!95 &1864397725
 Animator:
   serializedVersion: 5
@@ -24286,11 +24262,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5dc1cd6385d3e64daac84635a37387a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  firePos: {fileID: 1246100956}
-  bulletPrefab: {fileID: 1783767720546997880, guid: e02fc8d84eb220245a19289a711381a5, type: 3}
-  shootSound: {fileID: 8300000, guid: fdde0286f9319d042a7c1d3208d248e7, type: 3}
-  source: {fileID: 1906629660}
-  shootDelay: 0.15
 --- !u!212 &1906629662
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -24679,9 +24650,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73563c9529198f442a755d4094aa437a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  start: -9.86
-  end: 3.82
-  speed: 4
 --- !u!95 &2004289746
 Animator:
   serializedVersion: 5
