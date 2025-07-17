@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Trap_X : MonoBehaviour
+public class TRAP_X : MonoBehaviour
 {
     public float start, end;  
     public float speed = 2f;  

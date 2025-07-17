@@ -5,11 +5,11 @@ using UnityEngine.SceneManagement;
 
 public class LoadScene : MonoBehaviour
 {
-     public void play(string scenename)
+     public void Play(string scenename)
     {
         SceneManager.LoadScene(scenename);
     }
-    public void pause(string scenename)
+    public void Pause(string scenename)
     {
         SceneManager.LoadScene(scenename);
     }
