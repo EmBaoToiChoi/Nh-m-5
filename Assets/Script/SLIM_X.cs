@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Slime_1_X : MonoBehaviour
+public class SLIM_X : MonoBehaviour
 {
     public float start, end;
     private bool checkrigh;

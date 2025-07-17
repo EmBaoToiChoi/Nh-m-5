@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Slime_Y_spoin : MonoBehaviour
+public class SLIM_X_SP : MonoBehaviour
 {
     [SerializeField] private GameObject goldPrefab;
     public float start, end;
-    private bool checkdoc;
+    private bool checkrigh;
     public Animator anie;
     void OnTriggerEnter2D(Collider2D other)
     {
@@ -14,34 +14,39 @@ public class Slime_Y_spoin : MonoBehaviour
         {
             anie.SetTrigger("die");
             SpawnGold();
+           
             Destroy(this.gameObject, 1f);
         }
     }
-    void SpawnGold()
+void SpawnGold()
     {
         // Tọa độ spawn vàng (ở chính giữa slime cha)
         Vector3 spawnPos = transform.position;
         Instantiate(goldPrefab, spawnPos, Quaternion.identity);
     }
+    
+    
+
     void Update()
     {
-        var position_enermy = transform.position.y;
-        if(position_enermy > end){
-            checkdoc = false;
+        var position_enermy = transform.position.x;
+        if (position_enermy > end)
+        {
+            checkrigh = false;
         }
-        if(position_enermy < start ){
-            checkdoc = true;
+        if (position_enermy < start)
+        {
+            checkrigh = true;
         }
-
-        if(checkdoc == true){
-            transform.Translate(Vector2.up * 2f * Time.deltaTime);
-            anie.SetBool("chayw", true);
-      
-        }else{anie.SetBool("chayw", false);}
-        if(checkdoc == false){
-            transform.Translate(Vector2.down * 2f * Time.deltaTime);
-            anie.SetBool("chays", true);
-
-       } else{anie.SetBool("chays", false);}
+        if (checkrigh)
+        {
+            transform.Translate(Vector2.right * 2f * Time.deltaTime);
+            transform.localScale = new Vector3(5, 5, 5);
+        }
+        else
+        {
+            transform.Translate(Vector2.left * 2f * Time.deltaTime);
+            transform.localScale = new Vector3(-5, 5, 5);
+        }
     }
 }

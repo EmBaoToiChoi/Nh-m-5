@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Slime_1_Y : MonoBehaviour
+public class SLIM_Y : MonoBehaviour
 {
     [SerializeField] private GameObject goldPrefab;
     [SerializeField] private int spawnCount = 3;
