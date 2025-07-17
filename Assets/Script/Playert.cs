@@ -15,6 +15,9 @@ public class Playert : MonoBehaviour
     private float timer;
     [SerializeField] private AudioClip hit;
     [SerializeField] private AudioSource source;
+    [SerializeField] private AudioClip hit1;
+    [SerializeField] private AudioSource source1;
+
     [HideInInspector] public SpriteRenderer spriteRenderer;
     public CodeThanhMau thanhmau;
     public float mauhientai;
@@ -97,34 +100,61 @@ public class Playert : MonoBehaviour
 
     void Update()
     {
-        MovePlayer();
+         MovePlayer();
 
-        // Chuyển chế độ bằng phím 1 (đánh) và phím 2 (bắn)
-        if (Input.GetKeyDown(KeyCode.Alpha1))
-        {
-            isMelee = true;
-            gunObject.SetActive(false); // Ẩn súng
-            Debug.Log("Chế độ ĐÁNH");
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha2))
-        {
-            isMelee = false;
-            gunObject.SetActive(true); // Hiện súng
-            Debug.Log("Chế độ BẮN");
-        }
+    // Chuyển chế độ bằng phím 1 (đánh) và phím 2 (bắn)
+    if (Input.GetKeyDown(KeyCode.Alpha1))
+    {
+        isMelee = true;
+        gunObject.SetActive(false); // Ẩn súng
+        Debug.Log("Chế độ ĐÁNH");
+    }
+    if (Input.GetKeyDown(KeyCode.Alpha2))
+    {
+        isMelee = false;
+        gunObject.SetActive(true); // Hiện súng
+        Debug.Log("Chế độ BẮN");
+    }
 
-        ngang = Input.GetAxisRaw("Horizontal");
-        doc = Input.GetAxisRaw("Vertical");
-        Play.velocity = new Vector2(ngang * move, doc * move);
+    ngang = Input.GetAxisRaw("Horizontal");
+    doc = Input.GetAxisRaw("Vertical");
 
-        if (isMelee)
+    Play.velocity = new Vector2(ngang * move, doc * move);
+
+    // 🎵 Phát tiếng bước chân khi di chuyển
+    HandleFootstepSound();
+
+    if (isMelee)
+    {
+        HandleMelee();
+    }
+    else
+    {
+        HandleShooting(); // Thêm animation chạy khi cầm súng
+    }
+}
+
+    // ✅ Hàm xử lý tiếng bước chân
+    void HandleFootstepSound()
+    {
+        if (ngang != 0 || doc != 0) // Có di chuyển
         {
-            HandleMelee();
+            if (!source1.isPlaying) // Nếu chưa phát tiếng bước chân
+            {
+                source1.clip = hit1;
+                source1.loop = true;  // Lặp tiếng bước chân
+                source1.Play();
+            }
         }
-        else
+        else // Đứng yên thì tắt tiếng
         {
-            HandleShooting(); // Thêm animation chạy khi cầm súng
+            if (source1.isPlaying)
+            {
+                source1.Stop();
+            }
         }
+    
+    
     }
 
     void HandleMelee()
@@ -135,7 +165,7 @@ public class Playert : MonoBehaviour
 
         if (Input.GetAxisRaw("Horizontal") > 0)
         {
-
+            
             ani2.SetBool("chayad", true);
             transform.localScale = new Vector3(5, 5, 5);
 
@@ -151,6 +181,7 @@ public class Playert : MonoBehaviour
         }
         if (Input.GetAxisRaw("Horizontal") < 0)
         {
+            
             ani2.SetBool("chayad", true);
 
             transform.localScale = new Vector3(-5, 5, 5);
@@ -171,6 +202,7 @@ public class Playert : MonoBehaviour
         }
         if (Input.GetAxisRaw("Vertical") > 0)
         {
+            
             ani2.SetBool("chayw", true);
 
             ani2.SetBool("chays", false);
@@ -187,6 +219,7 @@ public class Playert : MonoBehaviour
 
         if (Input.GetAxisRaw("Vertical") < 0)
         {
+            
             ani2.SetBool("chays", true);
 
             ani2.SetBool("chayw", false);
@@ -225,10 +258,12 @@ public class Playert : MonoBehaviour
         // Animation di chuyển khi cầm súng
         if (Input.GetAxisRaw("Horizontal") > 0)
         {
+            
             ani2.SetBool("chayad", true);
         }
         else if (Input.GetAxisRaw("Horizontal") < 0)
         {
+            
             ani2.SetBool("chaya", true);
             ani2.SetBool("chayad", false);
         }
@@ -240,11 +275,13 @@ public class Playert : MonoBehaviour
 
         if (Input.GetAxisRaw("Vertical") > 0)
         {
+            
             ani2.SetBool("chayw", true);
             ani2.SetBool("chays", false);
         }
         else if (Input.GetAxisRaw("Vertical") < 0)
         {
+            
             ani2.SetBool("chays", true);
             ani2.SetBool("chayw", false);
         }
