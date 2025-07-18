@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1355581116369200411}
   - component: {fileID: -7821932391881479725}
   - component: {fileID: 6271758323918919937}
+  - component: {fileID: 6845706509976115613}
   m_Layer: 0
   m_Name: Skeleton_01_White_Idle_0
   m_TagString: Untagged
@@ -148,7 +149,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 5169041040935020688, guid: 0731c0182bef5034196e0ea9f1756ff4, type: 3}
-  patrolRange: 2
+  patrolRange: 3
   detectionRange: 1
   speed: 2
   maxHealth: 3
@@ -156,3 +157,16 @@ MonoBehaviour:
   smallEnemyPrefab: {fileID: 6470246634005437640, guid: c218add587048ef4a90996729aa937f4, type: 3}
   attackEffectPrefab: {fileID: 0}
   ani: {fileID: 1355581116369200411}
+--- !u!114 &6845706509976115613
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8791592117088710815}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25c3f9278aa3ff9419397a3047e7302d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackClip: {fileID: 8300000, guid: 0b500d8a67967f947a9f9f76fac5fffa, type: 3}
