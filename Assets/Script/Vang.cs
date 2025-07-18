@@ -5,8 +5,6 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 public class Vang : MonoBehaviour
 {
-    [SerializeField] private AudioClip An;
-    [SerializeField] private AudioSource source;
     [SerializeField] private TMP_Text scoreText;
    // [SerializeField] private Animator anim;
     [SerializeField] private int scoreValue = 1;
@@ -21,13 +19,11 @@ public class Vang : MonoBehaviour
     {
         if (other.CompareTag("Player1"))
         {
-            AudioSource.PlayClipAtPoint(An, transform.position);
             int currentScore = PlayerPrefs.GetInt("Player1");
             currentScore += scoreValue;
             PlayerPrefs.SetInt("Player1", currentScore);
             PlayerPrefs.Save();
             UpdateScoreText(currentScore);
-            
             Destroy(this.gameObject);
         }
     }

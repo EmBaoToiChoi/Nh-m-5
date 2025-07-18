@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GUN : MonoBehaviour
+public class Gun : MonoBehaviour
 {
     [SerializeField] private Transform firePos;
     [SerializeField] private GameObject bulletPrefab;
@@ -24,10 +24,10 @@ public class GUN : MonoBehaviour
         Vector3 direction = mousePos - transform.position;
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
 
-        
+        // Xoay súng theo chuột
         transform.rotation = Quaternion.Euler(0, 0, angle);
 
-        
+        // ❌ KHÔNG flipY, KHÔNG lật scale
     }
 
 
