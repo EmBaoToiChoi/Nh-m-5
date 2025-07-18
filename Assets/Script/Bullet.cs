@@ -4,32 +4,48 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    // Start is called before the first frame update
     [SerializeField] private float Move = 25f;
     [SerializeField] private float timeDestroy = 0.5f;
-    // public Animator nie;
+    [SerializeField] private int damage = 15; // Thêm sát thương
 
     void Start()
     {
         Destroy(gameObject, timeDestroy);
     }
 
-    // Update is called once per frame
     void Update()
     {
         MoveBullet();
     }
+
     void MoveBullet()
     {
         transform.position += transform.right * Move * Time.deltaTime;
-
     }
+
     void OnTriggerEnter2D(Collider2D other)
     {
-        // Nếu chạm Boss hoặc Enemy, hủy đạn
-        if ( other.CompareTag("enermy"))
+        // Nếu chạm Enemy thường
+        if (other.CompareTag("enermy"))
         {
-            // nie.SetTrigger("No");
+            HealthSystem enemyHealth = other.GetComponent<HealthSystem>();
+            if (enemyHealth != null)
+            {
+                enemyHealth.TakeDamage(damage);
+            }
+
+            Destroy(gameObject);
+        }
+
+        // Nếu chạm Boss
+        if (other.CompareTag("Boss"))
+        {
+            HealthSystem bossHealth = other.GetComponent<HealthSystem>();
+            if (bossHealth != null)
+            {
+                bossHealth.TakeDamage(damage);
+            }
+
             Destroy(gameObject);
         }
     }

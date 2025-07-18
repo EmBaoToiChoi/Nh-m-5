@@ -260,4 +260,16 @@ public class Player1 : MonoBehaviour
             Debug.Log("Bắn đạn!");
         }
     }
+    public void TakeFireDamage(int amount)
+    {
+        mauhientai -= amount;
+        thanhmau.Capnhatthanhmau(mauhientai, mautoida);
+        Debug.Log("Player bị trúng lửa! HP còn: " + mauhientai);
+
+        if (mauhientai <= 0)
+        {
+            Destroy(gameObject); // hoặc gọi Die() riêng nếu bạn có
+        }
+    }
+
 }

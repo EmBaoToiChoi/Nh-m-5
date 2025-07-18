@@ -16,6 +16,7 @@ TagManager:
   - Gam1,3
   - BoxBack
   - Player1
+  - Boss
   layers:
   - Default
   - TransparentFX
@@ -88,4 +89,7 @@ TagManager:
     locked: 0
   - name: deco
     uniqueID: 885478963
+    locked: 0
+  - name: Boss
+    uniqueID: 1771179863
     locked: 0
