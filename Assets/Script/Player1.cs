@@ -94,9 +94,9 @@ public class Player1 : MonoBehaviour
 
     void Start()
     {
-        mauhientai = mautoida;
-        GetComponent<Rigidbody2D>();
-        thanhmau.Capnhatthanhmau(mauhientai, mautoida);
+        // mauhientai = mautoida;
+        // GetComponent<Rigidbody2D>();
+        // thanhmau.Capnhatthanhmau(mauhientai, mautoida);
     }
 
     void Update()

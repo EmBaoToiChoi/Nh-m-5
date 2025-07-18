@@ -17,7 +17,6 @@ public class Enemy1Script : MonoBehaviour
     private Vector3 startPoint;
     private Vector3 patrolTarget;
     private bool isAttacking = false;
-
     void Start()
     {
         startPoint = transform.position;
