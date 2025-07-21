@@ -193,7 +193,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7afc3a8c06d34a4484a96792e80cad0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  goldPrefab: {fileID: 0}
+  goldPrefab: {fileID: 6185698996354407225, guid: dbd5008486b3a4d4ca1a0e00bdf54eb9, type: 3}
   start: 0
   end: 0
   anie: {fileID: 1352796583596920626}
