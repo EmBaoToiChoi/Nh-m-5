@@ -73,6 +73,6 @@ public class Boss1Controller : MonoBehaviour
             audioSource.PlayOneShot(attackClip);
         }
 
-        
+
     }
 }

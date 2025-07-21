@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 3834752975652319739}
   - component: {fileID: 7933728078565112863}
   m_Layer: 0
-  m_Name: Boss_Small
+  m_Name: Boss_Small - Copy
   m_TagString: Boss
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
