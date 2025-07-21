@@ -29,9 +29,9 @@ public class HealthSystem : MonoBehaviour
     {
         if (isDead) return;
 
-        if (collision.gameObject.CompareTag("Hit"))
+        if (collision.gameObject.CompareTag("Hit")) // Đạn của player
         {
-            currentHealth -= 50; // hoặc số damage bạn muốn, hoặc lấy từ object nếu có script riêng
+            currentHealth -= 25;
 
             Debug.Log($"{gameObject.name} bị trúng đòn! HP còn: {currentHealth}");
 
@@ -51,21 +51,21 @@ public class HealthSystem : MonoBehaviour
                 if (deathClip != null && audioSource != null)
                     audioSource.PlayOneShot(deathClip);
 
-                // Rơi vàng ngay vị trí chết
+                // Rơi vàng
                 if (goldPrefab != null)
                 {
                     Instantiate(goldPrefab, transform.position, Quaternion.identity);
                 }
 
-                // Rơi máu lệch khỏi vàng
+                // Rơi máu
                 if (healthPickupPrefab != null)
                 {
                     Vector3 offset = new Vector3(0.4f, 0.3f, 0);
                     Instantiate(healthPickupPrefab, transform.position + offset, Quaternion.identity);
                 }
 
-                // Nếu là Boss, sinh 3 enemy nhỏ
-                if (CompareTag("Hit") && smallEnemyPrefab != null)
+                // 👇 Sinh 3 quái nhỏ khi chết (áp dụng cho mọi enemy)
+                if (smallEnemyPrefab != null)
                 {
                     for (int i = 0; i < 3; i++)
                     {
@@ -74,6 +74,7 @@ public class HealthSystem : MonoBehaviour
                     }
                 }
 
+                // Xoá object sau khi chết
                 Destroy(gameObject, 1.5f);
             }
         }
