@@ -72,9 +72,6 @@ TagManager:
   - name: Gun
     uniqueID: 4053781913
     locked: 0
-  - name: UI
-    uniqueID: 197906189
-    locked: 0
   - name: Enermy
     uniqueID: 1665054555
     locked: 0
@@ -90,9 +87,14 @@ TagManager:
   - name: deco
     uniqueID: 885478963
     locked: 0
+<<<<<<< HEAD
   - name: Boss
     uniqueID: 1771179863
     locked: 0
   - name: Health
     uniqueID: 4136172093
+=======
+  - name: UI
+    uniqueID: 197906189
+>>>>>>> main
     locked: 0

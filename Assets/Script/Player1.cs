@@ -15,32 +15,38 @@ public class Player1 : MonoBehaviour
     private float timer;
     [SerializeField] private AudioClip hit;
     [SerializeField] private AudioSource source;
+        [SerializeField] private AudioClip hit1;
+    [SerializeField] private AudioSource source1;
     [HideInInspector] public SpriteRenderer spriteRenderer;
     public ThanhMauPl_1 thanhmau;
     public float mauhientai;
     public float mautoida;
     [SerializeField]
     private bool isMelee = true;
-     void loadsence1(){
+    void loadsence1()
+    {
         SceneManager.LoadScene("Gam1,1");
-        
+
     }
-    void loadsence2(){
+    void loadsence2()
+    {
         SceneManager.LoadScene("Gam1,2");
-        
+
     }
-    void loadsence3(){
+    void loadsence3()
+    {
         SceneManager.LoadScene("Gam1,3");
-        
+
     }
-    void loadsence4(){
+    void loadsence4()
+    {
         SceneManager.LoadScene("Gam1");
-        
+
     }
 
 
-        
-    
+
+
 
     private void Awake()
     {
@@ -84,15 +90,15 @@ public class Player1 : MonoBehaviour
         {
             loadsence4();
         }
-        
+
 
     }
 
     void Start()
     {
-        mauhientai = mautoida;
-        GetComponent<Rigidbody2D>();
-        thanhmau.Capnhatthanhmau(mauhientai, mautoida);
+        // mauhientai = mautoida;
+        // GetComponent<Rigidbody2D>();
+        // thanhmau.Capnhatthanhmau(mauhientai, mautoida);
     }
 
     void Update()
@@ -117,6 +123,24 @@ public class Player1 : MonoBehaviour
         doc = Input.GetAxisRaw("Vertical");
         Play.velocity = new Vector2(ngang * move, doc * move);
 
+        // 🔊 Phát tiếng bước chân khi đang di chuyển
+        if (ngang != 0 || doc != 0)
+        {
+            if (!source1.isPlaying) // ✅ kiểm tra AudioSource chứ không phải AudioClip
+            {
+                source1.clip = hit1;
+                source1.loop = true; // Lặp liên tục khi đang đi
+                source1.Play();
+            }
+        }
+        else
+        {
+            if (source1.isPlaying)
+            {
+                source1.Stop();
+            }
+        }
+
         if (isMelee)
         {
             HandleMelee();
@@ -125,6 +149,8 @@ public class Player1 : MonoBehaviour
         {
             HandleShooting(); // Thêm animation chạy khi cầm súng
         }
+    
+    
     }
 
     void HandleMelee()
@@ -217,8 +243,8 @@ public class Player1 : MonoBehaviour
                 hit_down.SetActive(is_attack);
             }
         }
-            
-}
+
+    }
 
     void HandleShooting()
     {
@@ -260,6 +286,7 @@ public class Player1 : MonoBehaviour
             Debug.Log("Bắn đạn!");
         }
     }
+<<<<<<< HEAD
 
     public void TakeFireDamage(int amount)
     {
@@ -280,4 +307,16 @@ public class Player1 : MonoBehaviour
         Debug.Log("❤️ Player hồi máu: +" + amount);
     }
 
+=======
+    public void TakeDamage(int damage)
+{
+    mauhientai -= damage;
+    thanhmau.Capnhatthanhmau(mauhientai, mautoida);
+
+    if (mauhientai <= 0)
+    {
+        Destroy(this.gameObject);
+    }
+}
+>>>>>>> main
 }
