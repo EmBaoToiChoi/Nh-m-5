@@ -17,6 +17,8 @@ public class Player1 : MonoBehaviour
     [SerializeField] private AudioSource source;
         [SerializeField] private AudioClip hit1;
     [SerializeField] private AudioSource source1;
+    [SerializeField] private AudioClip enemyHitSound; // Âm thanh khi chạm enemy
+    [SerializeField] private AudioSource audioSource;
     [HideInInspector] public SpriteRenderer spriteRenderer;
     public ThanhMauPl_1 thanhmau;
     public float mauhientai;
@@ -64,6 +66,7 @@ public class Player1 : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("enermy") || collision.gameObject.CompareTag("Trap"))
         {
+            audioSource.PlayOneShot(enemyHitSound);
             mauhientai -= 10;
 
             // Cập nhật thanh máu UI
