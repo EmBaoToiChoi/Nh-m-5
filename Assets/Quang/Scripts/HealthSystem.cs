@@ -1,5 +1,4 @@
 using UnityEngine;
-using System.Collections;
 
 public class HealthSystem : MonoBehaviour
 {
@@ -7,8 +6,10 @@ public class HealthSystem : MonoBehaviour
     private int currentHealth;
     private bool isDead = false;
 
+    [Header("Prefab Drop")]
     public GameObject goldPrefab;
     public GameObject smallEnemyPrefab;
+    public GameObject healthPickupPrefab;
 
     private Animator animator;
     private AudioSource audioSource;
@@ -32,19 +33,13 @@ public class HealthSystem : MonoBehaviour
         Debug.Log($"{gameObject.name} b? trúng ð?n! HP c?n: {currentHealth}");
 
         if (animator != null)
-        {
             animator.SetTrigger("Hurt");
-        }
 
         if (hurtClip != null && audioSource != null)
-        {
             audioSource.PlayOneShot(hurtClip);
-        }
 
         if (currentHealth <= 0)
-        {
             Die();
-        }
     }
 
     void Die()
@@ -52,34 +47,34 @@ public class HealthSystem : MonoBehaviour
         isDead = true;
 
         if (animator != null)
-        {
             animator.SetTrigger("Die");
-        }
 
         if (deathClip != null && audioSource != null)
-        {
             audioSource.PlayOneShot(deathClip);
-        }
 
-        // R?t vàng khi ch?t
+        // R?t vàng ngay v? trí ch?t
         if (goldPrefab != null)
         {
             Instantiate(goldPrefab, transform.position, Quaternion.identity);
         }
 
-        // N?u là Boss th? sinh ra 3 quái nh?
-        if (gameObject.CompareTag("Boss"))
+        // R?t máu ? v? trí l?ch nh? ð? không trùng vàng
+        if (healthPickupPrefab != null)
         {
-            if (smallEnemyPrefab != null)
+            Vector3 offset = new Vector3(0.4f, 0.3f, 0); // l?ch nh? kh?i vàng
+            Instantiate(healthPickupPrefab, transform.position + offset, Quaternion.identity);
+        }
+
+        // N?u là Boss ? chia ra 3 enemy nh?
+        if (CompareTag("Boss") && smallEnemyPrefab != null)
+        {
+            for (int i = 0; i < 3; i++)
             {
-                for (int i = 0; i < 3; i++)
-                {
-                    Vector3 pos = transform.position + new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), 0);
-                    Instantiate(smallEnemyPrefab, pos, Quaternion.identity);
-                }
+                Vector3 spawnPos = transform.position + new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), 0);
+                Instantiate(smallEnemyPrefab, spawnPos, Quaternion.identity);
             }
         }
 
-        Destroy(gameObject, 1.5f); // Delay ð? âm thanh phát xong
+        Destroy(gameObject, 1.5f); // Delay ð? anim + âm thanh phát xong
     }
 }

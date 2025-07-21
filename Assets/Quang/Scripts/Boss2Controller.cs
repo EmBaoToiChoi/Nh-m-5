@@ -20,7 +20,7 @@ public class Boss2Controller : MonoBehaviour
     [Header("Phun l?a")]
     public ParticleSystem fireBreath;     // Particle System g?n trong firePoint
     public Transform firePoint;
-    public float fireCooldown = 5f;
+    public float fireCooldown = 10f;
     public float fireDuration = 2f;
     private float lastFireTime;
     private bool isFiring;
