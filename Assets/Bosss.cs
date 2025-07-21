@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Boss1 : MonoBehaviour
+public class Bosss : MonoBehaviour
 {
     public float moveSpeed = 3f;
     public float attackRange = 1.5f;
@@ -76,4 +76,3 @@ public class Boss1 : MonoBehaviour
 
     }
 }
-boss1 controller
