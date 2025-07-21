@@ -37603,6 +37603,10 @@ PrefabInstance:
       propertyPath: smallEnemyPrefab
       value: 
       objectReference: {fileID: 1767582242}
+    - target: {fileID: 6513312247416032188, guid: fd04a76f042b10b409ab33e1d149dbba, type: 3}
+      propertyPath: healthPickupPrefab
+      value: 
+      objectReference: {fileID: 1767582242}
     - target: {fileID: 7112296659174892120, guid: fd04a76f042b10b409ab33e1d149dbba, type: 3}
       propertyPath: m_Name
       value: Boss1
