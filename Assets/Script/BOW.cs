@@ -30,7 +30,7 @@ public class BOW : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0) && Time.time > nextShootTime)
         {
-            // source1.PlayOneShot(shootSound);
+            source1.PlayOneShot(shootSound);
             Instantiate(BowPrefab, firePos1.position, firePos1.rotation);
             nextShootTime = Time.time + shootDelay;
         }

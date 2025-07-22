@@ -36,6 +36,9 @@ public class Player1 : MonoBehaviour
 
     private bool coTheChayNhanh = true;
     public static float nangLuongLuuTru;
+    private bool isBow = false;
+    [SerializeField] private GameObject bowObject;
+
     void loadsence1()
     {
         SceneManager.LoadScene("Gam1,1");
@@ -216,21 +219,35 @@ public class Player1 : MonoBehaviour
                 coTheChayNhanh = true;
             }
         }
-
-
-       
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             isMelee = true;
-            gunObject.SetActive(false); 
+            isBow = false; 
+            gunObject.SetActive(false);
+            bowObject.SetActive(false); 
             Debug.Log("Chế độ ĐÁNH");
         }
+
+
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {
             isMelee = false;
-            gunObject.SetActive(true); 
+            isBow = false; 
+            gunObject.SetActive(true);
+            bowObject.SetActive(false); 
             Debug.Log("Chế độ BẮN");
         }
+
+
+        if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            isMelee = false;
+            isBow = true; 
+            gunObject.SetActive(false); 
+            bowObject.SetActive(true);  
+            Debug.Log("Chế độ CUNG");
+        }
+
 
         ngang = Input.GetAxisRaw("Horizontal");
         doc = Input.GetAxisRaw("Vertical");
@@ -258,12 +275,14 @@ public class Player1 : MonoBehaviour
         {
             HandleMelee();
         }
+        else if (isBow)
+        {
+            HandleBow(); 
+        }
         else
         {
-            HandleShooting(); 
+            HandleShooting();
         }
-    
-    
     }
     void HandleMelee()
     {
@@ -421,6 +440,60 @@ public class Player1 : MonoBehaviour
             Debug.Log("Bắn đạn!");
         }
     }
+    void HandleBow()
+    {
+        float currentSpeed = move;
+        if (Input.GetKey(KeyCode.LeftShift) && nangLuongHienTai > 0)
+        {
+            currentSpeed = fastMove;
+            nangLuongHienTai -= tocDoTieuHaoNangLuong * Time.deltaTime;
+            if (nangLuongHienTai <= 0)
+            {
+                nangLuongHienTai = 0;
+                coTheChayNhanh = false;
+            }
+            thanhNangLuong.CapNhatThanhNangLuong(nangLuongHienTai, nangLuongToiDa);
+        }
+
+        ngang = Input.GetAxisRaw("Horizontal");
+        doc = Input.GetAxisRaw("Vertical");
+        Play.velocity = new Vector2(ngang * currentSpeed, doc * currentSpeed);
+
+        // 🎯 Animation di chuyển khi cầm cung
+        if (ngang > 0)
+        {
+            ani2.SetBool("chayad", true);
+            transform.localScale = new Vector3(5, 5, 5);
+        }
+        else if (ngang < 0)
+        {
+            ani2.SetBool("chaya", true);
+            ani2.SetBool("chayad", false);
+            transform.localScale = new Vector3(-5, 5, 5);
+        }
+        else
+        {
+            ani2.SetBool("chayad", false);
+            ani2.SetBool("chaya", false);
+        }
+
+        if (doc > 0)
+        {
+            ani2.SetBool("chayw", true);
+            ani2.SetBool("chays", false);
+        }
+        else if (doc < 0)
+        {
+            ani2.SetBool("chays", true);
+            ani2.SetBool("chayw", false);
+        }
+        else
+        {
+            ani2.SetBool("chayw", false);
+            ani2.SetBool("chays", false);
+        }
+    }
+
 
 
 
