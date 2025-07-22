@@ -37,7 +37,19 @@ public class Player1 : MonoBehaviour
     private bool coTheChayNhanh = true;
     public static float nangLuongLuuTru;
     private bool isBow = false;
+    private bool isGun = false;
     [SerializeField] private GameObject bowObject;
+    [SerializeField] private Vector3 offsetBow = new Vector3((float)0.1, (float)0.1, (float)0.1);
+    
+
+    void UpdateBowPosition()
+    {
+        if (isBow)
+        {
+            // Cho cung di chuyển theo Player
+            bowObject.transform.position = transform.position + offsetBow;
+        }
+    }
 
     void loadsence1()
     {
@@ -222,32 +234,30 @@ public class Player1 : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             isMelee = true;
-            isBow = false; 
+            isBow = false;
+            isGun = false; // ✅
             gunObject.SetActive(false);
-            bowObject.SetActive(false); 
+            bowObject.SetActive(false);
             Debug.Log("Chế độ ĐÁNH");
         }
-
-
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {
             isMelee = false;
-            isBow = false; 
+            isBow = false;
+            isGun = true; // ✅ bật chế độ Gun
             gunObject.SetActive(true);
-            bowObject.SetActive(false); 
+            bowObject.SetActive(false);
             Debug.Log("Chế độ BẮN");
         }
-
-
         if (Input.GetKeyDown(KeyCode.Alpha3))
         {
             isMelee = false;
-            isBow = true; 
-            gunObject.SetActive(false); 
-            bowObject.SetActive(true);  
+            isBow = true;
+            isGun = false; // ✅
+            gunObject.SetActive(false);
+            bowObject.SetActive(true);
             Debug.Log("Chế độ CUNG");
         }
-
 
         ngang = Input.GetAxisRaw("Horizontal");
         doc = Input.GetAxisRaw("Vertical");
@@ -277,12 +287,14 @@ public class Player1 : MonoBehaviour
         }
         else if (isBow)
         {
-            HandleBow(); 
+            HandleBow();
+            UpdateBowPosition();
         }
-        else
+        if (isGun)
         {
             HandleShooting();
         }
+
     }
     void HandleMelee()
     {
@@ -409,14 +421,12 @@ public class Player1 : MonoBehaviour
         }
         else if (ngang < 0)
         {
-            ani2.SetBool("chaya", true);
-            ani2.SetBool("chayad", false);
+            ani2.SetBool("chayad", true);
             transform.localScale = new Vector3(-5, 5, 5);
         }
         else
         {
             ani2.SetBool("chayad", false);
-            ani2.SetBool("chaya", false);
         }
 
         if (doc > 0)
@@ -459,7 +469,7 @@ public class Player1 : MonoBehaviour
         doc = Input.GetAxisRaw("Vertical");
         Play.velocity = new Vector2(ngang * currentSpeed, doc * currentSpeed);
 
-        // 🎯 Animation di chuyển khi cầm cung
+        // ⚡ Flip mặt Player giống như cận chiến
         if (ngang > 0)
         {
             ani2.SetBool("chayad", true);
@@ -467,14 +477,13 @@ public class Player1 : MonoBehaviour
         }
         else if (ngang < 0)
         {
-            ani2.SetBool("chaya", true);
-            ani2.SetBool("chayad", false);
+            ani2.SetBool("chayad", true);
+            
             transform.localScale = new Vector3(-5, 5, 5);
         }
         else
         {
             ani2.SetBool("chayad", false);
-            ani2.SetBool("chaya", false);
         }
 
         if (doc > 0)
@@ -493,6 +502,7 @@ public class Player1 : MonoBehaviour
             ani2.SetBool("chays", false);
         }
     }
+
 
 
 

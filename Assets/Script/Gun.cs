@@ -24,20 +24,12 @@ public class Gun : MonoBehaviour
         Vector3 direction = mousePos - transform.position;
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
 
-        // Xoay súng theo chuột
-        transform.rotation = Quaternion.Euler(0, 0, angle);
-
-        // ❌ KHÔNG flipY, KHÔNG lật scale
+        transform.rotation = Quaternion.Euler(0, 0, angle); 
     }
-
-
-
-
-
 
     void Shoot()
     {
-        if (Input.GetMouseButtonDown(0) && Time.time > nextShootTime)
+        if (Input.GetMouseButton(0) && Time.time > nextShootTime)
         {
             source.PlayOneShot(shootSound);
             Instantiate(bulletPrefab, firePos.position, firePos.rotation);
