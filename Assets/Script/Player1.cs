@@ -25,6 +25,7 @@ public class Player1 : MonoBehaviour
     public float mautoida;
     [SerializeField]
     private bool isMelee = true;
+    public static float mauLuuTru;
     void loadsence1()
     {
         SceneManager.LoadScene("Gam1,1");
@@ -45,11 +46,33 @@ public class Player1 : MonoBehaviour
         SceneManager.LoadScene("Gam1");
 
     }
+    // 
 
 
+    void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
 
 
+    void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
 
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        // 👉 Tìm lại ThanhMauPl_1 khi sang scene mới
+        thanhmau = FindObjectOfType<ThanhMauPl_1>();
+        if (thanhmau != null)
+        {
+            thanhmau.Capnhatthanhmau(mauhientai, mautoida);
+        }
+    }
+
+
+// 
     private void Awake()
     {
         Play = GetComponent<Rigidbody2D>();
@@ -99,10 +122,24 @@ public class Player1 : MonoBehaviour
 
     void Start()
     {
-        // mauhientai = mautoida;
-        // GetComponent<Rigidbody2D>();
-        // thanhmau.Capnhatthanhmau(mauhientai, mautoida);
+        if (mauLuuTru <= 0) // 👉 Nếu chưa có máu cũ thì gán full máu
+        {
+            mauhientai = mautoida;
+        }
+        else // 👉 Nếu có máu cũ thì dùng máu cũ
+        {
+            mauhientai = mauLuuTru;
+        }
+
+        thanhmau.Capnhatthanhmau(mauhientai, mautoida);
+    
     }
+    void OnDestroy()
+    {
+        // 👉 Lưu lại máu khi Player bị xóa
+        mauLuuTru = mauhientai;
+    }
+
 
     void Update()
     {
