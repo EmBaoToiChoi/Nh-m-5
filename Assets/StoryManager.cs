@@ -11,7 +11,9 @@ public class StoryManager : MonoBehaviour
     private int currentIndex = 0;           // Ảnh hiện tại
 
     [Header("Nút Tiếp tục")]
-    public Button continueButton;           // Nút tiếp tục
+    public Button continueButton;   
+    public Button continueButton1;
+    public Button continueButton2;        // Nút tiếp tục
 
     [Header("Panel hiển thị cốt truyện")]
     public GameObject storyPanel;           // Panel chứa ảnh
@@ -24,6 +26,8 @@ public class StoryManager : MonoBehaviour
         }
 
         continueButton.onClick.AddListener(OnContinueClicked);
+        continueButton1.onClick.AddListener(OnContinueClicked);
+        continueButton2.onClick.AddListener(OnContinueClicked);
     }
 
     void OnContinueClicked()
