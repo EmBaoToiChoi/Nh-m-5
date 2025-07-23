@@ -6,9 +6,6 @@ public class Boss1Controller : MonoBehaviour
     public float attackRange = 1.5f;
     public float attackCooldown = 1f;
     public int attackDamage = 20;
-    [SerializeField] protected float maxHp = 100f;
-    protected float currentHp;
-    [SerializeField] private Image hpBar;
     private float lastAttackTime;
    
 
@@ -25,7 +22,7 @@ public class Boss1Controller : MonoBehaviour
     void Start()
     {
         originalScale = transform.localScale;
-        currentHp = maxHp;
+      
     }
 
     void Update()
