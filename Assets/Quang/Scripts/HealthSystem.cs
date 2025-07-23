@@ -10,6 +10,7 @@ public class HealthSystem : MonoBehaviour
     public GameObject goldPrefab;
     public GameObject smallEnemyPrefab;
     public GameObject healthPickupPrefab;
+    public int CurrentHealth => currentHealth;
 
     private Animator animator;
     private AudioSource audioSource;

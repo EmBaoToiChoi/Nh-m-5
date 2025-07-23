@@ -93,3 +93,6 @@ TagManager:
   - name: Boss
     uniqueID: 2664339619
     locked: 0
+  - name: Health
+    uniqueID: 3790137885
+    locked: 0

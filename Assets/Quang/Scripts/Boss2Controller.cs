@@ -1,15 +1,16 @@
 using System.Collections;
-using Unity.Mathematics;
 using UnityEngine;
 
 public class Boss2Controller : MonoBehaviour
 {
+    [Header("Di chuy?n & T?n công")]
     public float moveSpeed = 3f;
     public float attackRange = 1.5f;
     public float attackCooldown = 1f;
     public int attackDamage = 20;
     private float lastAttackTime;
 
+    [Header("Player & Animation")]
     public Transform player;
     public Animator animator;
 
@@ -18,8 +19,8 @@ public class Boss2Controller : MonoBehaviour
     public AudioClip attackClip;
     public AudioClip walkClip;
 
-    [Header("Phun l?a")]
-    public ParticleSystem fireBreath;     // Particle System g?n trong firePoint
+    [Header("Phun L?a")]
+    public ParticleSystem fireBreath;
     public Transform firePoint;
     public float fireCooldown = 10f;
     public float fireDuration = 2f;
@@ -27,13 +28,15 @@ public class Boss2Controller : MonoBehaviour
     private bool isFiring;
 
     private Vector3 originalScale;
+    private Rigidbody2D rb;
 
     void Start()
     {
         originalScale = transform.localScale;
+        rb = GetComponent<Rigidbody2D>();
 
         if (fireBreath != null)
-            fireBreath.Stop(); // T?t lúc ð?u
+            fireBreath.Stop(); // Không phun ngay t? ð?u
     }
 
     void Update()
@@ -44,6 +47,8 @@ public class Boss2Controller : MonoBehaviour
 
         if (distance <= attackRange)
         {
+            rb.velocity = Vector2.zero; // Ng?ng di chuy?n khi t?n công
+
             if (Time.time - lastAttackTime >= attackCooldown)
             {
                 Attack();
@@ -52,7 +57,7 @@ public class Boss2Controller : MonoBehaviour
 
             animator.SetBool("isMoving", false);
 
-            // Ki?m tra cooldown ð? phun l?a
+            // Phun l?a cooldown
             if (!isFiring && Time.time - lastFireTime >= fireCooldown)
             {
                 StartCoroutine(FireOnce());
@@ -61,37 +66,35 @@ public class Boss2Controller : MonoBehaviour
         else
         {
             MoveToPlayer();
-            animator.SetBool("isMoving", true);
-
-            // T?t l?a n?u ðang phun khi xa player
-            if (fireBreath != null && fireBreath.isPlaying)
-            {
-                fireBreath.Stop();
-            }
-
-            if (walkClip != null && audioSource != null && !audioSource.isPlaying)
-            {
-                audioSource.PlayOneShot(walkClip);
-            }
         }
     }
 
     void MoveToPlayer()
     {
-        Vector2 direction = (player.position - transform.position).normalized;
-        transform.Translate(direction * moveSpeed * Time.deltaTime);
+        if (player == null) return;
 
+        Vector2 direction = (player.position - transform.position).normalized;
+        rb.velocity = direction * moveSpeed;
+        animator.SetBool("isMoving", true);
+
+        // Flip Boss & l?a
         if (direction.x > 0)
         {
             transform.localScale = new Vector3(Mathf.Abs(originalScale.x), originalScale.y, originalScale.z);
-            if (firePoint != null)
-                firePoint.localRotation = Quaternion.Euler(0, 0, 0);
+            if (fireBreath != null)
+                fireBreath.transform.localScale = new Vector3(1, 1, 1);
         }
         else
         {
             transform.localScale = new Vector3(-Mathf.Abs(originalScale.x), originalScale.y, originalScale.z);
-            if (firePoint != null)
-                firePoint.localRotation = Quaternion.Euler(0, 180, 0);
+            if (fireBreath != null)
+                fireBreath.transform.localScale = new Vector3(-1, 1, 1);
+        }
+
+        // Âm thanh bý?c ði
+        if (walkClip != null && audioSource != null && !audioSource.isPlaying)
+        {
+            audioSource.PlayOneShot(walkClip);
         }
     }
 
@@ -113,7 +116,7 @@ public class Boss2Controller : MonoBehaviour
         if (fireBreath != null)
         {
             fireBreath.Play();
-            Debug.Log("?? Boss2 phun l?a!");
+            Debug.Log("?? Boss2 b?t ð?u phun l?a");
         }
 
         yield return new WaitForSeconds(fireDuration);
@@ -121,7 +124,7 @@ public class Boss2Controller : MonoBehaviour
         if (fireBreath != null)
         {
             fireBreath.Stop();
-            Debug.Log("?? Boss2 ng?ng phun l?a.");
+            Debug.Log("?? Boss2 ng?ng phun l?a");
         }
 
         isFiring = false;
