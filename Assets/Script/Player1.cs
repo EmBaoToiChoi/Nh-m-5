@@ -41,6 +41,14 @@ public class Player1 : MonoBehaviour
     [SerializeField] private GameObject bowObject;
     [SerializeField] private Vector3 offsetBow = new Vector3((float)0.1, (float)0.1, (float)0.1);
     
+    public void Heal(float amount)
+    {
+        mauhientai += amount;
+        mauhientai = Mathf.Clamp(mauhientai, 0, mautoida);
+        thanhmau.Capnhatthanhmau(mauhientai, mautoida);
+        Debug.Log("❤️ Player hồi máu: +" + amount);
+    }
+    
 
     void UpdateBowPosition()
     {

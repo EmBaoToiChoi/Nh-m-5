@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 154030549286852967}
   - component: {fileID: 8921568088669782526}
   - component: {fileID: 7451455292378237104}
-  - component: {fileID: 1371468827715094863}
+  - component: {fileID: 7837536898935691000}
   m_Layer: 0
   m_Name: Slime_1_X
   m_TagString: enermy
@@ -30,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 2204013345913167884}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.37, y: 0.28, z: 0}
+  m_LocalPosition: {x: -1.06, y: -4.57, z: 0}
   m_LocalScale: {x: 5, y: 5, z: 5}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -181,7 +181,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.2, y: 0.26}
   m_EdgeRadius: 0
---- !u!114 &1371468827715094863
+--- !u!114 &7837536898935691000
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -190,12 +190,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 2204013345913167884}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9111919890a8e0a46b12eccc8c7d06d5, type: 3}
+  m_Script: {fileID: 11500000, guid: 64646baaec41c9041b52baffadb08186, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  start: -1.06
-  end: 10.82
-  anie: {fileID: 154030549286852967}
-  slimePrefab: {fileID: 7013353503440015015, guid: 0bb0b81724ca86e4c8f754d7848b8728, type: 3}
-  goldPrefab: {fileID: 6185698996354407225, guid: dbd5008486b3a4d4ca1a0e00bdf54eb9, type: 3}
-  spawnCount: 3
+  enermy: {fileID: 4488950517209600758}
+  player: {fileID: 0}
+  nie: {fileID: 154030549286852967}
