@@ -4,32 +4,33 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    // Start is called before the first frame update
     [SerializeField] private float Move = 25f;
     [SerializeField] private float timeDestroy = 0.5f;
-    // public Animator nie;
+
+    private Vector3 moveDirection;
 
     void Start()
     {
+       
+        moveDirection = transform.right;
+
         Destroy(gameObject, timeDestroy);
     }
 
-    // Update is called once per frame
     void Update()
     {
         MoveBullet();
     }
+
     void MoveBullet()
     {
-        transform.position += transform.right * Move * Time.deltaTime;
-
+        transform.position += moveDirection * Move * Time.deltaTime;
     }
+
     void OnTriggerEnter2D(Collider2D other)
     {
-        // Nếu chạm Boss hoặc Enemy, hủy đạn
-        if ( other.CompareTag("enermy"))
+        if (other.CompareTag("enermy"))
         {
-            // nie.SetTrigger("No");
             Destroy(gameObject);
         }
     }
