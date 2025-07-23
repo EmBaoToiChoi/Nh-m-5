@@ -5,6 +5,10 @@ using UnityEngine;
 public class ENERMY_ORC : MonoBehaviour
 {
     public Transform enermy, player;
+    // [SerializeField] private AudioClip Go;
+    // [SerializeField] private AudioSource source;
+    [SerializeField] private AudioClip hit;
+    [SerializeField] private AudioSource source2;
     private bool isRight;
     [SerializeField]
     Animator nie;
@@ -55,6 +59,7 @@ public class ENERMY_ORC : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player1"))
         {
+            source2.PlayOneShot(hit);
             nie.SetBool("danh", true); 
         }
     }
@@ -64,6 +69,7 @@ public class ENERMY_ORC : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player1"))
         {
+            source2.PlayOneShot(hit);
             nie.SetBool("danh", true); 
         }
     }
