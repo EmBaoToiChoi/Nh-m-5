@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 8422007076721092435}
   m_Layer: 0
   m_Name: Arrow01(32x32)
-  m_TagString: Hit
+  m_TagString: Bow
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

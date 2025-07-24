@@ -17,6 +17,8 @@ TagManager:
   - BoxBack
   - Player1
   - Boss
+  - Bullet
+  - Bow
   layers:
   - Default
   - TransparentFX
