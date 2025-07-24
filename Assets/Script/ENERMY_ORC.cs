@@ -6,6 +6,13 @@ using UnityEngine.UI;
 public class ENERMY_ORC : MonoBehaviour
 {
     public Transform enermy, player;
+    [SerializeField] private GameObject coinPrefab;
+
+    [SerializeField] private GameObject xpPrefab;
+
+
+    [SerializeField] private GameObject healthItemPrefab;
+
 
     [Header("Âm thanh và animation")]
     [SerializeField] private AudioClip hit;
@@ -82,7 +89,7 @@ public class ENERMY_ORC : MonoBehaviour
         if (currentHealth <= 0)
         {
             DamageTextManager.Instance.ShowDamage(enermy.position, damage);
-
+            SpawnDrops();
             Destroy(healthBarUI);
             Destroy(gameObject);
         }
@@ -131,5 +138,21 @@ public class ENERMY_ORC : MonoBehaviour
         {
             nie.SetBool("danh", false);
         }
+    }
+    void SpawnDrops()
+    {
+        Vector3 basePosition = enermy.position;
+
+        // Spawn coin slightly to the left
+        if (coinPrefab != null)
+            Instantiate(coinPrefab, basePosition + new Vector3(-0.3f, 0, 0), Quaternion.identity);
+
+        // Spawn XP slightly to the center
+        if (xpPrefab != null)
+            Instantiate(xpPrefab, basePosition + new Vector3(0f, 0, 0), Quaternion.identity);
+
+        // Spawn health item slightly to the right
+        if (healthItemPrefab != null)
+            Instantiate(healthItemPrefab, basePosition + new Vector3(0.3f, 0, 0), Quaternion.identity);
     }
 }
