@@ -24,12 +24,19 @@ public class XPManager : MonoBehaviour
     {
         currentXP += amount;
 
-        if (currentXP >= maxXP)
+        // Nếu đủ XP để lên cấp
+        while (currentXP >= maxXP)
         {
-            currentXP = maxXP;
-            UILevelUp.Instance.ShowLevelUpUI(); // Gọi UI khi đủ XP
+            currentXP -= maxXP; // Giữ lại phần dư XP
+            LevelUp();
         }
 
         UILevelUp.Instance?.UpdateXPBar(currentXP / maxXP); // Cập nhật thanh XP
+    }
+
+    private void LevelUp()
+    {
+        Debug.Log("Level Up!");
+        UILevelUp.Instance?.ShowLevelUpUI();
     }
 }

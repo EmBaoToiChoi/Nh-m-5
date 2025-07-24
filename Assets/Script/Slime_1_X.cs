@@ -97,22 +97,20 @@ public class Slime_1_x : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
+        float damage = 0f;
+
         if (other.CompareTag("Hit"))
-        {
-            float damage = Random.Range(1f, 6f); // 1–5
-            TakeDamage(damage);
-        }
+            damage = Random.Range(1f, 6f);
         else if (other.CompareTag("Bullet"))
-        {
-            float damage = Random.Range(10f, 16f); // 10–15
-            TakeDamage(damage);
-        }
+            damage = Random.Range(10f, 16f);
         else if (other.CompareTag("Bow"))
-        {
-            float damage = Random.Range(5f, 11f); // 5–10
-            TakeDamage(damage);
-        }
+            damage = Random.Range(5f, 11f);
+
+        if (damage > 0)
+            TakeDamage(damage + GlobalData.damageBonus); // cộng thêm bonus ở đây
     }
+
+
     public Canvas worldCanvas;
     void ShowDamageText(float damage)
     {

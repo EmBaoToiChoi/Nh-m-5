@@ -99,19 +99,20 @@ public class ENERMY_ORC : MonoBehaviour
     {
         if (other.CompareTag("Hit"))
         {
-            float damage = Random.Range(1f, 6f); // 1–5
-            TakeDamage(damage);
+            float damage = Random.Range(1f, 6f);
+            TakeDamage(damage + GlobalData.damageBonus);
         }
         else if (other.CompareTag("Bullet"))
         {
-            float damage = Random.Range(10f, 16f); // 10–15
-            TakeDamage(damage);
+            float damage = Random.Range(10f, 16f);
+            TakeDamage(damage + GlobalData.damageBonus);
         }
         else if (other.CompareTag("Bow"))
         {
-            float damage = Random.Range(5f, 11f); // 5–10
-            TakeDamage(damage);
+            float damage = Random.Range(5f, 11f);
+            TakeDamage(damage + GlobalData.damageBonus);
         }
+
     }
 
     void OnCollisionEnter2D(Collision2D collision)
