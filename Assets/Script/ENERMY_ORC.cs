@@ -74,11 +74,15 @@ public class ENERMY_ORC : MonoBehaviour
 
         if (healthFill != null)
         {
+            DamageTextManager.Instance.ShowDamage(enermy.position, damage);
+
             healthFill.fillAmount = currentHealth / maxHealth;
         }
 
         if (currentHealth <= 0)
         {
+            DamageTextManager.Instance.ShowDamage(enermy.position, damage);
+
             Destroy(healthBarUI);
             Destroy(gameObject);
         }
