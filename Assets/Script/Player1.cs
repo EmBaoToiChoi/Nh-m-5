@@ -128,7 +128,7 @@ public class Player1 : MonoBehaviour
             if (nangLuongHienTai <= 0)
             {
                 nangLuongHienTai = 0;
-                coTheChayNhanh = false; // ❌ Hết năng lượng -> không cho chạy nhanh
+                coTheChayNhanh = false; 
             }
             thanhNangLuong.CapNhatThanhNangLuong(nangLuongHienTai, nangLuongToiDa);
         }
@@ -307,49 +307,35 @@ public class Player1 : MonoBehaviour
     void HandleMelee()
     {
         float currentSpeed = move;
-    if (Input.GetKey(KeyCode.LeftShift) && nangLuongHienTai > 0)
-    {
-        currentSpeed = fastMove;
-        nangLuongHienTai -= tocDoTieuHaoNangLuong * Time.deltaTime;
-        if (nangLuongHienTai <= 0)
-        {
-            nangLuongHienTai = 0;
-            coTheChayNhanh = false;
-        }
-        thanhNangLuong.CapNhatThanhNangLuong(nangLuongHienTai, nangLuongToiDa);
-    }
 
+        // Tốc độ khi nhấn shift và còn năng lượng
+        if (Input.GetKey(KeyCode.LeftShift) && nangLuongHienTai > 0)
+        {
+            currentSpeed = fastMove;
+            nangLuongHienTai -= tocDoTieuHaoNangLuong * Time.deltaTime;
+            if (nangLuongHienTai <= 0)
+            {
+                nangLuongHienTai = 0;
+                coTheChayNhanh = false;
+            }
+            thanhNangLuong.CapNhatThanhNangLuong(nangLuongHienTai, nangLuongToiDa);
+        }
+
+        // Nhận input di chuyển
         ngang = Input.GetAxisRaw("Horizontal");
         doc = Input.GetAxisRaw("Vertical");
         Play.velocity = new Vector2(ngang * currentSpeed, doc * currentSpeed);
 
+        // Xử lý hướng & animation di chuyển
         if (ngang > 0)
         {
             ani2.SetBool("chayad", true);
             transform.localScale = new Vector3(5, 5, 5);
-
-            if (Input.GetMouseButtonDown(0))
-            {
-                is_attack = true;
-                source.PlayOneShot(hit);
-                ani2.SetTrigger("danhad");
-                hit_right.SetActive(is_attack);
-            }
-            timer = 0;
         }
         else if (ngang < 0)
         {
             ani2.SetBool("chayad", true);
             transform.localScale = new Vector3(-5, 5, 5);
-
-            if (Input.GetMouseButtonDown(0))
-            {
-                is_attack = true;
-                source.PlayOneShot(hit);
-                ani2.SetTrigger("danhad");
-                hit_right.SetActive(is_attack);
-            }
-            timer = 0;
         }
         else
         {
@@ -360,29 +346,11 @@ public class Player1 : MonoBehaviour
         {
             ani2.SetBool("chayw", true);
             ani2.SetBool("chays", false);
-
-            if (Input.GetMouseButtonDown(0))
-            {
-                is_attack = true;
-                source.PlayOneShot(hit);
-                ani2.SetTrigger("danhw");
-                hit_up.SetActive(is_attack);
-            }
-            timer = 0;
         }
         else if (doc < 0)
         {
             ani2.SetBool("chays", true);
             ani2.SetBool("chayw", false);
-
-            if (Input.GetMouseButtonDown(0))
-            {
-                is_attack = true;
-                source.PlayOneShot(hit);
-                ani2.SetTrigger("danhs");
-                hit_down.SetActive(is_attack);
-            }
-            timer = 0;
         }
         else
         {
@@ -390,18 +358,53 @@ public class Player1 : MonoBehaviour
             ani2.SetBool("chayw", false);
         }
 
+        // 🟡 Tách phần xử lý tấn công riêng:
+        if (Input.GetMouseButtonDown(0))
+        {
+            is_attack = true;
+            source.PlayOneShot(hit);
+
+            // Ưu tiên đánh theo hướng đang di chuyển
+            if (ngang > 0)
+            {
+                ani2.SetTrigger("danhad");
+                hit_right.SetActive(true);
+            }
+            else if (ngang < 0)
+            {
+                ani2.SetTrigger("danhad");
+                hit_right.SetActive(true);
+            }
+            else if (doc > 0)
+            {
+                ani2.SetTrigger("danhw");
+                hit_up.SetActive(true);
+            }
+            else if (doc < 0)
+            {
+                ani2.SetTrigger("danhs");
+                hit_down.SetActive(true);
+            }
+
+            timer = 0;
+        }
+
+        // Tắt hit box sau thời gian
         if (is_attack)
         {
             timer += Time.deltaTime;
             if (timer > 0.1f)
             {
                 is_attack = false;
-                hit_right.SetActive(is_attack);
-                hit_up.SetActive(is_attack);
-                hit_down.SetActive(is_attack);
+                hit_right.SetActive(false);
+                hit_up.SetActive(false);
+                hit_down.SetActive(false);
             }
         }
     }
+
+
+
     void HandleShooting()
     {
         float currentSpeed = move;

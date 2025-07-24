@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
+using TMPro;
 public class Slime_1_x : MonoBehaviour
 {
     public Transform enermy, player;
@@ -12,7 +12,8 @@ public class Slime_1_x : MonoBehaviour
 
     [Header("UI Máu")]
     [SerializeField] private GameObject healthBarPrefab; // Prefab thanh máu
-    [SerializeField] private Image healthFill;           // Gán trong Inspector
+    [SerializeField] private Image healthFill;
+    [SerializeField] private GameObject damageTextPrefab;
 
     private GameObject healthBarUI;
     private Transform mainCam;
@@ -60,9 +61,9 @@ public class Slime_1_x : MonoBehaviour
 
         // Lật hướng enemy
         if (direction.x > 0)
-            enermy.localScale = new Vector3(5,5,5);
+            enermy.localScale = new Vector3(5, 5, 5);
         if (direction.x < 0)
-            enermy.localScale = new Vector3(-5,5,5);
+            enermy.localScale = new Vector3(-5, 5, 5);
     }
 
     void TakeDamage(float damage)
@@ -70,17 +71,23 @@ public class Slime_1_x : MonoBehaviour
         currentHealth -= damage;
         currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
 
-        if (healthFill != null)
+        if (currentHealth > 0)
         {
-            healthFill.fillAmount = currentHealth / maxHealth;
+            ShowDamageText(damage); // Gọi bình thường
         }
-
-        if (currentHealth <= 0)
+        else
         {
-            Destroy(healthBarUI);
+            ShowDamageText(damage);
+            if (healthBarUI != null)
+                Destroy(healthBarUI);
             Destroy(gameObject);
         }
+
+        if (healthFill != null)
+            healthFill.fillAmount = currentHealth / maxHealth;
     }
+
+
 
     void OnTriggerEnter2D(Collider2D other)
     {
@@ -100,5 +107,27 @@ public class Slime_1_x : MonoBehaviour
             TakeDamage(damage);
         }
     }
+    public Canvas worldCanvas;
+    void ShowDamageText(float damage)
+    {
+        if (damageTextPrefab == null || enermy == null || worldCanvas == null) return;
+
+        // Tạo text ở canvas world
+        GameObject dmgText = Instantiate(damageTextPrefab, worldCanvas.transform);
+
+        // Cập nhật vị trí text (vị trí thế giới → vị trí UI)
+        Vector3 worldPos = enermy.position + Vector3.up * 1.5f;
+        dmgText.transform.position = worldPos;
+
+        // Hiển thị nội dung số damage
+        TextMeshProUGUI text = dmgText.GetComponentInChildren<TextMeshProUGUI>();
+        if (text != null)
+            text.text = damage.ToString("F0");
+
+        // Hủy text sau 1s
+        Destroy(dmgText, 1f);
+    }
+
+
 
 }

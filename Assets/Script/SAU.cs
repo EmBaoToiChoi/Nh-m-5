@@ -72,11 +72,15 @@ public class SAU : MonoBehaviour
 
         if (healthFill != null)
         {
+            DamageTextManager.Instance.ShowDamage(enermy.position, damage);
+
             healthFill.fillAmount = currentHealth / maxHealth;
         }
 
         if (currentHealth <= 0)
         {
+            DamageTextManager.Instance.ShowDamage(enermy.position, damage);
+
             Destroy(healthBarUI);
             Destroy(gameObject);
         }
@@ -86,6 +90,7 @@ public class SAU : MonoBehaviour
     {
         if (other.CompareTag("Hit"))
         {
+            
             float damage = Random.Range(1f, 6f); // 1–5
             TakeDamage(damage);
         }
