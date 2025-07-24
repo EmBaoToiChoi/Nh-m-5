@@ -6,6 +6,11 @@ using TMPro;
 public class Slime_1_x : MonoBehaviour
 {
     public Transform enermy, player;
+    [SerializeField] private GameObject coinPrefab;
+    [SerializeField] private GameObject xpPrefab;
+
+    [SerializeField] private GameObject healthItemPrefab;
+
 
     [Header("Animation")]
     [SerializeField] private Animator nie;
@@ -77,6 +82,7 @@ public class Slime_1_x : MonoBehaviour
         }
         else
         {
+            SpawnDrops();
             ShowDamageText(damage);
             if (healthBarUI != null)
                 Destroy(healthBarUI);
@@ -127,6 +133,23 @@ public class Slime_1_x : MonoBehaviour
         // Hủy text sau 1s
         Destroy(dmgText, 1f);
     }
+    void SpawnDrops()
+{
+    Vector3 basePosition = enermy.position;
+
+    // Spawn coin slightly to the left
+    if (coinPrefab != null)
+        Instantiate(coinPrefab, basePosition + new Vector3(-0.3f, 0, 0), Quaternion.identity);
+
+    // Spawn XP slightly to the center
+    if (xpPrefab != null)
+        Instantiate(xpPrefab, basePosition + new Vector3(0f, 0, 0), Quaternion.identity);
+
+    // Spawn health item slightly to the right
+    if (healthItemPrefab != null)
+        Instantiate(healthItemPrefab, basePosition + new Vector3(0.3f, 0, 0), Quaternion.identity);
+}
+
 
 
 
