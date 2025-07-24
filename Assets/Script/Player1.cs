@@ -10,6 +10,9 @@ public class Player1 : MonoBehaviour
     public float move = 4f;
     public float ngang, doc;
     public Animator ani2;
+    public float baseMaxHealth = 100f; // máu gốc
+    private float currentHealth;
+
     [SerializeField] private GameObject hit_right, hit_up, hit_down;
     [SerializeField] private GameObject gunObject; 
     private bool is_attack;
@@ -171,6 +174,9 @@ public class Player1 : MonoBehaviour
 
     void Start()
     {
+        float bonus = GlobalData.healthBonus;
+        currentHealth = baseMaxHealth + bonus;
+
         nangLuongHienTai = nangLuongToiDa;
         thanhNangLuong.CapNhatThanhNangLuong(nangLuongHienTai, nangLuongToiDa);
 
