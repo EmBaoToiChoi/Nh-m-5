@@ -1,73 +1,104 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class Slime_1_X : MonoBehaviour
+public class Slime_1_x : MonoBehaviour
 {
-    public float start, end;
-    private bool checkrigh;
-    public Animator anie;
+    public Transform enermy, player;
 
-    [SerializeField] private GameObject slimePrefab; // Prefab slime để spawn
-    [SerializeField] private GameObject goldPrefab;  // Prefab vàng để spawn
-    [SerializeField] private int spawnCount = 3;     // Số lượng slime spawn ra
+    [Header("Animation")]
+    [SerializeField] private Animator nie;
 
-    void OnTriggerEnter2D(Collider2D other)
+    [Header("UI Máu")]
+    [SerializeField] private GameObject healthBarPrefab; // Prefab thanh máu
+    [SerializeField] private Image healthFill;           // Gán trong Inspector
+
+    private GameObject healthBarUI;
+    private Transform mainCam;
+
+    private bool isChasing = false;
+    private float speed = 2f;
+    private float PVipHien = 10f;
+
+    private float maxHealth = 20f;
+    private float currentHealth;
+
+    void Start()
     {
-        if (other.gameObject.CompareTag("Hit"))
-        {
-            anie.SetTrigger("die");
+        currentHealth = maxHealth;
 
-            // Spawn slime con
-            SpawnSlimes();
+        // Spawn thanh máu
+        healthBarUI = Instantiate(healthBarPrefab, enermy.position + Vector3.up * 1.5f, Quaternion.identity);
+        healthBarUI.transform.SetParent(null);
 
-            // Spawn vàng
-            SpawnGold();
-
-            // Xóa slime cha sau 1s
-            Destroy(this.gameObject, 1f);
-        }
-    }
-
-    void SpawnSlimes()
-    {
-        for (int i = 0; i < spawnCount; i++)
-        {
-            Vector3 spawnPos = transform.position + (Vector3)(Random.insideUnitCircle * 0.5f);
-            GameObject slimeCon = Instantiate(slimePrefab, spawnPos, Quaternion.identity);
-
-            // Giảm kích thước slime con
-            slimeCon.transform.localScale = transform.localScale * 0.5f;
-        }
-    }
-
-    void SpawnGold()
-    {
-        // Tọa độ spawn vàng (ở chính giữa slime cha)
-        Vector3 spawnPos = transform.position;
-        Instantiate(goldPrefab, spawnPos, Quaternion.identity);
+        mainCam = Camera.main.transform;
     }
 
     void Update()
     {
-        var position_enermy = transform.position.x;
-        if (position_enermy > end)
+        float khoangCachPlayer = Vector2.Distance(enermy.position, player.position);
+        isChasing = khoangCachPlayer < PVipHien;
+
+        if (isChasing)
         {
-            checkrigh = false;
+            dichuyentoiPlayer(player.position);
         }
-        if (position_enermy < start)
+
+        // Cập nhật vị trí thanh máu
+        if (healthBarUI != null)
         {
-            checkrigh = true;
-        }
-        if (checkrigh)
-        {
-            transform.Translate(Vector2.right * 2f * Time.deltaTime);
-            transform.localScale = new Vector3(5, 5, 5);
-        }
-        else
-        {
-            transform.Translate(Vector2.left * 2f * Time.deltaTime);
-            transform.localScale = new Vector3(-5, 5, 5);
+            healthBarUI.transform.position = enermy.position + Vector3.up * 1.5f;
+            healthBarUI.transform.rotation = Quaternion.identity; // Không cần quay nếu 2D
         }
     }
+
+    void dichuyentoiPlayer(Vector3 target)
+    {
+        Vector3 direction = (target - enermy.position).normalized;
+        enermy.Translate(direction * speed * Time.deltaTime);
+
+        // Lật hướng enemy
+        if (direction.x > 0)
+            enermy.localScale = new Vector3(5,5,5);
+        if (direction.x < 0)
+            enermy.localScale = new Vector3(-5,5,5);
+    }
+
+    void TakeDamage(float damage)
+    {
+        currentHealth -= damage;
+        currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
+
+        if (healthFill != null)
+        {
+            healthFill.fillAmount = currentHealth / maxHealth;
+        }
+
+        if (currentHealth <= 0)
+        {
+            Destroy(healthBarUI);
+            Destroy(gameObject);
+        }
+    }
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Hit"))
+        {
+            float damage = Random.Range(1f, 6f); // 1–5
+            TakeDamage(damage);
+        }
+        else if (other.CompareTag("Bullet"))
+        {
+            float damage = Random.Range(10f, 16f); // 10–15
+            TakeDamage(damage);
+        }
+        else if (other.CompareTag("Bow"))
+        {
+            float damage = Random.Range(5f, 11f); // 5–10
+            TakeDamage(damage);
+        }
+    }
+
 }
