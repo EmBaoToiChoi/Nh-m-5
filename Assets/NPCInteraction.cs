@@ -73,7 +73,7 @@ public class NPCInteraction : MonoBehaviour
     {
         if (panelMua != null)
             panelMua.SetActive(true);
-            panelButtons.SetActive(false); 
+        panelButtons.SetActive(false);
     }
 
     // 👉 Gán vào Button "Không cần" để tắt tất cả
@@ -83,5 +83,9 @@ public class NPCInteraction : MonoBehaviour
         if (panelMua != null)
             panelMua.SetActive(false);
         imageA.SetActive(false);
+    }
+    public void HidePanel1()
+    {
+        panelMua.SetActive(false);
     }
 }
