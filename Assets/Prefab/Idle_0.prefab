@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 3871866551175511818}
   - component: {fileID: 4058842290789854502}
   - component: {fileID: 7286628253805846092}
-  - component: {fileID: 4694125826868363790}
   - component: {fileID: 7392010271149294571}
+  - component: {fileID: -3417473537710356412}
   m_Layer: 0
   m_Name: Idle_0
   m_TagString: Untagged
@@ -136,27 +136,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &4694125826868363790
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6705844811408827821}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fb61192fb6f71d14b88bc39652fdca00, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 0}
-  patrolRange: 5
-  detectionRange: 3
-  speed: 2
-  maxHealth: 3
-  goldPrefab: {fileID: 4292077801676729681, guid: fa73dd67afcf0b94dada05023c131e5d, type: 3}
-  smallEnemyPrefab: {fileID: 6470246634005437640, guid: c218add587048ef4a90996729aa937f4, type: 3}
-  attackEffectPrefab: {fileID: 0}
-  ani: {fileID: 4058842290789854502}
 --- !u!61 &7392010271149294571
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -202,3 +181,25 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2.04, y: 1.64}
   m_EdgeRadius: 0
+--- !u!114 &-3417473537710356412
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6705844811408827821}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19ad737df9d9b934799866a87134e818, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}
+  patrolRange: 5
+  detectionRange: 3
+  speed: 2
+  maxHealth: 3
+  goldPrefab: {fileID: 4292077801676729681, guid: fa73dd67afcf0b94dada05023c131e5d, type: 3}
+  smallEnemyPrefab: {fileID: 6470246634005437640, guid: c218add587048ef4a90996729aa937f4, type: 3}
+  attackEffectPrefab: {fileID: 0}
+  ani: {fileID: 4058842290789854502}
+  healthPrefab: {fileID: 0}

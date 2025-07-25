@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy1Script : MonoBehaviour
+public class WormScript : MonoBehaviour
 {
     public Transform player; // Gán player từ Inspector
     public float patrolRange = 5f;
@@ -18,14 +18,12 @@ public class Enemy1Script : MonoBehaviour
     private Vector3 patrolTarget;
     private bool isAttacking = false;
     public GameObject healthPrefab;
-     public EnemyHealthBar healthBar;
+    public EnemyHealthBar healthBar;
     void Start()
     {
         startPoint = transform.position;
         SetNewPatrolTarget();
         currentHealth = maxHealth;
-        currentHealth = maxHealth;
-        healthBar.SetMaxHealth(maxHealth);
     }
     void Awake()
     {
@@ -71,7 +69,7 @@ public class Enemy1Script : MonoBehaviour
     void Patrol()
     {
         transform.position = Vector3.MoveTowards(transform.position, patrolTarget, speed * Time.deltaTime);
-        ani?.Play("SkeletonWalk");
+        ani?.Play("WormWalk");
         if (Vector3.Distance(transform.position, patrolTarget) < 0.2f)
         {
             SetNewPatrolTarget();
@@ -90,7 +88,7 @@ public class Enemy1Script : MonoBehaviour
         currentHealth -= damage;
         currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
         healthBar.SetHealth(currentHealth);
-        ani?.Play("SkeletonHurt");
+        ani?.Play("WormGetHit");
         if (currentHealth <= 0)
         {
             Die();
@@ -105,9 +103,10 @@ public class Enemy1Script : MonoBehaviour
             Instantiate(goldPrefab, transform.position, Quaternion.identity);
         }
         if (healthPrefab != null)
-    {
+        {
         Instantiate(healthPrefab, transform.position, Quaternion.identity);
-    }
+        }
+        ani?.Play("WormDie");
 
         // Nếu là quái lớn thì sinh ra 3 quái nhỏ
         if (smallEnemyPrefab != null && transform.localScale == Vector3.one)
@@ -126,7 +125,7 @@ public class Enemy1Script : MonoBehaviour
     IEnumerator PlayAttackEffect()
     {
         isAttacking = true;
-        ani?.Play("SkeletonAttack");
+        ani?.Play("SwornAttack");
         yield return new WaitForSeconds(0.5f); // Thời gian hiệu ứng
         if (attackEffectPrefab != null)
         {
@@ -136,6 +135,4 @@ public class Enemy1Script : MonoBehaviour
         yield return new WaitForSeconds(1f); // Thời gian giữa các lần đánh
         isAttacking = false;
     }
-
-    // Gọi hàm này khi enemy bị tấn công, ví dụ: TakeDamage(1);
 }
