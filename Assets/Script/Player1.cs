@@ -111,6 +111,7 @@ public class Player1 : MonoBehaviour
 // 
     private void Awake()
     {
+        
         Play = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         gunObject.SetActive(false); 
@@ -174,6 +175,9 @@ public class Player1 : MonoBehaviour
 
     void Start()
     {
+        
+
+
         float bonus = GlobalData.healthBonus;
         currentHealth = baseMaxHealth + bonus;
 
@@ -227,10 +231,60 @@ public class Player1 : MonoBehaviour
         nangLuongLuuTru = nangLuongHienTai;
     }
 
-    
+
     void Update()
     {
-        MovePlayer();
+        // PHÍM 1 - Đánh cận chiến
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            isMelee = true;
+            isBow = false;
+            isGun = false;
+
+            gunObject.SetActive(false);
+            bowObject.SetActive(false);
+            Debug.Log("Chế độ ĐÁNH");
+        }
+
+        // PHÍM 2 - Bắn súng (nếu đã mua)
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            if (MuaVuKhi.DaMuaSung())
+            {
+                isMelee = false;
+                isBow = false;
+                isGun = true;
+
+                gunObject.SetActive(true);
+                bowObject.SetActive(false);
+                Debug.Log("Chế độ SÚNG");
+            }
+            else
+            {
+                Debug.Log("Bạn chưa mua súng!");
+            }
+        }
+
+        // PHÍM 3 - Bắn cung (nếu đã mua)
+        if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            if (MuaVuKhi.DaMuaCung())
+            {
+                isMelee = false;
+                isBow = true;
+                isGun = false;
+
+                gunObject.SetActive(false);
+                bowObject.SetActive(true);
+                Debug.Log("Chế độ CUNG");
+            }
+            else
+            {
+                Debug.Log("Bạn chưa mua cung!");
+            }
+        }
+
+        // Hồi năng lượng nếu không chạy
         if (!Input.GetKey(KeyCode.LeftShift))
         {
             if (nangLuongHienTai < nangLuongToiDa)
@@ -245,45 +299,19 @@ public class Player1 : MonoBehaviour
                 coTheChayNhanh = true;
             }
         }
-        if (Input.GetKeyDown(KeyCode.Alpha1))
-        {
-            isMelee = true;
-            isBow = false;
-            isGun = false; // ✅
-            gunObject.SetActive(false);
-            bowObject.SetActive(false);
-            Debug.Log("Chế độ ĐÁNH");
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha2))
-        {
-            isMelee = false;
-            isBow = false;
-            isGun = true; // ✅ bật chế độ Gun
-            gunObject.SetActive(true);
-            bowObject.SetActive(false);
-            Debug.Log("Chế độ BẮN");
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha3))
-        {
-            isMelee = false;
-            isBow = true;
-            isGun = false; // ✅
-            gunObject.SetActive(false);
-            bowObject.SetActive(true);
-            Debug.Log("Chế độ CUNG");
-        }
 
+        // Di chuyển nhân vật
         ngang = Input.GetAxisRaw("Horizontal");
         doc = Input.GetAxisRaw("Vertical");
         Play.velocity = new Vector2(ngang * move, doc * move);
 
-        
+        // Âm thanh bước chân
         if (ngang != 0 || doc != 0)
         {
-            if (!source1.isPlaying) 
+            if (!source1.isPlaying)
             {
                 source1.clip = hit1;
-                source1.loop = true; 
+                source1.loop = true;
                 source1.Play();
             }
         }
@@ -295,6 +323,7 @@ public class Player1 : MonoBehaviour
             }
         }
 
+        // Xử lý vũ khí đang sử dụng
         if (isMelee)
         {
             HandleMelee();
@@ -304,12 +333,13 @@ public class Player1 : MonoBehaviour
             HandleBow();
             UpdateBowPosition();
         }
-        if (isGun)
+        else if (isGun)
         {
             HandleShooting();
         }
-
     }
+
+
     void HandleMelee()
     {
         float currentSpeed = move;
