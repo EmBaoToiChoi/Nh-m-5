@@ -12,7 +12,8 @@ public class ScriptSmallEnemy : MonoBehaviour
     public float attackCooldown = 1f;
     private int currentHealth;
     private bool isAttacking = false;
-
+    public GameObject healthPrefab;
+    public GameObject goldPrefab;
     void Start()
     {
         currentHealth = maxHealth;
@@ -57,5 +58,13 @@ public class ScriptSmallEnemy : MonoBehaviour
     {
         // Gọi animation chết nếu có, ví dụ: ani?.Play("SmallEnemyDie");
         Destroy(gameObject);
+        if (goldPrefab != null)
+        {
+            Instantiate(goldPrefab, transform.position, Quaternion.identity);
+        }
+        if (healthPrefab != null)
+    {
+        Instantiate(healthPrefab, transform.position, Quaternion.identity);
+    }
     }
 }
