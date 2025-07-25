@@ -135,4 +135,5 @@ public class WormScript : MonoBehaviour
         yield return new WaitForSeconds(1f); // Thời gian giữa các lần đánh
         isAttacking = false;
     }
+    
 }
