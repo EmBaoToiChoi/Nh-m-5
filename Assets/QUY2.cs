@@ -22,8 +22,8 @@ public class QUY2 : MonoBehaviour
     [Header("Enemy Settings")]
     [SerializeField] private float fleeHealthThreshold = 10f;
     [SerializeField] private float maxHealth = 80f;
-    [SerializeField] private float PVipHien = 10f;
-    [SerializeField] private float speed = 2f;
+    [SerializeField] private float PVipHien = 15f;
+    [SerializeField] private float speed = 5f;
     [SerializeField] private float fireRate = 1f;
 
     private GameObject healthBarUI;

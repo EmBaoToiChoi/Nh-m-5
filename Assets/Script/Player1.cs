@@ -83,6 +83,11 @@ public class Player1 : MonoBehaviour
         SceneManager.LoadScene("Gam1");
 
     }
+    void loadsencethua()
+    {
+        SceneManager.LoadScene("Loss");
+
+    }
     // 
 
 
@@ -151,6 +156,8 @@ public class Player1 : MonoBehaviour
 
             if (mauhientai <= 0)
             {
+                PlayerPrefs.SetInt("PreviousScene", SceneManager.GetActiveScene().buildIndex);
+                loadsencethua();
                 Destroy(this.gameObject);
             }
         }

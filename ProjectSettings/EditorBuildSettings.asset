@@ -26,4 +26,13 @@ EditorBuildSettings:
   - enabled: 1
     path: "Assets/Scenes/M\xE0n Qu\xE1i 1.unity"
     guid: fbcd1bbdfc0272b4c9208e9c96328016
+  - enabled: 1
+    path: Assets/Scenes/Gam2,1.unity
+    guid: d6d27befac006c841810d2529318c7c3
+  - enabled: 1
+    path: Assets/Scenes/Gam2,2.unity
+    guid: 7da72a4d37c40b04ca442f92267292af
+  - enabled: 1
+    path: Assets/Scenes/Loss.unity
+    guid: 478e58fb81f224045b37c1bcefaebdc2
   m_configObjects: {}

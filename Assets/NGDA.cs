@@ -29,7 +29,7 @@ public class NGDA : MonoBehaviour
 
     private bool isChasing = false;
     private float speed = 2f;
-    private float PVipHien = 10f;
+    private float PVipHien = 5f;
 
     private float maxHealth = 80f;
     private float currentHealth;
