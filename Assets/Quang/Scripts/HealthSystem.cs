@@ -2,82 +2,104 @@
 
 public class HealthSystem : MonoBehaviour
 {
+    [Header("Cài đặt máu")]
     public int maxHealth = 100;
     private int currentHealth;
     private bool isDead = false;
+    public int CurrentHealth => currentHealth;
+
+    [Header("Thanh máu")]
+    public EnemyHealthBar healthBar;  // Gắn từ Inspector
 
     [Header("Prefab Drop")]
     public GameObject goldPrefab;
     public GameObject smallEnemyPrefab;
     public GameObject healthPickupPrefab;
-    public int CurrentHealth => currentHealth;
-
-    private Animator animator;
-    private AudioSource audioSource;
 
     [Header("Âm thanh")]
     public AudioClip hurtClip;
     public AudioClip deathClip;
+    private Animator animator;
+    private AudioSource audioSource;
 
     void Start()
     {
         currentHealth = maxHealth;
+
         animator = GetComponent<Animator>();
         audioSource = GetComponent<AudioSource>();
+
+        if (healthBar != null)
+            healthBar.SetHealth(currentHealth, maxHealth);
     }
 
-    public void OnTriggerEnter2D(Collider2D collision)
+    public void TakeDamage(int amount)
     {
         if (isDead) return;
 
-        if (collision.gameObject.CompareTag("Hit")) // Đạn của player
+        currentHealth -= amount;
+        currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
+
+        Debug.Log($"{gameObject.name} bị trúng đòn! HP còn: {currentHealth}");
+
+        if (animator != null)
+            animator.SetTrigger("Hurt");
+
+        if (hurtClip != null && audioSource != null)
+            audioSource.PlayOneShot(hurtClip);
+
+        if (healthBar != null)
+            healthBar.SetHealth(currentHealth, maxHealth);
+
+        if (currentHealth <= 0)
         {
-            currentHealth -= 25;
+            Die();
+        }
+    }
 
-            Debug.Log($"{gameObject.name} bị trúng đòn! HP còn: {currentHealth}");
+    void Die()
+    {
+        isDead = true;
 
-            if (animator != null)
-                animator.SetTrigger("Hurt");
+        if (animator != null)
+            animator.SetTrigger("Die");
 
-            if (hurtClip != null && audioSource != null)
-                audioSource.PlayOneShot(hurtClip);
+        if (deathClip != null && audioSource != null)
+            audioSource.PlayOneShot(deathClip);
 
-            if (currentHealth <= 0)
+        // Rơi vàng
+        if (goldPrefab != null)
+        {
+            Instantiate(goldPrefab, transform.position, Quaternion.identity);
+        }
+
+        // Rơi cục máu (máu hồi cho Player)
+        if (healthPickupPrefab != null)
+        {
+            Vector3 offset = new Vector3(0.4f, 0.3f, 0);
+            Instantiate(healthPickupPrefab, transform.position + offset, Quaternion.identity);
+        }
+
+        // Chia ra quái nhỏ (nếu có)
+        if (smallEnemyPrefab != null)
+        {
+            for (int i = 0; i < 3; i++)
             {
-                isDead = true;
-
-                if (animator != null)
-                    animator.SetTrigger("Die");
-
-                if (deathClip != null && audioSource != null)
-                    audioSource.PlayOneShot(deathClip);
-
-                // Rơi vàng
-                if (goldPrefab != null)
-                {
-                    Instantiate(goldPrefab, transform.position, Quaternion.identity);
-                }
-
-                // Rơi máu
-                if (healthPickupPrefab != null)
-                {
-                    Vector3 offset = new Vector3(0.4f, 0.3f, 0);
-                    Instantiate(healthPickupPrefab, transform.position + offset, Quaternion.identity);
-                }
-
-                // 👇 Sinh 3 quái nhỏ khi chết (áp dụng cho mọi enemy)
-                if (smallEnemyPrefab != null)
-                {
-                    for (int i = 0; i < 3; i++)
-                    {
-                        Vector3 spawnPos = transform.position + new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), 0);
-                        Instantiate(smallEnemyPrefab, spawnPos, Quaternion.identity);
-                    }
-                }
-
-                // Xoá object sau khi chết
-                Destroy(gameObject, 1.5f);
+                Vector3 spawnPos = transform.position + new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), 0);
+                Instantiate(smallEnemyPrefab, spawnPos, Quaternion.identity);
             }
+        }
+
+        // Xoá enemy sau 1.5s
+        Destroy(gameObject, 1.5f);
+    }
+
+    // Nếu vẫn dùng OnTrigger để nhận sát thương từ đạn
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Hit"))
+        {
+            TakeDamage(25); // Gọi đúng logic thay vì lặp lại
         }
     }
 }

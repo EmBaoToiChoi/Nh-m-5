@@ -3,12 +3,12 @@ using UnityEngine.UI;
 public class Boss1Controller : MonoBehaviour
 {
     public float moveSpeed = 3f;
-    public float attackRange = 1.5f;
-    public float attackCooldown = 1f;
-    public int attackDamage = 20;
+    public float attackRange = 3f;
+    public float attackCooldown = 3f;
+    public int attackDamage = 10;
     private float lastAttackTime;
    
-
+    
     public Transform player;
     public Animator animator;
 
