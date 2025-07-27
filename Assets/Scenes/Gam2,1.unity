@@ -19739,7 +19739,7 @@ GameObject:
   - component: {fileID: 365637828}
   m_Layer: 0
   m_Name: Box Back
-  m_TagString: BoxBack
+  m_TagString: BoxBack2
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

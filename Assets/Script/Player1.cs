@@ -75,7 +75,7 @@ public class Player1 : MonoBehaviour
     }
     void loadsence3()
     {
-        SceneManager.LoadScene("Gam1,3");
+        SceneManager.LoadScene("Boss1");
 
     }
     void loadsence4()
@@ -89,7 +89,26 @@ public class Player1 : MonoBehaviour
 
     }
     // 
+    void loadsence5()
+    {
+        SceneManager.LoadScene("Gam1new");
 
+    }
+    void loadsence6()
+    {
+        SceneManager.LoadScene("Gam2,1");
+
+    }
+    void loadsence7()
+    {
+        SceneManager.LoadScene("Gam2,2");
+
+    }
+    void loadsence8()
+    {
+        SceneManager.LoadScene("Gam1,3");
+
+    }
 
     void OnEnable()
     {
@@ -143,7 +162,7 @@ public class Player1 : MonoBehaviour
             thanhNangLuong.CapNhatThanhNangLuong(nangLuongHienTai, nangLuongToiDa);
         }
     }
-    
+
     void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("enermy") || collision.gameObject.CompareTag("Trap"))
@@ -151,7 +170,7 @@ public class Player1 : MonoBehaviour
             audioSource.PlayOneShot(enemyHitSound);
             mauhientai -= 10;
 
-    
+
             thanhmau.Capnhatthanhmau(mauhientai, mautoida);
 
             if (mauhientai <= 0)
@@ -176,6 +195,22 @@ public class Player1 : MonoBehaviour
         if (collision.gameObject.CompareTag("BoxBack"))
         {
             loadsence4();
+        }
+        if (collision.gameObject.CompareTag("BoxBack2"))
+        {
+            loadsence5();
+        }
+        if (collision.gameObject.CompareTag("Gam2,1"))
+        {
+            loadsence6();
+        }
+        if (collision.gameObject.CompareTag("Gam2,2"))
+        {
+            loadsence7();
+        }
+        if (collision.gameObject.CompareTag("Gam1,3"))
+        {
+            loadsence8();
         }
 
 
