@@ -46,6 +46,7 @@ public class Player1 : MonoBehaviour
     
     public void Heal(float amount)
     {
+        currentHealth -= amount;
         mauhientai += amount;
         mauhientai = Mathf.Clamp(mauhientai, 0, mautoida);
         thanhmau.Capnhatthanhmau(mauhientai, mautoida);
