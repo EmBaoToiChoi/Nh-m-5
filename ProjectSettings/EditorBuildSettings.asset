@@ -24,7 +24,7 @@ EditorBuildSettings:
     path: Assets/Scenes/Gam1,3.unity
     guid: a8bbc93b7cdc4d04192f085ba853c34a
   - enabled: 1
-    path: "Assets/Scenes/M\xE0n Qu\xE1i 1.unity"
+    path: Assets/Scenes/Boss1.unity
     guid: fbcd1bbdfc0272b4c9208e9c96328016
   - enabled: 1
     path: Assets/Scenes/Gam2,1.unity
@@ -35,4 +35,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Loss.unity
     guid: 478e58fb81f224045b37c1bcefaebdc2
+  - enabled: 1
+    path: Assets/Scenes/Gam1new.unity
+    guid: b62b34e9106b5ba4182eb92f1d27951e
   m_configObjects: {}

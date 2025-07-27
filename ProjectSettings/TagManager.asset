@@ -20,6 +20,10 @@ TagManager:
   - Bullet
   - Bow
   - NPC
+  - BockBack2
+  - BoxBack2
+  - Gam2,1
+  - Gam2,2
   layers:
   - Default
   - TransparentFX
