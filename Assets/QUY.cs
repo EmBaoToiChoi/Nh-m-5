@@ -24,8 +24,8 @@ public class QUY : MonoBehaviour
     private Transform mainCam;
 
     private bool isChasing = false;
-    private float speed = 2f;
-    private float PVipHien = 10f;
+    private float speed = 4f;
+    private float PVipHien = 15f;
 
     private float maxHealth = 80f;
     private float currentHealth;
