@@ -43,7 +43,7 @@ public class QUY : MonoBehaviour
 
     void Update()
     {
-        // Nếu object đã bị phá hủy thì ngừng xử lý
+        // Nếu object đã bị phá hủy hoặc enermy không còn, thì không làm gì
         if (this == null || enermy == null || player == null) return;
 
         float khoangCachPlayer = Vector2.Distance(enermy.position, player.position);
@@ -58,13 +58,23 @@ public class QUY : MonoBehaviour
             dichuyentoiPlayer(player.position);
         }
 
-        // Cập nhật vị trí thanh máu nếu còn tồn tại
+        // Cập nhật vị trí thanh máu nếu mọi thứ còn tồn tại
         if (healthBarUI != null && enermy != null)
         {
-            healthBarUI.transform.position = enermy.position + Vector3.up * 1.5f;
-            healthBarUI.transform.rotation = Quaternion.identity;
+            try
+            {
+                healthBarUI.transform.position = enermy.position + Vector3.up * 1.5f;
+                healthBarUI.transform.rotation = Quaternion.identity;
+            }
+            catch (MissingReferenceException)
+            {
+                // Nếu enermy đã bị huỷ giữa Update, ta đảm bảo không bị lỗi
+                Destroy(healthBarUI);
+            }
         }
     }
+
+
 
 
 
@@ -101,6 +111,13 @@ public class QUY : MonoBehaviour
 
             enabled = false; // Dừng Update() để tránh lỗi
         }
+        if (healthFill != null && enermy != null)
+        {
+            DamageTextManager.Instance.ShowDamage(enermy.position, damage);
+            healthFill.fillAmount = currentHealth / maxHealth;
+        }
+
+
     }
 
 
