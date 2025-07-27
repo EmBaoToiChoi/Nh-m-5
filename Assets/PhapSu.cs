@@ -3,8 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class QUY : MonoBehaviour
+public class PhapSu : MonoBehaviour
 {
+    private enum State { Chase, Attack, Flee, Return }
+    private State currentState = State.Chase;
+    [SerializeField] private float fleeDuration = 1.5f;
+    [SerializeField] private float returnDelay = 0.5f;
+
+
+    private float fleeTimer = 0f;
+
+    private Vector3 fleeDirection;
+
+
     [SerializeField] private float fleeHealthThreshold = 10f;
     public Transform enermy, player;
     [SerializeField] private GameObject coinPrefab;
@@ -43,28 +54,66 @@ public class QUY : MonoBehaviour
 
     void Update()
     {
-        // Nếu object đã bị phá hủy thì ngừng xử lý
         if (this == null || enermy == null || player == null) return;
 
-        float khoangCachPlayer = Vector2.Distance(enermy.position, player.position);
-        isChasing = khoangCachPlayer < PVipHien;
-
-        if (currentHealth <= fleeHealthThreshold)
+        switch (currentState)
         {
-            ChayKhoiPlayer(player.position);
-        }
-        else if (isChasing)
-        {
-            dichuyentoiPlayer(player.position);
+            case State.Chase:
+                float distance = Vector2.Distance(enermy.position, player.position);
+                isChasing = distance < PVipHien;
+
+                if (currentHealth <= fleeHealthThreshold)
+                {
+                    ChayKhoiPlayer(player.position);
+                }
+                else if (isChasing)
+                {
+                    dichuyentoiPlayer(player.position);
+                }
+                break;
+
+            case State.Flee:
+                fleeTimer -= Time.deltaTime;
+                enermy.Translate(fleeDirection * speed * Time.deltaTime);
+
+                if (fleeTimer <= 0f)
+                {
+                    StartCoroutine(DelayReturn());
+                }
+                break;
+
+            case State.Return:
+                dichuyentoiPlayer(player.position);
+                break;
         }
 
-        // Cập nhật vị trí thanh máu nếu còn tồn tại
+        // Cập nhật thanh máu
         if (healthBarUI != null && enermy != null)
         {
             healthBarUI.transform.position = enermy.position + Vector3.up * 1.5f;
             healthBarUI.transform.rotation = Quaternion.identity;
         }
     }
+    IEnumerator DelayReturn()
+    {
+        yield return new WaitForSeconds(returnDelay);
+        currentState = State.Return;
+    }
+
+
+
+    void StartFlee()
+    {
+        currentState = State.Flee;
+        fleeTimer = fleeDuration;
+        fleeDirection = (enermy.position - player.position).normalized;
+
+        if (fleeDirection.x > 0)
+            enermy.localScale = new Vector3(3,3,3);
+        else if (fleeDirection.x < 0)
+            enermy.localScale = new Vector3(-3,3,3);
+    }
+
 
 
 
@@ -75,9 +124,9 @@ public class QUY : MonoBehaviour
 
         // Lật hướng enemy
         if (direction.x > 0)
-            enermy.localScale = new Vector3(-3,3,3);
-        if (direction.x < 0)
             enermy.localScale = new Vector3(3,3,3);
+        if (direction.x < 0)
+            enermy.localScale = new Vector3(-3,3,3);
     }
 
     void TakeDamage(float damage)
@@ -111,9 +160,9 @@ public class QUY : MonoBehaviour
 
         // Lật hướng enemy
         if (direction.x > 0)
-            enermy.localScale = new Vector3(-3,3,3);
-        else if (direction.x < 0)
             enermy.localScale = new Vector3(3,3,3);
+        else if (direction.x < 0)
+            enermy.localScale = new Vector3(-3,3,3);
     }
 
 
@@ -142,7 +191,13 @@ public class QUY : MonoBehaviour
         if (collision.gameObject.CompareTag("Player1"))
         {
             nie.SetBool("danh", true);
+
+            if (currentState == State.Chase || currentState == State.Return)
+            {
+                StartFlee();
+            }
         }
+    
     }
 
     void OnCollisionStay2D(Collision2D collision)
@@ -150,7 +205,13 @@ public class QUY : MonoBehaviour
         if (collision.gameObject.CompareTag("Player1"))
         {
             nie.SetBool("danh", true);
+
+            if (currentState == State.Chase || currentState == State.Return)
+            {
+                StartFlee();
+            }
         }
+    
     }
 
     void OnCollisionExit2D(Collision2D collision)
