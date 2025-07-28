@@ -62,7 +62,11 @@ public class Player1 : MonoBehaviour
             bowObject.transform.position = transform.position + offsetBow;
         }
     }
+    void loadsence3()
+    {
+        SceneManager.LoadScene("Boss1");
 
+    }
     void loadsence1()
     {
         SceneManager.LoadScene("Gam1,1");
@@ -71,11 +75,6 @@ public class Player1 : MonoBehaviour
     void loadsence2()
     {
         SceneManager.LoadScene("Gam1,2");
-
-    }
-    void loadsence3()
-    {
-        SceneManager.LoadScene("Boss1");
 
     }
     void loadsence4()
@@ -106,7 +105,7 @@ public class Player1 : MonoBehaviour
     }
     void loadsence8()
     {
-        SceneManager.LoadScene("Gam1,3");
+        SceneManager.LoadScene("Boss1");
 
     }
 
@@ -180,18 +179,6 @@ public class Player1 : MonoBehaviour
                 Destroy(this.gameObject);
             }
         }
-        if (collision.gameObject.CompareTag("Gam1,1"))
-        {
-            loadsence1();
-        }
-        if (collision.gameObject.CompareTag("Gam1,2"))
-        {
-            loadsence2();
-        }
-        if (collision.gameObject.CompareTag("Gam1,3"))
-        {
-            loadsence3();
-        }
         if (collision.gameObject.CompareTag("BoxBack"))
         {
             loadsence4();
@@ -199,6 +186,14 @@ public class Player1 : MonoBehaviour
         if (collision.gameObject.CompareTag("BoxBack2"))
         {
             loadsence5();
+        }
+        if (collision.gameObject.CompareTag("Gam1,1"))
+        {
+            loadsence1();
+        }
+        if (collision.gameObject.CompareTag("Gam1,2"))
+        {
+            loadsence2();
         }
         if (collision.gameObject.CompareTag("Gam2,1"))
         {
@@ -212,8 +207,6 @@ public class Player1 : MonoBehaviour
         {
             loadsence8();
         }
-
-
     }
 
     void Start()
