@@ -3,9 +3,9 @@ using UnityEngine.UI;
 
 public class EnemyHealthBar : MonoBehaviour
 {
-    public Slider slider;        // Kéo t? object Slider
-    public Transform target;     // Transform c?a enemy
-    public Vector3 offset = new Vector3(0, 1.5f, 0); // Hi?n th? trên ð?u enemy
+    public Slider slider;
+    public Transform target;        // Enemy
+    public Vector3 offset = new Vector3(0, 1.5f, 0); // V? trí trên ð?u enemy
 
     public void SetHealth(int current, int max)
     {
@@ -22,4 +22,5 @@ public class EnemyHealthBar : MonoBehaviour
             transform.position = target.position + offset;
         }
     }
+
 }
