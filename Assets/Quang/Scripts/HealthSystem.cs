@@ -15,6 +15,7 @@ public class HealthSystem : MonoBehaviour
     public GameObject goldPrefab;
     public GameObject smallEnemyPrefab;
     public GameObject healthPickupPrefab;
+    public GameObject manaPickupPrefab; // 👈 Prefab mana
 
     [Header("Âm thanh")]
     public AudioClip hurtClip;
@@ -80,6 +81,13 @@ public class HealthSystem : MonoBehaviour
             Instantiate(healthPickupPrefab, transform.position + offset, Quaternion.identity);
         }
 
+        // Rơi mana
+        if (manaPickupPrefab != null)
+        {
+            Vector3 offset = new Vector3(-0.4f, 0.3f, 0);
+            Instantiate(manaPickupPrefab, transform.position + offset, Quaternion.identity);
+        }
+
         // Chia ra quái nhỏ (nếu có)
         if (smallEnemyPrefab != null)
         {
@@ -94,12 +102,11 @@ public class HealthSystem : MonoBehaviour
         Destroy(gameObject, 1.5f);
     }
 
-    // Nếu vẫn dùng OnTrigger để nhận sát thương từ đạn
     void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Hit"))
         {
-            TakeDamage(25); // Gọi đúng logic thay vì lặp lại
+            TakeDamage(25);
         }
     }
 }

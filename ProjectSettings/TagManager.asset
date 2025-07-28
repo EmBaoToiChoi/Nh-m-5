@@ -96,3 +96,6 @@ TagManager:
   - name: Health
     uniqueID: 3790137885
     locked: 0
+  - name: Mana
+    uniqueID: 381035875
+    locked: 0
