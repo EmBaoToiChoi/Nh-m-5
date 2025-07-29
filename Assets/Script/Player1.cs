@@ -43,6 +43,54 @@ public class Player1 : MonoBehaviour
     private bool isGun = false;
     [SerializeField] private GameObject bowObject;
     [SerializeField] private Vector3 offsetBow = new Vector3((float)0.1, (float)0.1, (float)0.1);
+    public int coin;
+    public bool hasGun;
+
+    public bool hasBow;
+    public int currentEnergy = 100;  // hoặc giá trị khởi đầu bạn muốn
+    public int currentXP = 0;
+
+
+
+
+    //lưu 
+    public void SavePlayerData()
+    {
+        GameData data = new GameData();
+        data.playerX = transform.position.x;
+        data.playerY = transform.position.y;
+
+        data.health = currentHealth;
+        data.energy = currentEnergy;
+        data.xp = currentXP;
+
+        data.hasGun = hasGun;
+        data.hasBow = hasBow;
+
+        data.coin = coin;
+
+        SaveLoadManager.SaveGame(data);
+    }
+
+    //load
+    public void LoadPlayerData()
+    {
+        GameData data = SaveLoadManager.LoadGame();
+        if (data != null)
+        {
+            transform.position = new Vector3(data.playerX, data.playerY, 0);
+            currentHealth = data.health;
+            currentEnergy = (int)data.energy;
+            currentXP = (int)data.xp;
+            hasGun = data.hasGun;
+            hasBow = data.hasBow;
+            coin = data.coin;
+
+            // Gọi cập nhật UI nếu cần
+        }
+    }
+
+
     
     public void Heal(float amount)
     {
@@ -188,7 +236,7 @@ public class Player1 : MonoBehaviour
 
     void Start()
     {
-        
+        LoadPlayerData();
 
 
         float bonus = GlobalData.healthBonus;
@@ -247,6 +295,11 @@ public class Player1 : MonoBehaviour
 
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            SavePlayerData();  // gọi hàm lưu
+            Debug.Log("Đã Lưu");
+    }
         // PHÍM 1 - Đánh cận chiến
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
