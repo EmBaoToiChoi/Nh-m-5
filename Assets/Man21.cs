@@ -2,9 +2,9 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class EnterSceneWithKey : MonoBehaviour
+public class Man21 : MonoBehaviour
 {
-    public string sceneToLoad = "Gam1,2";
+    public string sceneToLoad = "Gam2,1";
     public GameObject pressEText;       // Text: "Nhấn E để vào"
     public GameObject warningText;      // Text: "Cần có chìa khóa!"
     public GameObject keyImageUI;       // Hình ảnh chìa khóa (UI)
