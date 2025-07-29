@@ -3,9 +3,10 @@ using UnityEngine.UI;
 
 public class ChestOpen : MonoBehaviour
 {
-    public Animator chestAnimator;         // Gán Animator cho chest
-    public GameObject hiddenObject;        // Object sẽ bật sau khi chest mở
-    public GameObject textPressE;          // UI Text hướng dẫn (ví dụ: "Nhấn E để mở rương")
+    [Header("References")]
+    public Animator chestAnimator;     // Animator gắn vào rương
+    public GameObject hiddenObject;    // Vật phẩm ẩn bên trong
+    public GameObject textPressE;      // UI Text hướng dẫn
 
     private bool isPlayerNearby = false;
     private bool isOpened = false;
@@ -13,19 +14,32 @@ public class ChestOpen : MonoBehaviour
     void Start()
     {
         if (textPressE != null)
-            textPressE.SetActive(false); // Ẩn text khi bắt đầu
+            textPressE.SetActive(false); // Ẩn hướng dẫn khi bắt đầu
+
+        if (hiddenObject != null)
+            hiddenObject.SetActive(false); // Ẩn vật phẩm từ đầu
     }
 
     void Update()
     {
         if (isPlayerNearby && !isOpened && Input.GetKeyDown(KeyCode.E))
         {
-            isOpened = true;
-            chestAnimator.SetTrigger("moruong");     // Chạy animation mở rương
-            hiddenObject.SetActive(true);            // Bật object ẩn
-            if (textPressE != null)
-                textPressE.SetActive(false);         // Ẩn hướng dẫn
+            OpenChest();
         }
+    }
+
+    private void OpenChest()
+    {
+        isOpened = true;
+
+        if (chestAnimator != null)
+            chestAnimator.SetTrigger("moruong"); // Gửi trigger tới Animator
+
+        if (hiddenObject != null)
+            hiddenObject.SetActive(true); // Bật vật phẩm
+
+        if (textPressE != null)
+            textPressE.SetActive(false); // Ẩn hướng dẫn
     }
 
     void OnTriggerEnter2D(Collider2D other)
@@ -33,8 +47,9 @@ public class ChestOpen : MonoBehaviour
         if (!isOpened && other.CompareTag("Player1"))
         {
             isPlayerNearby = true;
+
             if (textPressE != null)
-                textPressE.SetActive(true);          // Hiện hướng dẫn nhấn E
+                textPressE.SetActive(true); // Hiện hướng dẫn
         }
     }
 
@@ -43,8 +58,9 @@ public class ChestOpen : MonoBehaviour
         if (other.CompareTag("Player1"))
         {
             isPlayerNearby = false;
+
             if (textPressE != null)
-                textPressE.SetActive(false);         // Ẩn hướng dẫn khi rời xa
+                textPressE.SetActive(false); // Ẩn hướng dẫn khi rời xa
         }
     }
 }

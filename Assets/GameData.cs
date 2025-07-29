@@ -4,18 +4,19 @@ public class GameData : MonoBehaviour
 {
     public static GameData Instance;
 
-    public bool isFinalImageShown = false;
+    public bool isKeyCollected = false;
 
-    void Awake()
+    private void Awake()
+{
+    if (Instance == null)
     {
-        if (Instance == null)
-        {
-            Instance = this;
-            DontDestroyOnLoad(gameObject); // Không bị xoá khi load scene mới
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
+        Instance = this;
+        DontDestroyOnLoad(gameObject); // Phải có dòng này!
     }
+    else
+    {
+        Destroy(gameObject);
+    }
+}
+
 }
