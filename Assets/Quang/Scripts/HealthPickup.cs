@@ -6,13 +6,13 @@ public class HealthPickup : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Player1")) // G?n Tag Player1 vào Player
+        if (other.CompareTag("Player1")) // G?n Tag Player1 vï¿½o Player
         {
-            // G?i thông ði?p "Heal" ð?n t?t c? component trên Player
+            // G?i thï¿½ng ï¿½i?p "Heal" ï¿½?n t?t c? component trï¿½n Player
             other.SendMessage("Heal", healAmount, SendMessageOptions.DontRequireReceiver);
 
-            Debug.Log("?? Player nh?t máu và ðý?c h?i " + healAmount);
-            Destroy(gameObject); // Xoá c?c máu sau khi nh?t
+            Debug.Log("?? Player nh?t mï¿½u vï¿½ ï¿½ï¿½?c h?i " + healAmount);
+            Destroy(gameObject); // Xoï¿½ c?c mï¿½u sau khi nh?t
         }
     }
 }

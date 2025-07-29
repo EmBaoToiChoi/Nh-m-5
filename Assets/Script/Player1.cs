@@ -62,19 +62,9 @@ public class Player1 : MonoBehaviour
             bowObject.transform.position = transform.position + offsetBow;
         }
     }
-    void loadsence3()
-    {
-        SceneManager.LoadScene("Boss1");
-
-    }
     void loadsence1()
     {
         SceneManager.LoadScene("Gam1,1");
-
-    }
-    void loadsence2()
-    {
-        SceneManager.LoadScene("Gam1,2");
 
     }
     void loadsence4()
@@ -96,11 +86,6 @@ public class Player1 : MonoBehaviour
     void loadsence6()
     {
         SceneManager.LoadScene("Gam2,1");
-
-    }
-    void loadsence7()
-    {
-        SceneManager.LoadScene("Gam2,2");
 
     }
     void loadsence8()
@@ -191,17 +176,9 @@ public class Player1 : MonoBehaviour
         {
             loadsence1();
         }
-        if (collision.gameObject.CompareTag("Gam1,2"))
-        {
-            loadsence2();
-        }
         if (collision.gameObject.CompareTag("Gam2,1"))
         {
             loadsence6();
-        }
-        if (collision.gameObject.CompareTag("Gam2,2"))
-        {
-            loadsence7();
         }
         if (collision.gameObject.CompareTag("Gam1,3"))
         {
