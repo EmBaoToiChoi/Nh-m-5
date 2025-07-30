@@ -18,7 +18,7 @@ public class HealthSystem : MonoBehaviour
     public GameObject goldPrefab;
     public GameObject smallEnemyPrefab;
     public GameObject healthPickupPrefab;
-    public GameObject xpPrefab; // thêm prefab XP
+    public GameObject xpPrefab;
 
     [Header("Âm thanh")]
     public AudioClip hurtClip;
@@ -56,9 +56,10 @@ public class HealthSystem : MonoBehaviour
     {
         if (isDead) return;
 
-        if (collision.gameObject.CompareTag("Hit")) // bị đòn
+        if (collision.gameObject.CompareTag("Hit"))
         {
-            TakeDamage(25); // bạn có thể thay bằng sát thương động nếu cần
+            int damage = 25; // Hoặc đổi theo weapon
+            TakeDamage(damage);
         }
     }
 
@@ -72,6 +73,9 @@ public class HealthSystem : MonoBehaviour
 
         if (hurtClip != null && audioSource != null)
             audioSource.PlayOneShot(hurtClip);
+
+        // Hiển thị damage text
+        DamageTextManager.Instance.ShowDamage(transform.position, amount);
 
         // Cập nhật UI máu
         if (healthFill != null)
@@ -101,7 +105,7 @@ public class HealthSystem : MonoBehaviour
         if (healthPickupPrefab != null)
             Instantiate(healthPickupPrefab, transform.position + new Vector3(0.4f, 0.3f, 0), Quaternion.identity);
 
-        // Rơi XP (thêm)
+        // Rơi XP
         if (xpPrefab != null)
             Instantiate(xpPrefab, transform.position + new Vector3(0, 0.3f, 0), Quaternion.identity);
 
@@ -118,6 +122,6 @@ public class HealthSystem : MonoBehaviour
         if (healthBarUI != null)
             Destroy(healthBarUI);
 
-        Destroy(gameObject, 1.5f); // chờ animation trước khi huỷ boss
+        Destroy(gameObject, 1.5f); // chờ animation xong rồi huỷ
     }
 }
