@@ -70,6 +70,12 @@ public class Player1 : MonoBehaviour
         data.coin = coin;
 
         SaveLoadManager.SaveGame(data);
+        string json = JsonUtility.ToJson(data);
+        string path = Application.persistentDataPath + "/save.json";
+        System.IO.File.WriteAllText(path, json);
+
+        Debug.Log("Đã lưu file JSON vào: " + path);
+    
     }
 
     //load
@@ -236,7 +242,30 @@ public class Player1 : MonoBehaviour
 
     void Start()
     {
-        LoadPlayerData();
+        if (GameState.isContinue)
+    {
+        LoadPlayerData(); // chỉ load nếu là Continue
+    }
+    else
+    {
+        // setup ban đầu cho New Game nếu cần
+        currentHealth = baseMaxHealth;
+        currentXP = 0;
+        currentEnergy = 100;
+        coin = 0;
+        hasGun = false;
+        hasBow = false;
+    }
+    string path = Application.persistentDataPath + "/save.json";
+    if (System.IO.File.Exists(path))
+    {
+            LoadPlayerData(); // Gọi Load nếu có dữ liệu
+        Debug.Log("Đã load dữ liệu lưu game.");
+    }
+    else
+    {
+        Debug.Log("Không tìm thấy dữ liệu để load.");
+    }
 
 
         float bonus = GlobalData.healthBonus;

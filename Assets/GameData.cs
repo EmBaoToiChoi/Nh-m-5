@@ -1,5 +1,5 @@
 [System.Serializable]
-public class GameData 
+public class GameData
 {
     public float playerX;
     public float playerY;
@@ -12,4 +12,6 @@ public class GameData
     public bool hasBow;
 
     public int coin;
+    internal float posX;
 }
+
