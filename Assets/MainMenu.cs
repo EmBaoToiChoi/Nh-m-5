@@ -3,24 +3,36 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
-   
-
-    public string sceneToLoad = "Menu"; // Game chính
-    public string loadingScene2 = "Load2"; // Scene loading
+    public string sceneToLoad = "Gam1";
+    public string loadingScene2 = "Load2";
 
     public void NewGame()
     {
-        PlayerPrefs.DeleteKey("SaveData"); // Xóa toàn bộ dữ liệu cũ
-        Loading2.Next_Scene = sceneToLoad; // Gán scene cần load sau loading
-        SceneManager.LoadScene(sceneToLoad); // Tới scene loading
+        // Xóa file save
+        string path = Application.persistentDataPath + "/save.json";
+        if (System.IO.File.Exists(path))
+        {
+            System.IO.File.Delete(path);
+            Debug.Log("Đã xóa dữ liệu cũ");
+        }
+
+        GameState.isContinue = false; // Rõ ràng là New Game
+        Loading2.Next_Scene = sceneToLoad;
+        SceneManager.LoadScene(sceneToLoad);
     }
 
     public void ContinueGame()
     {
-        if (PlayerPrefs.HasKey("SaveData"))
+        string path = Application.persistentDataPath + "/save.json";
+        if (System.IO.File.Exists(path))
         {
-            Loading2.Next_Scene = sceneToLoad;
-            SceneManager.LoadScene(loadingScene2);
+            GameState.isContinue = true; // đánh dấu là tiếp tục game
+            // Loading2.Next_Scene = sceneToLoad;
+            SceneManager.LoadScene(loadingScene2); // chuyển đến Load2
+        }
+        else
+        {
+            Debug.Log("Không có dữ liệu để tiếp tục.");
         }
     }
 
