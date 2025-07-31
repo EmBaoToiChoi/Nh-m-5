@@ -13,6 +13,8 @@ public class MainMenu : MonoBehaviour
         if (System.IO.File.Exists(path))
         {
             System.IO.File.Delete(path);
+            GameData2.Instance.ResetAmmo();
+
             Debug.Log("Đã xóa dữ liệu cũ");
         }
 
@@ -26,6 +28,7 @@ public class MainMenu : MonoBehaviour
         string path = Application.persistentDataPath + "/save.json";
         if (System.IO.File.Exists(path))
         {
+
             GameState.isContinue = true; // đánh dấu là tiếp tục game
             // Loading2.Next_Scene = sceneToLoad;
             SceneManager.LoadScene(loadingScene2); // chuyển đến Load2
@@ -34,6 +37,13 @@ public class MainMenu : MonoBehaviour
         {
             Debug.Log("Không có dữ liệu để tiếp tục.");
         }
+        Gun gun = FindObjectOfType<Gun>();
+        if (gun != null)
+        {
+            gun.LoadAmmo();      // ✅ Phải có dòng này!
+            gun.UpdateAmmoUI();  // Cập nhật UI sau khi load
+        }
+    
     }
 
 }
