@@ -56,6 +56,7 @@ public class Player1 : MonoBehaviour
     //lưu 
     public void SavePlayerData()
     {
+        GameData2.Instance.SaveAmmo();
         GameData data = new GameData();
         data.playerX = transform.position.x;
         data.playerY = transform.position.y;
@@ -94,6 +95,13 @@ public class Player1 : MonoBehaviour
 
             // Gọi cập nhật UI nếu cần
         }
+        Gun gun = FindObjectOfType<Gun>();
+        if (gun != null)
+        {
+            gun.LoadAmmo();      // ✅ Phải có dòng này!
+            gun.UpdateAmmoUI();  // Cập nhật UI sau khi load
+        }
+    
     }
 
 
