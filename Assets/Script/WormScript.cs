@@ -37,6 +37,7 @@ public class WormScript : MonoBehaviour
 
     void Update()
     {
+        if (player == null) return;
         float distanceToPlayer = Vector3.Distance(transform.position, player.position);
         Vector3 targetPosition = patrolTarget;
         if (distanceToPlayer <= detectionRange)
