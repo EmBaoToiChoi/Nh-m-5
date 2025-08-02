@@ -25,6 +25,8 @@ TagManager:
   - Gam2,1
   - Gam2,2
   - Chest
+  - Gun
+  - Player2
   layers:
   - Default
   - TransparentFX

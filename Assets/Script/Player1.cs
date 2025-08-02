@@ -43,6 +43,68 @@ public class Player1 : MonoBehaviour
     private bool isGun = false;
     [SerializeField] private GameObject bowObject;
     [SerializeField] private Vector3 offsetBow = new Vector3((float)0.1, (float)0.1, (float)0.1);
+    public int coin;
+    public bool hasGun;
+
+    public bool hasBow;
+    public int currentEnergy = 100;  // hoặc giá trị khởi đầu bạn muốn
+    public int currentXP = 0;
+
+
+
+
+    //lưu 
+    public void SavePlayerData()
+    {
+        GameData2.Instance.SaveAmmo();
+        GameData data = new GameData();
+        data.playerX = transform.position.x;
+        data.playerY = transform.position.y;
+
+        data.health = currentHealth;
+        data.energy = currentEnergy;
+        data.xp = currentXP;
+
+        data.hasGun = hasGun;
+        data.hasBow = hasBow;
+
+        data.coin = coin;
+
+        SaveLoadManager.SaveGame(data);
+        string json = JsonUtility.ToJson(data);
+        string path = Application.persistentDataPath + "/save.json";
+        System.IO.File.WriteAllText(path, json);
+
+        Debug.Log("Đã lưu file JSON vào: " + path);
+    
+    }
+
+    //load
+    public void LoadPlayerData()
+    {
+        GameData data = SaveLoadManager.LoadGame();
+        if (data != null)
+        {
+            transform.position = new Vector3(data.playerX, data.playerY, 0);
+            currentHealth = data.health;
+            currentEnergy = (int)data.energy;
+            currentXP = (int)data.xp;
+            hasGun = data.hasGun;
+            hasBow = data.hasBow;
+            coin = data.coin;
+
+            // Gọi cập nhật UI nếu cần
+        }
+        Gun gun = FindObjectOfType<Gun>();
+        if (gun != null)
+        {
+            gun.LoadAmmo();      // ✅ Phải có dòng này!
+            gun.UpdateAmmoUI();  // Cập nhật UI sau khi load
+        }
+    
+    }
+
+
     
     public void Heal(float amount)
     {
@@ -62,19 +124,9 @@ public class Player1 : MonoBehaviour
             bowObject.transform.position = transform.position + offsetBow;
         }
     }
-    void loadsence3()
-    {
-        SceneManager.LoadScene("Boss1");
-
-    }
     void loadsence1()
     {
         SceneManager.LoadScene("Gam1,1");
-
-    }
-    void loadsence2()
-    {
-        SceneManager.LoadScene("Gam1,2");
 
     }
     void loadsence4()
@@ -96,11 +148,6 @@ public class Player1 : MonoBehaviour
     void loadsence6()
     {
         SceneManager.LoadScene("Gam2,1");
-
-    }
-    void loadsence7()
-    {
-        SceneManager.LoadScene("Gam2,2");
 
     }
     void loadsence8()
@@ -191,17 +238,9 @@ public class Player1 : MonoBehaviour
         {
             loadsence1();
         }
-        if (collision.gameObject.CompareTag("Gam1,2"))
-        {
-            loadsence2();
-        }
         if (collision.gameObject.CompareTag("Gam2,1"))
         {
             loadsence6();
-        }
-        if (collision.gameObject.CompareTag("Gam2,2"))
-        {
-            loadsence7();
         }
         if (collision.gameObject.CompareTag("Gam1,3"))
         {
@@ -211,7 +250,30 @@ public class Player1 : MonoBehaviour
 
     void Start()
     {
-        
+        if (GameState.isContinue)
+    {
+        LoadPlayerData(); // chỉ load nếu là Continue
+    }
+    else
+    {
+        // setup ban đầu cho New Game nếu cần
+        currentHealth = baseMaxHealth;
+        currentXP = 0;
+        currentEnergy = 100;
+        coin = 0;
+        hasGun = false;
+        hasBow = false;
+    }
+    string path = Application.persistentDataPath + "/save.json";
+    if (System.IO.File.Exists(path))
+    {
+            LoadPlayerData(); // Gọi Load nếu có dữ liệu
+        Debug.Log("Đã load dữ liệu lưu game.");
+    }
+    else
+    {
+        Debug.Log("Không tìm thấy dữ liệu để load.");
+    }
 
 
         float bonus = GlobalData.healthBonus;
@@ -270,6 +332,11 @@ public class Player1 : MonoBehaviour
 
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            SavePlayerData();  // gọi hàm lưu
+            Debug.Log("Đã Lưu");
+    }
         // PHÍM 1 - Đánh cận chiến
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {

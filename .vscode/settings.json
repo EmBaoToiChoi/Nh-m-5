@@ -56,5 +56,5 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "Nhóm 5.sln"
+    "dotnet.defaultSolution": "Nh-m-5.sln"
 }
