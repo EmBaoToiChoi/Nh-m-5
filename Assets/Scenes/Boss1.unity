@@ -31079,6 +31079,16 @@ MonoBehaviour:
   shootSound: {fileID: 8300000, guid: 05f6082061522e744ac48638a333b480, type: 3}
   source: {fileID: 1267078909}
   shootDelay: 0.15
+  currentAmmo: 25
+  reserveAmmo: 25
+  maxAmmo: 25
+  ammoText: {fileID: 0}
+  reloadText: {fileID: 0}
+  player: {fileID: 0}
+  offsetUI: {x: 0, y: 2, z: 0}
+  reloadSound: {fileID: 0}
+  reloadSource: {fileID: 0}
+  maxReserveAmmo: 100
 --- !u!212 &1267078911
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -31427,7 +31437,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 961c606bd90f3194fa3aa3ff1e9081de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 1612911369}
+  possiblePlayers: []
 --- !u!331 &1379949923
 SpriteMask:
   m_ObjectHideFlags: 0
@@ -38501,6 +38511,11 @@ MonoBehaviour:
   tocDoTieuHaoNangLuong: 20
   bowObject: {fileID: 201337654}
   offsetBow: {x: 0.1, y: 0.1, z: 0.1}
+  coin: 0
+  hasGun: 0
+  hasBow: 0
+  currentEnergy: 100
+  currentXP: 0
 --- !u!95 &1612911367
 Animator:
   serializedVersion: 5

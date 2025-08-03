@@ -14943,7 +14943,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 961c606bd90f3194fa3aa3ff1e9081de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 1742601153}
+  possiblePlayers: []
 --- !u!331 &1457023328
 SpriteMask:
   m_ObjectHideFlags: 0
