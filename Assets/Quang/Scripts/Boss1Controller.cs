@@ -1,14 +1,17 @@
+using System.Collections;
 using UnityEngine;
-using UnityEngine.UI;
+
+[RequireComponent(typeof(Rigidbody2D))]
 public class Boss1Controller : MonoBehaviour
 {
+    [Header("Di chuy?n & T?n công")]
     public float moveSpeed = 3f;
     public float attackRange = 1.5f;
     public float attackCooldown = 1f;
     public int attackDamage = 20;
     private float lastAttackTime;
-   
 
+    [Header("Player & Animator")]
     public Transform player;
     public Animator animator;
 
@@ -16,23 +19,68 @@ public class Boss1Controller : MonoBehaviour
     public AudioSource audioSource;
     public AudioClip attackClip;
     public AudioClip walkClip;
+    public AudioClip skillClip;
+    public AudioClip summonClip;
+    public AudioClip fireClip;
 
+    [Header("Tri?u h?i")]
+    public GameObject skeletonPrefab;
+    public int summonCount = 3;
+    public float summonCooldown = 10f;
+    private float lastSummonTime;
+    private bool isLowHealthSummon = false;
+
+    [Header("HP")]
+    public int maxHealth = 200;
+    private int currentHealth;
+    private bool isDead = false;
+
+    [Header("Fire Breath")]
+    public ParticleSystem fireBreath;
+    public Transform firePoint;
+    public float fireCooldown = 10f;
+    public float fireDuration = 2f;
+    private float lastFireTime;
+    private bool isFiring;
+
+    private Rigidbody2D rb;
     private Vector3 originalScale;
+    private bool isAttacking = false;
 
     void Start()
     {
+        rb = GetComponent<Rigidbody2D>();
         originalScale = transform.localScale;
-      
+        currentHealth = maxHealth;
+
+        if (fireBreath != null)
+            fireBreath.Stop();
     }
 
     void Update()
     {
-        if (player == null) return;
+        if (player == null || isDead) return;
 
         float distance = Vector2.Distance(transform.position, player.position);
 
+        // Skill tri?u h?i theo th?i gian
+        if (Time.time - lastSummonTime >= summonCooldown)
+        {
+            StartCoroutine(UseSkill());
+            lastSummonTime = Time.time;
+        }
+
+        // Tri?u h?i khi máu th?p <30%
+        if (!isLowHealthSummon && currentHealth <= maxHealth * 0.3f)
+        {
+            StartCoroutine(SummonSkeletons(5));
+            isLowHealthSummon = true;
+        }
+
         if (distance <= attackRange)
         {
+            rb.velocity = Vector2.zero;
+
             if (Time.time - lastAttackTime >= attackCooldown)
             {
                 Attack();
@@ -40,41 +88,146 @@ public class Boss1Controller : MonoBehaviour
             }
 
             animator.SetBool("isMoving", false);
+
+            // Fire breath cooldown
+            if (!isFiring && Time.time - lastFireTime >= fireCooldown)
+            {
+                StartCoroutine(FireOnce());
+            }
         }
         else
         {
             MoveToPlayer();
-            animator.SetBool("isMoving", true);
-
-            // Chõi âm thanh ði b?
-            if (walkClip != null && audioSource != null && !audioSource.isPlaying)
-            {
-                audioSource.PlayOneShot(walkClip);
-            }
         }
     }
 
     void MoveToPlayer()
     {
-        Vector2 direction = (player.position - transform.position).normalized;
-        transform.Translate(direction * moveSpeed * Time.deltaTime);
+        if (isAttacking) return;
 
+        Vector2 direction = (player.position - transform.position).normalized;
+        rb.velocity = direction * moveSpeed;
+        animator.SetBool("isMoving", true);
+
+        // Flip Boss & FirePoint
         if (direction.x > 0)
+        {
             transform.localScale = new Vector3(Mathf.Abs(originalScale.x), originalScale.y, originalScale.z);
+            if (firePoint != null)
+                firePoint.localScale = new Vector3(1, 1, 1);
+        }
         else
+        {
             transform.localScale = new Vector3(-Mathf.Abs(originalScale.x), originalScale.y, originalScale.z);
+            if (firePoint != null)
+                firePoint.localScale = new Vector3(-1, 1, 1);
+        }
+
+        if (walkClip != null && audioSource != null && !audioSource.isPlaying)
+        {
+            audioSource.PlayOneShot(walkClip);
+        }
     }
 
     void Attack()
     {
         animator.SetTrigger("Attack");
+        isAttacking = true;
+        Invoke(nameof(EndAttack), 0.5f);
 
-        // Chõi âm thanh ðánh
-        if (attackClip != null && audioSource != null)
+        if (attackClip != null) audioSource.PlayOneShot(attackClip);
+
+        Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, attackRange);
+        foreach (var hit in hits)
         {
-            audioSource.PlayOneShot(attackClip);
+            if (hit.CompareTag("Player1"))
+            {
+                Player1 p = hit.GetComponent<Player1>();
+                if (p != null) p.TakeDamage(attackDamage);
+            }
+        }
+    }
+
+    void EndAttack()
+    {
+        isAttacking = false;
+    }
+
+    IEnumerator FireOnce()
+    {
+        isFiring = true;
+        lastFireTime = Time.time;
+
+        if (fireBreath != null)
+        {
+            fireBreath.Play();
+            if (fireClip != null) audioSource.PlayOneShot(fireClip);
         }
 
+        yield return new WaitForSeconds(fireDuration);
 
+        if (fireBreath != null)
+            fireBreath.Stop();
+
+        isFiring = false;
+    }
+
+    IEnumerator UseSkill()
+    {
+        if (skillClip != null) audioSource.PlayOneShot(skillClip);
+
+        animator.SetTrigger("Skill");
+
+        yield return new WaitForSeconds(0.5f);
+
+        yield return StartCoroutine(SummonSkeletons(summonCount));
+    }
+
+    IEnumerator SummonSkeletons(int count)
+    {
+        if (skeletonPrefab == null) yield break;
+
+        for (int i = 0; i < count; i++)
+        {
+            Vector3 pos = transform.position + new Vector3(Random.Range(-2f, 2f), Random.Range(-2f, 2f), 0);
+            GameObject skel = Instantiate(skeletonPrefab, pos, Quaternion.identity);
+
+            SmallSkeleton skelScript = skel.GetComponent<SmallSkeleton>();
+            if (skelScript != null)
+                skelScript.canRespawnSmall = true;
+
+            if (summonClip != null) audioSource.PlayOneShot(summonClip);
+            yield return new WaitForSeconds(0.3f);
+        }
+    }
+
+    public void TakeDamage(int amount)
+    {
+        if (isDead) return;
+
+        currentHealth -= amount;
+        if (currentHealth <= 0)
+        {
+            currentHealth = 0;
+            Die();
+        }
+        else
+        {
+            animator.SetTrigger("Hurt");
+        }
+    }
+
+    void Die()
+    {
+        isDead = true;
+        rb.velocity = Vector2.zero;
+        animator.SetTrigger("Die");
+        Destroy(gameObject, 2f);
+    }
+
+    void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, attackRange);
     }
 }
