@@ -567,12 +567,12 @@ public class Player2 : MonoBehaviour
         if (ngang > 0)
         {
             ani2.SetBool("chayad", true);
-            transform.localScale = new Vector3(5, 5, 5);
+            transform.localScale = new Vector3(-5, 5, 5);
         }
         else if (ngang < 0)
         {
             ani2.SetBool("chayad", true);
-            transform.localScale = new Vector3(-5, 5, 5);
+            transform.localScale = new Vector3(5, 5, 5);
         }
         else
         {
@@ -623,13 +623,13 @@ public class Player2 : MonoBehaviour
         if (ngang > 0)
         {
             ani2.SetBool("chayad", true);
-            transform.localScale = new Vector3(5, 5, 5);
+            transform.localScale = new Vector3(-5, 5, 5);
         }
         else if (ngang < 0)
         {
             ani2.SetBool("chayad", true);
             
-            transform.localScale = new Vector3(-5, 5, 5);
+            transform.localScale = new Vector3(5, 5, 5);
         }
         else
         {
