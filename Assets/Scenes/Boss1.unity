@@ -29997,11 +29997,12 @@ MonoBehaviour:
   maxAmmo: 25
   ammoText: {fileID: 0}
   reloadText: {fileID: 0}
-  player: {fileID: 0}
   offsetUI: {x: 0, y: 2, z: 0}
   reloadSound: {fileID: 0}
   reloadSource: {fileID: 0}
   maxReserveAmmo: 100
+  possiblePlayers: []
+  offset: {x: 0, y: 0, z: 0}
 --- !u!212 &1267078911
 SpriteRenderer:
   m_ObjectHideFlags: 0
