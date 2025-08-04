@@ -30997,6 +30997,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 3669837567608456786, guid: 47403c09d6bcde54d9d3d4f5b3d5c25f, type: 3}
+      propertyPath: mautoida
+      value: 150
+      objectReference: {fileID: 0}
+    - target: {fileID: 3669837567608456786, guid: 47403c09d6bcde54d9d3d4f5b3d5c25f, type: 3}
       propertyPath: thanhmau
       value: 
       objectReference: {fileID: 1396296428}
@@ -31004,6 +31008,10 @@ PrefabInstance:
       propertyPath: bowObject
       value: 
       objectReference: {fileID: 201337654}
+    - target: {fileID: 3669837567608456786, guid: 47403c09d6bcde54d9d3d4f5b3d5c25f, type: 3}
+      propertyPath: mauhientai
+      value: 150
+      objectReference: {fileID: 0}
     - target: {fileID: 3669837567608456786, guid: 47403c09d6bcde54d9d3d4f5b3d5c25f, type: 3}
       propertyPath: thanhNangLuong
       value: 

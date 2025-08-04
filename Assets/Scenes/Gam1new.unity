@@ -6381,6 +6381,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1042599494408173462, guid: 4c60269e6740b614f8a99d4a8e87c899, type: 3}
+      propertyPath: ammoText
+      value: 
+      objectReference: {fileID: 1283571554}
+    - target: {fileID: 1042599494408173462, guid: 4c60269e6740b614f8a99d4a8e87c899, type: 3}
       propertyPath: possiblePlayers.Array.size
       value: 1
       objectReference: {fileID: 0}
@@ -22396,6 +22400,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 3669837567608456786, guid: 47403c09d6bcde54d9d3d4f5b3d5c25f, type: 3}
+      propertyPath: mautoida
+      value: 150
+      objectReference: {fileID: 0}
+    - target: {fileID: 3669837567608456786, guid: 47403c09d6bcde54d9d3d4f5b3d5c25f, type: 3}
       propertyPath: thanhmau
       value: 
       objectReference: {fileID: 297739481}
@@ -22404,9 +22412,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 932869900}
     - target: {fileID: 3669837567608456786, guid: 47403c09d6bcde54d9d3d4f5b3d5c25f, type: 3}
+      propertyPath: mauhientai
+      value: 150
+      objectReference: {fileID: 0}
+    - target: {fileID: 3669837567608456786, guid: 47403c09d6bcde54d9d3d4f5b3d5c25f, type: 3}
       propertyPath: thanhNangLuong
       value: 
       objectReference: {fileID: 6445960}
+    - target: {fileID: 5575402572569024423, guid: 47403c09d6bcde54d9d3d4f5b3d5c25f, type: 3}
+      propertyPath: ammoText
+      value: 
+      objectReference: {fileID: 1283571554}
     - target: {fileID: 5575402572569024423, guid: 47403c09d6bcde54d9d3d4f5b3d5c25f, type: 3}
       propertyPath: possiblePlayers.Array.size
       value: 1

@@ -19519,7 +19519,7 @@ Transform:
   m_GameObject: {fileID: 309099869}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.67, y: 2.21, z: -10}
+  m_LocalPosition: {x: -1.7234027, y: -0.20303749, z: -9.814126}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -24968,7 +24968,7 @@ MonoBehaviour:
   m_Priority: 10
   m_StandbyUpdate: 2
   m_LookAt: {fileID: 0}
-  m_Follow: {fileID: 0}
+  m_Follow: {fileID: 1841256017}
   m_Lens:
     FieldOfView: 60
     OrthographicSize: 4
@@ -40442,6 +40442,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1042599494408173462, guid: 4c60269e6740b614f8a99d4a8e87c899, type: 3}
+      propertyPath: ammoText
+      value: 
+      objectReference: {fileID: 844556698}
+    - target: {fileID: 1042599494408173462, guid: 4c60269e6740b614f8a99d4a8e87c899, type: 3}
       propertyPath: possiblePlayers.Array.size
       value: 1
       objectReference: {fileID: 0}
@@ -41154,6 +41158,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 3669837567608456786, guid: 47403c09d6bcde54d9d3d4f5b3d5c25f, type: 3}
+      propertyPath: mautoida
+      value: 150
+      objectReference: {fileID: 0}
+    - target: {fileID: 3669837567608456786, guid: 47403c09d6bcde54d9d3d4f5b3d5c25f, type: 3}
       propertyPath: thanhmau
       value: 
       objectReference: {fileID: 1221083119}
@@ -41162,9 +41170,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1669408698}
     - target: {fileID: 3669837567608456786, guid: 47403c09d6bcde54d9d3d4f5b3d5c25f, type: 3}
+      propertyPath: mauhientai
+      value: 150
+      objectReference: {fileID: 0}
+    - target: {fileID: 3669837567608456786, guid: 47403c09d6bcde54d9d3d4f5b3d5c25f, type: 3}
       propertyPath: thanhNangLuong
       value: 
       objectReference: {fileID: 180174399}
+    - target: {fileID: 5575402572569024423, guid: 47403c09d6bcde54d9d3d4f5b3d5c25f, type: 3}
+      propertyPath: ammoText
+      value: 
+      objectReference: {fileID: 844556698}
     - target: {fileID: 5575402572569024423, guid: 47403c09d6bcde54d9d3d4f5b3d5c25f, type: 3}
       propertyPath: possiblePlayers.Array.size
       value: 1
@@ -41442,6 +41458,10 @@ PrefabInstance:
       propertyPath: thanhNangLuong
       value: 
       objectReference: {fileID: 180174399}
+    - target: {fileID: 737576702938809200, guid: bf2ba775af406d5449aacdd6c42a1858, type: 3}
+      propertyPath: ammoText
+      value: 
+      objectReference: {fileID: 844556698}
     - target: {fileID: 737576702938809200, guid: bf2ba775af406d5449aacdd6c42a1858, type: 3}
       propertyPath: possiblePlayers.Array.size
       value: 1
