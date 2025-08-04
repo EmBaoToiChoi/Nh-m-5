@@ -191,7 +191,7 @@ public class PhapSu : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Player1") || collision.gameObject.CompareTag("Player2") || collision.gameObject.CompareTag("Player3"))
+        if (collision.gameObject.CompareTag("Player1"))
         {
             nie.SetBool("danh", true);
             if (currentState == State.Chase || currentState == State.Return)
@@ -201,7 +201,7 @@ public class PhapSu : MonoBehaviour
 
     void OnCollisionStay2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Player1") || collision.gameObject.CompareTag("Player2") || collision.gameObject.CompareTag("Player3"))
+        if (collision.gameObject.CompareTag("Player1") )
         {
             nie.SetBool("danh", true);
             if (currentState == State.Chase || currentState == State.Return)
@@ -211,7 +211,7 @@ public class PhapSu : MonoBehaviour
 
     void OnCollisionExit2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Player1") || collision.gameObject.CompareTag("Player2") || collision.gameObject.CompareTag("Player3"))
+        if (collision.gameObject.CompareTag("Player1") )
         {
             nie.SetBool("danh", false);
         }

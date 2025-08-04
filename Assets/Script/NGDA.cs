@@ -193,9 +193,7 @@ public class NGDA : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Player1") || 
-            collision.gameObject.CompareTag("Player2") ||
-            collision.gameObject.CompareTag("Player3"))
+        if (collision.gameObject.CompareTag("Player1"))
         {
             nie.SetBool("danh", true);
         }
@@ -203,9 +201,7 @@ public class NGDA : MonoBehaviour
 
     void OnCollisionStay2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Player1") ||
-            collision.gameObject.CompareTag("Player2") ||
-            collision.gameObject.CompareTag("Player3"))
+        if (collision.gameObject.CompareTag("Player1") )
         {
             nie.SetBool("danh", true);
 
@@ -220,9 +216,7 @@ public class NGDA : MonoBehaviour
 
     void OnCollisionExit2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Player1") ||
-            collision.gameObject.CompareTag("Player2") ||
-            collision.gameObject.CompareTag("Player3"))
+        if (collision.gameObject.CompareTag("Player1"))
         {
             nie.SetBool("danh", false);
         }
