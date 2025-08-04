@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody2D))]
 public class Boss2Controller : MonoBehaviour
 {
     [Header("Di chuy?n & T?n công")]
@@ -10,7 +11,7 @@ public class Boss2Controller : MonoBehaviour
     public int attackDamage = 20;
     private float lastAttackTime;
 
-    [Header("Player & Animation")]
+    [Header("Player & Animator")]
     public Transform player;
     public Animator animator;
 
@@ -18,8 +19,23 @@ public class Boss2Controller : MonoBehaviour
     public AudioSource audioSource;
     public AudioClip attackClip;
     public AudioClip walkClip;
+    public AudioClip skillClip;
+    public AudioClip summonClip;
+    public AudioClip fireClip;
 
-    [Header("Phun L?a")]
+    [Header("Tri?u h?i")]
+    public GameObject skeletonPrefab;
+    public int summonCount = 3;
+    public float summonCooldown = 10f;
+    private float lastSummonTime;
+    private bool isLowHealthSummon = false;
+
+    [Header("HP")]
+    public int maxHealth = 200;
+    private int currentHealth;
+    private bool isDead = false;
+
+    [Header("Fire Breath")]
     public ParticleSystem fireBreath;
     public Transform firePoint;
     public float fireCooldown = 10f;
@@ -27,27 +43,43 @@ public class Boss2Controller : MonoBehaviour
     private float lastFireTime;
     private bool isFiring;
 
-    private Vector3 originalScale;
     private Rigidbody2D rb;
+    private Vector3 originalScale;
+    private bool isAttacking = false;
 
     void Start()
     {
-        originalScale = transform.localScale;
         rb = GetComponent<Rigidbody2D>();
+        originalScale = transform.localScale;
+        currentHealth = maxHealth;
 
         if (fireBreath != null)
-            fireBreath.Stop(); // Không phun ngay t? ð?u
+            fireBreath.Stop();
     }
 
     void Update()
     {
-        if (player == null) return;
+        if (player == null || isDead) return;
 
         float distance = Vector2.Distance(transform.position, player.position);
 
+        // Skill tri?u h?i theo th?i gian
+        if (Time.time - lastSummonTime >= summonCooldown)
+        {
+            StartCoroutine(UseSkill());
+            lastSummonTime = Time.time;
+        }
+
+        // Tri?u h?i khi máu th?p <30%
+        if (!isLowHealthSummon && currentHealth <= maxHealth * 0.3f)
+        {
+            StartCoroutine(SummonSkeletons(5));
+            isLowHealthSummon = true;
+        }
+
         if (distance <= attackRange)
         {
-            rb.velocity = Vector2.zero; // Ng?ng di chuy?n khi t?n công
+            rb.velocity = Vector2.zero;
 
             if (Time.time - lastAttackTime >= attackCooldown)
             {
@@ -57,7 +89,7 @@ public class Boss2Controller : MonoBehaviour
 
             animator.SetBool("isMoving", false);
 
-            // Phun l?a cooldown
+            // Fire breath cooldown
             if (!isFiring && Time.time - lastFireTime >= fireCooldown)
             {
                 StartCoroutine(FireOnce());
@@ -71,27 +103,26 @@ public class Boss2Controller : MonoBehaviour
 
     void MoveToPlayer()
     {
-        if (player == null) return;
+        if (isAttacking) return;
 
         Vector2 direction = (player.position - transform.position).normalized;
         rb.velocity = direction * moveSpeed;
         animator.SetBool("isMoving", true);
 
-        // Flip Boss & l?a
+        // Flip Boss & FirePoint
         if (direction.x > 0)
         {
             transform.localScale = new Vector3(Mathf.Abs(originalScale.x), originalScale.y, originalScale.z);
-            if (fireBreath != null)
-                fireBreath.transform.localScale = new Vector3(1, 1, 1);
+            if (firePoint != null)
+                firePoint.localScale = new Vector3(1, 1, 1);
         }
         else
         {
             transform.localScale = new Vector3(-Mathf.Abs(originalScale.x), originalScale.y, originalScale.z);
-            if (fireBreath != null)
-                fireBreath.transform.localScale = new Vector3(-1, 1, 1);
+            if (firePoint != null)
+                firePoint.localScale = new Vector3(-1, 1, 1);
         }
 
-        // Âm thanh bý?c ði
         if (walkClip != null && audioSource != null && !audioSource.isPlaying)
         {
             audioSource.PlayOneShot(walkClip);
@@ -101,11 +132,25 @@ public class Boss2Controller : MonoBehaviour
     void Attack()
     {
         animator.SetTrigger("Attack");
+        isAttacking = true;
+        Invoke(nameof(EndAttack), 0.5f);
 
-        if (attackClip != null && audioSource != null)
+        if (attackClip != null) audioSource.PlayOneShot(attackClip);
+
+        Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, attackRange);
+        foreach (var hit in hits)
         {
-            audioSource.PlayOneShot(attackClip);
+            if (hit.CompareTag("Player1"))
+            {
+                Player1 p = hit.GetComponent<Player1>();
+                if (p != null) p.TakeDamage(attackDamage);
+            }
         }
+    }
+
+    void EndAttack()
+    {
+        isAttacking = false;
     }
 
     IEnumerator FireOnce()
@@ -116,17 +161,73 @@ public class Boss2Controller : MonoBehaviour
         if (fireBreath != null)
         {
             fireBreath.Play();
-            Debug.Log("?? Boss2 b?t ð?u phun l?a");
+            if (fireClip != null) audioSource.PlayOneShot(fireClip);
         }
 
         yield return new WaitForSeconds(fireDuration);
 
         if (fireBreath != null)
-        {
             fireBreath.Stop();
-            Debug.Log("?? Boss2 ng?ng phun l?a");
-        }
 
         isFiring = false;
+    }
+
+    IEnumerator UseSkill()
+    {
+        if (skillClip != null) audioSource.PlayOneShot(skillClip);
+
+        animator.SetTrigger("Skill");
+
+        yield return new WaitForSeconds(0.5f);
+
+        yield return StartCoroutine(SummonSkeletons(summonCount));
+    }
+
+    IEnumerator SummonSkeletons(int count)
+    {
+        if (skeletonPrefab == null) yield break;
+
+        for (int i = 0; i < count; i++)
+        {
+            Vector3 pos = transform.position + new Vector3(Random.Range(-2f, 2f), Random.Range(-2f, 2f), 0);
+            GameObject skel = Instantiate(skeletonPrefab, pos, Quaternion.identity);
+
+            SmallSkeleton skelScript = skel.GetComponent<SmallSkeleton>();
+            if (skelScript != null)
+                skelScript.canRespawnSmall = true;
+
+            if (summonClip != null) audioSource.PlayOneShot(summonClip);
+            yield return new WaitForSeconds(0.3f);
+        }
+    }
+
+    public void TakeDamage(int amount)
+    {
+        if (isDead) return;
+
+        currentHealth -= amount;
+        if (currentHealth <= 0)
+        {
+            currentHealth = 0;
+            Die();
+        }
+        else
+        {
+            animator.SetTrigger("Hurt");
+        }
+    }
+
+    void Die()
+    {
+        isDead = true;
+        rb.velocity = Vector2.zero;
+        animator.SetTrigger("Die");
+        Destroy(gameObject, 2f);
+    }
+
+    void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, attackRange);
     }
 }

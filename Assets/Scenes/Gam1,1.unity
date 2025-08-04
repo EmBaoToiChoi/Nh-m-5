@@ -23852,7 +23852,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 0
+  m_PresetInfoIsWorld: 1
 --- !u!223 &1080021741
 Canvas:
   m_ObjectHideFlags: 0
@@ -23954,7 +23954,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 0
+  m_PresetInfoIsWorld: 1
 --- !u!223 &1083101366
 Canvas:
   m_ObjectHideFlags: 0
@@ -39020,6 +39020,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Slime_1_X
       objectReference: {fileID: 0}
+    - target: {fileID: 3372111417906173185, guid: a4df6c765b960ef41839bef4cc5b4064, type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4488950517209600758, guid: a4df6c765b960ef41839bef4cc5b4064, type: 3}
       propertyPath: m_LocalPosition.x
       value: 38.23
@@ -43355,6 +43359,10 @@ PrefabInstance:
     - target: {fileID: 1194692083641714725, guid: 787fe5700b7ef4149b4f36a52a11293e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6370834264492496266, guid: 787fe5700b7ef4149b4f36a52a11293e, type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6470588136268315295, guid: 787fe5700b7ef4149b4f36a52a11293e, type: 3}
       propertyPath: m_fontSize
