@@ -5,15 +5,25 @@ using UnityEngine;
 public class Boss2Controller : MonoBehaviour
 {
     [Header("Di chuy?n & T?n công")]
-    public float moveSpeed = 3f;
+    public float moveSpeed = 5f;
+    public float chaseSpeedMultiplier = 1.5f;
     public float attackRange = 1.5f;
-    public float attackCooldown = 1f;
-    public int attackDamage = 20;
+    public float attackCooldown = 0.8f;
+    public int attackDamage = 25;
     private float lastAttackTime;
 
     [Header("Player & Animator")]
     public Transform player;
     public Animator animator;
+
+    [Header("Phát hi?n Player")]
+    public float detectRange = 10f;    // Kho?ng cách ð? b?t ð?u dùng skill
+    private bool hasDetectedPlayer = false;
+
+    [Header("Teleport")]
+    public float teleportDistanceThreshold = 8f;
+    public float teleportCooldown = 5f;
+    private float lastTeleportTime;
 
     [Header("Âm thanh")]
     public AudioSource audioSource;
@@ -22,23 +32,24 @@ public class Boss2Controller : MonoBehaviour
     public AudioClip skillClip;
     public AudioClip summonClip;
     public AudioClip fireClip;
+    public AudioClip teleportClip;
 
     [Header("Tri?u h?i")]
     public GameObject skeletonPrefab;
     public int summonCount = 3;
-    public float summonCooldown = 10f;
+    public float summonCooldown = 8f;
     private float lastSummonTime;
     private bool isLowHealthSummon = false;
 
     [Header("HP")]
-    public int maxHealth = 200;
+    public int maxHealth = 300;
     private int currentHealth;
     private bool isDead = false;
 
     [Header("Fire Breath")]
     public ParticleSystem fireBreath;
     public Transform firePoint;
-    public float fireCooldown = 10f;
+    public float fireCooldown = 7f;
     public float fireDuration = 2f;
     private float lastFireTime;
     private bool isFiring;
@@ -55,6 +66,10 @@ public class Boss2Controller : MonoBehaviour
 
         if (fireBreath != null)
             fireBreath.Stop();
+
+        lastFireTime = -fireCooldown;
+        lastSummonTime = -summonCooldown;
+        lastTeleportTime = -teleportCooldown;
     }
 
     void Update()
@@ -63,20 +78,33 @@ public class Boss2Controller : MonoBehaviour
 
         float distance = Vector2.Distance(transform.position, player.position);
 
-        // Skill tri?u h?i theo th?i gian
-        if (Time.time - lastSummonTime >= summonCooldown)
+        // Khi th?y Player trong ph?m vi th? m?i b?t ð?u dùng skill
+        if (!hasDetectedPlayer && distance <= detectRange)
+        {
+            hasDetectedPlayer = true;
+        }
+
+        // Teleport n?u player quá xa và h?t cooldown
+        if (distance >= teleportDistanceThreshold && Time.time - lastTeleportTime >= teleportCooldown)
+        {
+            TeleportToPlayer();
+        }
+
+        // Ch? tri?u h?i khi ð? phát hi?n Player
+        if (hasDetectedPlayer && Time.time - lastSummonTime >= summonCooldown)
         {
             StartCoroutine(UseSkill());
             lastSummonTime = Time.time;
         }
 
-        // Tri?u h?i khi máu th?p <30%
-        if (!isLowHealthSummon && currentHealth <= maxHealth * 0.3f)
+        // Ch? tri?u h?i khi máu th?p sau khi phát hi?n Player
+        if (hasDetectedPlayer && !isLowHealthSummon && currentHealth <= maxHealth * 0.3f)
         {
             StartCoroutine(SummonSkeletons(5));
             isLowHealthSummon = true;
         }
 
+        // Di chuy?n ho?c t?n công
         if (distance <= attackRange)
         {
             rb.velocity = Vector2.zero;
@@ -89,24 +117,27 @@ public class Boss2Controller : MonoBehaviour
 
             animator.SetBool("isMoving", false);
 
-            // Fire breath cooldown
-            if (!isFiring && Time.time - lastFireTime >= fireCooldown)
+            // Phun l?a ch? khi ð? phát hi?n Player
+            if (hasDetectedPlayer && !isFiring && Time.time - lastFireTime >= fireCooldown)
             {
                 StartCoroutine(FireOnce());
             }
         }
         else
         {
-            MoveToPlayer();
+            MoveToPlayer(distance);
         }
     }
 
-    void MoveToPlayer()
+    void MoveToPlayer(float distance)
     {
         if (isAttacking) return;
 
         Vector2 direction = (player.position - transform.position).normalized;
-        rb.velocity = direction * moveSpeed;
+        float speed = moveSpeed;
+        if (distance < 4f) speed *= chaseSpeedMultiplier;
+
+        rb.velocity = direction * speed;
         animator.SetBool("isMoving", true);
 
         // Flip Boss & FirePoint
@@ -127,6 +158,17 @@ public class Boss2Controller : MonoBehaviour
         {
             audioSource.PlayOneShot(walkClip);
         }
+    }
+
+    void TeleportToPlayer()
+    {
+        lastTeleportTime = Time.time;
+        transform.position = player.position + new Vector3(Random.Range(-1.5f, 1.5f), Random.Range(-1.5f, 1.5f), 0);
+
+        if (teleportClip != null && audioSource != null)
+            audioSource.PlayOneShot(teleportClip);
+
+        Debug.Log("Boss2 teleport ð?n Player!");
     }
 
     void Attack()
@@ -229,5 +271,9 @@ public class Boss2Controller : MonoBehaviour
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, attackRange);
+        Gizmos.color = Color.cyan;
+        Gizmos.DrawWireSphere(transform.position, teleportDistanceThreshold);
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(transform.position, detectRange);
     }
 }

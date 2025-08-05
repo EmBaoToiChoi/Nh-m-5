@@ -15,8 +15,13 @@ public class Boss1Controller : MonoBehaviour
     public Transform player;
     public Animator animator;
 
+    [Header("Phát hi?n Player")]
+    public float detectRange = 10f;
+    private bool hasDetectedPlayer = false;
+
     [Header("Âm thanh")]
-    public AudioSource audioSource;
+    public AudioSource audioSourceWalk;   // cho bý?c chân
+    public AudioSource audioSourceSkill;  // cho attack & skill
     public AudioClip attackClip;
     public AudioClip walkClip;
     public AudioClip skillClip;
@@ -55,6 +60,10 @@ public class Boss1Controller : MonoBehaviour
 
         if (fireBreath != null)
             fireBreath.Stop();
+
+        // Ð?t th?i gian l?n cu?i = -cooldown ð? test nhanh
+        lastFireTime = -fireCooldown;
+        lastSummonTime = -summonCooldown;
     }
 
     void Update()
@@ -63,20 +72,27 @@ public class Boss1Controller : MonoBehaviour
 
         float distance = Vector2.Distance(transform.position, player.position);
 
-        // Skill tri?u h?i theo th?i gian
-        if (Time.time - lastSummonTime >= summonCooldown)
+        // Ki?m tra phát hi?n Player
+        if (!hasDetectedPlayer && distance <= detectRange)
+        {
+            hasDetectedPlayer = true;
+        }
+
+        // Tri?u h?i theo th?i gian khi ð? phát hi?n Player
+        if (hasDetectedPlayer && Time.time - lastSummonTime >= summonCooldown)
         {
             StartCoroutine(UseSkill());
             lastSummonTime = Time.time;
         }
 
-        // Tri?u h?i khi máu th?p <30%
-        if (!isLowHealthSummon && currentHealth <= maxHealth * 0.3f)
+        // Tri?u h?i khi máu <30% khi ð? phát hi?n Player
+        if (hasDetectedPlayer && !isLowHealthSummon && currentHealth <= maxHealth * 0.3f)
         {
             StartCoroutine(SummonSkeletons(5));
             isLowHealthSummon = true;
         }
 
+        // Di chuy?n ho?c t?n công
         if (distance <= attackRange)
         {
             rb.velocity = Vector2.zero;
@@ -88,16 +104,16 @@ public class Boss1Controller : MonoBehaviour
             }
 
             animator.SetBool("isMoving", false);
-
-            // Fire breath cooldown
-            if (!isFiring && Time.time - lastFireTime >= fireCooldown)
-            {
-                StartCoroutine(FireOnce());
-            }
         }
         else
         {
             MoveToPlayer();
+        }
+
+        // Phun l?a theo cooldown
+        if (!isFiring && Time.time - lastFireTime >= fireCooldown)
+        {
+            StartCoroutine(FireOnce());
         }
     }
 
@@ -109,23 +125,24 @@ public class Boss1Controller : MonoBehaviour
         rb.velocity = direction * moveSpeed;
         animator.SetBool("isMoving", true);
 
-        // Flip Boss & FirePoint
+        // Flip Boss & xoay firePoint theo hý?ng
         if (direction.x > 0)
         {
             transform.localScale = new Vector3(Mathf.Abs(originalScale.x), originalScale.y, originalScale.z);
             if (firePoint != null)
-                firePoint.localScale = new Vector3(1, 1, 1);
+                firePoint.rotation = Quaternion.Euler(0, 0, 0); // b?n ph?i
         }
         else
         {
             transform.localScale = new Vector3(-Mathf.Abs(originalScale.x), originalScale.y, originalScale.z);
             if (firePoint != null)
-                firePoint.localScale = new Vector3(-1, 1, 1);
+                firePoint.rotation = Quaternion.Euler(0, 180, 0); // b?n trái
         }
 
-        if (walkClip != null && audioSource != null && !audioSource.isPlaying)
+        // Ch?y âm thanh bý?c chân n?u chýa phát
+        if (walkClip != null && audioSourceWalk != null && !audioSourceWalk.isPlaying)
         {
-            audioSource.PlayOneShot(walkClip);
+            audioSourceWalk.PlayOneShot(walkClip);
         }
     }
 
@@ -135,7 +152,8 @@ public class Boss1Controller : MonoBehaviour
         isAttacking = true;
         Invoke(nameof(EndAttack), 0.5f);
 
-        if (attackClip != null) audioSource.PlayOneShot(attackClip);
+        if (attackClip != null && audioSourceSkill != null)
+            audioSourceSkill.PlayOneShot(attackClip);
 
         Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, attackRange);
         foreach (var hit in hits)
@@ -155,13 +173,15 @@ public class Boss1Controller : MonoBehaviour
 
     IEnumerator FireOnce()
     {
+        Debug.Log("Boss b?t ð?u phun l?a!");
         isFiring = true;
         lastFireTime = Time.time;
 
         if (fireBreath != null)
         {
             fireBreath.Play();
-            if (fireClip != null) audioSource.PlayOneShot(fireClip);
+            if (fireClip != null && audioSourceSkill != null)
+                audioSourceSkill.PlayOneShot(fireClip);
         }
 
         yield return new WaitForSeconds(fireDuration);
@@ -174,7 +194,8 @@ public class Boss1Controller : MonoBehaviour
 
     IEnumerator UseSkill()
     {
-        if (skillClip != null) audioSource.PlayOneShot(skillClip);
+        if (skillClip != null && audioSourceSkill != null)
+            audioSourceSkill.PlayOneShot(skillClip);
 
         animator.SetTrigger("Skill");
 
@@ -196,7 +217,9 @@ public class Boss1Controller : MonoBehaviour
             if (skelScript != null)
                 skelScript.canRespawnSmall = true;
 
-            if (summonClip != null) audioSource.PlayOneShot(summonClip);
+            if (summonClip != null && audioSourceSkill != null)
+                audioSourceSkill.PlayOneShot(summonClip);
+
             yield return new WaitForSeconds(0.3f);
         }
     }
@@ -229,5 +252,8 @@ public class Boss1Controller : MonoBehaviour
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, attackRange);
+
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(transform.position, detectRange);
     }
 }
