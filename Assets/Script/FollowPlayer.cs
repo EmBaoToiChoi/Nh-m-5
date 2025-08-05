@@ -7,17 +7,22 @@ public class FollowPlayer : MonoBehaviour
 
     void LateUpdate()
     {
-        // Tìm player đang active
-        foreach (Transform p in possiblePlayers)
+        // Nếu currentPlayer null hoặc không còn active thì tìm lại
+        if (currentPlayer == null || !currentPlayer.gameObject.activeInHierarchy)
         {
-            if (p.gameObject.activeInHierarchy)
+            currentPlayer = null; // reset
+
+            foreach (Transform p in possiblePlayers)
             {
-                currentPlayer = p;
-                break;
+                if (p != null && p.gameObject.activeInHierarchy)
+                {
+                    currentPlayer = p;
+                    break;
+                }
             }
         }
 
-        // Follow
+        // Follow nếu tìm được player hợp lệ
         if (currentPlayer != null)
         {
             Vector3 pos = currentPlayer.position;

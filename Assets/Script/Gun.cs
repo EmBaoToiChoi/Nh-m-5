@@ -16,14 +16,13 @@ public class Gun : MonoBehaviour
     private float nextShootTime;
 
     [Header("Đạn")]
-    public int currentAmmo = 25;  // trong băng
-    public int reserveAmmo = 25;  // đạn dự trữ
-    public int maxAmmo = 25;      // sức chứa tối đa của băng
+    public int currentAmmo = 25;
+    public int reserveAmmo = 25;
+    public int maxAmmo = 25;
 
     [Header("UI")]
     public TextMeshProUGUI ammoText;
     public TextMeshProUGUI reloadText;
-    public Transform player;
     public Vector3 offsetUI = new Vector3(0, 2, 0);
 
     [Header("Reload")]
@@ -31,7 +30,10 @@ public class Gun : MonoBehaviour
     public AudioSource reloadSource;
     public int maxReserveAmmo = 100;
 
-
+    [Header("Player Follow")]
+    public Transform[] possiblePlayers; // Gán 3 player ở đây
+    private Transform currentPlayer;
+    public Vector3 offset = new Vector3(0f, 0f, 0); // Vị trí lệch so với player
 
     void Start()
     {
@@ -43,9 +45,6 @@ public class Gun : MonoBehaviour
         }
     }
 
-
-
-
     void OnDisable()
     {
         if (GameData2.Instance != null)
@@ -56,16 +55,33 @@ public class Gun : MonoBehaviour
         }
     }
 
-
-
-
-
     void Update()
     {
+        // Tìm player đang active
+        if (currentPlayer == null || !currentPlayer.gameObject.activeInHierarchy)
+        {
+            foreach (Transform p in possiblePlayers)
+            {
+                if (p != null && p.gameObject.activeInHierarchy)
+                {
+                    currentPlayer = p;
+                    break;
+                }
+            }
+        }
+
+        if (currentPlayer == null) return;
+
+        FollowPlayer();
         RotateGun();
         Shoot();
         HandleReload();
         UpdateReloadTextPosition();
+    }
+
+    void FollowPlayer()
+    {
+        transform.position = currentPlayer.position + offset;
     }
 
     void RotateGun()
@@ -92,7 +108,7 @@ public class Gun : MonoBehaviour
                 nextShootTime = Time.time + shootDelay;
 
                 if (GameData2.Instance != null)
-                    GameData2.Instance.SaveAmmo(); // 🔥 THÊM DÒNG NÀY
+                    GameData2.Instance.SaveAmmo();
             }
             else
             {
@@ -100,8 +116,6 @@ public class Gun : MonoBehaviour
             }
         }
     }
-
-
 
     void HandleReload()
     {
@@ -119,11 +133,9 @@ public class Gun : MonoBehaviour
             UpdateAmmoUI();
 
             if (GameData2.Instance != null)
-                GameData2.Instance.SaveAmmo(); // 🔥 THÊM DÒNG NÀY
+                GameData2.Instance.SaveAmmo();
         }
     }
-
-
 
     void HideReloadText()
     {
@@ -132,9 +144,9 @@ public class Gun : MonoBehaviour
 
     void UpdateReloadTextPosition()
     {
-        if (reloadText.gameObject.activeSelf)
+        if (reloadText.gameObject.activeSelf && currentPlayer != null)
         {
-            Vector3 screenPos = Camera.main.WorldToScreenPoint(player.position + offsetUI);
+            Vector3 screenPos = Camera.main.WorldToScreenPoint(currentPlayer.position + offsetUI);
             reloadText.transform.position = screenPos;
         }
     }
@@ -169,13 +181,9 @@ public class Gun : MonoBehaviour
         if (GameData2.Instance != null)
         {
             GameData2.Instance.reserveAmmo = reserveAmmo;
-            GameData2.Instance.SaveAmmo(); // 🔥 THÊM DÒNG NÀY
+            GameData2.Instance.SaveAmmo();
         }
 
         UpdateAmmoUI();
     }
-
-
-
-
 }

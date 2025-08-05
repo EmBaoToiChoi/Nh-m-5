@@ -1,18 +1,29 @@
 using UnityEngine;
+using TMPro;
+using UnityEngine.SceneManagement;
 
 public class XPManager : MonoBehaviour
 {
     public static XPManager Instance;
 
+    [Header("XP")]
     public float currentXP = 0f;
-    public float maxXP = 100f;
+    public float maxXP = 10f;
+    public float increasePerLevel = 5f;
+
+    [Header("Level")]
+    public int currentLevel = 0;
+
+    [Header("UI")]
+    public TMP_Text levelText;
 
     private void Awake()
     {
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject); // Giữ lại qua các scene
+            DontDestroyOnLoad(gameObject);
+            SceneManager.sceneLoaded += OnSceneLoaded;
         }
         else
         {
@@ -20,23 +31,51 @@ public class XPManager : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        UpdateUI();
+        if (levelText == null)
+        {
+            levelText = GameObject.Find("LevelText")?.GetComponent<TMP_Text>();
+        }
+
+    }
+
     public void AddXP(float amount)
     {
         currentXP += amount;
 
-        // Nếu đủ XP để lên cấp
         while (currentXP >= maxXP)
         {
-            currentXP -= maxXP; // Giữ lại phần dư XP
+            currentXP -= maxXP;
             LevelUp();
         }
 
-        UILevelUp.Instance?.UpdateXPBar(currentXP / maxXP); // Cập nhật thanh XP
+        UpdateUI();
     }
 
     private void LevelUp()
     {
-        Debug.Log("Level Up!");
+        currentLevel++;
+        maxXP += increasePerLevel;
+
+        Debug.Log("🎉 Level Up! Level: " + currentLevel);
         UILevelUp.Instance?.ShowLevelUpUI();
+    }
+
+    private void UpdateUI()
+    {
+        UILevelUp.Instance?.UpdateXPBar(currentXP / maxXP);
+
+        if (levelText != null)
+        {
+            levelText.text = "LV: " + currentLevel;
+        }
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        levelText = GameObject.Find("LevelText")?.GetComponent<TMP_Text>();
+        UpdateUI();
     }
 }

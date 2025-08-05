@@ -73,9 +73,6 @@ TagManager:
   - name: Collision
     uniqueID: 4042155251
     locked: 0
-  - name: map toi
-    uniqueID: 1561258713
-    locked: 0
   - name: Player
     uniqueID: 4091362995
     locked: 0
@@ -106,6 +103,12 @@ TagManager:
   - name: Health
     uniqueID: 3790137885
     locked: 0
+  - name: map toi
+    uniqueID: 1561258713
+    locked: 0
   - name: UI
     uniqueID: 197906189
+    locked: 0
+  - name: Cottruyen
+    uniqueID: 503607367
     locked: 0

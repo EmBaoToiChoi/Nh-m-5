@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using TMPro;
 public class Slime_1_x : MonoBehaviour
 {
-    public Transform enermy, player;
+    public Transform enermy;
     [SerializeField] private GameObject coinPrefab;
     [SerializeField] private GameObject xpPrefab;
 
@@ -29,10 +29,27 @@ public class Slime_1_x : MonoBehaviour
 
     private float maxHealth = 20f;
     private float currentHealth;
+    public Transform player1;
+    public Transform player2;
+
+    public Transform player3;
+
+
+private Transform targetPlayer;
 
     void Start()
     {
         currentHealth = maxHealth;
+
+        // Tìm nhân vật đang active
+        if (player1 != null && player1.gameObject.activeInHierarchy)
+            targetPlayer = player1;
+        else if (player2 != null && player2.gameObject.activeInHierarchy)
+            targetPlayer = player2;
+        else if (player3 != null && player3.gameObject.activeInHierarchy)
+            targetPlayer = player3;
+        else
+            Debug.LogWarning("Không tìm thấy nhân vật nào đang hoạt động!");
 
         // Spawn thanh máu
         healthBarUI = Instantiate(healthBarPrefab, enermy.position + Vector3.up * 1.5f, Quaternion.identity);
@@ -41,15 +58,21 @@ public class Slime_1_x : MonoBehaviour
         mainCam = Camera.main.transform;
     }
 
+
+
     void Update()
     {
-        float khoangCachPlayer = Vector2.Distance(enermy.position, player.position);
-        isChasing = khoangCachPlayer < PVipHien;
-
-        if (isChasing)
+        if (targetPlayer != null)
         {
-            dichuyentoiPlayer(player.position);
+            float khoangCachPlayer = Vector2.Distance(enermy.position, targetPlayer.position);
+            isChasing = khoangCachPlayer < PVipHien;
+
+            if (isChasing)
+            {
+                dichuyentoiPlayer(targetPlayer.position);
+            }
         }
+
 
         // Cập nhật vị trí thanh máu
         if (healthBarUI != null)
