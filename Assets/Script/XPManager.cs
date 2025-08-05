@@ -33,13 +33,17 @@ public class XPManager : MonoBehaviour
 
     private void Start()
     {
-        UpdateUI();
         if (levelText == null)
         {
             levelText = GameObject.Find("LevelText")?.GetComponent<TMP_Text>();
         }
 
+        LoadXPData(); 
+
+        UpdateUI();
     }
+
+
 
     public void AddXP(float amount)
     {
@@ -78,4 +82,53 @@ public class XPManager : MonoBehaviour
         levelText = GameObject.Find("LevelText")?.GetComponent<TMP_Text>();
         UpdateUI();
     }
+    [System.Serializable]
+    private class XPSaveData
+    {
+        public int currentLevel;
+        public float currentXP;
+        public float maxXP;
+    }
+    public void SaveXPData()
+    {
+        XPSaveData data = new XPSaveData();
+        data.currentLevel = currentLevel;
+        data.currentXP = currentXP;
+        data.maxXP = maxXP;
+
+        string json = JsonUtility.ToJson(data);
+        System.IO.File.WriteAllText(Application.persistentDataPath + "/xpdata.json", json);
+
+        Debug.Log("✅ XP Data Saved!");
+    }
+
+    public void LoadXPData()
+    {
+        string path = Application.persistentDataPath + "/xpdata.json";
+
+        if (System.IO.File.Exists(path))
+        {
+            string json = System.IO.File.ReadAllText(path);
+            XPSaveData data = JsonUtility.FromJson<XPSaveData>(json);
+
+            currentLevel = data.currentLevel;
+            currentXP = data.currentXP;
+            maxXP = data.maxXP;
+
+            Debug.Log("✅ XP Data Loaded!");
+            UpdateUI();
+        }
+        else
+        {
+            Debug.Log("⚠️ No XP save file found.");
+        }
+    }
+    private void OnApplicationQuit()
+    {
+        SaveXPData();
+    }
+
+
+
+
 }

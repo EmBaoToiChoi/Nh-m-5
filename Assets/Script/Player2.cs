@@ -49,6 +49,8 @@ public class Player2 : MonoBehaviour
     public bool hasBow;
     public int currentEnergy = 100;  // hoặc giá trị khởi đầu bạn muốn
     public int currentXP = 0;
+    public int currentLevel = 0;
+    
 
 
 
@@ -56,53 +58,77 @@ public class Player2 : MonoBehaviour
     //lưu 
     public void SavePlayerData()
     {
-        GameData2.Instance.SaveAmmo();
+        GameData2.Instance.SaveAmmo(); // Gọi hệ thống lưu đạn
+
         GameData data = new GameData();
         data.playerX = transform.position.x;
         data.playerY = transform.position.y;
 
-        data.health = currentHealth;
-        data.energy = currentEnergy;
-        data.xp = currentXP;
+        data.currentHealth = mauhientai;
+        data.currentEnergy = nangLuongHienTai;
+
+        data.currentXP = currentXP;
+        data.currentLevel = currentLevel;
+
+        data.currentAmmo = GameData2.Instance.currentAmmo;
+        data.reserveAmmo = GameData2.Instance.reserveAmmo;
+        data.maxAmmo = GameData2.Instance.maxAmmo;
+
+        data.coin = coin;
 
         data.hasGun = hasGun;
         data.hasBow = hasBow;
 
-        data.coin = coin;
+        data.sceneName = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
 
-        SaveLoadManager.SaveGame(data);
-        string json = JsonUtility.ToJson(data);
+        string json = JsonUtility.ToJson(data, true);
         string path = Application.persistentDataPath + "/save.json";
         System.IO.File.WriteAllText(path, json);
 
-        Debug.Log("Đã lưu file JSON vào: " + path);
-    
+        Debug.Log("Đã lưu game vào: " + path);
     }
+
+
 
     //load
     public void LoadPlayerData()
     {
-        GameData data = SaveLoadManager.LoadGame();
-        if (data != null)
+        string path = Application.persistentDataPath + "/save.json";
+        if (!System.IO.File.Exists(path))
         {
-            transform.position = new Vector3(data.playerX, data.playerY, 0);
-            currentHealth = data.health;
-            currentEnergy = (int)data.energy;
-            currentXP = (int)data.xp;
-            hasGun = data.hasGun;
-            hasBow = data.hasBow;
-            coin = data.coin;
+            Debug.Log("Không tìm thấy file save.");
+            return;
+        }
 
-            // Gọi cập nhật UI nếu cần
-        }
-        Gun gun = FindObjectOfType<Gun>();
-        if (gun != null)
-        {
-            gun.LoadAmmo();      // ✅ Phải có dòng này!
-            gun.UpdateAmmoUI();  // Cập nhật UI sau khi load
-        }
-    
+        string json = System.IO.File.ReadAllText(path);
+        GameData data = JsonUtility.FromJson<GameData>(json);
+
+        transform.position = new Vector3(data.playerX, data.playerY, 0);
+
+        mauhientai = data.currentHealth;
+        nangLuongHienTai = data.currentEnergy;
+
+        currentXP = data.currentXP;
+        currentLevel = data.currentLevel;
+
+        coin = data.coin;
+
+        hasGun = data.hasGun;
+        hasBow = data.hasBow;
+
+        GameData2.Instance.currentAmmo = data.currentAmmo;
+        GameData2.Instance.reserveAmmo = data.reserveAmmo;
+        GameData2.Instance.maxAmmo = data.maxAmmo;
+
+        thanhmau.Capnhatthanhmau(mauhientai, mautoida);
+        thanhNangLuong.CapNhatThanhNangLuong(nangLuongHienTai, nangLuongToiDa);
+
+        GameData2.Instance.SaveAmmo(); // đảm bảo đồng bộ lại sau khi load
+
+        Debug.Log("Đã load dữ liệu từ: " + path);
     }
+
+
 
 
     
