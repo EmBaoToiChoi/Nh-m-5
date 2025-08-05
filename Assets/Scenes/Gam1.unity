@@ -2543,7 +2543,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 271143093}
-  - component: {fileID: 271143095}
   - component: {fileID: 271143094}
   m_Layer: 5
   m_Name: codeXP
@@ -2583,25 +2582,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a86438088bbbacf479543a429a1ec693, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  upgradeManager: {fileID: 1454992565}
   xpBarFill: {fileID: 1866352054}
   levelUpImage: {fileID: 553366348}
---- !u!114 &271143095
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 271143092}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5e5f34466cdb9944f9f7b6ffe4fa81ee, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  currentXP: 1
-  maxXP: 10
-  increasePerLevel: 5
-  currentLevel: 0
-  levelText: {fileID: 0}
 --- !u!1 &281743803
 GameObject:
   m_ObjectHideFlags: 0

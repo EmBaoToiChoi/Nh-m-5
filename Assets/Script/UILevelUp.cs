@@ -4,6 +4,7 @@ using UnityEngine.UI;
 public class UILevelUp : MonoBehaviour
 {
     public static UILevelUp Instance;
+    public UpgradeManager upgradeManager;
 
     [Header("XP Bar")]
     public Image xpBarFill; // Thanh ảnh XP (Image fillAmount)
@@ -26,5 +27,6 @@ public class UILevelUp : MonoBehaviour
     {
         if (levelUpImage != null)
             levelUpImage.SetActive(true);
+            upgradeManager.ShowPanel();
     }
 }

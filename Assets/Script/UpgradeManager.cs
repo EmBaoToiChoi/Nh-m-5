@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using System.Collections;
 
 public class UpgradeManager : MonoBehaviour
 {
@@ -8,6 +9,16 @@ public class UpgradeManager : MonoBehaviour
     public Button healthButton;
 
     private bool hasUpgraded = false;
+
+    public void ShowPanel()
+    {
+        panelToClose.SetActive(true);
+        Time.timeScale = 0f;
+        hasUpgraded = false;
+
+        damageButton.interactable = true;
+        healthButton.interactable = true;
+    }
 
     public void UpgradeDamage()
     {
@@ -33,21 +44,17 @@ public class UpgradeManager : MonoBehaviour
     {
         hasUpgraded = true;
 
-        // Tắt các nút để không ấn tiếp
         damageButton.interactable = false;
         healthButton.interactable = false;
 
-        // Tắt panel sau 0.5 giây để cho cảm giác mượt
-        Invoke(nameof(ClosePanel), 0.5f);
+        // Dùng Coroutine để đợi theo thời gian thực
+        StartCoroutine(HidePanelAfterDelay());
     }
 
-    void ClosePanel()
+    IEnumerator HidePanelAfterDelay()
     {
+        yield return new WaitForSecondsRealtime(0.5f); // Đợi 0.5s bất chấp game đang pause
+        Time.timeScale = 1f;
         panelToClose.SetActive(false);
-
-        // Reset lại trạng thái lần sau dùng tiếp
-        damageButton.interactable = true;
-        healthButton.interactable = true;
-        hasUpgraded = false;
     }
 }
