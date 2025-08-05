@@ -30,10 +30,6 @@ public class Gun : MonoBehaviour
     public AudioSource reloadSource;
     public int maxReserveAmmo = 100;
 
-    [Header("Player Follow")]
-    public Transform[] possiblePlayers; // Gán 3 player ở đây
-    private Transform currentPlayer;
-    public Vector3 offset = new Vector3(0f, 0f, 0); // Vị trí lệch so với player
 
     void Start()
     {
@@ -57,43 +53,24 @@ public class Gun : MonoBehaviour
 
     void Update()
     {
-        // Tìm player đang active
-        if (currentPlayer == null || !currentPlayer.gameObject.activeInHierarchy)
-        {
-            foreach (Transform p in possiblePlayers)
-            {
-                if (p != null && p.gameObject.activeInHierarchy)
-                {
-                    currentPlayer = p;
-                    break;
-                }
-            }
-        }
-
-        if (currentPlayer == null) return;
-
-        FollowPlayer();
         RotateGun();
         Shoot();
         HandleReload();
-        UpdateReloadTextPosition();
-    }
-
-    void FollowPlayer()
-    {
-        transform.position = currentPlayer.position + offset;
     }
 
     void RotateGun()
     {
-        if (Input.mousePosition.x < 0 || Input.mousePosition.x > Screen.width || Input.mousePosition.y < 0 || Input.mousePosition.y > Screen.height)
-            return;
+        Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        Vector3 direction = mouseWorldPos - transform.position;
+        direction.z = 0;
 
-        Vector3 displacement = transform.position - Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        float angle = Mathf.Atan2(displacement.y, displacement.x) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.Euler(0, 0, angle + rorateOffset);
-        transform.localScale = (angle < -90 || angle > 90) ? new Vector3(1, 1, 1) : new Vector3(-1, 1, 1);
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
     }
+
+
+
+
 
     void Shoot()
     {
@@ -140,15 +117,6 @@ public class Gun : MonoBehaviour
     void HideReloadText()
     {
         reloadText.gameObject.SetActive(false);
-    }
-
-    void UpdateReloadTextPosition()
-    {
-        if (reloadText.gameObject.activeSelf && currentPlayer != null)
-        {
-            Vector3 screenPos = Camera.main.WorldToScreenPoint(currentPlayer.position + offsetUI);
-            reloadText.transform.position = screenPos;
-        }
     }
 
     public void UpdateAmmoUI()
