@@ -1,13 +1,13 @@
-using System.Collections;
-using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
-using UnityEngine.SceneManagement;
+using TMPro;
+
 public class Vang : MonoBehaviour
 {
     [SerializeField] private TMP_Text scoreText;
-   // [SerializeField] private Animator anim;
     [SerializeField] private int scoreValue = 1;
+
+    [Header("Thông báo")]
+    [SerializeField] private PickupMessageManager messageManager;
 
     void Start()
     {
@@ -24,15 +24,21 @@ public class Vang : MonoBehaviour
             PlayerPrefs.SetInt("Player1", currentScore);
             PlayerPrefs.Save();
             UpdateScoreText(currentScore);
-            Destroy(this.gameObject);
+
+            if (messageManager != null)
+            {
+                messageManager.ShowGoldMessageStackable(); // Cộng dồn vàng
+            }
+
+            Destroy(gameObject);
         }
     }
 
- private void UpdateScoreText(int score)
+    private void UpdateScoreText(int score)
     {
         if (scoreText != null)
-      {
-           scoreText.text = "X " + score;
-       }
+        {
+            scoreText.text = "X " + score;
+        }
     }
 }

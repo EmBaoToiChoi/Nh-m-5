@@ -2,17 +2,25 @@ using UnityEngine;
 
 public class HealthPickup : MonoBehaviour
 {
-    public float healAmount = 20f;
+    public float healAmount = 5f;
+
+    [Header("Thông báo")]
+    [SerializeField] private PickupMessageManager messageManager;
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Player1")) // G?n Tag Player1 v�o Player
+        if (other.CompareTag("Player1"))
         {
-            // G?i th�ng �i?p "Heal" �?n t?t c? component tr�n Player
             other.SendMessage("Heal", healAmount, SendMessageOptions.DontRequireReceiver);
 
-            Debug.Log("?? Player nh?t m�u v� ��?c h?i " + healAmount);
-            Destroy(gameObject); // Xo� c?c m�u sau khi nh?t
+            Debug.Log("✅ Player nhặt máu và hồi " + healAmount);
+
+            if (messageManager != null)
+            {
+                messageManager.ShowHealthMessageStackable(healAmount); // Cộng dồn máu
+            }
+
+            Destroy(gameObject);
         }
     }
 }
