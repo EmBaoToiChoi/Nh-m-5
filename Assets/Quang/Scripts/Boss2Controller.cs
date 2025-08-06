@@ -17,7 +17,7 @@ public class Boss2Controller : MonoBehaviour
     public Animator animator;
 
     [Header("Phát hi?n Player")]
-    public float detectRange = 10f;    // Kho?ng cách ð? b?t ð?u dùng skill
+    public float detectRange = 10f;
     private bool hasDetectedPlayer = false;
 
     [Header("Teleport")]
@@ -41,16 +41,22 @@ public class Boss2Controller : MonoBehaviour
     private float lastSummonTime;
     private bool isLowHealthSummon = false;
 
-    [Header("HP")]
+    [Header("HP & Revive")]
     public int maxHealth = 300;
     private int currentHealth;
     private bool isDead = false;
+    public int extraLives = 1;       // s? m?ng h?i sinh
+    public float reviveDelay = 1.5f; // th?i gian delay trý?c khi h?i sinh
+    private bool isReviving = false;
 
     [Header("Fire Breath")]
     public ParticleSystem fireBreath;
     public Transform firePoint;
+    public Transform mouthTransform; // ? Mi?ng boss
     public float fireCooldown = 7f;
     public float fireDuration = 2f;
+    public float fireDamagePerSecond = 15f;
+    public float fireRadius = 1.5f;
     private float lastFireTime;
     private bool isFiring;
 
@@ -78,26 +84,22 @@ public class Boss2Controller : MonoBehaviour
 
         float distance = Vector2.Distance(transform.position, player.position);
 
-        // Khi th?y Player trong ph?m vi th? m?i b?t ð?u dùng skill
+        // Phát hi?n Player
         if (!hasDetectedPlayer && distance <= detectRange)
-        {
             hasDetectedPlayer = true;
-        }
 
-        // Teleport n?u player quá xa và h?t cooldown
+        // Teleport n?u player quá xa
         if (distance >= teleportDistanceThreshold && Time.time - lastTeleportTime >= teleportCooldown)
-        {
             TeleportToPlayer();
-        }
 
-        // Ch? tri?u h?i khi ð? phát hi?n Player
+        // Tri?u h?i theo cooldown
         if (hasDetectedPlayer && Time.time - lastSummonTime >= summonCooldown)
         {
             StartCoroutine(UseSkill());
             lastSummonTime = Time.time;
         }
 
-        // Ch? tri?u h?i khi máu th?p sau khi phát hi?n Player
+        // Tri?u h?i khi máu th?p
         if (hasDetectedPlayer && !isLowHealthSummon && currentHealth <= maxHealth * 0.3f)
         {
             StartCoroutine(SummonSkeletons(5));
@@ -116,16 +118,16 @@ public class Boss2Controller : MonoBehaviour
             }
 
             animator.SetBool("isMoving", false);
-
-            // Phun l?a ch? khi ð? phát hi?n Player
-            if (hasDetectedPlayer && !isFiring && Time.time - lastFireTime >= fireCooldown)
-            {
-                StartCoroutine(FireOnce());
-            }
         }
         else
         {
             MoveToPlayer(distance);
+        }
+
+        // Phun l?a theo cooldown
+        if (hasDetectedPlayer && !isFiring && Time.time - lastFireTime >= fireCooldown)
+        {
+            StartCoroutine(FireOnce());
         }
     }
 
@@ -140,30 +142,39 @@ public class Boss2Controller : MonoBehaviour
         rb.velocity = direction * speed;
         animator.SetBool("isMoving", true);
 
-        // Flip Boss & FirePoint
-        if (direction.x > 0)
-        {
-            transform.localScale = new Vector3(Mathf.Abs(originalScale.x), originalScale.y, originalScale.z);
-            if (firePoint != null)
-                firePoint.localScale = new Vector3(1, 1, 1);
-        }
-        else
-        {
-            transform.localScale = new Vector3(-Mathf.Abs(originalScale.x), originalScale.y, originalScale.z);
-            if (firePoint != null)
-                firePoint.localScale = new Vector3(-1, 1, 1);
-        }
+        FlipBoss(direction);
 
+        // Ch?y âm thanh bý?c chân
         if (walkClip != null && audioSource != null && !audioSource.isPlaying)
-        {
             audioSource.PlayOneShot(walkClip);
-        }
+    }
+
+    void FlipBoss(Vector2 direction)
+    {
+        if (direction.x > 0)
+            transform.localScale = new Vector3(Mathf.Abs(originalScale.x), originalScale.y, originalScale.z);
+        else
+            transform.localScale = new Vector3(-Mathf.Abs(originalScale.x), originalScale.y, originalScale.z);
     }
 
     void TeleportToPlayer()
     {
         lastTeleportTime = Time.time;
         transform.position = player.position + new Vector3(Random.Range(-1.5f, 1.5f), Random.Range(-1.5f, 1.5f), 0);
+
+        // Flip boss theo hý?ng player
+        Vector2 dir = (player.position - transform.position).normalized;
+        FlipBoss(dir);
+
+        // Reset v? trí & hý?ng firePoint ngay khi teleport
+        if (mouthTransform != null && firePoint != null)
+            firePoint.position = mouthTransform.position;
+
+        if (firePoint != null)
+        {
+            float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+            firePoint.rotation = Quaternion.Euler(0, 0, angle);
+        }
 
         if (teleportClip != null && audioSource != null)
             audioSource.PlayOneShot(teleportClip);
@@ -190,10 +201,7 @@ public class Boss2Controller : MonoBehaviour
         }
     }
 
-    void EndAttack()
-    {
-        isAttacking = false;
-    }
+    void EndAttack() => isAttacking = false;
 
     IEnumerator FireOnce()
     {
@@ -206,7 +214,46 @@ public class Boss2Controller : MonoBehaviour
             if (fireClip != null) audioSource.PlayOneShot(fireClip);
         }
 
-        yield return new WaitForSeconds(fireDuration);
+        float elapsed = 0f;
+        float damageInterval = 0.2f;
+        float damageTimer = 0f;
+
+        while (elapsed < fireDuration)
+        {
+            elapsed += Time.deltaTime;
+            damageTimer += Time.deltaTime;
+
+            // ? Luôn c?p nh?t v? trí firePoint theo mi?ng boss
+            if (mouthTransform != null && firePoint != null)
+                firePoint.position = mouthTransform.position;
+
+            // Xoay firePoint hý?ng player
+            if (firePoint != null && player != null)
+            {
+                Vector2 dir = (player.position - firePoint.position).normalized;
+                float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+                firePoint.rotation = Quaternion.Euler(0, 0, angle);
+            }
+
+            // Gây damage ð?nh k?
+            if (damageTimer >= damageInterval)
+            {
+                damageTimer = 0f;
+
+                Collider2D[] hits = Physics2D.OverlapCircleAll(firePoint.position, fireRadius);
+                foreach (var hit in hits)
+                {
+                    if (hit.CompareTag("Player1"))
+                    {
+                        Player1 p = hit.GetComponent<Player1>();
+                        if (p != null)
+                            p.TakeDamage(Mathf.RoundToInt(fireDamagePerSecond * damageInterval));
+                    }
+                }
+            }
+
+            yield return null;
+        }
 
         if (fireBreath != null)
             fireBreath.Stop();
@@ -245,18 +292,44 @@ public class Boss2Controller : MonoBehaviour
 
     public void TakeDamage(int amount)
     {
-        if (isDead) return;
+        if (isDead || isReviving) return;
 
         currentHealth -= amount;
         if (currentHealth <= 0)
         {
             currentHealth = 0;
-            Die();
+            if (extraLives > 0)
+            {
+                StartCoroutine(Revive());
+            }
+            else
+            {
+                Die();
+            }
         }
         else
         {
             animator.SetTrigger("Hurt");
         }
+    }
+
+    IEnumerator Revive()
+    {
+        isReviving = true;
+        isDead = true;
+        rb.velocity = Vector2.zero;
+
+        animator.SetTrigger("Die"); // animation ch?t gi?
+        yield return new WaitForSeconds(reviveDelay);
+
+        // H?i sinh
+        extraLives--;
+        currentHealth = maxHealth;
+        isDead = false;
+        isReviving = false;
+
+        animator.SetTrigger("Revive"); // animation h?i sinh
+        Debug.Log("Boss2 h?i sinh! M?ng c?n l?i: " + extraLives);
     }
 
     void Die()
@@ -271,9 +344,15 @@ public class Boss2Controller : MonoBehaviour
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, attackRange);
+
         Gizmos.color = Color.cyan;
         Gizmos.DrawWireSphere(transform.position, teleportDistanceThreshold);
+
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, detectRange);
+
+        Gizmos.color = Color.magenta;
+        if (firePoint != null)
+            Gizmos.DrawWireSphere(firePoint.position, fireRadius);
     }
 }
