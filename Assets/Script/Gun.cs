@@ -90,6 +90,7 @@ public class Gun : MonoBehaviour
             else
             {
                 Debug.Log("Hết đạn!");
+                reloadText.gameObject.SetActive(true);
             }
         }
     }
@@ -104,7 +105,7 @@ public class Gun : MonoBehaviour
             currentAmmo += reloadAmount;
             reserveAmmo -= reloadAmount;
 
-            reloadText.gameObject.SetActive(true);
+            reloadText.gameObject.SetActive(false);
             reloadSource.PlayOneShot(reloadSound);
             Invoke("HideReloadText", 1f);
             UpdateAmmoUI();

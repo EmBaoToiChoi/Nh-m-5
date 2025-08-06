@@ -32021,9 +32021,6 @@ MonoBehaviour:
   reloadSound: {fileID: 0}
   reloadSource: {fileID: 0}
   maxReserveAmmo: 100
-  possiblePlayers:
-  - {fileID: 1612911369}
-  offset: {x: 0, y: 0, z: 0}
 --- !u!212 &1267078911
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -39619,6 +39616,7 @@ MonoBehaviour:
   hasBow: 0
   currentEnergy: 100
   currentXP: 0
+  currentLevel: 0
 --- !u!95 &1612911367
 Animator:
   serializedVersion: 5
