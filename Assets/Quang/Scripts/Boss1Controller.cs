@@ -12,7 +12,9 @@ public class Boss1Controller : MonoBehaviour
     private float lastAttackTime;
 
     [Header("Player & Animator")]
-    public Transform player;
+    public Transform player;     // Player 1
+    public Transform player2;    // Player 2
+    public Transform player3;    // Player 3
     public Animator animator;
 
     [Header("Phát hi?n Player")]
@@ -144,14 +146,7 @@ public class Boss1Controller : MonoBehaviour
             audioSourceSkill.PlayOneShot(attackClip);
 
         Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, attackRange);
-        foreach (var hit in hits)
-        {
-            if (hit.CompareTag("Player1"))
-            {
-                Player1 p = hit.GetComponent<Player1>();
-                if (p != null) p.TakeDamage(attackDamage);
-            }
-        }
+        
     }
 
     void EndAttack() => isAttacking = false;

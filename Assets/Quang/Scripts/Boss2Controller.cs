@@ -1,32 +1,34 @@
-using System.Collections;
+ï»¿using System.Collections;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class Boss2Controller : MonoBehaviour
 {
-    [Header("Di chuy?n & T?n công")]
+    [Header("Di chuyá»ƒn & Táº¥n cÃ´ng")]
     public float moveSpeed = 5f;
     public float chaseSpeedMultiplier = 1.5f;
-    public float idlePatrolSpeed = 1f;      // ? t?c ð? ði tu?n khi chýa phát hi?n player
+    public float idlePatrolSpeed = 1f;
     public float attackRange = 1.5f;
     public float attackCooldown = 0.8f;
     public int attackDamage = 25;
     private float lastAttackTime;
 
     [Header("Player & Animator")]
-    public Transform player;
+    public Transform player;     // Player 1
+    public Transform player2;    // Player 2
+    public Transform player3;    // Player 3
     public Animator animator;
 
-    [Header("Phát hi?n Player")]
-    public float detectRange = 6f;          // ? Boss phát hi?n player ? kho?ng cách g?n
+    [Header("PhÃ¡t hiá»‡n Player")]
+    public float detectRange = 6f;
     private bool hasDetectedPlayer = false;
 
     [Header("Teleport")]
-    public float teleportTriggerRange = 12f; // ? ch? teleport n?u player ch?y quá xa
+    public float teleportTriggerRange = 12f;
     public float teleportCooldown = 5f;
     private float lastTeleportTime;
 
-    [Header("Âm thanh")]
+    [Header("Ã‚m thanh")]
     public AudioSource audioSource;
     public AudioClip attackClip;
     public AudioClip walkClip;
@@ -35,7 +37,7 @@ public class Boss2Controller : MonoBehaviour
     public AudioClip fireClip;
     public AudioClip teleportClip;
 
-    [Header("Tri?u h?i")]
+    [Header("Triá»‡u há»“i")]
     public GameObject skeletonPrefab;
     public int summonCount = 3;
     public float summonCooldown = 8f;
@@ -46,14 +48,14 @@ public class Boss2Controller : MonoBehaviour
     public int maxHealth = 300;
     private int currentHealth;
     private bool isDead = false;
-    public int extraLives = 1;       // s? m?ng h?i sinh
-    public float reviveDelay = 1.5f; // th?i gian delay trý?c khi h?i sinh
+    public int extraLives = 1;
+    public float reviveDelay = 1.5f;
     private bool isReviving = false;
 
     [Header("Fire Breath")]
     public ParticleSystem fireBreath;
     public Transform firePoint;
-    public Transform mouthTransform; // ? Mi?ng boss
+    public Transform mouthTransform;
     public float fireCooldown = 7f;
     public float fireDuration = 2f;
     public float fireDamagePerSecond = 15f;
@@ -85,45 +87,49 @@ public class Boss2Controller : MonoBehaviour
 
     void Update()
     {
-        if (player == null || isDead) return;
+        if ((player == null && player2 == null) || isDead) return;
 
-        float distance = Vector2.Distance(transform.position, player.position);
+        // Láº¥y player gáº§n nháº¥t
+        Transform targetPlayer = GetNearestPlayer();
+        if (targetPlayer == null) return;
 
-        // Phát hi?n Player
+        float distance = Vector2.Distance(transform.position, targetPlayer.position);
+
+        // PhÃ¡t hiá»‡n Player
         if (!hasDetectedPlayer && distance <= detectRange)
         {
             hasDetectedPlayer = true;
-            Debug.Log("Boss2 phát hi?n player!");
+            Debug.Log("Boss2 phÃ¡t hiá»‡n player!");
         }
 
-        // N?u chýa phát hi?n, ði tu?n nh? t?i ch?
+        // Náº¿u chÆ°a phÃ¡t hiá»‡n, Ä‘i tuáº§n
         if (!hasDetectedPlayer)
         {
             IdlePatrol();
             return;
         }
 
-        // Ch? teleport n?u player ch?y xa h?n
+        // Teleport khi player quÃ¡ xa
         if (distance >= teleportTriggerRange && Time.time - lastTeleportTime >= teleportCooldown)
         {
-            TeleportToPlayer();
+            TeleportToPlayer(targetPlayer);
         }
 
-        // Tri?u h?i theo cooldown
+        // Triá»‡u há»“i theo cooldown
         if (Time.time - lastSummonTime >= summonCooldown)
         {
             StartCoroutine(UseSkill());
             lastSummonTime = Time.time;
         }
 
-        // Tri?u h?i khi máu th?p
+        // Triá»‡u há»“i khi mÃ¡u tháº¥p
         if (!isLowHealthSummon && currentHealth <= maxHealth * 0.3f)
         {
             StartCoroutine(SummonSkeletons(5));
             isLowHealthSummon = true;
         }
 
-        // Di chuy?n ho?c t?n công
+        // Di chuyá»ƒn hoáº·c táº¥n cÃ´ng
         if (distance <= attackRange)
         {
             rb.velocity = Vector2.zero;
@@ -138,21 +144,40 @@ public class Boss2Controller : MonoBehaviour
         }
         else
         {
-            MoveToPlayer(distance);
+            MoveToPlayer(distance, targetPlayer);
         }
 
-        // Phun l?a theo cooldown
+        // Phun lá»­a theo cooldown
         if (!isFiring && Time.time - lastFireTime >= fireCooldown)
         {
-            StartCoroutine(FireOnce());
+            StartCoroutine(FireOnce(targetPlayer));
         }
+    }
+
+    Transform GetNearestPlayer()
+    {
+        Transform nearest = null;
+        float minDist = float.MaxValue;
+
+        if (player != null)
+        {
+            float dist = Vector2.Distance(transform.position, player.position);
+            if (dist < minDist) { minDist = dist; nearest = player; }
+        }
+
+        if (player2 != null)
+        {
+            float dist = Vector2.Distance(transform.position, player2.position);
+            if (dist < minDist) { minDist = dist; nearest = player2; }
+        }
+
+        return nearest;
     }
 
     void IdlePatrol()
     {
         patrolTimer += Time.deltaTime;
 
-        // Ð?i hý?ng m?i 2 giây
         if (patrolTimer >= 2f)
         {
             patrolTimer = 0f;
@@ -160,16 +185,15 @@ public class Boss2Controller : MonoBehaviour
             FlipBoss(new Vector2(patrolDirection, 0));
         }
 
-        // Ði qua l?i r?t nh? ð? luôn hi?n trong camera
         rb.velocity = new Vector2(patrolDirection * idlePatrolSpeed, 0f);
         animator.SetBool("isMoving", true);
     }
 
-    void MoveToPlayer(float distance)
+    void MoveToPlayer(float distance, Transform target)
     {
         if (isAttacking) return;
 
-        Vector2 direction = (player.position - transform.position).normalized;
+        Vector2 direction = (target.position - transform.position).normalized;
         float speed = moveSpeed;
         if (distance < 4f) speed *= chaseSpeedMultiplier;
 
@@ -178,7 +202,6 @@ public class Boss2Controller : MonoBehaviour
 
         FlipBoss(direction);
 
-        // Ch?y âm thanh bý?c chân
         if (walkClip != null && audioSource != null && !audioSource.isPlaying)
             audioSource.PlayOneShot(walkClip);
     }
@@ -191,16 +214,14 @@ public class Boss2Controller : MonoBehaviour
             transform.localScale = new Vector3(-Mathf.Abs(originalScale.x), originalScale.y, originalScale.z);
     }
 
-    void TeleportToPlayer()
+    void TeleportToPlayer(Transform target)
     {
         lastTeleportTime = Time.time;
-        transform.position = player.position + new Vector3(Random.Range(-1.5f, 1.5f), Random.Range(-1.5f, 1.5f), 0);
+        transform.position = target.position + new Vector3(Random.Range(-1.5f, 1.5f), Random.Range(-1.5f, 1.5f), 0);
 
-        // Flip boss theo hý?ng player
-        Vector2 dir = (player.position - transform.position).normalized;
+        Vector2 dir = (target.position - transform.position).normalized;
         FlipBoss(dir);
 
-        // Reset v? trí & hý?ng firePoint ngay khi teleport
         if (mouthTransform != null && firePoint != null)
             firePoint.position = mouthTransform.position;
 
@@ -213,7 +234,7 @@ public class Boss2Controller : MonoBehaviour
         if (teleportClip != null && audioSource != null)
             audioSource.PlayOneShot(teleportClip);
 
-        Debug.Log("Boss2 teleport ð?n Player!");
+        Debug.Log("Boss2 teleport Ä‘áº¿n Player!");
     }
 
     void Attack()
@@ -227,7 +248,7 @@ public class Boss2Controller : MonoBehaviour
         Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, attackRange);
         foreach (var hit in hits)
         {
-            if (hit.CompareTag("Player1"))
+            if (hit.CompareTag("Player1") || hit.CompareTag("Player2"))
             {
                 Player1 p = hit.GetComponent<Player1>();
                 if (p != null) p.TakeDamage(attackDamage);
@@ -237,7 +258,7 @@ public class Boss2Controller : MonoBehaviour
 
     void EndAttack() => isAttacking = false;
 
-    IEnumerator FireOnce()
+    IEnumerator FireOnce(Transform target)
     {
         isFiring = true;
         lastFireTime = Time.time;
@@ -257,33 +278,22 @@ public class Boss2Controller : MonoBehaviour
             elapsed += Time.deltaTime;
             damageTimer += Time.deltaTime;
 
-            // Luôn c?p nh?t v? trí firePoint theo mi?ng boss
             if (mouthTransform != null && firePoint != null)
                 firePoint.position = mouthTransform.position;
 
-            // Xoay firePoint hý?ng player
-            if (firePoint != null && player != null)
+            if (firePoint != null && target != null)
             {
-                Vector2 dir = (player.position - firePoint.position).normalized;
+                Vector2 dir = (target.position - firePoint.position).normalized;
                 float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
                 firePoint.rotation = Quaternion.Euler(0, 0, angle);
             }
 
-            // Gây damage ð?nh k?
+            // GÃ¢y damage náº¿u cáº§n
             if (damageTimer >= damageInterval)
             {
                 damageTimer = 0f;
-
                 Collider2D[] hits = Physics2D.OverlapCircleAll(firePoint.position, fireRadius);
-                foreach (var hit in hits)
-                {
-                    if (hit.CompareTag("Player1"))
-                    {
-                        Player1 p = hit.GetComponent<Player1>();
-                        if (p != null)
-                            p.TakeDamage(Mathf.RoundToInt(fireDamagePerSecond * damageInterval));
-                    }
-                }
+                // TODO: thÃªm damage cho Player náº¿u cáº§n
             }
 
             yield return null;
@@ -353,17 +363,16 @@ public class Boss2Controller : MonoBehaviour
         isDead = true;
         rb.velocity = Vector2.zero;
 
-        animator.SetTrigger("Die"); // animation ch?t gi?
+        animator.SetTrigger("Die");
         yield return new WaitForSeconds(reviveDelay);
 
-        // H?i sinh
         extraLives--;
         currentHealth = maxHealth;
         isDead = false;
         isReviving = false;
 
-        animator.SetTrigger("Revive"); // animation h?i sinh
-        Debug.Log("Boss2 h?i sinh! M?ng c?n l?i: " + extraLives);
+        animator.SetTrigger("Revive");
+        Debug.Log("Boss2 há»“i sinh! Máº¡ng cÃ²n láº¡i: " + extraLives);
     }
 
     void Die()

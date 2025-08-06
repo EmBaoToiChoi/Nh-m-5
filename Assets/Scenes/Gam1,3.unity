@@ -24419,6 +24419,8 @@ MonoBehaviour:
   attackCooldown: 1
   attackDamage: 5
   player: {fileID: 2103825864}
+  player2: {fileID: 0}
+  player3: {fileID: 0}
   animator: {fileID: 1954875722435758227}
   detectRange: 6
   teleportTriggerRange: 12
@@ -24686,7 +24688,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!212 &1488625305
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -25824,6 +25826,8 @@ MonoBehaviour:
   attackCooldown: 1
   attackDamage: 10
   player: {fileID: 2103825864}
+  player2: {fileID: 0}
+  player3: {fileID: 0}
   animator: {fileID: 5772580660740655771}
   detectRange: 3
   teleportTriggerRange: 12
