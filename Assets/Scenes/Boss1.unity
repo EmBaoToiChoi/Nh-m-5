@@ -9079,7 +9079,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!212 &86191532
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -28580,6 +28580,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 276496075}
   m_CullTransparentMesh: 1
+--- !u!1 &281708687 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3180332145824103912, guid: 2eb7a97f9ce21ff489db2f1586498ca6, type: 3}
+  m_PrefabInstance: {fileID: 2006294921}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &298425526
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -42409,6 +42414,10 @@ PrefabInstance:
       value: -0.009
       objectReference: {fileID: 0}
     - target: {fileID: 6496500137693310020, guid: d4b0a760eb6339b4485e9ddc7aff7abc, type: 3}
+      propertyPath: xpPrefab
+      value: 
+      objectReference: {fileID: 281708687}
+    - target: {fileID: 6496500137693310020, guid: d4b0a760eb6339b4485e9ddc7aff7abc, type: 3}
       propertyPath: goldPrefab
       value: 
       objectReference: {fileID: 1440961757}
@@ -42491,6 +42500,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1865921621}
     - target: {fileID: 2348834901552316834, guid: db2d51b61f0a5024a8de555af7f2c23b, type: 3}
+      propertyPath: xpPrefab
+      value: 
+      objectReference: {fileID: 281708687}
+    - target: {fileID: 2348834901552316834, guid: db2d51b61f0a5024a8de555af7f2c23b, type: 3}
       propertyPath: goldPrefab
       value: 
       objectReference: {fileID: 1440961757}
@@ -42506,6 +42519,14 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 1612911369}
+    - target: {fileID: 2367283009217081847, guid: db2d51b61f0a5024a8de555af7f2c23b, type: 3}
+      propertyPath: player2
+      value: 
+      objectReference: {fileID: 1353265366}
+    - target: {fileID: 2367283009217081847, guid: db2d51b61f0a5024a8de555af7f2c23b, type: 3}
+      propertyPath: player3
+      value: 
+      objectReference: {fileID: 14320210}
     - target: {fileID: 2367283009217081847, guid: db2d51b61f0a5024a8de555af7f2c23b, type: 3}
       propertyPath: skeletonPrefab
       value: 

@@ -56,7 +56,7 @@ public class HealthSystem : MonoBehaviour
     {
         if (isDead) return;
 
-        if (collision.gameObject.CompareTag("Hit"))
+        if (collision.gameObject.CompareTag("Hit") || collision.gameObject.CompareTag("Bullet") || collision.gameObject.CompareTag("Bow"))
         {
             int damage = 25; // Hoặc đổi theo weapon
             TakeDamage(damage);
