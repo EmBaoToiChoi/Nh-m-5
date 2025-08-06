@@ -14,9 +14,9 @@ public class Boss2Controller : MonoBehaviour
     private float lastAttackTime;
 
     [Header("Player & Animator")]
-    public Transform player;     // Player 1
-    public Transform player2;    // Player 2
-    public Transform player3;    // Player 3
+    public Transform player1;
+    public Transform player2;
+    public Transform player3;
     public Animator animator;
 
     [Header("Phát hiện Player")]
@@ -24,8 +24,7 @@ public class Boss2Controller : MonoBehaviour
     private bool hasDetectedPlayer = false;
 
     [Header("Teleport")]
-    public float teleportTriggerRange = 12f;
-    public float teleportCooldown = 5f;
+    public float teleportCooldown = 5f;  // cooldown dịch chuyển
     private float lastTeleportTime;
 
     [Header("Âm thanh")]
@@ -87,20 +86,16 @@ public class Boss2Controller : MonoBehaviour
 
     void Update()
     {
-        if ((player == null && player2 == null) || isDead) return;
+        if (isDead) return;
 
-        // Lấy player gần nhất
-        Transform targetPlayer = GetNearestPlayer();
-        if (targetPlayer == null) return;
+        Transform target = GetNearestPlayer();
+        if (target == null) return;
 
-        float distance = Vector2.Distance(transform.position, targetPlayer.position);
+        float distance = Vector2.Distance(transform.position, target.position);
 
         // Phát hiện Player
         if (!hasDetectedPlayer && distance <= detectRange)
-        {
             hasDetectedPlayer = true;
-            Debug.Log("Boss2 phát hiện player!");
-        }
 
         // Nếu chưa phát hiện, đi tuần
         if (!hasDetectedPlayer)
@@ -109,10 +104,10 @@ public class Boss2Controller : MonoBehaviour
             return;
         }
 
-        // Teleport khi player quá xa
-        if (distance >= teleportTriggerRange && Time.time - lastTeleportTime >= teleportCooldown)
+        // Teleport theo cooldown
+        if (Time.time - lastTeleportTime >= teleportCooldown)
         {
-            TeleportToPlayer(targetPlayer);
+            TeleportToPlayer(target);
         }
 
         // Triệu hồi theo cooldown
@@ -139,18 +134,17 @@ public class Boss2Controller : MonoBehaviour
                 Attack();
                 lastAttackTime = Time.time;
             }
-
             animator.SetBool("isMoving", false);
         }
         else
         {
-            MoveToPlayer(distance, targetPlayer);
+            MoveToPlayer(distance, target);
         }
 
-        // Phun lửa theo cooldown
+        // Phun lửa
         if (!isFiring && Time.time - lastFireTime >= fireCooldown)
         {
-            StartCoroutine(FireOnce(targetPlayer));
+            StartCoroutine(FireOnce(target));
         }
     }
 
@@ -159,25 +153,23 @@ public class Boss2Controller : MonoBehaviour
         Transform nearest = null;
         float minDist = float.MaxValue;
 
-        if (player != null)
+        Transform[] players = { player1, player2, player3 };
+        foreach (Transform pl in players)
         {
-            float dist = Vector2.Distance(transform.position, player.position);
-            if (dist < minDist) { minDist = dist; nearest = player; }
+            if (pl == null) continue;
+            float dist = Vector2.Distance(transform.position, pl.position);
+            if (dist < minDist)
+            {
+                minDist = dist;
+                nearest = pl;
+            }
         }
-
-        if (player2 != null)
-        {
-            float dist = Vector2.Distance(transform.position, player2.position);
-            if (dist < minDist) { minDist = dist; nearest = player2; }
-        }
-
         return nearest;
     }
 
     void IdlePatrol()
     {
         patrolTimer += Time.deltaTime;
-
         if (patrolTimer >= 2f)
         {
             patrolTimer = 0f;
@@ -199,7 +191,6 @@ public class Boss2Controller : MonoBehaviour
 
         rb.velocity = direction * speed;
         animator.SetBool("isMoving", true);
-
         FlipBoss(direction);
 
         if (walkClip != null && audioSource != null && !audioSource.isPlaying)
@@ -248,7 +239,7 @@ public class Boss2Controller : MonoBehaviour
         Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, attackRange);
         foreach (var hit in hits)
         {
-            if (hit.CompareTag("Player1") || hit.CompareTag("Player2"))
+            if (hit.CompareTag("Player1"))
             {
                 Player1 p = hit.GetComponent<Player1>();
                 if (p != null) p.TakeDamage(attackDamage);
@@ -288,12 +279,19 @@ public class Boss2Controller : MonoBehaviour
                 firePoint.rotation = Quaternion.Euler(0, 0, angle);
             }
 
-            // Gây damage nếu cần
             if (damageTimer >= damageInterval)
             {
                 damageTimer = 0f;
                 Collider2D[] hits = Physics2D.OverlapCircleAll(firePoint.position, fireRadius);
-                // TODO: thêm damage cho Player nếu cần
+                foreach (var hit in hits)
+                {
+                    if (hit.CompareTag("Player1"))
+                    {
+                        Player1 p = hit.GetComponent<Player1>();
+                        if (p != null)
+                            p.TakeDamage(Mathf.RoundToInt(fireDamagePerSecond * damageInterval));
+                    }
+                }
             }
 
             yield return null;
@@ -310,9 +308,7 @@ public class Boss2Controller : MonoBehaviour
         if (skillClip != null) audioSource.PlayOneShot(skillClip);
 
         animator.SetTrigger("Skill");
-
         yield return new WaitForSeconds(0.5f);
-
         yield return StartCoroutine(SummonSkeletons(summonCount));
     }
 
@@ -387,9 +383,6 @@ public class Boss2Controller : MonoBehaviour
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, attackRange);
-
-        Gizmos.color = Color.cyan;
-        Gizmos.DrawWireSphere(transform.position, teleportTriggerRange);
 
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, detectRange);
