@@ -1,10 +1,10 @@
-using System.Collections;
+﻿using System.Collections;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class Boss1Controller : MonoBehaviour
 {
-    [Header("Di chuy?n & T?n c�ng")]
+    [Header("Di chuyển & Tấn công")]
     public float moveSpeed = 3f;
     public float attackRange = 1.5f;
     public float attackCooldown = 1f;
@@ -17,11 +17,11 @@ public class Boss1Controller : MonoBehaviour
     public Transform player3;    // Player 3
     public Animator animator;
 
-    [Header("Ph�t hi?n Player")]
+    [Header("Phát hiện Player")]
     public float detectRange = 10f;
     private bool hasDetectedPlayer = false;
 
-    [Header("�m thanh")]
+    [Header("Âm thanh")]
     public AudioSource audioSourceWalk;
     public AudioSource audioSourceSkill;
     public AudioClip attackClip;
@@ -30,7 +30,7 @@ public class Boss1Controller : MonoBehaviour
     public AudioClip summonClip;
     public AudioClip fireClip;
 
-    [Header("Tri?u h?i")]
+    [Header("Triệu hồi")]
     public GameObject skeletonPrefab;
     public int summonCount = 3;
     public float summonCooldown = 10f;
@@ -49,8 +49,8 @@ public class Boss1Controller : MonoBehaviour
     public float fireDuration = 2f;
     private float lastFireTime;
     private bool isFiring;
-    public float fireDamagePerSecond = 10f;   // damage m?i gi�y
-    public float fireRadius = 1.5f;           // b�n k�nh v�ng g�y damage
+    public float fireDamagePerSecond = 10f;   // damage mỗi giây
+    public float fireRadius = 1.5f;           // bán kính vùng gây damage
 
     private Rigidbody2D rb;
     private Vector3 originalScale;
@@ -71,72 +71,92 @@ public class Boss1Controller : MonoBehaviour
 
     void Update()
     {
-        if (player == null || isDead) return;
+        Transform target = GetNearestPlayer();
+        if (target == null || isDead) return;
 
-        float distance = Vector2.Distance(transform.position, player.position);
+        float distance = Vector2.Distance(transform.position, target.position);
 
-        // Ki?m tra ph�t hi?n Player
+        // Kiểm tra phát hiện Player
         if (!hasDetectedPlayer && distance <= detectRange)
             hasDetectedPlayer = true;
 
-        // Tri?u h?i theo th?i gian
+        // Triệu hồi theo thời gian
         if (hasDetectedPlayer && Time.time - lastSummonTime >= summonCooldown)
         {
             StartCoroutine(UseSkill());
             lastSummonTime = Time.time;
         }
 
-        // Tri?u h?i khi m�u <30%
+        // Triệu hồi khi máu <30%
         if (hasDetectedPlayer && !isLowHealthSummon && currentHealth <= maxHealth * 0.3f)
         {
             StartCoroutine(SummonSkeletons(5));
             isLowHealthSummon = true;
         }
 
-        // Di chuy?n ho?c t?n c�ng
+        // Di chuyển hoặc tấn công
         if (distance <= attackRange)
         {
             rb.velocity = Vector2.zero;
 
             if (Time.time - lastAttackTime >= attackCooldown)
             {
-                Attack();
+                Attack(target);
                 lastAttackTime = Time.time;
             }
             animator.SetBool("isMoving", false);
         }
         else
         {
-            MoveToPlayer();
+            MoveToPlayer(target);
         }
 
-        // Phun l?a
+        // Phun lửa
         if (!isFiring && Time.time - lastFireTime >= fireCooldown)
         {
-            StartCoroutine(FireOnce());
+            StartCoroutine(FireOnce(target));
         }
     }
 
-    void MoveToPlayer()
+    Transform GetNearestPlayer()
+    {
+        Transform nearest = null;
+        float minDist = float.MaxValue;
+
+        Transform[] players = { player, player2, player3 };
+        foreach (Transform pl in players)
+        {
+            if (pl == null) continue;
+            float dist = Vector2.Distance(transform.position, pl.position);
+            if (dist < minDist)
+            {
+                minDist = dist;
+                nearest = pl;
+            }
+        }
+        return nearest;
+    }
+
+    void MoveToPlayer(Transform target)
     {
         if (isAttacking) return;
 
-        Vector2 direction = (player.position - transform.position).normalized;
+        Vector2 direction = (target.position - transform.position).normalized;
         rb.velocity = direction * moveSpeed;
         animator.SetBool("isMoving", true);
 
-        // Flip Boss & firePoint h�?ng player
+        // Flip Boss & firePoint hướng player
         if (direction.x > 0)
             transform.localScale = new Vector3(Mathf.Abs(originalScale.x), originalScale.y, originalScale.z);
         else
             transform.localScale = new Vector3(-Mathf.Abs(originalScale.x), originalScale.y, originalScale.z);
 
-        // Ch?y �m thanh b�?c ch�n
+        // Chạy âm thanh bước chân
         if (walkClip != null && audioSourceWalk != null && !audioSourceWalk.isPlaying)
             audioSourceWalk.PlayOneShot(walkClip);
     }
 
-    void Attack()
+    void Attack(Transform target)
     {
         animator.SetTrigger("Attack");
         isAttacking = true;
@@ -146,12 +166,20 @@ public class Boss1Controller : MonoBehaviour
             audioSourceSkill.PlayOneShot(attackClip);
 
         Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, attackRange);
-        
+        foreach (var hit in hits)
+        {
+            if (hit.CompareTag("Player1"))
+            {
+                Player1 p = hit.GetComponent<Player1>();
+                if (p != null)
+                    p.TakeDamage(attackDamage);
+            }
+        }
     }
 
     void EndAttack() => isAttacking = false;
 
-    IEnumerator FireOnce()
+    IEnumerator FireOnce(Transform target)
     {
         isFiring = true;
         lastFireTime = Time.time;
@@ -164,7 +192,7 @@ public class Boss1Controller : MonoBehaviour
         }
 
         float elapsed = 0f;
-        float damageInterval = 0.2f; // 5 l?n/s
+        float damageInterval = 0.2f; // 5 lần/s
         float damageTimer = 0f;
 
         while (elapsed < fireDuration)
@@ -172,15 +200,15 @@ public class Boss1Controller : MonoBehaviour
             elapsed += Time.deltaTime;
             damageTimer += Time.deltaTime;
 
-            // Xoay firePoint li�n t?c theo player
-            if (firePoint != null && player != null)
+            // Xoay firePoint liên tục theo player
+            if (firePoint != null && target != null)
             {
-                Vector2 dir = (player.position - firePoint.position).normalized;
+                Vector2 dir = (target.position - firePoint.position).normalized;
                 float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
                 firePoint.rotation = Quaternion.Euler(0, 0, angle);
             }
 
-            // G�y damage �?nh k?
+            // Gây damage định kỳ
             if (damageTimer >= damageInterval)
             {
                 damageTimer = 0f;

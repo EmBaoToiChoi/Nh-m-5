@@ -24418,12 +24418,11 @@ MonoBehaviour:
   attackRange: 1.5
   attackCooldown: 1
   attackDamage: 5
-  player: {fileID: 2103825864}
+  player1: {fileID: 2103825864}
   player2: {fileID: 0}
   player3: {fileID: 0}
   animator: {fileID: 1954875722435758227}
   detectRange: 6
-  teleportTriggerRange: 12
   teleportCooldown: 10
   audioSource: {fileID: 2413172837861296710}
   attackClip: {fileID: 8300000, guid: ac926c10fc1a85f45a562ae70ff602ec, type: 3}
@@ -25825,12 +25824,11 @@ MonoBehaviour:
   attackRange: 1.5
   attackCooldown: 1
   attackDamage: 10
-  player: {fileID: 2103825864}
+  player1: {fileID: 2103825864}
   player2: {fileID: 0}
   player3: {fileID: 0}
   animator: {fileID: 5772580660740655771}
-  detectRange: 3
-  teleportTriggerRange: 12
+  detectRange: 4
   teleportCooldown: 10
   audioSource: {fileID: 3190376312619870427}
   attackClip: {fileID: 8300000, guid: ac926c10fc1a85f45a562ae70ff602ec, type: 3}
@@ -26778,8 +26776,8 @@ Transform:
   m_GameObject: {fileID: 6060356997908303569}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -14.15, y: -3.93, z: 0.030159641}
-  m_LocalScale: {x: 9.334776, y: 6.3064084, z: 1}
+  m_LocalPosition: {x: -7.51, y: 8.06, z: 0.030159641}
+  m_LocalScale: {x: 6.855459, y: 4.8811603, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6566656111196598737}
@@ -27409,6 +27407,8 @@ MonoBehaviour:
   attackCooldown: 1
   attackDamage: 10
   player: {fileID: 0}
+  player2: {fileID: 0}
+  player3: {fileID: 0}
   animator: {fileID: 1954875722435758227}
   detectRange: 10
   audioSourceWalk: {fileID: 0}
