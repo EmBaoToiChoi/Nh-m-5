@@ -7,6 +7,7 @@ public class Boss2Controller : MonoBehaviour
     [Header("Di chuy?n & T?n công")]
     public float moveSpeed = 5f;
     public float chaseSpeedMultiplier = 1.5f;
+    public float idlePatrolSpeed = 1f;      // ? t?c ð? ði tu?n khi chýa phát hi?n player
     public float attackRange = 1.5f;
     public float attackCooldown = 0.8f;
     public int attackDamage = 25;
@@ -17,11 +18,11 @@ public class Boss2Controller : MonoBehaviour
     public Animator animator;
 
     [Header("Phát hi?n Player")]
-    public float detectRange = 10f;
+    public float detectRange = 6f;          // ? Boss phát hi?n player ? kho?ng cách g?n
     private bool hasDetectedPlayer = false;
 
     [Header("Teleport")]
-    public float teleportDistanceThreshold = 8f;
+    public float teleportTriggerRange = 12f; // ? ch? teleport n?u player ch?y quá xa
     public float teleportCooldown = 5f;
     private float lastTeleportTime;
 
@@ -64,6 +65,10 @@ public class Boss2Controller : MonoBehaviour
     private Vector3 originalScale;
     private bool isAttacking = false;
 
+    // Idle patrol
+    private float patrolTimer = 0f;
+    private int patrolDirection = 1;
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -86,21 +91,33 @@ public class Boss2Controller : MonoBehaviour
 
         // Phát hi?n Player
         if (!hasDetectedPlayer && distance <= detectRange)
+        {
             hasDetectedPlayer = true;
+            Debug.Log("Boss2 phát hi?n player!");
+        }
 
-        // Teleport n?u player quá xa
-        if (distance >= teleportDistanceThreshold && Time.time - lastTeleportTime >= teleportCooldown)
+        // N?u chýa phát hi?n, ði tu?n nh? t?i ch?
+        if (!hasDetectedPlayer)
+        {
+            IdlePatrol();
+            return;
+        }
+
+        // Ch? teleport n?u player ch?y xa h?n
+        if (distance >= teleportTriggerRange && Time.time - lastTeleportTime >= teleportCooldown)
+        {
             TeleportToPlayer();
+        }
 
         // Tri?u h?i theo cooldown
-        if (hasDetectedPlayer && Time.time - lastSummonTime >= summonCooldown)
+        if (Time.time - lastSummonTime >= summonCooldown)
         {
             StartCoroutine(UseSkill());
             lastSummonTime = Time.time;
         }
 
         // Tri?u h?i khi máu th?p
-        if (hasDetectedPlayer && !isLowHealthSummon && currentHealth <= maxHealth * 0.3f)
+        if (!isLowHealthSummon && currentHealth <= maxHealth * 0.3f)
         {
             StartCoroutine(SummonSkeletons(5));
             isLowHealthSummon = true;
@@ -125,10 +142,27 @@ public class Boss2Controller : MonoBehaviour
         }
 
         // Phun l?a theo cooldown
-        if (hasDetectedPlayer && !isFiring && Time.time - lastFireTime >= fireCooldown)
+        if (!isFiring && Time.time - lastFireTime >= fireCooldown)
         {
             StartCoroutine(FireOnce());
         }
+    }
+
+    void IdlePatrol()
+    {
+        patrolTimer += Time.deltaTime;
+
+        // Ð?i hý?ng m?i 2 giây
+        if (patrolTimer >= 2f)
+        {
+            patrolTimer = 0f;
+            patrolDirection *= -1;
+            FlipBoss(new Vector2(patrolDirection, 0));
+        }
+
+        // Ði qua l?i r?t nh? ð? luôn hi?n trong camera
+        rb.velocity = new Vector2(patrolDirection * idlePatrolSpeed, 0f);
+        animator.SetBool("isMoving", true);
     }
 
     void MoveToPlayer(float distance)
@@ -223,7 +257,7 @@ public class Boss2Controller : MonoBehaviour
             elapsed += Time.deltaTime;
             damageTimer += Time.deltaTime;
 
-            // ? Luôn c?p nh?t v? trí firePoint theo mi?ng boss
+            // Luôn c?p nh?t v? trí firePoint theo mi?ng boss
             if (mouthTransform != null && firePoint != null)
                 firePoint.position = mouthTransform.position;
 
@@ -346,7 +380,7 @@ public class Boss2Controller : MonoBehaviour
         Gizmos.DrawWireSphere(transform.position, attackRange);
 
         Gizmos.color = Color.cyan;
-        Gizmos.DrawWireSphere(transform.position, teleportDistanceThreshold);
+        Gizmos.DrawWireSphere(transform.position, teleportTriggerRange);
 
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, detectRange);
