@@ -16,21 +16,19 @@ public class Gun : MonoBehaviour
     private float nextShootTime;
 
     [Header("Đạn")]
-    public int currentAmmo = 25;  // trong băng
-    public int reserveAmmo = 25;  // đạn dự trữ
-    public int maxAmmo = 25;      // sức chứa tối đa của băng
+    public int currentAmmo = 25;
+    public int reserveAmmo = 25;
+    public int maxAmmo = 25;
 
     [Header("UI")]
     public TextMeshProUGUI ammoText;
     public TextMeshProUGUI reloadText;
-    public Transform player;
     public Vector3 offsetUI = new Vector3(0, 2, 0);
 
     [Header("Reload")]
     public AudioClip reloadSound;
     public AudioSource reloadSource;
     public int maxReserveAmmo = 100;
-
 
 
     void Start()
@@ -43,9 +41,6 @@ public class Gun : MonoBehaviour
         }
     }
 
-
-
-
     void OnDisable()
     {
         if (GameData2.Instance != null)
@@ -56,28 +51,26 @@ public class Gun : MonoBehaviour
         }
     }
 
-
-
-
-
     void Update()
     {
         RotateGun();
         Shoot();
         HandleReload();
-        UpdateReloadTextPosition();
     }
 
     void RotateGun()
     {
-        if (Input.mousePosition.x < 0 || Input.mousePosition.x > Screen.width || Input.mousePosition.y < 0 || Input.mousePosition.y > Screen.height)
-            return;
+        Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        Vector3 direction = mouseWorldPos - transform.position;
+        direction.z = 0;
 
-        Vector3 displacement = transform.position - Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        float angle = Mathf.Atan2(displacement.y, displacement.x) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.Euler(0, 0, angle + rorateOffset);
-        transform.localScale = (angle < -90 || angle > 90) ? new Vector3(1, 1, 1) : new Vector3(-1, 1, 1);
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
     }
+
+
+
+
 
     void Shoot()
     {
@@ -92,16 +85,15 @@ public class Gun : MonoBehaviour
                 nextShootTime = Time.time + shootDelay;
 
                 if (GameData2.Instance != null)
-                    GameData2.Instance.SaveAmmo(); // 🔥 THÊM DÒNG NÀY
+                    GameData2.Instance.SaveAmmo();
             }
             else
             {
                 Debug.Log("Hết đạn!");
+                reloadText.gameObject.SetActive(true);
             }
         }
     }
-
-
 
     void HandleReload()
     {
@@ -113,30 +105,19 @@ public class Gun : MonoBehaviour
             currentAmmo += reloadAmount;
             reserveAmmo -= reloadAmount;
 
-            reloadText.gameObject.SetActive(true);
+            reloadText.gameObject.SetActive(false);
             reloadSource.PlayOneShot(reloadSound);
             Invoke("HideReloadText", 1f);
             UpdateAmmoUI();
 
             if (GameData2.Instance != null)
-                GameData2.Instance.SaveAmmo(); // 🔥 THÊM DÒNG NÀY
+                GameData2.Instance.SaveAmmo();
         }
     }
-
-
 
     void HideReloadText()
     {
         reloadText.gameObject.SetActive(false);
-    }
-
-    void UpdateReloadTextPosition()
-    {
-        if (reloadText.gameObject.activeSelf)
-        {
-            Vector3 screenPos = Camera.main.WorldToScreenPoint(player.position + offsetUI);
-            reloadText.transform.position = screenPos;
-        }
     }
 
     public void UpdateAmmoUI()
@@ -169,13 +150,9 @@ public class Gun : MonoBehaviour
         if (GameData2.Instance != null)
         {
             GameData2.Instance.reserveAmmo = reserveAmmo;
-            GameData2.Instance.SaveAmmo(); // 🔥 THÊM DÒNG NÀY
+            GameData2.Instance.SaveAmmo();
         }
 
         UpdateAmmoUI();
     }
-
-
-
-
 }

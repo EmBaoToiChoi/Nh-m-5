@@ -11,17 +11,21 @@ public class Volumsetting : MonoBehaviour
 
     void Start()
     {
-        
-        volumeSlider.value = audioSource.volume;
+        // Load âm lượng đã lưu, mặc định là 1 nếu chưa có
+        float savedVolume = PlayerPrefs.GetFloat("MusicVolume", 1f);
 
-        
+        volumeSlider.value = savedVolume;
+        audioSource.volume = savedVolume;
+
         volumeSlider.onValueChanged.AddListener(SetVolume);
     }
 
-    
     public void SetVolume(float volume)
     {
-        audioSource.volume = volume; 
-    }
+        audioSource.volume = volume;
 
+        // Lưu lại âm lượng vào PlayerPrefs
+        PlayerPrefs.SetFloat("MusicVolume", volume);
+        PlayerPrefs.Save(); // Không bắt buộc, nhưng đảm bảo lưu ngay
+    }
 }

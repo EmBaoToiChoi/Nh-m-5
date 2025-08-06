@@ -5,7 +5,13 @@ using UnityEngine.UI;
 public class QUY2 : MonoBehaviour
 {
     [Header("References")]
-    public Transform enermy, player;
+    public Transform enermy;
+    public Transform player1;
+    public Transform player2;
+    public Transform player3;
+
+    private Transform targetPlayer;
+
     public Animator nie;
     public GameObject fireballPrefab;
     public Transform firePoint;
@@ -35,6 +41,17 @@ public class QUY2 : MonoBehaviour
     void Start()
     {
         currentHealth = maxHealth;
+
+        // Xác định player đang active
+        if (player1 != null && player1.gameObject.activeInHierarchy)
+            targetPlayer = player1;
+        else if (player2 != null && player2.gameObject.activeInHierarchy)
+            targetPlayer = player2;
+        else if (player3 != null && player3.gameObject.activeInHierarchy)
+            targetPlayer = player3;
+        else
+            Debug.LogWarning("Không có player nào đang active!");
+
         healthBarUI = Instantiate(healthBarPrefab, enermy.position + Vector3.up * 1.5f, Quaternion.identity);
         healthBarUI.transform.SetParent(null);
         mainCam = Camera.main.transform;
@@ -42,19 +59,19 @@ public class QUY2 : MonoBehaviour
 
     void Update()
     {
-        if (enermy == null || player == null) return;
+        if (enermy == null || targetPlayer == null) return;
 
-        float distance = Vector2.Distance(enermy.position, player.position);
+        float distance = Vector2.Distance(enermy.position, targetPlayer.position);
         isChasing = distance < PVipHien;
 
         if (currentHealth <= fleeHealthThreshold)
         {
-            ChayKhoiPlayer(player.position);
+            ChayKhoiPlayer(targetPlayer.position);
             StopFireball();
         }
         else if (isChasing)
         {
-            dichuyentoiPlayer(player.position);
+            dichuyentoiPlayer(targetPlayer.position);
             nie.SetBool("danh", true);
             if (fireCoroutine == null)
                 fireCoroutine = StartCoroutine(ShootFireballsContinuously());
@@ -112,10 +129,10 @@ public class QUY2 : MonoBehaviour
 
     void ShootFireball()
     {
-        if (fireballPrefab != null && firePoint != null)
+        if (fireballPrefab != null && firePoint != null && targetPlayer != null)
         {
             GameObject fireball = Instantiate(fireballPrefab, firePoint.position, Quaternion.identity);
-            Vector2 dir = (player.position - firePoint.position).normalized;
+            Vector2 dir = (targetPlayer.position - firePoint.position).normalized;
             fireball.GetComponent<Rigidbody2D>().velocity = dir * 5f;
         }
     }
@@ -153,30 +170,40 @@ public class QUY2 : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
+        float damage = 0f;
+
         if (other.CompareTag("Hit"))
-            TakeDamage(Random.Range(1f, 6f) + GlobalData.damageBonus);
+            damage = Random.Range(1f, 6f);
         else if (other.CompareTag("Bullet"))
-            TakeDamage(Random.Range(10f, 16f) + GlobalData.damageBonus);
+            damage = Random.Range(10f, 16f);
         else if (other.CompareTag("Bow"))
-            TakeDamage(Random.Range(5f, 11f) + GlobalData.damageBonus);
+            damage = Random.Range(5f, 11f);
+
+        if (damage > 0)
+            TakeDamage(damage + GlobalData.damageBonus);
     }
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Player1"))
+        if (IsTargetPlayer(collision.gameObject))
             nie.SetBool("danh", true);
     }
 
     void OnCollisionStay2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Player1"))
+        if (IsTargetPlayer(collision.gameObject))
             nie.SetBool("danh", true);
     }
 
     void OnCollisionExit2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Player1"))
+        if (IsTargetPlayer(collision.gameObject))
             nie.SetBool("danh", false);
+    }
+
+    bool IsTargetPlayer(GameObject obj)
+    {
+        return obj == player1?.gameObject || obj == player2?.gameObject || obj == player3?.gameObject;
     }
 
     void SpawnDrops()

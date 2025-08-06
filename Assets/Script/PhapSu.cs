@@ -7,29 +7,34 @@ public class PhapSu : MonoBehaviour
 {
     private enum State { Chase, Attack, Flee, Return }
     private State currentState = State.Chase;
+
     [SerializeField] private float fleeDuration = 1.5f;
     [SerializeField] private float returnDelay = 0.5f;
-
-
     private float fleeTimer = 0f;
-
     private Vector3 fleeDirection;
 
-
     [SerializeField] private float fleeHealthThreshold = 10f;
-    public Transform enermy, player;
+
+    [Header("References")]
+    public Transform enermy;
+
+    // Thêm 3 player ở đây
+    public Transform player1;
+    public Transform player2;
+    public Transform player3;
+
+    private Transform player; // player được chọn
+
     [SerializeField] private GameObject coinPrefab;
     [SerializeField] private GameObject xpPrefab;
-
     [SerializeField] private GameObject healthItemPrefab;
-
 
     [Header("Animation")]
     [SerializeField] private Animator nie;
 
     [Header("UI Máu")]
-    [SerializeField] private GameObject healthBarPrefab; // Prefab thanh máu
-    [SerializeField] private Image healthFill;           // Gán trong Inspector
+    [SerializeField] private GameObject healthBarPrefab;
+    [SerializeField] private Image healthFill;
 
     private GameObject healthBarUI;
     private Transform mainCam;
@@ -45,10 +50,19 @@ public class PhapSu : MonoBehaviour
     {
         currentHealth = maxHealth;
 
+        // Xác định player được chọn dựa vào SetActive(true)
+        if (player1 != null && player1.gameObject.activeSelf)
+            player = player1;
+        else if (player2 != null && player2.gameObject.activeSelf)
+            player = player2;
+        else if (player3 != null && player3.gameObject.activeSelf)
+            player = player3;
+        else
+            Debug.LogWarning("Không tìm thấy player nào đang hoạt động!");
+
         // Spawn thanh máu
         healthBarUI = Instantiate(healthBarPrefab, enermy.position + Vector3.up * 1.5f, Quaternion.identity);
         healthBarUI.transform.SetParent(null);
-
         mainCam = Camera.main.transform;
     }
 
@@ -87,20 +101,18 @@ public class PhapSu : MonoBehaviour
                 break;
         }
 
-        // Cập nhật thanh máu
         if (healthBarUI != null && enermy != null)
         {
             healthBarUI.transform.position = enermy.position + Vector3.up * 1.5f;
             healthBarUI.transform.rotation = Quaternion.identity;
         }
     }
+
     IEnumerator DelayReturn()
     {
         yield return new WaitForSeconds(returnDelay);
         currentState = State.Return;
     }
-
-
 
     void StartFlee()
     {
@@ -109,24 +121,20 @@ public class PhapSu : MonoBehaviour
         fleeDirection = (enermy.position - player.position).normalized;
 
         if (fleeDirection.x > 0)
-            enermy.localScale = new Vector3(3,3,3);
+            enermy.localScale = new Vector3(3, 3, 3);
         else if (fleeDirection.x < 0)
-            enermy.localScale = new Vector3(-3,3,3);
+            enermy.localScale = new Vector3(-3, 3, 3);
     }
-
-
-
 
     void dichuyentoiPlayer(Vector3 target)
     {
         Vector3 direction = (target - enermy.position).normalized;
         enermy.Translate(direction * speed * Time.deltaTime);
 
-        // Lật hướng enemy
         if (direction.x > 0)
-            enermy.localScale = new Vector3(3,3,3);
-        if (direction.x < 0)
-            enermy.localScale = new Vector3(-3,3,3);
+            enermy.localScale = new Vector3(3, 3, 3);
+        else if (direction.x < 0)
+            enermy.localScale = new Vector3(-3, 3, 3);
     }
 
     void TakeDamage(float damage)
@@ -147,24 +155,20 @@ public class PhapSu : MonoBehaviour
 
             Destroy(healthBarUI);
             Destroy(gameObject);
-
-            enabled = false; // Dừng Update() để tránh lỗi
+            enabled = false;
         }
     }
 
-
     void ChayKhoiPlayer(Vector3 target)
     {
-        Vector3 direction = (enermy.position - target).normalized; // Ngược hướng với player
+        Vector3 direction = (enermy.position - target).normalized;
         enermy.Translate(direction * speed * Time.deltaTime);
 
-        // Lật hướng enemy
         if (direction.x > 0)
-            enermy.localScale = new Vector3(3,3,3);
+            enermy.localScale = new Vector3(3, 3, 3);
         else if (direction.x < 0)
-            enermy.localScale = new Vector3(-3,3,3);
+            enermy.localScale = new Vector3(-3, 3, 3);
     }
-
 
     void OnTriggerEnter2D(Collider2D other)
     {
@@ -183,7 +187,6 @@ public class PhapSu : MonoBehaviour
             float damage = Random.Range(5f, 11f);
             TakeDamage(damage + GlobalData.damageBonus);
         }
-
     }
 
     void OnCollisionEnter2D(Collision2D collision)
@@ -191,52 +194,40 @@ public class PhapSu : MonoBehaviour
         if (collision.gameObject.CompareTag("Player1"))
         {
             nie.SetBool("danh", true);
-
             if (currentState == State.Chase || currentState == State.Return)
-            {
                 StartFlee();
-            }
         }
-    
     }
 
     void OnCollisionStay2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Player1"))
+        if (collision.gameObject.CompareTag("Player1") )
         {
             nie.SetBool("danh", true);
-
             if (currentState == State.Chase || currentState == State.Return)
-            {
                 StartFlee();
-            }
         }
-    
     }
 
     void OnCollisionExit2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Player1"))
+        if (collision.gameObject.CompareTag("Player1") )
         {
             nie.SetBool("danh", false);
         }
     }
+
     void SpawnDrops()
     {
         Vector3 basePosition = enermy.position;
 
-        // Spawn coin slightly to the left
         if (coinPrefab != null)
             Instantiate(coinPrefab, basePosition + new Vector3(-0.3f, 0, 0), Quaternion.identity);
 
-        // Spawn XP slightly to the center
         if (xpPrefab != null)
             Instantiate(xpPrefab, basePosition + new Vector3(0f, 0, 0), Quaternion.identity);
 
-        // Spawn health item slightly to the right
         if (healthItemPrefab != null)
             Instantiate(healthItemPrefab, basePosition + new Vector3(0.3f, 0, 0), Quaternion.identity);
     }
-
-
 }

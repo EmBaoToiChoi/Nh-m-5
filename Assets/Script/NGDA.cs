@@ -5,24 +5,29 @@ using UnityEngine.UI;
 
 public class NGDA : MonoBehaviour
 {
-    private float attackCooldown = 0.5f; // Mỗi 0.5 giây gây sát thương 1 lần
+    private float attackCooldown = 0.5f;
     private float attackTimer = 0f;
 
     private bool hasTeleportedToPlayer = false;
     [SerializeField] private float fleeHealthThreshold = 10f;
-    public Transform enermy, player;
+
+    public Transform enermy;
+    public Transform player1;
+    public Transform player2;
+    public Transform player3;
+
+    private Transform targetPlayer; // Người chơi mà enemy sẽ đuổi theo
+
     [SerializeField] private GameObject coinPrefab;
     [SerializeField] private GameObject xpPrefab;
-
     [SerializeField] private GameObject healthItemPrefab;
-
 
     [Header("Animation")]
     [SerializeField] private Animator nie;
 
     [Header("UI Máu")]
-    [SerializeField] private GameObject healthBarPrefab; // Prefab thanh máu
-    [SerializeField] private Image healthFill;           // Gán trong Inspector
+    [SerializeField] private GameObject healthBarPrefab;
+    [SerializeField] private Image healthFill;
 
     private GameObject healthBarUI;
     private Transform mainCam;
@@ -38,7 +43,6 @@ public class NGDA : MonoBehaviour
     {
         currentHealth = maxHealth;
 
-        // Spawn thanh máu
         healthBarUI = Instantiate(healthBarPrefab, enermy.position + Vector3.up * 1.5f, Quaternion.identity);
         healthBarUI.transform.SetParent(null);
 
@@ -47,84 +51,94 @@ public class NGDA : MonoBehaviour
 
     void Update()
     {
-        // Nếu object đã bị phá hủy hoặc enermy không còn, thì không làm gì
-        if (this == null || enermy == null || player == null) return;
-         attackTimer -= Time.deltaTime;
+        attackTimer -= Time.deltaTime;
 
-        float khoangCachPlayer = Vector2.Distance(enermy.position, player.position);
-        isChasing = khoangCachPlayer < PVipHien;
+        UpdateTargetPlayer(); // Cập nhật player cần đuổi theo
+
+        if (targetPlayer == null || enermy == null) return;
+
+        float distance = Vector2.Distance(enermy.position, targetPlayer.position);
+        isChasing = distance < PVipHien;
 
         if (currentHealth <= fleeHealthThreshold)
         {
-            ChayKhoiPlayer(player.position);
+            ChayKhoiPlayer(targetPlayer.position);
         }
         else if (isChasing)
         {
-            dichuyentoiPlayer(player.position);
-            // Nếu chưa từng teleport thì teleport tới gần player một lần
+            dichuyentoiPlayer(targetPlayer.position);
+
             if (!hasTeleportedToPlayer)
             {
                 TeleportToPlayer();
                 hasTeleportedToPlayer = true;
             }
-            else
-            {
-                dichuyentoiPlayer(player.position);
-            }
-    
         }
 
-        // Cập nhật vị trí thanh máu nếu mọi thứ còn tồn tại
         if (healthBarUI != null && enermy != null)
         {
-            try
-            {
-                healthBarUI.transform.position = enermy.position + Vector3.up * 1.5f;
-                healthBarUI.transform.rotation = Quaternion.identity;
-            }
-            catch (MissingReferenceException)
-            {
-                // Nếu enermy đã bị huỷ giữa Update, ta đảm bảo không bị lỗi
-                Destroy(healthBarUI);
-            }
+            healthBarUI.transform.position = enermy.position + Vector3.up * 1.5f;
+            healthBarUI.transform.rotation = Quaternion.identity;
+        }
+    }
+
+    void UpdateTargetPlayer()
+    {
+        // Ưu tiên theo thứ tự: player1 → player2 → player3
+        if (player1 != null && player1.gameObject.activeInHierarchy)
+        {
+            targetPlayer = player1;
+        }
+        else if (player2 != null && player2.gameObject.activeInHierarchy)
+        {
+            targetPlayer = player2;
+        }
+        else if (player3 != null && player3.gameObject.activeInHierarchy)
+        {
+            targetPlayer = player3;
+        }
+        else
+        {
+            targetPlayer = null; // Không có ai để đuổi
         }
     }
 
     void TeleportToPlayer()
     {
-        if (enermy == null || player == null) return;
+        if (enermy == null || targetPlayer == null) return;
 
-        // Tính vị trí gần player (cách 1 đơn vị)
-        Vector3 offset = (enermy.position - player.position).normalized * 1.0f;
-        Vector3 teleportPosition = player.position + offset;
+        Vector3 offset = (enermy.position - targetPlayer.position).normalized * 1.0f;
+        Vector3 teleportPosition = targetPlayer.position + offset;
 
-        // Di chuyển enemy tới vị trí này
         enermy.position = teleportPosition;
 
-        // (Tuỳ chọn) Hiệu ứng hoặc âm thanh khi teleport
-        Debug.Log("NGDA đã phát hiện và teleport tới gần player!");
+        Debug.Log("Enemy đã teleport tới gần player!");
     }
-
-
-
-
-
 
     void dichuyentoiPlayer(Vector3 target)
     {
         Vector3 direction = (target - enermy.position).normalized;
         enermy.Translate(direction * speed * Time.deltaTime);
 
-        // Lật hướng enemy
         if (direction.x > 0)
-            enermy.localScale = new Vector3(3,3,3);
+            enermy.localScale = new Vector3(3, 3, 3);
         if (direction.x < 0)
-            enermy.localScale = new Vector3(-3,3,3);
+            enermy.localScale = new Vector3(-3, 3, 3);
+    }
+
+    void ChayKhoiPlayer(Vector3 target)
+    {
+        Vector3 direction = (enermy.position - target).normalized;
+        enermy.Translate(direction * speed * Time.deltaTime);
+
+        if (direction.x > 0)
+            enermy.localScale = new Vector3(3, 3, 3);
+        else if (direction.x < 0)
+            enermy.localScale = new Vector3(-3, 3, 3);
     }
 
     void TakeDamage(float damage)
     {
-
         currentHealth -= damage;
         currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
 
@@ -142,30 +156,21 @@ public class NGDA : MonoBehaviour
             Destroy(healthBarUI);
             Destroy(gameObject);
 
-            enabled = false; // Dừng Update() để tránh lỗi
+            enabled = false;
         }
-        if (healthFill != null && enermy != null)
-        {
-            DamageTextManager.Instance.ShowDamage(enermy.position, damage);
-            healthFill.fillAmount = currentHealth / maxHealth;
-        }
-
-
     }
 
-
-    void ChayKhoiPlayer(Vector3 target)
+    void SpawnDrops()
     {
-        Vector3 direction = (enermy.position - target).normalized; // Ngược hướng với player
-        enermy.Translate(direction * speed * Time.deltaTime);
+        Vector3 basePosition = enermy.position;
 
-        // Lật hướng enemy
-        if (direction.x > 0)
-            enermy.localScale = new Vector3(3,3,3);
-        else if (direction.x < 0)
-            enermy.localScale = new Vector3(-3,3,3);
+        if (coinPrefab != null)
+            Instantiate(coinPrefab, basePosition + new Vector3(-0.3f, 0, 0), Quaternion.identity);
+        if (xpPrefab != null)
+            Instantiate(xpPrefab, basePosition + new Vector3(0f, 0, 0), Quaternion.identity);
+        if (healthItemPrefab != null)
+            Instantiate(healthItemPrefab, basePosition + new Vector3(0.3f, 0, 0), Quaternion.identity);
     }
-
 
     void OnTriggerEnter2D(Collider2D other)
     {
@@ -184,7 +189,6 @@ public class NGDA : MonoBehaviour
             float damage = Random.Range(5f, 11f);
             TakeDamage(damage + GlobalData.damageBonus);
         }
-
     }
 
     void OnCollisionEnter2D(Collision2D collision)
@@ -197,22 +201,18 @@ public class NGDA : MonoBehaviour
 
     void OnCollisionStay2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Player1"))
+        if (collision.gameObject.CompareTag("Player1") )
         {
             nie.SetBool("danh", true);
 
             if (attackTimer <= 0f)
             {
-                float damage = Random.Range(4f, 8f); // Gây sát thương mỗi lần chạm
-                                                     // Giả sử bạn có một hàm xử lý máu của Player1
+                float damage = Random.Range(4f, 8f);
                 collision.gameObject.SendMessage("TakeDamage", damage, SendMessageOptions.DontRequireReceiver);
-
-                attackTimer = attackCooldown; // Reset thời gian hồi
+                attackTimer = attackCooldown;
             }
         }
     }
-
-
 
     void OnCollisionExit2D(Collision2D collision)
     {
@@ -221,22 +221,4 @@ public class NGDA : MonoBehaviour
             nie.SetBool("danh", false);
         }
     }
-    void SpawnDrops()
-    {
-        Vector3 basePosition = enermy.position;
-
-        // Spawn coin slightly to the left
-        if (coinPrefab != null)
-            Instantiate(coinPrefab, basePosition + new Vector3(-0.3f, 0, 0), Quaternion.identity);
-
-        // Spawn XP slightly to the center
-        if (xpPrefab != null)
-            Instantiate(xpPrefab, basePosition + new Vector3(0f, 0, 0), Quaternion.identity);
-
-        // Spawn health item slightly to the right
-        if (healthItemPrefab != null)
-            Instantiate(healthItemPrefab, basePosition + new Vector3(0.3f, 0, 0), Quaternion.identity);
-    }
-
-
 }
