@@ -5,15 +5,26 @@ using UnityEngine;
 public class Boss2Controller : MonoBehaviour
 {
     [Header("Di chuy?n & T?n công")]
-    public float moveSpeed = 3f;
+    public float moveSpeed = 5f;
+    public float chaseSpeedMultiplier = 1.5f;
+    public float idlePatrolSpeed = 1f;      // ? t?c ð? ði tu?n khi chýa phát hi?n player
     public float attackRange = 1.5f;
-    public float attackCooldown = 1f;
-    public int attackDamage = 20;
+    public float attackCooldown = 0.8f;
+    public int attackDamage = 25;
     private float lastAttackTime;
 
     [Header("Player & Animator")]
     public Transform player;
     public Animator animator;
+
+    [Header("Phát hi?n Player")]
+    public float detectRange = 6f;          // ? Boss phát hi?n player ? kho?ng cách g?n
+    private bool hasDetectedPlayer = false;
+
+    [Header("Teleport")]
+    public float teleportTriggerRange = 12f; // ? ch? teleport n?u player ch?y quá xa
+    public float teleportCooldown = 5f;
+    private float lastTeleportTime;
 
     [Header("Âm thanh")]
     public AudioSource audioSource;
@@ -22,30 +33,41 @@ public class Boss2Controller : MonoBehaviour
     public AudioClip skillClip;
     public AudioClip summonClip;
     public AudioClip fireClip;
+    public AudioClip teleportClip;
 
     [Header("Tri?u h?i")]
     public GameObject skeletonPrefab;
     public int summonCount = 3;
-    public float summonCooldown = 10f;
+    public float summonCooldown = 8f;
     private float lastSummonTime;
     private bool isLowHealthSummon = false;
 
-    [Header("HP")]
-    public int maxHealth = 200;
+    [Header("HP & Revive")]
+    public int maxHealth = 300;
     private int currentHealth;
     private bool isDead = false;
+    public int extraLives = 1;       // s? m?ng h?i sinh
+    public float reviveDelay = 1.5f; // th?i gian delay trý?c khi h?i sinh
+    private bool isReviving = false;
 
     [Header("Fire Breath")]
     public ParticleSystem fireBreath;
     public Transform firePoint;
-    public float fireCooldown = 10f;
+    public Transform mouthTransform; // ? Mi?ng boss
+    public float fireCooldown = 7f;
     public float fireDuration = 2f;
+    public float fireDamagePerSecond = 15f;
+    public float fireRadius = 1.5f;
     private float lastFireTime;
     private bool isFiring;
 
     private Rigidbody2D rb;
     private Vector3 originalScale;
     private bool isAttacking = false;
+
+    // Idle patrol
+    private float patrolTimer = 0f;
+    private int patrolDirection = 1;
 
     void Start()
     {
@@ -55,6 +77,10 @@ public class Boss2Controller : MonoBehaviour
 
         if (fireBreath != null)
             fireBreath.Stop();
+
+        lastFireTime = -fireCooldown;
+        lastSummonTime = -summonCooldown;
+        lastTeleportTime = -teleportCooldown;
     }
 
     void Update()
@@ -63,20 +89,41 @@ public class Boss2Controller : MonoBehaviour
 
         float distance = Vector2.Distance(transform.position, player.position);
 
-        // Skill tri?u h?i theo th?i gian
+        // Phát hi?n Player
+        if (!hasDetectedPlayer && distance <= detectRange)
+        {
+            hasDetectedPlayer = true;
+            Debug.Log("Boss2 phát hi?n player!");
+        }
+
+        // N?u chýa phát hi?n, ði tu?n nh? t?i ch?
+        if (!hasDetectedPlayer)
+        {
+            IdlePatrol();
+            return;
+        }
+
+        // Ch? teleport n?u player ch?y xa h?n
+        if (distance >= teleportTriggerRange && Time.time - lastTeleportTime >= teleportCooldown)
+        {
+            TeleportToPlayer();
+        }
+
+        // Tri?u h?i theo cooldown
         if (Time.time - lastSummonTime >= summonCooldown)
         {
             StartCoroutine(UseSkill());
             lastSummonTime = Time.time;
         }
 
-        // Tri?u h?i khi máu th?p <30%
+        // Tri?u h?i khi máu th?p
         if (!isLowHealthSummon && currentHealth <= maxHealth * 0.3f)
         {
             StartCoroutine(SummonSkeletons(5));
             isLowHealthSummon = true;
         }
 
+        // Di chuy?n ho?c t?n công
         if (distance <= attackRange)
         {
             rb.velocity = Vector2.zero;
@@ -88,45 +135,85 @@ public class Boss2Controller : MonoBehaviour
             }
 
             animator.SetBool("isMoving", false);
-
-            // Fire breath cooldown
-            if (!isFiring && Time.time - lastFireTime >= fireCooldown)
-            {
-                StartCoroutine(FireOnce());
-            }
         }
         else
         {
-            MoveToPlayer();
+            MoveToPlayer(distance);
+        }
+
+        // Phun l?a theo cooldown
+        if (!isFiring && Time.time - lastFireTime >= fireCooldown)
+        {
+            StartCoroutine(FireOnce());
         }
     }
 
-    void MoveToPlayer()
+    void IdlePatrol()
+    {
+        patrolTimer += Time.deltaTime;
+
+        // Ð?i hý?ng m?i 2 giây
+        if (patrolTimer >= 2f)
+        {
+            patrolTimer = 0f;
+            patrolDirection *= -1;
+            FlipBoss(new Vector2(patrolDirection, 0));
+        }
+
+        // Ði qua l?i r?t nh? ð? luôn hi?n trong camera
+        rb.velocity = new Vector2(patrolDirection * idlePatrolSpeed, 0f);
+        animator.SetBool("isMoving", true);
+    }
+
+    void MoveToPlayer(float distance)
     {
         if (isAttacking) return;
 
         Vector2 direction = (player.position - transform.position).normalized;
-        rb.velocity = direction * moveSpeed;
+        float speed = moveSpeed;
+        if (distance < 4f) speed *= chaseSpeedMultiplier;
+
+        rb.velocity = direction * speed;
         animator.SetBool("isMoving", true);
 
-        // Flip Boss & FirePoint
+        FlipBoss(direction);
+
+        // Ch?y âm thanh bý?c chân
+        if (walkClip != null && audioSource != null && !audioSource.isPlaying)
+            audioSource.PlayOneShot(walkClip);
+    }
+
+    void FlipBoss(Vector2 direction)
+    {
         if (direction.x > 0)
-        {
             transform.localScale = new Vector3(Mathf.Abs(originalScale.x), originalScale.y, originalScale.z);
-            if (firePoint != null)
-                firePoint.localScale = new Vector3(1, 1, 1);
-        }
         else
-        {
             transform.localScale = new Vector3(-Mathf.Abs(originalScale.x), originalScale.y, originalScale.z);
-            if (firePoint != null)
-                firePoint.localScale = new Vector3(-1, 1, 1);
+    }
+
+    void TeleportToPlayer()
+    {
+        lastTeleportTime = Time.time;
+        transform.position = player.position + new Vector3(Random.Range(-1.5f, 1.5f), Random.Range(-1.5f, 1.5f), 0);
+
+        // Flip boss theo hý?ng player
+        Vector2 dir = (player.position - transform.position).normalized;
+        FlipBoss(dir);
+
+        // Reset v? trí & hý?ng firePoint ngay khi teleport
+        if (mouthTransform != null && firePoint != null)
+            firePoint.position = mouthTransform.position;
+
+        if (firePoint != null)
+        {
+            float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+            firePoint.rotation = Quaternion.Euler(0, 0, angle);
         }
 
-        if (walkClip != null && audioSource != null && !audioSource.isPlaying)
-        {
-            audioSource.PlayOneShot(walkClip);
-        }
+        if (teleportClip != null && audioSource != null)
+            audioSource.PlayOneShot(teleportClip);
+
+        Debug.Log("Boss2 teleport ð?n Player!");
     }
 
     void Attack()
@@ -148,10 +235,7 @@ public class Boss2Controller : MonoBehaviour
         }
     }
 
-    void EndAttack()
-    {
-        isAttacking = false;
-    }
+    void EndAttack() => isAttacking = false;
 
     IEnumerator FireOnce()
     {
@@ -164,7 +248,46 @@ public class Boss2Controller : MonoBehaviour
             if (fireClip != null) audioSource.PlayOneShot(fireClip);
         }
 
-        yield return new WaitForSeconds(fireDuration);
+        float elapsed = 0f;
+        float damageInterval = 0.2f;
+        float damageTimer = 0f;
+
+        while (elapsed < fireDuration)
+        {
+            elapsed += Time.deltaTime;
+            damageTimer += Time.deltaTime;
+
+            // Luôn c?p nh?t v? trí firePoint theo mi?ng boss
+            if (mouthTransform != null && firePoint != null)
+                firePoint.position = mouthTransform.position;
+
+            // Xoay firePoint hý?ng player
+            if (firePoint != null && player != null)
+            {
+                Vector2 dir = (player.position - firePoint.position).normalized;
+                float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+                firePoint.rotation = Quaternion.Euler(0, 0, angle);
+            }
+
+            // Gây damage ð?nh k?
+            if (damageTimer >= damageInterval)
+            {
+                damageTimer = 0f;
+
+                Collider2D[] hits = Physics2D.OverlapCircleAll(firePoint.position, fireRadius);
+                foreach (var hit in hits)
+                {
+                    if (hit.CompareTag("Player1"))
+                    {
+                        Player1 p = hit.GetComponent<Player1>();
+                        if (p != null)
+                            p.TakeDamage(Mathf.RoundToInt(fireDamagePerSecond * damageInterval));
+                    }
+                }
+            }
+
+            yield return null;
+        }
 
         if (fireBreath != null)
             fireBreath.Stop();
@@ -203,18 +326,44 @@ public class Boss2Controller : MonoBehaviour
 
     public void TakeDamage(int amount)
     {
-        if (isDead) return;
+        if (isDead || isReviving) return;
 
         currentHealth -= amount;
         if (currentHealth <= 0)
         {
             currentHealth = 0;
-            Die();
+            if (extraLives > 0)
+            {
+                StartCoroutine(Revive());
+            }
+            else
+            {
+                Die();
+            }
         }
         else
         {
             animator.SetTrigger("Hurt");
         }
+    }
+
+    IEnumerator Revive()
+    {
+        isReviving = true;
+        isDead = true;
+        rb.velocity = Vector2.zero;
+
+        animator.SetTrigger("Die"); // animation ch?t gi?
+        yield return new WaitForSeconds(reviveDelay);
+
+        // H?i sinh
+        extraLives--;
+        currentHealth = maxHealth;
+        isDead = false;
+        isReviving = false;
+
+        animator.SetTrigger("Revive"); // animation h?i sinh
+        Debug.Log("Boss2 h?i sinh! M?ng c?n l?i: " + extraLives);
     }
 
     void Die()
@@ -229,5 +378,15 @@ public class Boss2Controller : MonoBehaviour
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, attackRange);
+
+        Gizmos.color = Color.cyan;
+        Gizmos.DrawWireSphere(transform.position, teleportTriggerRange);
+
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(transform.position, detectRange);
+
+        Gizmos.color = Color.magenta;
+        if (firePoint != null)
+            Gizmos.DrawWireSphere(firePoint.position, fireRadius);
     }
 }
