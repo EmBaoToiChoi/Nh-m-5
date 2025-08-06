@@ -5719,10 +5719,9 @@ GameObject:
   - component: {fileID: 656884465}
   - component: {fileID: 656884468}
   - component: {fileID: 656884467}
-  - component: {fileID: 656884466}
   m_Layer: 0
   m_Name: Box3 (1)
-  m_TagString: Gam1,3
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5742,22 +5741,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 310355150}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &656884466
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 656884464}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 517b5fa82b338714590a9a7138eaee8d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sceneToLoad: Boss1
-  pressEText: {fileID: 0}
-  warningText: {fileID: 0}
-  keyImageUI: {fileID: 1289240068}
 --- !u!50 &656884467
 Rigidbody2D:
   serializedVersion: 4
@@ -19059,10 +19042,9 @@ GameObject:
   - component: {fileID: 1311790281}
   - component: {fileID: 1311790284}
   - component: {fileID: 1311790283}
-  - component: {fileID: 1311790282}
   m_Layer: 0
   m_Name: Box2 (1)
-  m_TagString: Gam1,2
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -19082,22 +19064,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 310355150}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1311790282
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1311790280}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4dfab11c8e040804aa40af0c11120dfa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sceneToLoad: Gam1,2
-  pressEText: {fileID: 0}
-  warningText: {fileID: 0}
-  keyImageUI: {fileID: 1289240068}
 --- !u!50 &1311790283
 Rigidbody2D:
   serializedVersion: 4

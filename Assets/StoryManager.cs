@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class StoryManager : MonoBehaviour
 {
+    private const string StoryKey = "StoryHasBeenShown";
     public GameObject panel;                  // Panel chứa cốt truyện
     public TMP_Text storyText;                // Text để hiển thị cốt truyện
     public Button btnNext;                    // Nút tiếp tục
@@ -28,12 +29,19 @@ public class StoryManager : MonoBehaviour
 
     void Start()
     {
+        if (PlayerPrefs.GetInt(StoryKey, 0) == 1)
+        {
+            panel.SetActive(false); // Nếu đã xem rồi thì tắt panel
+            return;
+        }
+
         // Gán sự kiện
         btnNext.onClick.AddListener(NextLine);
         btnSkip.onClick.AddListener(SkipStory);
 
         ShowStory();
     }
+
 
     public void ShowStory()
     {
@@ -66,7 +74,6 @@ public class StoryManager : MonoBehaviour
     {
         if (isTyping)
         {
-            // Bỏ qua hiệu ứng gõ để hiển thị nhanh toàn bộ dòng
             StopCoroutine(typingCoroutine);
             storyText.text = storyLines[currentLine];
             isTyping = false;
@@ -80,12 +87,17 @@ public class StoryManager : MonoBehaviour
         }
         else
         {
+            PlayerPrefs.SetInt(StoryKey, 1); // Ghi lại trạng thái đã xem cốt truyện
+            PlayerPrefs.Save();
             panel.SetActive(false); // Hết cốt truyện thì tắt panel
         }
     }
 
     public void SkipStory()
     {
+        PlayerPrefs.SetInt(StoryKey, 1);
+        PlayerPrefs.Save();
         panel.SetActive(false);
     }
+
 }
