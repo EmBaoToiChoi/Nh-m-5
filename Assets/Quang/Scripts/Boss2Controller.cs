@@ -24,7 +24,7 @@ public class Boss2Controller : MonoBehaviour
     private bool hasDetectedPlayer = false;
 
     [Header("Teleport")]
-    public float teleportCooldown = 5f;  // cooldown dịch chuyển
+    public float teleportCooldown = 5f;
     private float lastTeleportTime;
 
     [Header("Âm thanh")]
@@ -89,7 +89,7 @@ public class Boss2Controller : MonoBehaviour
         if (isDead) return;
 
         Transform target = GetNearestPlayer();
-        if (target == null) return;
+        if (target == null) { IdlePatrol(); return; }
 
         float distance = Vector2.Distance(transform.position, target.position);
 
@@ -131,7 +131,7 @@ public class Boss2Controller : MonoBehaviour
 
             if (Time.time - lastAttackTime >= attackCooldown)
             {
-                Attack();
+                Attack(target);
                 lastAttackTime = Time.time;
             }
             animator.SetBool("isMoving", false);
@@ -228,7 +228,7 @@ public class Boss2Controller : MonoBehaviour
         Debug.Log("Boss2 teleport đến Player!");
     }
 
-    void Attack()
+    void Attack(Transform target)
     {
         animator.SetTrigger("Attack");
         isAttacking = true;
