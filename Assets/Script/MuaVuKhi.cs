@@ -80,7 +80,7 @@ public class MuaVuKhi : MonoBehaviour
                 vang -= 50;
                 PlayerPrefs.SetInt("Player1", vang);
                 PlayerPrefs.Save();
-
+                   CapNhatUI();
                 // Cập nhật UI nếu có Gun trong scene
                 Gun gun = FindObjectOfType<Gun>();
                 if (gun != null)
