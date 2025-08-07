@@ -50,6 +50,9 @@ public class Player1 : MonoBehaviour
     public int currentEnergy = 100;  // hoặc giá trị khởi đầu bạn muốn
     public int currentXP = 0;
     public int currentLevel = 0;
+    public int soBinhMau = 0;
+    public const int maxBinhMau = 5;
+
     
 
 
@@ -58,6 +61,7 @@ public class Player1 : MonoBehaviour
     public void SavePlayerData()
     {
         GameData2.Instance.SaveAmmo(); // Gọi hệ thống lưu đạn
+        
 
         GameData data = new GameData();
         data.playerX = transform.position.x;
@@ -68,6 +72,7 @@ public class Player1 : MonoBehaviour
 
         data.currentXP = currentXP;
         data.currentLevel = currentLevel;
+        data.soBinhMau = soBinhMau;
 
         data.currentAmmo = GameData2.Instance.currentAmmo;
         data.reserveAmmo = GameData2.Instance.reserveAmmo;
@@ -110,6 +115,7 @@ public class Player1 : MonoBehaviour
 
         mauhientai = data.currentHealth;
         nangLuongHienTai = data.currentEnergy;
+        soBinhMau = data.soBinhMau;
 
         currentXP = data.currentXP;
         currentLevel = data.currentLevel;
@@ -123,7 +129,7 @@ public class Player1 : MonoBehaviour
         GameData2.Instance.reserveAmmo = data.reserveAmmo;
         GameData2.Instance.maxAmmo = data.maxAmmo;
 
-        thanhmau.Capnhatthanhmau(mauhientai, mautoida);
+        thanhmau.Capnhatthanhmau();
         thanhNangLuong.CapNhatThanhNangLuong(nangLuongHienTai, nangLuongToiDa);
 
         GameData2.Instance.SaveAmmo(); // đảm bảo đồng bộ lại sau khi load
@@ -142,7 +148,7 @@ public class Player1 : MonoBehaviour
         currentHealth -= amount;
         mauhientai += amount;
         mauhientai = Mathf.Clamp(mauhientai, 0, mautoida);
-        thanhmau.Capnhatthanhmau(mauhientai, mautoida);
+        thanhmau.Capnhatthanhmau();
         Debug.Log("❤️ Player hồi máu: +" + amount);
     }
     
@@ -205,7 +211,7 @@ public class Player1 : MonoBehaviour
         thanhmau = FindObjectOfType<ThanhMauPl_1>();
         if (thanhmau != null)
         {
-            thanhmau.Capnhatthanhmau(mauhientai, mautoida);
+        thanhmau.Capnhatthanhmau();
         }
     }
 
@@ -245,18 +251,19 @@ public class Player1 : MonoBehaviour
         if (collision.gameObject.CompareTag("enermy") || collision.gameObject.CompareTag("Trap"))
         {
             audioSource.PlayOneShot(enemyHitSound);
-            mauhientai -= 10;
 
+            // Trừ máu thông qua class quản lý máu
+            ThanhMauPl_1.Instance.TruMau(10f); // ✅ Dùng hàm có sẵn trong ThanhMauPl_1
 
-            thanhmau.Capnhatthanhmau(mauhientai, mautoida);
-
-            if (mauhientai <= 0)
+            if (ThanhMauPl_1.Instance.mauhientai <= 0)
             {
                 PlayerPrefs.SetInt("PreviousScene", SceneManager.GetActiveScene().buildIndex);
                 loadsencethua();
                 Destroy(this.gameObject);
             }
         }
+
+
         if (collision.gameObject.CompareTag("BoxBack"))
         {
             loadsence4();
@@ -324,7 +331,7 @@ public class Player1 : MonoBehaviour
         }
 
 
-        thanhmau.Capnhatthanhmau(mauhientai, mautoida);
+        thanhmau.Capnhatthanhmau();
 
 
        
@@ -349,7 +356,8 @@ public class Player1 : MonoBehaviour
         {
             mauhientai = mauLuuTru;
         }
-        thanhmau.Capnhatthanhmau(mauhientai, mautoida);
+        thanhmau.Capnhatthanhmau();
+
     
     
     }
@@ -367,7 +375,7 @@ public class Player1 : MonoBehaviour
         {
             SavePlayerData();  // gọi hàm lưu
             Debug.Log("Đã Lưu");
-    }
+        }
         // PHÍM 1 - Đánh cận chiến
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
@@ -472,8 +480,6 @@ public class Player1 : MonoBehaviour
             HandleShooting();
         }
     }
-
-
     void HandleMelee()
     {
         float currentSpeed = move;
@@ -824,7 +830,7 @@ public class Player1 : MonoBehaviour
     public void TakeDamage(int damage)
     {
         mauhientai -= damage;
-        thanhmau.Capnhatthanhmau(mauhientai, mautoida);
+        thanhmau.Capnhatthanhmau();
 
         if (mauhientai <= 0)
         {
