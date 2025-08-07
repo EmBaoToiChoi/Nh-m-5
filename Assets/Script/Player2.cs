@@ -120,7 +120,7 @@ public class Player2 : MonoBehaviour
         GameData2.Instance.reserveAmmo = data.reserveAmmo;
         GameData2.Instance.maxAmmo = data.maxAmmo;
 
-        thanhmau.Capnhatthanhmau(mauhientai, mautoida);
+        thanhmau.Capnhatthanhmau();
         thanhNangLuong.CapNhatThanhNangLuong(nangLuongHienTai, nangLuongToiDa);
 
         GameData2.Instance.SaveAmmo(); // đảm bảo đồng bộ lại sau khi load
@@ -137,7 +137,7 @@ public class Player2 : MonoBehaviour
         currentHealth -= amount;
         mauhientai += amount;
         mauhientai = Mathf.Clamp(mauhientai, 0, mautoida);
-        thanhmau.Capnhatthanhmau(mauhientai, mautoida);
+        thanhmau.Capnhatthanhmau();
         Debug.Log("❤️ Player hồi máu: +" + amount);
     }
     
@@ -200,7 +200,7 @@ public class Player2 : MonoBehaviour
         thanhmau = FindObjectOfType<ThanhMauPl_1>();
         if (thanhmau != null)
         {
-            thanhmau.Capnhatthanhmau(mauhientai, mautoida);
+        thanhmau.Capnhatthanhmau();
         }
     }
 
@@ -240,18 +240,19 @@ public class Player2 : MonoBehaviour
         if (collision.gameObject.CompareTag("enermy") || collision.gameObject.CompareTag("Trap"))
         {
             audioSource.PlayOneShot(enemyHitSound);
-            mauhientai -= 10;
 
+            // Trừ máu thông qua class quản lý máu
+            ThanhMauPl_1.Instance.TruMau(10f); // ✅ Dùng hàm có sẵn trong ThanhMauPl_1
 
-            thanhmau.Capnhatthanhmau(mauhientai, mautoida);
-
-            if (mauhientai <= 0)
+            if (ThanhMauPl_1.Instance.mauhientai <= 0)
             {
                 PlayerPrefs.SetInt("PreviousScene", SceneManager.GetActiveScene().buildIndex);
                 loadsencethua();
                 Destroy(this.gameObject);
             }
         }
+
+
         if (collision.gameObject.CompareTag("BoxBack"))
         {
             loadsence4();
@@ -319,7 +320,7 @@ public class Player2 : MonoBehaviour
         }
 
 
-        thanhmau.Capnhatthanhmau(mauhientai, mautoida);
+        thanhmau.Capnhatthanhmau();
 
 
        
@@ -344,7 +345,7 @@ public class Player2 : MonoBehaviour
         {
             mauhientai = mauLuuTru;
         }
-        thanhmau.Capnhatthanhmau(mauhientai, mautoida);
+        thanhmau.Capnhatthanhmau();
     
     
     }
@@ -819,7 +820,7 @@ public class Player2 : MonoBehaviour
     public void TakeDamage(int damage)
     {
         mauhientai -= damage;
-        thanhmau.Capnhatthanhmau(mauhientai, mautoida);
+        thanhmau.Capnhatthanhmau();
 
         if (mauhientai <= 0)
         {
