@@ -136,23 +136,30 @@ public class ThanhMauPl_1 : MonoBehaviour
     }
 
     public void CapNhatUIBinhMau()
-{
-    soLuongBinhMau = PlayerPrefs.GetInt("SoBinhMau", 0);
-
-    bool coBinhMau = soLuongBinhMau > 0;
-
-    if (iconBinhMau != null)
-        iconBinhMau.gameObject.SetActive(coBinhMau);
-
-    if (soLuongBinhText != null)
     {
-        soLuongBinhText.gameObject.SetActive(coBinhMau);
-        soLuongBinhText.text = soLuongBinhMau.ToString();
+        soLuongBinhMau = PlayerPrefs.GetInt("SoBinhMau", 0);
+
+        bool coBinhMau = soLuongBinhMau > 0;
+
+        if (iconBinhMau != null)
+            iconBinhMau.gameObject.SetActive(coBinhMau);
+
+        if (soLuongBinhText != null)
+        {
+            soLuongBinhText.gameObject.SetActive(coBinhMau);
+            soLuongBinhText.text = soLuongBinhMau.ToString();
+        }
+
+        if (imageBinhMauUnlocked != null)
+            imageBinhMauUnlocked.SetActive(coBinhMau);
+    }
+    // Thêm vào trong ThanhMauPl_1
+    public void Heal(float amount)
+    {
+        HoiMau(amount); // Gọi lại hàm HoiMau bạn đã có
     }
 
-    if (imageBinhMauUnlocked != null)
-        imageBinhMauUnlocked.SetActive(coBinhMau);
-}
+
 
 
 
