@@ -10,6 +10,12 @@ public class Gun : MonoBehaviour
     [SerializeField] private GameObject bulletPrefab;
     [SerializeField] private AudioClip shootSound;
     [SerializeField] private AudioSource source;
+    [Header("Player Reference")]
+    private Transform playerTransform;
+
+    public Vector3 followOffset = Vector3.zero;
+
+
     private float rorateOffset = 180f;
 
     public float shootDelay = 0.15f;
@@ -33,6 +39,17 @@ public class Gun : MonoBehaviour
 
     void Start()
     {
+        // Tìm player đang active
+        GameObject[] players = GameObject.FindGameObjectsWithTag("Player1");
+        foreach (GameObject player in players)
+        {
+            if (player.activeInHierarchy)
+            {
+                playerTransform = player.transform;
+                break;
+            }
+        }
+
         if (GameData2.Instance != null)
         {
             currentAmmo = GameData2.Instance.currentAmmo;
@@ -40,6 +57,8 @@ public class Gun : MonoBehaviour
             UpdateAmmoUI();
         }
     }
+
+
 
     void OnDisable()
     {
@@ -53,6 +72,7 @@ public class Gun : MonoBehaviour
 
     void Update()
     {
+        FollowPlayer();
         RotateGun();
         Shoot();
         HandleReload();
@@ -155,4 +175,13 @@ public class Gun : MonoBehaviour
 
         UpdateAmmoUI();
     }
+    void FollowPlayer()
+    {
+        if (playerTransform != null)
+        {
+            transform.position = playerTransform.position + followOffset;
+        }
+    }
+
+
 }
