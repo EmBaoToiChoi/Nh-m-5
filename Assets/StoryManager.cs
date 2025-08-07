@@ -1,49 +1,50 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 
 public class StoryManager : MonoBehaviour
 {
-    private const string StoryKey = "StoryHasBeenShown";
-    public GameObject panel;                  // Panel chứa cốt truyện
-    public TMP_Text storyText;                // Text để hiển thị cốt truyện
-    public Button btnNext;                    // Nút tiếp tục
-    public Button btnSkip;                    // Nút bỏ qua
+    [Header("UI")]
+    public GameObject panel;
+    public TMP_Text storyText;
+    public Button btnNext;
+    public Button btnSkip;
+    public float typingSpeed = 0.05f;
 
-    public float typingSpeed = 0.05f;         // Tốc độ gõ chữ
-
-    private string[] storyLines = new string[] {
-        "Trong bóng tối sâu thẳm của những hầm ngục cổ xưa, nơi từng bước chân đều vang vọng tiếng gầm gừ của những quái vật khát máu, một huyền thoại mới đang được viết nên.",
-        "Bạn là Thợ Săn Hầm Ngục: kẻ mang trong mình lòng dũng cảm, sự khéo léo và khát vọng tìm kiếm những báu vật bị lãng quên. Chỉ có bạn mới có thể khám phá những bí mật ẩn giấu, đối mặt với hiểm nguy rình rập và chinh phục những thử thách khắc nghiệt nhất.",
-        "Thế giới đã bị bóng tối nuốt chửng từ khi Thánh vật cổ đại bị phong ấn và quên lãng. Những lời đồn về sức mạnh có thể thay đổi cả số phận nhân loại vẫn âm ỉ trong truyền thuyết. Nhưng nay, cánh cửa địa ngục đã mở, quái vật trỗi dậy, sự sống rơi vào hỗn loạn.",
-        "Bạn không chỉ chiến đấu vì vàng bạc hay danh vọng. Trong sâu thẳm, một tiếng gọi bí ẩn đang dẫn dắt bạn, liệu đó là số phận, hay một sức mạnh nào đó đang thao túng? Không ai biết… chỉ có máu, thép, và sự kiên cường mới mở lối trong mê cung chết chóc này.",
-        "Hãy sẵn sàng… cuộc săn bắt đầu từ đây.Liệu bạn sẽ là người viết nên kết thúc huy hoàng hay chỉ là một cái xác vô danh trong ngục tối?"
-    };
+    [Header("Story Settings")]
+    [Range(1, 8)] public int storyIndex = 1; // Từ 1 đến 8
+    [TextArea(3, 10)] public string[] storyLines;
 
     private int currentLine = 0;
     private bool isTyping = false;
-
     private Coroutine typingCoroutine;
+
+    private string StoryKey => $"Story{storyIndex}HasBeenShown";
 
     void Start()
     {
+        int index = storyIndex - 1;
+
+        if (StoryState.GetFlag(index))
+        {
+            PlayerPrefs.DeleteKey(StoryKey);
+            StoryState.ClearFlag(index);
+        }
+
         if (PlayerPrefs.GetInt(StoryKey, 0) == 1)
         {
-            panel.SetActive(false); // Nếu đã xem rồi thì tắt panel
+            panel.SetActive(false);
             return;
         }
 
-        // Gán sự kiện
         btnNext.onClick.AddListener(NextLine);
         btnSkip.onClick.AddListener(SkipStory);
 
         ShowStory();
     }
 
-
-    public void ShowStory()
+    void ShowStory()
     {
         panel.SetActive(true);
         currentLine = 0;
@@ -70,7 +71,7 @@ public class StoryManager : MonoBehaviour
         isTyping = false;
     }
 
-    public void NextLine()
+    void NextLine()
     {
         if (isTyping)
         {
@@ -87,17 +88,16 @@ public class StoryManager : MonoBehaviour
         }
         else
         {
-            PlayerPrefs.SetInt(StoryKey, 1); // Ghi lại trạng thái đã xem cốt truyện
+            PlayerPrefs.SetInt(StoryKey, 1);
             PlayerPrefs.Save();
-            panel.SetActive(false); // Hết cốt truyện thì tắt panel
+            panel.SetActive(false);
         }
     }
 
-    public void SkipStory()
+    void SkipStory()
     {
         PlayerPrefs.SetInt(StoryKey, 1);
         PlayerPrefs.Save();
         panel.SetActive(false);
     }
-
 }
