@@ -2,7 +2,7 @@ using System.Collections;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
-public class Boss3Controller : MonoBehaviour
+public class Boss4Controller : MonoBehaviour
 {
     [Header("Di chuy?n & T?n công")]
     public float moveSpeed = 5f;
@@ -66,13 +66,13 @@ public class Boss3Controller : MonoBehaviour
     private Vector3 originalScale;
     private bool isAttacking = false;
 
+    // Idle patrol
     private float patrolTimer = 0f;
     private int patrolDirection = 1;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
         originalScale = transform.localScale;
         currentHealth = maxHealth;
 
@@ -107,7 +107,9 @@ public class Boss3Controller : MonoBehaviour
         }
 
         if (Time.time - lastTeleportTime >= teleportCooldown)
+        {
             TeleportToPlayer(target);
+        }
 
         if (Time.time - lastSummonTime >= summonCooldown)
         {
@@ -148,8 +150,8 @@ public class Boss3Controller : MonoBehaviour
     {
         Transform nearest = null;
         float minDist = float.MaxValue;
-        Transform[] players = { player1, player2, player3 };
 
+        Transform[] players = { player1, player2, player3 };
         foreach (Transform pl in players)
         {
             if (pl == null) continue;
@@ -165,8 +167,6 @@ public class Boss3Controller : MonoBehaviour
 
     void IdlePatrol()
     {
-        if (isDead) return;
-
         patrolTimer += Time.deltaTime;
         if (patrolTimer >= 2f)
         {
@@ -176,6 +176,8 @@ public class Boss3Controller : MonoBehaviour
 
         Vector2 patrolVelocity = new Vector2(patrolDirection * idlePatrolSpeed, 0f);
         rb.velocity = patrolVelocity;
+
+        // ? Luôn flip theo hý?ng di chuy?n
         FlipBoss(patrolVelocity);
 
         animator.SetBool("isMoving", true);
@@ -183,7 +185,7 @@ public class Boss3Controller : MonoBehaviour
 
     void MoveToPlayer(float distance, Transform target)
     {
-        if (isAttacking || isDead) return;
+        if (isAttacking) return;
 
         Vector2 direction = (target.position - transform.position).normalized;
         float speed = moveSpeed;
@@ -200,15 +202,14 @@ public class Boss3Controller : MonoBehaviour
     void FlipBoss(Vector2 direction)
     {
         if (direction.x > 0)
-            transform.localScale = new Vector3(-Mathf.Abs(originalScale.x), originalScale.y, originalScale.z);
+            transform.localScale = new Vector3(-Mathf.Abs(originalScale.x), originalScale.y, originalScale.z); // ?? l?t sang ph?i
         else if (direction.x < 0)
-            transform.localScale = new Vector3(Mathf.Abs(originalScale.x), originalScale.y, originalScale.z);
+            transform.localScale = new Vector3(Mathf.Abs(originalScale.x), originalScale.y, originalScale.z);  // ?? l?t sang trái
     }
+
 
     void TeleportToPlayer(Transform target)
     {
-        if (isDead) return;
-
         lastTeleportTime = Time.time;
         transform.position = target.position + new Vector3(Random.Range(-1.5f, 1.5f), Random.Range(-1.5f, 1.5f), 0);
 
@@ -226,12 +227,12 @@ public class Boss3Controller : MonoBehaviour
 
         if (teleportClip != null && audioSource != null)
             audioSource.PlayOneShot(teleportClip);
+
+        Debug.Log("Boss2 teleport ð?n Player!");
     }
 
     void Attack(Transform target)
     {
-        if (isDead || isReviving) return;
-
         animator.SetTrigger("Attack");
         isAttacking = true;
         Invoke(nameof(EndAttack), 0.5f);
@@ -253,8 +254,6 @@ public class Boss3Controller : MonoBehaviour
 
     IEnumerator FireOnce(Transform target)
     {
-        if (isDead) yield break;
-
         isFiring = true;
         lastFireTime = Time.time;
 
@@ -270,8 +269,6 @@ public class Boss3Controller : MonoBehaviour
 
         while (elapsed < fireDuration)
         {
-            if (isDead) break;
-
             elapsed += Time.deltaTime;
             damageTimer += Time.deltaTime;
 
@@ -311,8 +308,6 @@ public class Boss3Controller : MonoBehaviour
 
     IEnumerator UseSkill()
     {
-        if (isDead) yield break;
-
         if (skillClip != null) audioSource.PlayOneShot(skillClip);
 
         animator.SetTrigger("Skill");
@@ -322,7 +317,7 @@ public class Boss3Controller : MonoBehaviour
 
     IEnumerator SummonSkeletons(int count)
     {
-        if (skeletonPrefab == null || isDead) yield break;
+        if (skeletonPrefab == null) yield break;
 
         for (int i = 0; i < count; i++)
         {
@@ -343,7 +338,6 @@ public class Boss3Controller : MonoBehaviour
         if (isDead || isReviving) return;
 
         currentHealth -= amount;
-
         if (currentHealth <= 0)
         {
             currentHealth = 0;
@@ -377,35 +371,15 @@ public class Boss3Controller : MonoBehaviour
         isReviving = false;
 
         animator.SetTrigger("Revive");
+        Debug.Log("Boss2 h?i sinh! M?ng c?n l?i: " + extraLives);
     }
 
     void Die()
     {
-        if (isDead) return;
-
         isDead = true;
         rb.velocity = Vector2.zero;
-
-        animator.SetBool("isMoving", false);
-        animator.ResetTrigger("Attack");
-        animator.ResetTrigger("Skill");
         animator.SetTrigger("Die");
-
-        StartCoroutine(DelayedDestroyAfterAnimation("Demon die")); // Ð?m b?o tên này trùng trong Animator
-    }
-
-    IEnumerator DelayedDestroyAfterAnimation(string animStateName)
-    {
-        AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(0);
-        while (!stateInfo.IsName(animStateName))
-        {
-            yield return null;
-            stateInfo = animator.GetCurrentAnimatorStateInfo(0);
-        }
-
-        yield return new WaitForSeconds(stateInfo.length + 0.1f);
-
-        Destroy(gameObject);
+        Destroy(gameObject, 2f);
     }
 
     void OnDrawGizmosSelected()
