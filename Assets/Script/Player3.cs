@@ -118,7 +118,7 @@ public class Player3 : MonoBehaviour
         GameData2.Instance.reserveAmmo = data.reserveAmmo;
         GameData2.Instance.maxAmmo = data.maxAmmo;
 
-thanhmau.Capnhatthanhmau();
+        thanhmau.Capnhatthanhmau(mauhientai, mautoida);
         thanhNangLuong.CapNhatThanhNangLuong(nangLuongHienTai, nangLuongToiDa);
 
         GameData2.Instance.SaveAmmo(); // đảm bảo đồng bộ lại sau khi load
@@ -135,7 +135,7 @@ thanhmau.Capnhatthanhmau();
         currentHealth -= amount;
         mauhientai += amount;
         mauhientai = Mathf.Clamp(mauhientai, 0, mautoida);
-thanhmau.Capnhatthanhmau();
+        thanhmau.Capnhatthanhmau(mauhientai, mautoida);
         Debug.Log("❤️ Player hồi máu: +" + amount);
     }
     
@@ -198,7 +198,7 @@ thanhmau.Capnhatthanhmau();
         thanhmau = FindObjectOfType<ThanhMauPl_1>();
         if (thanhmau != null)
         {
-thanhmau.Capnhatthanhmau();
+            thanhmau.Capnhatthanhmau(mauhientai, mautoida);
         }
     }
 
@@ -238,19 +238,18 @@ thanhmau.Capnhatthanhmau();
         if (collision.gameObject.CompareTag("enermy") || collision.gameObject.CompareTag("Trap"))
         {
             audioSource.PlayOneShot(enemyHitSound);
+            mauhientai -= 10;
 
-            // Trừ máu thông qua class quản lý máu
-            ThanhMauPl_1.Instance.TruMau(10f); // ✅ Dùng hàm có sẵn trong ThanhMauPl_1
 
-            if (ThanhMauPl_1.Instance.mauhientai <= 0)
+            thanhmau.Capnhatthanhmau(mauhientai, mautoida);
+
+            if (mauhientai <= 0)
             {
                 PlayerPrefs.SetInt("PreviousScene", SceneManager.GetActiveScene().buildIndex);
                 loadsencethua();
                 Destroy(this.gameObject);
             }
         }
-
-
         if (collision.gameObject.CompareTag("BoxBack"))
         {
             loadsence4();
@@ -318,7 +317,7 @@ thanhmau.Capnhatthanhmau();
         }
 
 
-thanhmau.Capnhatthanhmau();
+        thanhmau.Capnhatthanhmau(mauhientai, mautoida);
 
 
        
@@ -343,7 +342,7 @@ thanhmau.Capnhatthanhmau();
         {
             mauhientai = mauLuuTru;
         }
-thanhmau.Capnhatthanhmau();
+        thanhmau.Capnhatthanhmau(mauhientai, mautoida);
     
     
     }
@@ -818,7 +817,7 @@ thanhmau.Capnhatthanhmau();
     public void TakeDamage(int damage)
     {
         mauhientai -= damage;
-thanhmau.Capnhatthanhmau();
+        thanhmau.Capnhatthanhmau(mauhientai, mautoida);
 
         if (mauhientai <= 0)
         {

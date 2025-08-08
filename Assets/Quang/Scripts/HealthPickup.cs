@@ -11,24 +11,16 @@ public class HealthPickup : MonoBehaviour
     {
         if (other.CompareTag("Player1"))
         {
-            if (ThanhMauPl_1.Instance != null)
-            {
-                ThanhMauPl_1.Instance.Heal(healAmount);
-                Debug.Log("✅ Player nhặt máu và hồi " + healAmount);
+            other.SendMessage("Heal", healAmount, SendMessageOptions.DontRequireReceiver);
 
-                if (messageManager != null)
-                {
-                    messageManager.ShowHealthMessageStackable(healAmount); // Cộng dồn máu
-                }
-            }
-            else
+            Debug.Log("✅ Player nhặt máu và hồi " + healAmount);
+
+            if (messageManager != null)
             {
-                Debug.LogWarning("Không tìm thấy ThanhMauPl_1.Instance");
+                messageManager.ShowHealthMessageStackable(healAmount); // Cộng dồn máu
             }
 
             Destroy(gameObject);
         }
     }
-
-
 }

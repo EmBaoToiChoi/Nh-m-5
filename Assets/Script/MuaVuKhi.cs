@@ -11,24 +11,12 @@ public class MuaVuKhi : MonoBehaviour
     public Button btnMuaGun;
     public Button btnMuaBow;
     public Button btnMuaDan;
-    public Button btnMuaMau;
-
-    public GameObject imageBinhMauUnlocked;
-    public Image binhMauImage;
-    public TMP_Text binhMauText;
-
-    private int soBinhMau = 0;
-    private const int maxBinhMau = 5;
 
     public static bool daMuaSung = false;
     public static bool daMuaCung = false;
 
-    public static object Instance { get; internal set; }
-
     private void Start()
     {
-        soBinhMau = PlayerPrefs.GetInt("SoBinhMau", 0);
-
         CapNhatUI();
     }
 
@@ -44,7 +32,7 @@ public class MuaVuKhi : MonoBehaviour
             daMuaSung = true;
             CapNhatUI();
         }
-        else { Debug.Log("Không đủ tiền mua súng."); }
+        else { Debug.Log("Khong Du Tien"); }
     }
 
     public void MuaBow()
@@ -58,10 +46,8 @@ public class MuaVuKhi : MonoBehaviour
 
             daMuaCung = true;
             CapNhatUI();
-        }
-        else { Debug.Log("Không đủ tiền mua cung."); }
+        }else { Debug.Log("Khong Du Tien"); }
     }
-
     public void MuaDan()
     {
         int vang = PlayerPrefs.GetInt("Player1", 0);
@@ -71,6 +57,7 @@ public class MuaVuKhi : MonoBehaviour
             {
                 int reserve = GameData2.Instance.reserveAmmo;
 
+                // Đã từng đạt giới hạn 100 -> chỉ được mua tiếp nếu reserve = 0
                 if (reserve >= 100)
                 {
                     if (reserve > 0)
@@ -78,6 +65,7 @@ public class MuaVuKhi : MonoBehaviour
                         Debug.Log("Đã đạt giới hạn 100 viên. Chỉ được mua tiếp khi hết sạch đạn dự trữ.");
                         return;
                     }
+                    // reserve == 0 thì cho phép mua tiếp
                 }
 
                 int danThem = 25;
@@ -88,11 +76,12 @@ public class MuaVuKhi : MonoBehaviour
 
                 GameData2.Instance.reserveAmmo += danThem;
 
+                // Trừ tiền
                 vang -= 50;
                 PlayerPrefs.SetInt("Player1", vang);
                 PlayerPrefs.Save();
-                CapNhatUI();
-
+                   CapNhatUI();
+                // Cập nhật UI nếu có Gun trong scene
                 Gun gun = FindObjectOfType<Gun>();
                 if (gun != null)
                 {
@@ -113,30 +102,10 @@ public class MuaVuKhi : MonoBehaviour
         }
     }
 
-    public void MuaMau()
-    {
-        int vang = PlayerPrefs.GetInt("Player1", 0);
-        int soLuongHienTai = PlayerPrefs.GetInt("SoBinhMau", 0);
 
-        if (vang >= 50 && soLuongHienTai < maxBinhMau)
-        {
-            vang -= 50;
-            soLuongHienTai++;
-            PlayerPrefs.SetInt("Player1", vang);
-            PlayerPrefs.SetInt("SoBinhMau", soLuongHienTai);
-            PlayerPrefs.Save();
 
-            // Cập nhật hiển thị từ thanh máu
-            ThanhMauPl_1.Instance?.CapNhatUIBinhMau();
-            CapNhatUI();
 
-            Debug.Log($"Đã mua bình máu. Tổng cộng: {soLuongHienTai}");
-        }
-        else
-        {
-            Debug.Log("Không đủ vàng hoặc đã tối đa 5 bình máu");
-        }
-    }
+
 
 
 
@@ -153,24 +122,7 @@ public class MuaVuKhi : MonoBehaviour
 
         imageBowUnlocked.SetActive(daMuaCung);
         btnMuaBow.interactable = !daMuaCung;
-
-        int soBinhMau = PlayerPrefs.GetInt("SoBinhMau", 0);
-        bool coBinhMau = soBinhMau > 0;
-
-        binhMauImage.gameObject.SetActive(coBinhMau);
-        binhMauText.gameObject.SetActive(coBinhMau);
-        binhMauText.text = soBinhMau.ToString();
-
-        if (imageBinhMauUnlocked != null)
-            imageBinhMauUnlocked.SetActive(coBinhMau);
-
-        if (btnMuaMau != null)
-            btnMuaMau.interactable = soBinhMau < maxBinhMau;
     }
-
-
-
-
 
     public static bool DaMuaSung()
     {
@@ -181,5 +133,4 @@ public class MuaVuKhi : MonoBehaviour
     {
         return daMuaCung;
     }
-
 }

@@ -19,5 +19,4 @@ public class GameData
     public bool hasBow;
 
     public string sceneName;
-    public int soBinhMau;
 }

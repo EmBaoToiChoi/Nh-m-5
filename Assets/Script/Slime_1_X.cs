@@ -56,7 +56,6 @@ private Transform targetPlayer;
         healthBarUI.transform.SetParent(null);
 
         mainCam = Camera.main.transform;
-    
     }
 
 
