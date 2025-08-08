@@ -8,6 +8,7 @@ public class MainMenu : MonoBehaviour
 
     public void NewGame()
     {
+
         // Xóa file save
         string path = Application.persistentDataPath + "/save.json";
         if (System.IO.File.Exists(path))
@@ -21,6 +22,7 @@ public class MainMenu : MonoBehaviour
         GameState.isContinue = false; // Rõ ràng là New Game
         Loading2.Next_Scene = sceneToLoad;
         SceneManager.LoadScene(sceneToLoad);
+         StoryState.ResetAll();
     }
 
     public void ContinueGame()
@@ -35,6 +37,7 @@ public class MainMenu : MonoBehaviour
             Loading2.Next_Scene = data.sceneName; // Load lại đúng scene
 
             SceneManager.LoadScene("Load2"); // Giả sử bạn có màn hình load trước
+          
         }
         else
         {
