@@ -287,21 +287,22 @@ public class Player1 : MonoBehaviour
     }
 
     void Start()
-    {
+    {                       
+
         if (GameState.isContinue)
-    {
-        LoadPlayerData(); // chỉ load nếu là Continue
-    }
-    else
-    {
-        // setup ban đầu cho New Game nếu cần
-        currentHealth = baseMaxHealth;
-        currentXP = 0;
-        currentEnergy = 100;
-        coin = 0;
-        hasGun = false;
-        hasBow = false;
-    }
+        {
+            LoadPlayerData(); // chỉ load nếu là Continue
+        }
+        else
+        {
+            // setup ban đầu cho New Game nếu cần
+            currentHealth = baseMaxHealth;
+            currentXP = 0;
+            currentEnergy = 100;
+            coin = 0;
+            hasGun = false;
+            hasBow = false;
+        }
     string path = Application.persistentDataPath + "/save.json";
     if (System.IO.File.Exists(path))
     {
