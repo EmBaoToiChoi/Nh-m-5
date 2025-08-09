@@ -1,4 +1,3 @@
-
 using System.Collections;
 using UnityEngine;
 
@@ -54,8 +53,8 @@ public class Boss3Controller : MonoBehaviour
 
     [Header("Fire Breath")]
     public ParticleSystem fireBreath;
-    public Transform firePoint;
-    public Transform mouthTransform;
+    public Transform firePoint;         // Child c?a mouthTransform
+    public Transform mouthTransform;    // G?n ðúng v? trí mi?ng
     public float fireCooldown = 7f;
     public float fireDuration = 2f;
     public float fireDamagePerSecond = 15f;
@@ -77,8 +76,15 @@ public class Boss3Controller : MonoBehaviour
         originalScale = transform.localScale;
         currentHealth = maxHealth;
 
+        if (animator == null)
+            animator = GetComponent<Animator>();
+
         if (fireBreath != null)
             fireBreath.Stop();
+
+        // Ð?m b?o firePoint bám vào mouthTransform
+        if (mouthTransform != null && firePoint != null)
+            firePoint.SetParent(mouthTransform, false);
 
         lastFireTime = -fireCooldown;
         lastSummonTime = -summonCooldown;
@@ -216,13 +222,11 @@ public class Boss3Controller : MonoBehaviour
         Vector2 dir = (target.position - transform.position).normalized;
         FlipBoss(dir);
 
-        if (mouthTransform != null && firePoint != null)
-            firePoint.position = mouthTransform.position;
-
-        if (firePoint != null)
+        // Xoay mi?ng hý?ng v? player
+        if (mouthTransform != null)
         {
             float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
-            firePoint.rotation = Quaternion.Euler(0, 0, angle);
+            mouthTransform.rotation = Quaternion.Euler(0, 0, angle);
         }
 
         if (teleportClip != null && audioSource != null)
@@ -259,6 +263,14 @@ public class Boss3Controller : MonoBehaviour
         isFiring = true;
         lastFireTime = Time.time;
 
+        // Xoay mi?ng hý?ng v? player trý?c khi b?n
+        if (mouthTransform != null && target != null)
+        {
+            Vector2 dir = (target.position - mouthTransform.position).normalized;
+            float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+            mouthTransform.rotation = Quaternion.Euler(0, 0, angle);
+        }
+
         if (fireBreath != null)
         {
             fireBreath.Play();
@@ -275,16 +287,6 @@ public class Boss3Controller : MonoBehaviour
 
             elapsed += Time.deltaTime;
             damageTimer += Time.deltaTime;
-
-            if (mouthTransform != null && firePoint != null)
-                firePoint.position = mouthTransform.position;
-
-            if (firePoint != null && target != null)
-            {
-                Vector2 dir = (target.position - firePoint.position).normalized;
-                float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
-                firePoint.rotation = Quaternion.Euler(0, 0, angle);
-            }
 
             if (damageTimer >= damageInterval)
             {
@@ -392,7 +394,7 @@ public class Boss3Controller : MonoBehaviour
         animator.ResetTrigger("Skill");
         animator.SetTrigger("Die");
 
-        StartCoroutine(DelayedDestroyAfterAnimation("Demon die")); // Ð?m b?o tên này trùng trong Animator
+        StartCoroutine(DelayedDestroyAfterAnimation("Demon die"));
     }
 
     IEnumerator DelayedDestroyAfterAnimation(string animStateName)
