@@ -3,27 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Doi : MonoBehaviour
+public class ORCC : MonoBehaviour
 {
-    private enum State { Chase, Attack, Flee, Return }
-    private State currentState = State.Chase;
-
-    [SerializeField] private float fleeDuration = 1.5f;
-    [SerializeField] private float returnDelay = 0.5f;
-    private float fleeTimer = 0f;
-    private Vector3 fleeDirection;
-
     [SerializeField] private float fleeHealthThreshold = 10f;
 
-    [Header("References")]
     public Transform enermy;
-
-    // Thêm 3 player ở đây
     public Transform player1;
     public Transform player2;
     public Transform player3;
 
-    private Transform player; // player được chọn
+    private Transform targetPlayer;
 
     [SerializeField] private GameObject coinPrefab;
     [SerializeField] private GameObject xpPrefab;
@@ -54,91 +43,75 @@ public class Doi : MonoBehaviour
     {
         currentHealth = maxHealth;
 
-        // Xác định player được chọn dựa vào SetActive(true)
-        if (player1 != null && player1.gameObject.activeSelf)
-            player = player1;
-        else if (player2 != null && player2.gameObject.activeSelf)
-            player = player2;
-        else if (player3 != null && player3.gameObject.activeSelf)
-            player = player3;
+        // Xác định player đang active
+        if (player1 != null && player1.gameObject.activeInHierarchy)
+            targetPlayer = player1;
+        else if (player2 != null && player2.gameObject.activeInHierarchy)
+            targetPlayer = player2;
+        else if (player3 != null && player3.gameObject.activeInHierarchy)
+            targetPlayer = player3;
         else
-            Debug.LogWarning("Không tìm thấy player nào đang hoạt động!");
+            Debug.LogWarning("Không có player nào đang active!");
 
-        // Spawn thanh máu
+        // Tạo thanh máu
         healthBarUI = Instantiate(healthBarPrefab, enermy.position + Vector3.up * 1.5f, Quaternion.identity);
         healthBarUI.transform.SetParent(null);
+
         mainCam = Camera.main.transform;
     }
 
     void Update()
     {
-        if (this == null || enermy == null || player == null) return;
+        if (this == null || enermy == null || targetPlayer == null) return;
 
-        switch (currentState)
+        float khoangCachPlayer = Vector2.Distance(enermy.position, targetPlayer.position);
+        isChasing = khoangCachPlayer < PVipHien;
+
+        if (currentHealth <= fleeHealthThreshold)
         {
-            case State.Chase:
-                float distance = Vector2.Distance(enermy.position, player.position);
-                isChasing = distance < PVipHien;
-
-                if (currentHealth <= fleeHealthThreshold)
-                {
-                    ChayKhoiPlayer(player.position);
-                }
-                else if (isChasing)
-                {
-                    // Chỉ di chuyển nếu chưa tới khoảng tấn công
-                    if (distance > attackRange)
-                    {
-                        dichuyentoiPlayer(player.position);
-                        nie.SetBool("danh", false);
-                    }
-                    else
-                    {
-                        nie.SetBool("danh", true); // Đứng tấn công
-                    }
-                }
-                break;
-
-            case State.Flee:
-                fleeTimer -= Time.deltaTime;
-                enermy.Translate(fleeDirection * speed * Time.deltaTime);
-                if (fleeTimer <= 0f)
-                {
-                    StartCoroutine(DelayReturn());
-                }
-                break;
-
-            case State.Return:
-                if (Vector2.Distance(enermy.position, player.position) > attackRange)
-                    dichuyentoiPlayer(player.position);
-                break;
+            ChayKhoiPlayer(targetPlayer.position);
+        }
+        else if (isChasing)
+        {
+            // Nếu còn xa hơn attackRange thì di chuyển
+            if (khoangCachPlayer > attackRange)
+            {
+                dichuyentoiPlayer(targetPlayer.position);
+                nie.SetBool("danh", false);
+            }
+            else
+            {
+                // Đã vào tầm tấn công thì đứng yên nhưng vẫn xoay mặt
+                XoayHuongVePlayer(targetPlayer.position);
+                nie.SetBool("danh", true);
+            }
         }
 
-        // Cập nhật UI thanh máu
+        // Cập nhật vị trí thanh máu
         if (healthBarUI != null && enermy != null)
         {
-            healthBarUI.transform.position = enermy.position + Vector3.up * 1.5f;
-            healthBarUI.transform.rotation = Quaternion.identity;
+            try
+            {
+                healthBarUI.transform.position = enermy.position + Vector3.up * 1.5f;
+                healthBarUI.transform.rotation = Quaternion.identity;
+            }
+            catch (MissingReferenceException)
+            {
+                Destroy(healthBarUI);
+            }
         }
     }
-
-    IEnumerator DelayReturn()
+    void XoayHuongVePlayer(Vector3 target)
     {
-        yield return new WaitForSeconds(returnDelay);
-        currentState = State.Return;
-    }
-
-    void StartFlee()
-    {
-        currentState = State.Flee;
-        fleeTimer = fleeDuration;
-        fleeDirection = (enermy.position - player.position).normalized;
-
-        if (fleeDirection.x > 0)
-            enermy.localScale = new Vector3(3, 3, 3);
-        else if (fleeDirection.x < 0)
+        Vector3 huong = (target - enermy.position).normalized;
+        if (huong.x > 0)
             enermy.localScale = new Vector3(-3, 3, 3);
+        else if (huong.x < 0)
+            enermy.localScale = new Vector3(3, 3, 3);
     }
+
+
+
 
     void dichuyentoiPlayer(Vector3 target)
     {
@@ -146,11 +119,21 @@ public class Doi : MonoBehaviour
         enermy.Translate(direction * speed * Time.deltaTime);
 
         if (direction.x > 0)
-            enermy.localScale = new Vector3(3, 3, 3);
-        else if (direction.x < 0)
             enermy.localScale = new Vector3(-3, 3, 3);
+        else if (direction.x < 0)
+            enermy.localScale = new Vector3(3, 3, 3);
     }
 
+    void ChayKhoiPlayer(Vector3 target)
+    {
+        Vector3 direction = (enermy.position - target).normalized;
+        enermy.Translate(direction * speed * Time.deltaTime);
+
+        if (direction.x > 0)
+            enermy.localScale = new Vector3(-3, 3, 3);
+        else if (direction.x < 0)
+            enermy.localScale = new Vector3(3, 3, 3);
+    }
 
     void TakeDamage(float damage)
     {
@@ -187,34 +170,19 @@ public class Doi : MonoBehaviour
     }
 
 
-    void ChayKhoiPlayer(Vector3 target)
-    {
-        Vector3 direction = (enermy.position - target).normalized;
-        enermy.Translate(direction * speed * Time.deltaTime);
-
-        if (direction.x > 0)
-            enermy.localScale = new Vector3(3, 3, 3);
-        else if (direction.x < 0)
-            enermy.localScale = new Vector3(-3, 3, 3);
-    }
-
     void OnTriggerEnter2D(Collider2D other)
     {
+        float damage = 0f;
+
         if (other.CompareTag("Hit"))
-        {
-            float damage = Random.Range(1f, 6f);
-            TakeDamage(damage + GlobalData.damageBonus);
-        }
+            damage = Random.Range(1f, 6f);
         else if (other.CompareTag("Bullet"))
-        {
-            float damage = Random.Range(10f, 16f);
-            TakeDamage(damage + GlobalData.damageBonus);
-        }
+            damage = Random.Range(10f, 16f);
         else if (other.CompareTag("Bow"))
-        {
-            float damage = Random.Range(5f, 11f);
+            damage = Random.Range(5f, 11f);
+
+        if (damage > 0)
             TakeDamage(damage + GlobalData.damageBonus);
-        }
     }
 
     void OnCollisionEnter2D(Collision2D collision)
@@ -222,8 +190,6 @@ public class Doi : MonoBehaviour
         if (collision.gameObject.CompareTag("Player1"))
         {
             nie.SetBool("danh", true);
-            if (currentState == State.Chase || currentState == State.Return)
-                StartFlee();
         }
     }
 
@@ -232,8 +198,6 @@ public class Doi : MonoBehaviour
         if (collision.gameObject.CompareTag("Player1"))
         {
             nie.SetBool("danh", true);
-            if (currentState == State.Chase || currentState == State.Return)
-                StartFlee();
         }
     }
 
@@ -258,6 +222,7 @@ public class Doi : MonoBehaviour
         if (healthItemPrefab != null)
             Instantiate(healthItemPrefab, basePosition + new Vector3(0.3f, 0, 0), Quaternion.identity);
     }
+
     void SpawnExtraEnemies()
     {
         if (extraEnemyPrefabs == null || extraEnemyPrefabs.Length == 0) return;
@@ -278,5 +243,6 @@ public class Doi : MonoBehaviour
             }
         }
     }
+
 
 }
