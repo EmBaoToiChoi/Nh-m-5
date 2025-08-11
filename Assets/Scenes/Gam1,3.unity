@@ -31011,7 +31011,7 @@ MonoBehaviour:
   lowHealthMonsterPrefab1: {fileID: 1796678190}
   lowHealthMonsterPrefab2: {fileID: 291539588}
   lowHealthMonsterPrefab3: {fileID: 578833500}
-  hurtClip: {fileID: 8300000, guid: 6c3e52fb113a43542a0828b6fbecf744, type: 3}
+  hurtClip: {fileID: 0}
   deathClip: {fileID: 8300000, guid: fc70b942af7a5c24fb3b4227af4422b4, type: 3}
 --- !u!82 &1965234661
 AudioSource:
