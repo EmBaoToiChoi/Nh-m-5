@@ -31,17 +31,15 @@ public class Boss3Controller : MonoBehaviour
     public AudioSource audioSource;
     public AudioClip attackClip;
     public AudioClip walkClip;
-    public AudioClip skillClip;
     public AudioClip summonClip;
     public AudioClip fireClip;
     public AudioClip teleportClip;
 
-    [Header("Tri?u h?i")]
-    public GameObject skeletonPrefab;
-    public int summonCount = 3;
-    public float summonCooldown = 8f;
-    private float lastSummonTime;
-    private bool isLowHealthSummon = false;
+    [Header("Tri?u h?i khi máu th?p")]
+    public GameObject lowHealthMonsterPrefab1;
+    public GameObject lowHealthMonsterPrefab2;
+    public GameObject lowHealthMonsterPrefab3;
+    private bool hasLowHealthSummoned = false;
 
     [Header("HP & Revive")]
     public int maxHealth = 300;
@@ -53,8 +51,8 @@ public class Boss3Controller : MonoBehaviour
 
     [Header("Fire Breath")]
     public ParticleSystem fireBreath;
-    public Transform firePoint;         // Child c?a mouthTransform
-    public Transform mouthTransform;    // G?n ðúng v? trí mi?ng
+    public Transform firePoint;
+    public Transform mouthTransform;
     public float fireCooldown = 7f;
     public float fireDuration = 2f;
     public float fireDamagePerSecond = 15f;
@@ -82,12 +80,10 @@ public class Boss3Controller : MonoBehaviour
         if (fireBreath != null)
             fireBreath.Stop();
 
-        // Ð?m b?o firePoint bám vào mouthTransform
         if (mouthTransform != null && firePoint != null)
             firePoint.SetParent(mouthTransform, false);
 
         lastFireTime = -fireCooldown;
-        lastSummonTime = -summonCooldown;
         lastTeleportTime = -teleportCooldown;
     }
 
@@ -116,16 +112,11 @@ public class Boss3Controller : MonoBehaviour
         if (Time.time - lastTeleportTime >= teleportCooldown)
             TeleportToPlayer(target);
 
-        if (Time.time - lastSummonTime >= summonCooldown)
+        // Tri?u h?i 3 quái khi máu <= 50%, ch? 1 l?n
+        if (!hasLowHealthSummoned && currentHealth <= maxHealth * 0.5f)
         {
-            StartCoroutine(UseSkill());
-            lastSummonTime = Time.time;
-        }
-
-        if (!isLowHealthSummon && currentHealth <= maxHealth * 0.3f)
-        {
-            StartCoroutine(SummonSkeletons(5));
-            isLowHealthSummon = true;
+            StartCoroutine(SummonLowHealthMonsters());
+            hasLowHealthSummoned = true;
         }
 
         if (distance <= attackRange)
@@ -222,7 +213,6 @@ public class Boss3Controller : MonoBehaviour
         Vector2 dir = (target.position - transform.position).normalized;
         FlipBoss(dir);
 
-        // Xoay mi?ng hý?ng v? player
         if (mouthTransform != null)
         {
             float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
@@ -263,7 +253,6 @@ public class Boss3Controller : MonoBehaviour
         isFiring = true;
         lastFireTime = Time.time;
 
-        // Xoay mi?ng hý?ng v? player trý?c khi b?n
         if (mouthTransform != null && target != null)
         {
             Vector2 dir = (target.position - mouthTransform.position).normalized;
@@ -312,33 +301,27 @@ public class Boss3Controller : MonoBehaviour
         isFiring = false;
     }
 
-    IEnumerator UseSkill()
+    IEnumerator SummonLowHealthMonsters()
     {
         if (isDead) yield break;
 
-        if (skillClip != null) audioSource.PlayOneShot(skillClip);
+        Vector3 pos1 = transform.position + new Vector3(Random.Range(-3f, 3f), Random.Range(-3f, 3f), 0);
+        Vector3 pos2 = transform.position + new Vector3(Random.Range(-3f, 3f), Random.Range(-3f, 3f), 0);
+        Vector3 pos3 = transform.position + new Vector3(Random.Range(-3f, 3f), Random.Range(-3f, 3f), 0);
 
-        animator.SetTrigger("Skill");
-        yield return new WaitForSeconds(0.5f);
-        yield return StartCoroutine(SummonSkeletons(summonCount));
-    }
+        if (lowHealthMonsterPrefab1 != null)
+            Instantiate(lowHealthMonsterPrefab1, pos1, Quaternion.identity);
 
-    IEnumerator SummonSkeletons(int count)
-    {
-        if (skeletonPrefab == null || isDead) yield break;
+        if (lowHealthMonsterPrefab2 != null)
+            Instantiate(lowHealthMonsterPrefab2, pos2, Quaternion.identity);
 
-        for (int i = 0; i < count; i++)
-        {
-            Vector3 pos = transform.position + new Vector3(Random.Range(-2f, 2f), Random.Range(-2f, 2f), 0);
-            GameObject skel = Instantiate(skeletonPrefab, pos, Quaternion.identity);
+        if (lowHealthMonsterPrefab3 != null)
+            Instantiate(lowHealthMonsterPrefab3, pos3, Quaternion.identity);
 
-            SmallSkeleton skelScript = skel.GetComponent<SmallSkeleton>();
-            if (skelScript != null)
-                skelScript.canRespawnSmall = true;
+        if (summonClip != null && audioSource != null)
+            audioSource.PlayOneShot(summonClip);
 
-            if (summonClip != null) audioSource.PlayOneShot(summonClip);
-            yield return new WaitForSeconds(0.3f);
-        }
+        yield return null;
     }
 
     public void TakeDamage(int amount)
@@ -391,7 +374,6 @@ public class Boss3Controller : MonoBehaviour
 
         animator.SetBool("isMoving", false);
         animator.ResetTrigger("Attack");
-        animator.ResetTrigger("Skill");
         animator.SetTrigger("Die");
 
         StartCoroutine(DelayedDestroyAfterAnimation("Demon die"));
@@ -407,7 +389,6 @@ public class Boss3Controller : MonoBehaviour
         }
 
         yield return new WaitForSeconds(stateInfo.length + 0.1f);
-
         Destroy(gameObject);
     }
 
