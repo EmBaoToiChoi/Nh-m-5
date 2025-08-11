@@ -15414,7 +15414,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!212 &855731202
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -35944,7 +35944,10 @@ MonoBehaviour:
   nie: {fileID: 1658765858}
   healthBarPrefab: {fileID: 917403772}
   healthFill: {fileID: 1007950904}
-  extraEnemyPrefabs: []
+  extraEnemyPrefabs:
+  - {fileID: 2016720892}
+  - {fileID: 2016720892}
+  - {fileID: 2016720892}
   spawnDistance: 2
   attackRange: 1.2
 --- !u!114 &1658765864

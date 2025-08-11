@@ -105,9 +105,9 @@ public class Xuong : MonoBehaviour
     {
         Vector3 huong = (target - enermy.position).normalized;
         if (huong.x > 0)
-            enermy.localScale = new Vector3(-3, 3, 3);
+            enermy.localScale = new Vector3(5, 5, 5);
         else if (huong.x < 0)
-            enermy.localScale = new Vector3(3, 3, 3);
+            enermy.localScale = new Vector3(-5, 5, 5);
     }
 
 
@@ -119,9 +119,9 @@ public class Xuong : MonoBehaviour
         enermy.Translate(direction * speed * Time.deltaTime);
 
         if (direction.x > 0)
-            enermy.localScale = new Vector3(-3, 3, 3);
+            enermy.localScale = new Vector3(5, 5, 5);
         else if (direction.x < 0)
-            enermy.localScale = new Vector3(3, 3, 3);
+            enermy.localScale = new Vector3(-5, 5, 5);
     }
 
     void ChayKhoiPlayer(Vector3 target)
@@ -130,9 +130,9 @@ public class Xuong : MonoBehaviour
         enermy.Translate(direction * speed * Time.deltaTime);
 
         if (direction.x > 0)
-            enermy.localScale = new Vector3(-3, 3, 3);
+            enermy.localScale = new Vector3(5, 5, 5);
         else if (direction.x < 0)
-            enermy.localScale = new Vector3(3, 3, 3);
+            enermy.localScale = new Vector3(-5, 5, 5);
     }
 
     void TakeDamage(float damage)

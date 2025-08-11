@@ -93,9 +93,9 @@ public class ORCC2 : MonoBehaviour
         enermy.Translate(direction * speed * Time.deltaTime);
 
         if (direction.x > 0)
-            enermy.localScale = new Vector3(-3, 3, 3);
+            enermy.localScale = new Vector3(5, 5, 5);
         else if (direction.x < 0)
-            enermy.localScale = new Vector3(3, 3, 3);
+            enermy.localScale = new Vector3(-5, 5, 5);
     }
 
     void ChayKhoiPlayer(Vector3 target)
@@ -104,9 +104,9 @@ public class ORCC2 : MonoBehaviour
         enermy.Translate(direction * speed * Time.deltaTime);
 
         if (direction.x > 0)
-            enermy.localScale = new Vector3(-3, 3, 3);
+            enermy.localScale = new Vector3(5, 5, 5);
         else if (direction.x < 0)
-            enermy.localScale = new Vector3(3, 3, 3);
+            enermy.localScale = new Vector3(-5, 5, 5);
     }
 
     void TakeDamage(float damage)

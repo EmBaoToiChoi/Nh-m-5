@@ -73,19 +73,20 @@ public class ORCC : MonoBehaviour
         }
         else if (isChasing)
         {
-            // Nếu còn xa hơn attackRange thì di chuyển
             if (khoangCachPlayer > attackRange)
             {
+                // Đang đuổi => di chuyển, không đánh
                 dichuyentoiPlayer(targetPlayer.position);
                 nie.SetBool("danh", false);
             }
             else
             {
-                // Đã vào tầm tấn công thì đứng yên nhưng vẫn xoay mặt
+                // Đã vào tầm => đứng yên chờ va chạm để đánh
                 XoayHuongVePlayer(targetPlayer.position);
-                nie.SetBool("danh", true);
+                nie.SetBool("danh", true); // chưa đánh cho tới khi va chạm
             }
         }
+
 
         // Cập nhật vị trí thanh máu
         if (healthBarUI != null && enermy != null)
@@ -105,9 +106,9 @@ public class ORCC : MonoBehaviour
     {
         Vector3 huong = (target - enermy.position).normalized;
         if (huong.x > 0)
-            enermy.localScale = new Vector3(-3, 3, 3);
+            enermy.localScale = new Vector3(5, 5,5);
         else if (huong.x < 0)
-            enermy.localScale = new Vector3(3, 3, 3);
+            enermy.localScale = new Vector3(-5, 5, 5);
     }
 
 
@@ -119,9 +120,9 @@ public class ORCC : MonoBehaviour
         enermy.Translate(direction * speed * Time.deltaTime);
 
         if (direction.x > 0)
-            enermy.localScale = new Vector3(-3, 3, 3);
+            enermy.localScale = new Vector3(5, 5, 5);
         else if (direction.x < 0)
-            enermy.localScale = new Vector3(3, 3, 3);
+            enermy.localScale = new Vector3(-5, 5, 5);
     }
 
     void ChayKhoiPlayer(Vector3 target)
@@ -130,9 +131,9 @@ public class ORCC : MonoBehaviour
         enermy.Translate(direction * speed * Time.deltaTime);
 
         if (direction.x > 0)
-            enermy.localScale = new Vector3(-3, 3, 3);
+            enermy.localScale = new Vector3(5, 5, 5);
         else if (direction.x < 0)
-            enermy.localScale = new Vector3(3, 3, 3);
+            enermy.localScale = new Vector3(-5, 5, 5);
     }
 
     void TakeDamage(float damage)
