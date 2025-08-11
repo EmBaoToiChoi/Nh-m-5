@@ -15414,7 +15414,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!212 &855731202
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -35944,7 +35944,10 @@ MonoBehaviour:
   nie: {fileID: 1658765858}
   healthBarPrefab: {fileID: 917403772}
   healthFill: {fileID: 1007950904}
-  extraEnemyPrefabs: []
+  extraEnemyPrefabs:
+  - {fileID: 2016720892}
+  - {fileID: 2016720892}
+  - {fileID: 2016720892}
   spawnDistance: 2
   attackRange: 1.2
 --- !u!114 &1658765864
@@ -35997,11 +36000,17 @@ MonoBehaviour:
   typingSpeed: 0.05
   storyIndex: 3
   storyLines:
-  - da
-  - ad
-  - ad
-  - ad
-  - ad
+  - "Sau khi v\u01B0\u1EE3t qua nh\u1EEFng c\xE1nh r\u1EEBng ch\u1EBFt ch\xF3c \u1EDF
+    h\u1EA7m th\u1EE9 nh\u1EA5t, ng\u01B0\u1EDDi ch\u01A1i b\u01B0\u1EDBc v\xE0o
+    C\u1ED5ng L\u0103ng M\u1ED9 B\xF3ng \u0110\xEAm \u2014 n\u01A1i ch\xF4n c\u1EA5t
+    c\xE1c chi\u1EBFn binh, ph\xE1p s\u01B0 v\xE0 sinh v\u1EADt huy\u1EC1n b\xED
+    t\u1EEB h\xE0ng tr\u0103m n\u0103m tr\u01B0\u1EDBc. Nh\u01B0ng t\u1EEB khi m\u1ED9t
+    ngu\u1ED3n ma l\u1EF1c h\u1EAFc \xE1m tr\xE0n v\xE0o, to\xE0n b\u1ED9 n\u01A1i
+    n\xE0y \u0111\xE3 bi\u1EBFn th\xE0nh \u1ED5 qu\u1EF7 d\u1EEF."
+  - "Kh\xF4ng kh\xED \u1EA9m l\u1EA1nh, m\xF9i m\u1EE5c r\u1EEFa c\u1EE7a \u0111\u1EA5t
+    v\xE0 x\u01B0\u01A1ng c\u1ED1t b\u1ED1c l\xEAn, t\u01B0\u1EDDng h\u1EA7m rung
+    nh\u1EB9 theo t\u1EEBng ti\u1EBFng v\u1ECDng s\xE2u th\u1EB3m \u2014 b\xE1o hi\u1EC7u
+    nh\u1EEFng sinh v\u1EADt ch\u1EBFt \u0111\xE3 kh\xF4ng c\xF2n ng\u1EE7 y\xEAn."
 --- !u!4 &1665815201
 Transform:
   m_ObjectHideFlags: 0

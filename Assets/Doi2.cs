@@ -121,9 +121,9 @@ public class Doi2 : MonoBehaviour
         fleeDirection = (enermy.position - player.position).normalized;
 
         if (fleeDirection.x > 0)
-            enermy.localScale = new Vector3(3, 3, 3);
+            enermy.localScale = new Vector3(5, 5, 5);
         else if (fleeDirection.x < 0)
-            enermy.localScale = new Vector3(-3, 3, 3);
+            enermy.localScale = new Vector3(-5, 5, 5);
     }
 
     void dichuyentoiPlayer(Vector3 target)
@@ -132,9 +132,9 @@ public class Doi2 : MonoBehaviour
         enermy.Translate(direction * speed * Time.deltaTime);
 
         if (direction.x > 0)
-            enermy.localScale = new Vector3(3, 3, 3);
+            enermy.localScale = new Vector3(5, 5, 5);
         else if (direction.x < 0)
-            enermy.localScale = new Vector3(-3, 3, 3);
+            enermy.localScale = new Vector3(-5, 5, 5);
     }
 
     void TakeDamage(float damage)
@@ -165,9 +165,9 @@ public class Doi2 : MonoBehaviour
         enermy.Translate(direction * speed * Time.deltaTime);
 
         if (direction.x > 0)
-            enermy.localScale = new Vector3(3, 3, 3);
+            enermy.localScale = new Vector3(5, 5, 5);
         else if (direction.x < 0)
-            enermy.localScale = new Vector3(-3, 3, 3);
+            enermy.localScale = new Vector3(-5, 5, 5);
     }
 
     void OnTriggerEnter2D(Collider2D other)
