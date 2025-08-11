@@ -1,0 +1,248 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+
+public class Nam : MonoBehaviour
+{
+    [SerializeField] private float fleeHealthThreshold = 10f;
+
+    public Transform enermy;
+    public Transform player1;
+    public Transform player2;
+    public Transform player3;
+
+    private Transform targetPlayer;
+
+    [SerializeField] private GameObject coinPrefab;
+    [SerializeField] private GameObject xpPrefab;
+    [SerializeField] private GameObject healthItemPrefab;
+
+    [Header("Animation")]
+    [SerializeField] private Animator nie;
+
+    [Header("UI Máu")]
+    [SerializeField] private GameObject healthBarPrefab;
+    [SerializeField] private Image healthFill;
+
+    private GameObject healthBarUI;
+    private Transform mainCam;
+
+    private bool isChasing = false;
+    private float speed = 4f;
+    private float PVipHien = 15f;
+
+    private float maxHealth = 80f;
+    private float currentHealth;
+    [SerializeField] private GameObject[] extraEnemyPrefabs; // Thêm mảng 3 prefab quái khác
+    [SerializeField] private float spawnDistance = 2f;
+    [SerializeField] private float attackRange = 1.2f;
+
+
+    void Start()
+    {
+        currentHealth = maxHealth;
+
+        // Xác định player đang active
+        if (player1 != null && player1.gameObject.activeInHierarchy)
+            targetPlayer = player1;
+        else if (player2 != null && player2.gameObject.activeInHierarchy)
+            targetPlayer = player2;
+        else if (player3 != null && player3.gameObject.activeInHierarchy)
+            targetPlayer = player3;
+        else
+            Debug.LogWarning("Không có player nào đang active!");
+
+        // Tạo thanh máu
+        healthBarUI = Instantiate(healthBarPrefab, enermy.position + Vector3.up * 1.5f, Quaternion.identity);
+        healthBarUI.transform.SetParent(null);
+
+        mainCam = Camera.main.transform;
+    }
+
+    void Update()
+    {
+        if (this == null || enermy == null || targetPlayer == null) return;
+
+        float khoangCachPlayer = Vector2.Distance(enermy.position, targetPlayer.position);
+        isChasing = khoangCachPlayer < PVipHien;
+
+        if (currentHealth <= fleeHealthThreshold)
+        {
+            ChayKhoiPlayer(targetPlayer.position);
+        }
+        else if (isChasing)
+        {
+            // Nếu còn xa hơn attackRange thì di chuyển
+            if (khoangCachPlayer > attackRange)
+            {
+                dichuyentoiPlayer(targetPlayer.position);
+                nie.SetBool("danh", false);
+            }
+            else
+            {
+                // Đã vào tầm tấn công thì đứng yên nhưng vẫn xoay mặt
+                XoayHuongVePlayer(targetPlayer.position);
+                nie.SetBool("danh", true);
+            }
+        }
+
+        // Cập nhật vị trí thanh máu
+        if (healthBarUI != null && enermy != null)
+        {
+            try
+            {
+                healthBarUI.transform.position = enermy.position + Vector3.up * 1.5f;
+                healthBarUI.transform.rotation = Quaternion.identity;
+            }
+            catch (MissingReferenceException)
+            {
+                Destroy(healthBarUI);
+            }
+        }
+    }
+    void XoayHuongVePlayer(Vector3 target)
+    {
+        Vector3 huong = (target - enermy.position).normalized;
+        if (huong.x > 0)
+            enermy.localScale = new Vector3(-3, 3, 3);
+        else if (huong.x < 0)
+            enermy.localScale = new Vector3(3, 3, 3);
+    }
+
+
+
+
+    void dichuyentoiPlayer(Vector3 target)
+    {
+        Vector3 direction = (target - enermy.position).normalized;
+        enermy.Translate(direction * speed * Time.deltaTime);
+
+        if (direction.x > 0)
+            enermy.localScale = new Vector3(-3, 3, 3);
+        else if (direction.x < 0)
+            enermy.localScale = new Vector3(3, 3, 3);
+    }
+
+    void ChayKhoiPlayer(Vector3 target)
+    {
+        Vector3 direction = (enermy.position - target).normalized;
+        enermy.Translate(direction * speed * Time.deltaTime);
+
+        if (direction.x > 0)
+            enermy.localScale = new Vector3(-3, 3, 3);
+        else if (direction.x < 0)
+            enermy.localScale = new Vector3(3, 3, 3);
+    }
+
+    void TakeDamage(float damage)
+    {
+        currentHealth -= damage;
+        currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
+
+        if (healthFill != null)
+        {
+            DamageTextManager.Instance.ShowDamage(enermy.position, damage);
+            healthFill.fillAmount = currentHealth / maxHealth;
+        }
+
+        if (currentHealth <= 0)
+        {
+            // Kích hoạt animation chết
+            if (nie != null)
+                nie.SetTrigger("die");
+
+            // Ngừng di chuyển, tránh bug animation
+            this.enabled = false;
+
+            // Spawn item rơi
+            SpawnDrops();
+
+            // Spawn thêm quái khác
+            SpawnExtraEnemies();
+
+            // Xóa thanh máu
+            Destroy(healthBarUI);
+
+            // Hủy object sau khi animation kết thúc (1 giây)
+            Destroy(gameObject, 1f);
+        }
+    }
+
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        float damage = 0f;
+
+        if (other.CompareTag("Hit"))
+            damage = Random.Range(1f, 6f);
+        else if (other.CompareTag("Bullet"))
+            damage = Random.Range(10f, 16f);
+        else if (other.CompareTag("Bow"))
+            damage = Random.Range(5f, 11f);
+
+        if (damage > 0)
+            TakeDamage(damage + GlobalData.damageBonus);
+    }
+
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player1"))
+        {
+            nie.SetBool("danh", true);
+        }
+    }
+
+    void OnCollisionStay2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player1"))
+        {
+            nie.SetBool("danh", true);
+        }
+    }
+
+    void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player1"))
+        {
+            nie.SetBool("danh", false);
+        }
+    }
+
+    void SpawnDrops()
+    {
+        Vector3 basePosition = enermy.position;
+
+        if (coinPrefab != null)
+            Instantiate(coinPrefab, basePosition + new Vector3(-0.3f, 0, 0), Quaternion.identity);
+
+        if (xpPrefab != null)
+            Instantiate(xpPrefab, basePosition + new Vector3(0f, 0, 0), Quaternion.identity);
+
+        if (healthItemPrefab != null)
+            Instantiate(healthItemPrefab, basePosition + new Vector3(0.3f, 0, 0), Quaternion.identity);
+    }
+
+    void SpawnExtraEnemies()
+    {
+        if (extraEnemyPrefabs == null || extraEnemyPrefabs.Length == 0) return;
+
+        for (int i = 0; i < extraEnemyPrefabs.Length; i++)
+        {
+            if (extraEnemyPrefabs[i] != null)
+            {
+                // Xoay vòng vị trí spawn cách đều nhau
+                float angle = (360f / extraEnemyPrefabs.Length) * i;
+                Vector3 spawnPos = enermy.position + new Vector3(
+                    Mathf.Cos(angle * Mathf.Deg2Rad),
+                    Mathf.Sin(angle * Mathf.Deg2Rad),
+                    0
+                ) * spawnDistance;
+
+                Instantiate(extraEnemyPrefabs[i], spawnPos, Quaternion.identity);
+            }
+        }
+    }
+
+
+}
