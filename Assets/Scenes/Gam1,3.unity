@@ -7096,9 +7096,9 @@ MonoBehaviour:
   maxHealth: 500
   healthBarPrefab: {fileID: 28632593}
   healthFill: {fileID: 1166264892}
-  goldPrefab: {fileID: 0}
-  healthPickupPrefab: {fileID: 0}
-  xpPrefab: {fileID: 0}
+  goldPrefab: {fileID: 1237594286}
+  healthPickupPrefab: {fileID: 1336973989}
+  xpPrefab: {fileID: 1878351438}
   lowHealthMonsterPrefab1: {fileID: 0}
   lowHealthMonsterPrefab2: {fileID: 0}
   lowHealthMonsterPrefab3: {fileID: 0}
@@ -15932,9 +15932,9 @@ MonoBehaviour:
   maxHealth: 500
   healthBarPrefab: {fileID: 1396023586}
   healthFill: {fileID: 532441269}
-  goldPrefab: {fileID: 0}
-  healthPickupPrefab: {fileID: 0}
-  xpPrefab: {fileID: 0}
+  goldPrefab: {fileID: 1237594286}
+  healthPickupPrefab: {fileID: 1336973989}
+  xpPrefab: {fileID: 1878351438}
   lowHealthMonsterPrefab1: {fileID: 0}
   lowHealthMonsterPrefab2: {fileID: 0}
   lowHealthMonsterPrefab3: {fileID: 0}
@@ -21129,6 +21129,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1222018294}
   m_CullTransparentMesh: 1
+--- !u!1 &1237594286 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4292077801676729681, guid: fa73dd67afcf0b94dada05023c131e5d, type: 3}
+  m_PrefabInstance: {fileID: 1089380887}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1240144515
 GameObject:
   m_ObjectHideFlags: 0
@@ -27188,6 +27193,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1293857554}
   m_CullTransparentMesh: 1
+--- !u!1 &1336973989 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8953718204239667911, guid: dbe0b2a502e298a4093ba8f5e62b1b26, type: 3}
+  m_PrefabInstance: {fileID: 1241587162}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1346182535
 GameObject:
   m_ObjectHideFlags: 0
@@ -28826,9 +28836,9 @@ MonoBehaviour:
   maxHealth: 1000
   healthBarPrefab: {fileID: 823888240}
   healthFill: {fileID: 1741182375}
-  goldPrefab: {fileID: 0}
-  healthPickupPrefab: {fileID: 0}
-  xpPrefab: {fileID: 0}
+  goldPrefab: {fileID: 1237594286}
+  healthPickupPrefab: {fileID: 1336973989}
+  xpPrefab: {fileID: 1878351438}
   lowHealthMonsterPrefab1: {fileID: 1796678190}
   lowHealthMonsterPrefab2: {fileID: 291539588}
   lowHealthMonsterPrefab3: {fileID: 578833500}
@@ -28846,7 +28856,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec29b69579b081d4fb41d935725aeaaf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 5
+  moveSpeed: 1
   chaseSpeedMultiplier: 1.5
   idlePatrolSpeed: 1
   attackRange: 1.5
@@ -30433,9 +30443,9 @@ MonoBehaviour:
   maxHealth: 500
   healthBarPrefab: {fileID: 724067247}
   healthFill: {fileID: 2146859958}
-  goldPrefab: {fileID: 0}
-  healthPickupPrefab: {fileID: 0}
-  xpPrefab: {fileID: 0}
+  goldPrefab: {fileID: 1237594286}
+  healthPickupPrefab: {fileID: 1336973989}
+  xpPrefab: {fileID: 1878351438}
   lowHealthMonsterPrefab1: {fileID: 0}
   lowHealthMonsterPrefab2: {fileID: 0}
   lowHealthMonsterPrefab3: {fileID: 0}
@@ -30585,6 +30595,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1835858540}
   m_CullTransparentMesh: 1
+--- !u!1 &1878351438 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2856088066014722820, guid: 05471433bfdcdc348adb1a85a6fbba51, type: 3}
+  m_PrefabInstance: {fileID: 886199991}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1888551728
 GameObject:
   m_ObjectHideFlags: 0
@@ -30745,6 +30760,7 @@ GameObject:
   - component: {fileID: 1965234654}
   - component: {fileID: 1965234659}
   - component: {fileID: 1965234660}
+  - component: {fileID: 1965234661}
   m_Layer: 0
   m_Name: FrostGuardian
   m_TagString: Untagged
@@ -30813,8 +30829,8 @@ Transform:
   m_GameObject: {fileID: 1965234651}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.7205169, y: 0.2760251, z: 0}
-  m_LocalScale: {x: 0.66175246, y: 0.62740356, z: 1}
+  m_LocalPosition: {x: -0.11103, y: -0.10087, z: 0}
+  m_LocalScale: {x: 0.62116057, y: 0.582036, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1350362002}
@@ -30849,7 +30865,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 42fafffe503123c4ca943bd082f6aaee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 5
+  moveSpeed: 1
   chaseSpeedMultiplier: 1.5
   idlePatrolSpeed: 1
   attackRange: 1.5
@@ -30861,9 +30877,9 @@ MonoBehaviour:
   animator: {fileID: 1965234659}
   detectRange: 6
   teleportCooldown: 5
-  audioSource: {fileID: 0}
-  attackClip: {fileID: 0}
-  walkClip: {fileID: 0}
+  audioSource: {fileID: 1965234661}
+  attackClip: {fileID: 8300000, guid: c1c1b60d420a6b64ab59e05cc734721c, type: 3}
+  walkClip: {fileID: 8300000, guid: bd95e5ae96daf6a47a81d38637091fa8, type: 3}
   skillClip: {fileID: 0}
   summonClip: {fileID: 0}
   fireClip: {fileID: 0}
@@ -30989,14 +31005,110 @@ MonoBehaviour:
   maxHealth: 1000
   healthBarPrefab: {fileID: 1350362001}
   healthFill: {fileID: 471239908}
-  goldPrefab: {fileID: 0}
-  healthPickupPrefab: {fileID: 0}
-  xpPrefab: {fileID: 0}
+  goldPrefab: {fileID: 1237594286}
+  healthPickupPrefab: {fileID: 1336973989}
+  xpPrefab: {fileID: 1878351438}
   lowHealthMonsterPrefab1: {fileID: 1796678190}
   lowHealthMonsterPrefab2: {fileID: 291539588}
   lowHealthMonsterPrefab3: {fileID: 578833500}
-  hurtClip: {fileID: 0}
-  deathClip: {fileID: 0}
+  hurtClip: {fileID: 8300000, guid: 6c3e52fb113a43542a0828b6fbecf744, type: 3}
+  deathClip: {fileID: 8300000, guid: fc70b942af7a5c24fb3b4227af4422b4, type: 3}
+--- !u!82 &1965234661
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1965234651}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &2008550754
 GameObject:
   m_ObjectHideFlags: 0
