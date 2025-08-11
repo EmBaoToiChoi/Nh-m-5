@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Doi : MonoBehaviour
+public class Doi2 : MonoBehaviour
 {
     private enum State { Chase, Attack, Flee, Return }
     private State currentState = State.Chase;
@@ -45,10 +45,6 @@ public class Doi : MonoBehaviour
 
     private float maxHealth = 80f;
     private float currentHealth;
-    [SerializeField] private GameObject[] extraEnemyPrefabs; // Thêm mảng 3 prefab quái khác
-    [SerializeField] private float spawnDistance = 2f;
-    [SerializeField] private float attackRange = 1.2f;
-
 
     void Start()
     {
@@ -86,22 +82,14 @@ public class Doi : MonoBehaviour
                 }
                 else if (isChasing)
                 {
-                    // Chỉ di chuyển nếu chưa tới khoảng tấn công
-                    if (distance > attackRange)
-                    {
-                        dichuyentoiPlayer(player.position);
-                        nie.SetBool("danh", false);
-                    }
-                    else
-                    {
-                        nie.SetBool("danh", true); // Đứng tấn công
-                    }
+                    dichuyentoiPlayer(player.position);
                 }
                 break;
 
             case State.Flee:
                 fleeTimer -= Time.deltaTime;
                 enermy.Translate(fleeDirection * speed * Time.deltaTime);
+
                 if (fleeTimer <= 0f)
                 {
                     StartCoroutine(DelayReturn());
@@ -109,12 +97,10 @@ public class Doi : MonoBehaviour
                 break;
 
             case State.Return:
-                if (Vector2.Distance(enermy.position, player.position) > attackRange)
-                    dichuyentoiPlayer(player.position);
+                dichuyentoiPlayer(player.position);
                 break;
         }
 
-        // Cập nhật UI thanh máu
         if (healthBarUI != null && enermy != null)
         {
             healthBarUI.transform.position = enermy.position + Vector3.up * 1.5f;
@@ -151,7 +137,6 @@ public class Doi : MonoBehaviour
             enermy.localScale = new Vector3(-3, 3, 3);
     }
 
-
     void TakeDamage(float damage)
     {
         currentHealth -= damage;
@@ -165,27 +150,14 @@ public class Doi : MonoBehaviour
 
         if (currentHealth <= 0)
         {
-            // Kích hoạt animation chết
-            if (nie != null)
-                nie.SetTrigger("die");
-
-            // Ngừng di chuyển, tránh bug animation
-            this.enabled = false;
-
-            // Spawn item rơi
+            DamageTextManager.Instance.ShowDamage(enermy.position, damage);
             SpawnDrops();
 
-            // Spawn thêm quái khác
-            SpawnExtraEnemies();
-
-            // Xóa thanh máu
             Destroy(healthBarUI);
-
-            // Hủy object sau khi animation kết thúc (1 giây)
-            Destroy(gameObject, 1f);
+            Destroy(gameObject);
+            enabled = false;
         }
     }
-
 
     void ChayKhoiPlayer(Vector3 target)
     {
@@ -229,7 +201,7 @@ public class Doi : MonoBehaviour
 
     void OnCollisionStay2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Player1"))
+        if (collision.gameObject.CompareTag("Player1") )
         {
             nie.SetBool("danh", true);
             if (currentState == State.Chase || currentState == State.Return)
@@ -239,7 +211,7 @@ public class Doi : MonoBehaviour
 
     void OnCollisionExit2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Player1"))
+        if (collision.gameObject.CompareTag("Player1") )
         {
             nie.SetBool("danh", false);
         }
@@ -258,25 +230,4 @@ public class Doi : MonoBehaviour
         if (healthItemPrefab != null)
             Instantiate(healthItemPrefab, basePosition + new Vector3(0.3f, 0, 0), Quaternion.identity);
     }
-    void SpawnExtraEnemies()
-    {
-        if (extraEnemyPrefabs == null || extraEnemyPrefabs.Length == 0) return;
-
-        for (int i = 0; i < extraEnemyPrefabs.Length; i++)
-        {
-            if (extraEnemyPrefabs[i] != null)
-            {
-                // Xoay vòng vị trí spawn cách đều nhau
-                float angle = (360f / extraEnemyPrefabs.Length) * i;
-                Vector3 spawnPos = enermy.position + new Vector3(
-                    Mathf.Cos(angle * Mathf.Deg2Rad),
-                    Mathf.Sin(angle * Mathf.Deg2Rad),
-                    0
-                ) * spawnDistance;
-
-                Instantiate(extraEnemyPrefabs[i], spawnPos, Quaternion.identity);
-            }
-        }
-    }
-
 }
