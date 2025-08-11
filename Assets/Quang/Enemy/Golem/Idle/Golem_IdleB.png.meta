@@ -108,7 +108,322 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: Golem_IdleB_0
+      rect:
+        serializedVersion: 2
+        x: 18
+        y: 33
+        width: 6
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0ac2c57a6c7961f4b80e1f261bf30856
+      internalID: -2015152176
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Golem_IdleB_1
+      rect:
+        serializedVersion: 2
+        x: 23
+        y: 18
+        width: 22
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2fe49bfd1e97b47448d405778c66752d
+      internalID: 2099195879
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Golem_IdleB_2
+      rect:
+        serializedVersion: 2
+        x: 38
+        y: 34
+        width: 6
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4df392424de83244190e6179c31062c6
+      internalID: 534788337
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Golem_IdleB_3
+      rect:
+        serializedVersion: 2
+        x: 81
+        y: 34
+        width: 6
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4995967f00616fa48ab11aaff8f3a4c1
+      internalID: -802263581
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Golem_IdleB_4
+      rect:
+        serializedVersion: 2
+        x: 87
+        y: 18
+        width: 23
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fb3682fc369394c409b6bba8fbaf7cf3
+      internalID: -210699969
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Golem_IdleB_5
+      rect:
+        serializedVersion: 2
+        x: 103
+        y: 35
+        width: 6
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0316813555300574bbff42a704501547
+      internalID: 1211140434
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Golem_IdleB_6
+      rect:
+        serializedVersion: 2
+        x: 145
+        y: 33
+        width: 6
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8d152751ee186744dba4afc854e6b2b6
+      internalID: 1855659138
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Golem_IdleB_7
+      rect:
+        serializedVersion: 2
+        x: 151
+        y: 17
+        width: 22
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c3307c12dece177439b5ff6c02627b77
+      internalID: -623013818
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Golem_IdleB_8
+      rect:
+        serializedVersion: 2
+        x: 168
+        y: 34
+        width: 6
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b82416ce24189d0428a50c1f068d473d
+      internalID: -1467160433
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Golem_IdleB_9
+      rect:
+        serializedVersion: 2
+        x: 210
+        y: 17
+        width: 26
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 26ac668fed0ca664e92aac30317f6c54
+      internalID: -1122644015
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Golem_IdleB_10
+      rect:
+        serializedVersion: 2
+        x: 210
+        y: 32
+        width: 6
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9c87da4278a6bff42bc88e1e630adc5e
+      internalID: 207925486
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Golem_IdleB_11
+      rect:
+        serializedVersion: 2
+        x: 231
+        y: 34
+        width: 6
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a39c4d910cd23b74085cc10ba1cb0b3d
+      internalID: -1058140008
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Golem_IdleB_12
+      rect:
+        serializedVersion: 2
+        x: 17
+        y: 19
+        width: 5
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 83a69ff09768b47408c9f93d6ca9b179
+      internalID: 482670095
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Golem_IdleB_13
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 18
+        width: 5
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: abd263f1fcb681c47a7ff331768b08e4
+      internalID: 2028304065
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Golem_IdleB_14
+      rect:
+        serializedVersion: 2
+        x: 145
+        y: 17
+        width: 5
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 700531b4d6fe25e408f52b09b9d8abe7
+      internalID: 864151357
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -119,7 +434,22 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Golem_IdleB_0: -2015152176
+      Golem_IdleB_1: 2099195879
+      Golem_IdleB_10: 207925486
+      Golem_IdleB_11: -1058140008
+      Golem_IdleB_12: 482670095
+      Golem_IdleB_13: 2028304065
+      Golem_IdleB_14: 864151357
+      Golem_IdleB_2: 534788337
+      Golem_IdleB_3: -802263581
+      Golem_IdleB_4: -210699969
+      Golem_IdleB_5: 1211140434
+      Golem_IdleB_6: 1855659138
+      Golem_IdleB_7: -623013818
+      Golem_IdleB_8: -1467160433
+      Golem_IdleB_9: -1122644015
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
