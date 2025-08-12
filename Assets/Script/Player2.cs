@@ -50,6 +50,11 @@ public class Player2 : MonoBehaviour
     public int currentEnergy = 100;  // hoặc giá trị khởi đầu bạn muốn
     public int currentXP = 0;
     public int currentLevel = 0;
+[SerializeField] private GameObject fireballPrefab; 
+[SerializeField] private Transform firePoint;       
+[SerializeField] private float fireballSpeed = 8f;  
+[SerializeField] private float fireRate = 0.3f;     
+private float nextFireTime = 0f;
     
 
 
@@ -524,50 +529,44 @@ public class Player2 : MonoBehaviour
             ani2.SetBool("chayw", false);
         }
 
-        // 🟡 Tách phần xử lý tấn công riêng:
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButton(0) && Time.time >= nextFireTime)
         {
-            is_attack = true;
+            ShootTowardsMouse();
+            nextFireTime = Time.time + fireRate;
+        }
+    
+    }
+    void ShootTowardsMouse()
+    {
+        // Âm thanh
+        if (hit != null && source != null)
             source.PlayOneShot(hit);
 
-            // Ưu tiên đánh theo hướng đang di chuyển
-            if (ngang > 0)
-            {
-                ani2.SetTrigger("danhad");
-                hit_right.SetActive(true);
-            }
-            else if (ngang < 0)
-            {
-                ani2.SetTrigger("danhad");
-                hit_right.SetActive(true);
-            }
-            else if (doc > 0)
-            {
-                ani2.SetTrigger("danhw");
-                hit_up.SetActive(true);
-            }
-            else if (doc < 0)
-            {
-                ani2.SetTrigger("danhs");
-                hit_down.SetActive(true);
-            }
+        // Lấy vị trí chuột trên thế giới
+        Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        mousePos.z = 0;
 
-            timer = 0;
-        }
+        // Tính hướng bắn
+        Vector2 direction = (mousePos - firePoint.position).normalized;
 
-        // Tắt hit box sau thời gian
-        if (is_attack)
-        {
-            timer += Time.deltaTime;
-            if (timer > 0.1f)
-            {
-                is_attack = false;
-                hit_right.SetActive(false);
-                hit_up.SetActive(false);
-                hit_down.SetActive(false);
-            }
-        }
+        // Animation xoay theo hướng chuột (nếu muốn trigger animation)
+        // ani2.SetTrigger("attack"); // tuỳ bạn
+
+        // Tạo fireball
+        GameObject fireball = Instantiate(fireballPrefab, firePoint.position, Quaternion.identity);
+
+        // Thêm vận tốc
+        Rigidbody2D rb = fireball.GetComponent<Rigidbody2D>();
+        rb.velocity = direction * fireballSpeed;
+
+        // Xoay fireball
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        fireball.transform.rotation = Quaternion.Euler(0, 0, angle);
+
+        // Tự hủy sau 3 giây
+        Destroy(fireball, 3f);
     }
+
 
 
 

@@ -19732,7 +19732,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -21041,7 +21041,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0.04011506, y: -0.23452146}
@@ -25414,7 +25414,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -45101,6 +45101,10 @@ PrefabInstance:
       value: 150
       objectReference: {fileID: 0}
     - target: {fileID: 3669837567608456786, guid: 47403c09d6bcde54d9d3d4f5b3d5c25f, type: 3}
+      propertyPath: fireballPrefab
+      value: 
+      objectReference: {fileID: 611772147715736746, guid: fd6858b8ad4a70341b0b15def6e0b7a0, type: 3}
+    - target: {fileID: 3669837567608456786, guid: 47403c09d6bcde54d9d3d4f5b3d5c25f, type: 3}
       propertyPath: thanhNangLuong
       value: 
       objectReference: {fileID: 180174399}
@@ -46292,7 +46296,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}

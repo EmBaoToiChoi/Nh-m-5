@@ -21147,7 +21147,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -41863,6 +41863,10 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 309099872}
+    - target: {fileID: 6220085614047107559, guid: 7ef3f16c084a21b4795bd6893ce390ce, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7478899743642077710, guid: 7ef3f16c084a21b4795bd6893ce390ce, type: 3}
       propertyPath: player
       value: 
@@ -42468,6 +42472,10 @@ PrefabInstance:
     - target: {fileID: 4488950517209600758, guid: a4df6c765b960ef41839bef4cc5b4064, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7451455292378237104, guid: a4df6c765b960ef41839bef4cc5b4064, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8249811443554137155, guid: a4df6c765b960ef41839bef4cc5b4064, type: 3}
       propertyPath: player
@@ -46830,6 +46838,10 @@ PrefabInstance:
       value: 150
       objectReference: {fileID: 0}
     - target: {fileID: 3669837567608456786, guid: 47403c09d6bcde54d9d3d4f5b3d5c25f, type: 3}
+      propertyPath: fireballPrefab
+      value: 
+      objectReference: {fileID: 611772147715736746, guid: fd6858b8ad4a70341b0b15def6e0b7a0, type: 3}
+    - target: {fileID: 3669837567608456786, guid: 47403c09d6bcde54d9d3d4f5b3d5c25f, type: 3}
       propertyPath: thanhNangLuong
       value: 
       objectReference: {fileID: 180174399}
@@ -47241,6 +47253,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5865142422637240372, guid: be7487fd625ecb242a232fab8d2617da, type: 3}
       propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6499107858854516792, guid: be7487fd625ecb242a232fab8d2617da, type: 3}
+      propertyPath: m_IsTrigger
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8773803901850824689, guid: be7487fd625ecb242a232fab8d2617da, type: 3}
