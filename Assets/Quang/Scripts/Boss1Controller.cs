@@ -166,15 +166,6 @@ public class Boss1Controller : MonoBehaviour
             audioSourceSkill.PlayOneShot(attackClip);
 
         Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, attackRange);
-        foreach (var hit in hits)
-        {
-            if (hit.CompareTag("Player1"))
-            {
-                Player1 p = hit.GetComponent<Player1>();
-                if (p != null)
-                    p.TakeDamage(attackDamage);
-            }
-        }
     }
 
     void EndAttack() => isAttacking = false;
@@ -214,15 +205,6 @@ public class Boss1Controller : MonoBehaviour
                 damageTimer = 0f;
 
                 Collider2D[] hits = Physics2D.OverlapCircleAll(firePoint.position, fireRadius);
-                foreach (var hit in hits)
-                {
-                    if (hit.CompareTag("Player1"))
-                    {
-                        Player1 p = hit.GetComponent<Player1>();
-                        if (p != null)
-                            p.TakeDamage(Mathf.RoundToInt(fireDamagePerSecond * damageInterval));
-                    }
-                }
             }
 
             yield return null;
@@ -266,11 +248,11 @@ public class Boss1Controller : MonoBehaviour
         }
     }
 
-    public void TakeDamage(int amount)
+    public void TakeDamage(float amount)
     {
         if (isDead) return;
 
-        currentHealth -= amount;
+        currentHealth -= (int)amount;
         if (currentHealth <= 0)
         {
             currentHealth = 0;

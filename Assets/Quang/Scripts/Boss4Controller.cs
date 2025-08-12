@@ -4,7 +4,7 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public class Boss4Controller : MonoBehaviour
 {
-    [Header("Di chuy?n & T?n công")]
+    [Header("Di chuy?n & T?n cï¿½ng")]
     public float moveSpeed = 5f;
     public float chaseSpeedMultiplier = 1.5f;
     public float idlePatrolSpeed = 1f;
@@ -19,7 +19,7 @@ public class Boss4Controller : MonoBehaviour
     public Transform player3;
     public Animator animator;
 
-    [Header("Phát hi?n Player")]
+    [Header("Phï¿½t hi?n Player")]
     public float detectRange = 6f;
     private bool hasDetectedPlayer = false;
 
@@ -27,7 +27,7 @@ public class Boss4Controller : MonoBehaviour
     public float teleportCooldown = 5f;
     private float lastTeleportTime;
 
-    [Header("Âm thanh")]
+    [Header("ï¿½m thanh")]
     public AudioSource audioSource;
     public AudioClip attackClip;
     public AudioClip walkClip;
@@ -54,7 +54,7 @@ public class Boss4Controller : MonoBehaviour
     [Header("Fire Breath")]
     public ParticleSystem fireBreath;
     public Transform firePoint;         // Child c?a mouthTransform
-    public Transform mouthTransform;    // G?n ðúng v? trí mi?ng
+    public Transform mouthTransform;    // G?n ï¿½ï¿½ng v? trï¿½ mi?ng
     public float fireCooldown = 7f;
     public float fireDuration = 2f;
     public float fireDamagePerSecond = 15f;
@@ -76,11 +76,11 @@ public class Boss4Controller : MonoBehaviour
         originalScale = transform.localScale;
         currentHealth = maxHealth;
 
-        // T? t?m Animator n?u chýa gán
+        // T? t?m Animator n?u chï¿½a gï¿½n
         if (animator == null)
             animator = GetComponent<Animator>();
 
-        // T? t?m firePoint n?u chýa gán
+        // T? t?m firePoint n?u chï¿½a gï¿½n
         if (firePoint == null && mouthTransform != null)
         {
             Transform fp = mouthTransform.Find("FirePoint");
@@ -88,11 +88,11 @@ public class Boss4Controller : MonoBehaviour
                 firePoint = fp;
         }
 
-        // N?u v?n chýa có firePoint th? báo l?i r? ràng
+        // N?u v?n chï¿½a cï¿½ firePoint th? bï¿½o l?i r? rï¿½ng
         if (firePoint == null)
-            Debug.LogError("Boss4Controller: FirePoint chýa ðý?c gán và không t?m th?y trong MouthTransform!");
+            Debug.LogError("Boss4Controller: FirePoint chï¿½a ï¿½ï¿½?c gï¿½n vï¿½ khï¿½ng t?m th?y trong MouthTransform!");
 
-        // Ð?m b?o firePoint bám vào mouthTransform
+        // ï¿½?m b?o firePoint bï¿½m vï¿½o mouthTransform
         if (mouthTransform != null && firePoint != null)
             firePoint.SetParent(mouthTransform, false);
 
@@ -235,7 +235,7 @@ public class Boss4Controller : MonoBehaviour
         Vector2 dir = (target.position - transform.position).normalized;
         FlipBoss(dir);
 
-        // Xoay mi?ng hý?ng v? player
+        // Xoay mi?ng hï¿½?ng v? player
         if (mouthTransform != null)
         {
             float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
@@ -257,14 +257,6 @@ public class Boss4Controller : MonoBehaviour
         if (attackClip != null) audioSource.PlayOneShot(attackClip);
 
         Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, attackRange);
-        foreach (var hit in hits)
-        {
-            if (hit.CompareTag("Player1"))
-            {
-                Player1 p = hit.GetComponent<Player1>();
-                if (p != null) p.TakeDamage(attackDamage);
-            }
-        }
     }
 
     void EndAttack() => isAttacking = false;
@@ -276,7 +268,7 @@ public class Boss4Controller : MonoBehaviour
         isFiring = true;
         lastFireTime = Time.time;
 
-        // Xoay mi?ng hý?ng v? player trý?c khi b?n
+        // Xoay mi?ng hï¿½?ng v? player trï¿½?c khi b?n
         if (mouthTransform != null && target != null)
         {
             Vector2 dir = (target.position - mouthTransform.position).normalized;

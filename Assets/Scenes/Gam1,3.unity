@@ -6899,7 +6899,7 @@ GameObject:
   - component: {fileID: 291539595}
   m_Layer: 0
   m_Name: Mecha Stone
-  m_TagString: Untagged
+  m_TagString: enermy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7051,7 +7051,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: -0.0020471513}
@@ -15735,7 +15735,7 @@ GameObject:
   - component: {fileID: 578833506}
   m_Layer: 0
   m_Name: ORC2
-  m_TagString: Untagged
+  m_TagString: enermy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -15887,7 +15887,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0.0020639002, y: -0.073128626}
@@ -17325,11 +17325,11 @@ PrefabInstance:
       objectReference: {fileID: 671950775}
     - target: {fileID: 6252287320731494392, guid: 47403c09d6bcde54d9d3d4f5b3d5c25f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -5.7
+      value: -8.86
       objectReference: {fileID: 0}
     - target: {fileID: 6252287320731494392, guid: 47403c09d6bcde54d9d3d4f5b3d5c25f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.9
+      value: 7.17
       objectReference: {fileID: 0}
     - target: {fileID: 6252287320731494392, guid: 47403c09d6bcde54d9d3d4f5b3d5c25f, type: 3}
       propertyPath: m_LocalPosition.z
@@ -28205,7 +28205,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!212 &1488625305
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -28731,7 +28731,7 @@ GameObject:
   - component: {fileID: 1608038799}
   m_Layer: 0
   m_Name: Demonslime
-  m_TagString: Untagged
+  m_TagString: enermy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -28964,7 +28964,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0.051240087, y: -0.120381534}
@@ -30155,11 +30155,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3282955313056558371, guid: 4c60269e6740b614f8a99d4a8e87c899, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -5.9
+      value: -8.95
       objectReference: {fileID: 0}
     - target: {fileID: 3282955313056558371, guid: 4c60269e6740b614f8a99d4a8e87c899, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 4
+      value: 7.19
       objectReference: {fileID: 0}
     - target: {fileID: 3282955313056558371, guid: 4c60269e6740b614f8a99d4a8e87c899, type: 3}
       propertyPath: m_LocalPosition.z
@@ -30246,7 +30246,7 @@ GameObject:
   - component: {fileID: 1796678197}
   m_Layer: 0
   m_Name: Golem
-  m_TagString: Untagged
+  m_TagString: enermy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -30763,7 +30763,7 @@ GameObject:
   - component: {fileID: 1965234661}
   m_Layer: 0
   m_Name: FrostGuardian
-  m_TagString: Untagged
+  m_TagString: enermy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -30953,7 +30953,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0.02042906, y: -0.08396803}
@@ -31704,7 +31704,7 @@ Transform:
   m_GameObject: {fileID: 2103825863}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.67, y: 2.21, z: 0}
+  m_LocalPosition: {x: -8.99, y: 7.16, z: 0}
   m_LocalScale: {x: 5, y: 5, z: 5}
   m_ConstrainProportionsScale: 0
   m_Children:
