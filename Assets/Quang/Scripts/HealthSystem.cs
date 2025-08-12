@@ -55,22 +55,29 @@ public class HealthSystem : MonoBehaviour
         }
     }
 
-    void OnTriggerEnter2D(Collider2D collision)
+    void OnTriggerEnter2D(Collider2D other)
     {
-        if (isDead) return;
-
-        if (collision.gameObject.CompareTag("Hit") ||
-            collision.gameObject.CompareTag("Bullet") ||
-            collision.gameObject.CompareTag("Bow"))
+        if (other.CompareTag("Hit"))
         {
-            int damage = 25; // có thể thay đổi theo weapon
-            TakeDamage(damage);
+            float damage = Random.Range(1f, 6f);
+            TakeDamage(damage + GlobalData.damageBonus);
+        }
+        else if (other.CompareTag("Bullet"))
+        {
+            float damage = Random.Range(10f, 16f);
+            TakeDamage(damage + GlobalData.damageBonus);
+        }
+        else if (other.CompareTag("Bow"))
+        {
+            float damage = Random.Range(5f, 11f);
+            TakeDamage(damage + GlobalData.damageBonus);
         }
     }
 
-    void TakeDamage(int amount)
+
+    void TakeDamage(float amount)
     {
-        currentHealth -= amount;
+        currentHealth -= (int)amount;
         currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
 
         // Animation bị thương

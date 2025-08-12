@@ -4,7 +4,7 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public class Boss3Controller : MonoBehaviour
 {
-    [Header("Di chuy?n & T?n công")]
+    [Header("Di chuy?n & T?n cï¿½ng")]
     public float moveSpeed = 5f;
     public float chaseSpeedMultiplier = 1.5f;
     public float idlePatrolSpeed = 1f;
@@ -19,7 +19,7 @@ public class Boss3Controller : MonoBehaviour
     public Transform player3;
     public Animator animator;
 
-    [Header("Phát hi?n Player")]
+    [Header("Phï¿½t hi?n Player")]
     public float detectRange = 6f;
     private bool hasDetectedPlayer = false;
 
@@ -27,7 +27,7 @@ public class Boss3Controller : MonoBehaviour
     public float teleportCooldown = 5f;
     private float lastTeleportTime;
 
-    [Header("Âm thanh")]
+    [Header("ï¿½m thanh")]
     public AudioSource audioSource;
     public AudioClip attackClip;
     public AudioClip walkClip;
@@ -35,7 +35,7 @@ public class Boss3Controller : MonoBehaviour
     public AudioClip fireClip;
     public AudioClip teleportClip;
 
-    [Header("Tri?u h?i khi máu th?p")]
+    [Header("Tri?u h?i khi mï¿½u th?p")]
     public GameObject lowHealthMonsterPrefab1;
     public GameObject lowHealthMonsterPrefab2;
     public GameObject lowHealthMonsterPrefab3;
@@ -112,7 +112,7 @@ public class Boss3Controller : MonoBehaviour
         if (Time.time - lastTeleportTime >= teleportCooldown)
             TeleportToPlayer(target);
 
-        // Tri?u h?i 3 quái khi máu <= 50%, ch? 1 l?n
+        // Tri?u h?i 3 quï¿½i khi mï¿½u <= 50%, ch? 1 l?n
         if (!hasLowHealthSummoned && currentHealth <= maxHealth * 0.5f)
         {
             StartCoroutine(SummonLowHealthMonsters());
@@ -234,14 +234,6 @@ public class Boss3Controller : MonoBehaviour
         if (attackClip != null) audioSource.PlayOneShot(attackClip);
 
         Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, attackRange);
-        foreach (var hit in hits)
-        {
-            if (hit.CompareTag("Player1"))
-            {
-                Player1 p = hit.GetComponent<Player1>();
-                if (p != null) p.TakeDamage(attackDamage);
-            }
-        }
     }
 
     void EndAttack() => isAttacking = false;

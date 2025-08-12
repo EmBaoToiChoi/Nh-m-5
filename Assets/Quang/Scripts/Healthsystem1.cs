@@ -3,28 +3,28 @@ using UnityEngine.UI;
 
 public class Healthsystem1 : MonoBehaviour
 {
-    [Header("Cài ð?t máu")]
+    [Header("Cï¿½i ï¿½?t mï¿½u")]
     public int maxHealth = 100;
     private int currentHealth;
     private bool isDead = false;
 
-    [Header("UI Máu")]
+    [Header("UI Mï¿½u")]
     public GameObject healthBarPrefab;
     public Image healthFill;
     private GameObject healthBarUI;
 
-    [Header("Prefab Rõi V?t Ph?m")]
+    [Header("Prefab Rï¿½i V?t Ph?m")]
     public GameObject goldPrefab;
     public GameObject healthPickupPrefab;
     public GameObject xpPrefab;
 
-    [Header("Tri?u h?i khi máu th?p")]
+    [Header("Tri?u h?i khi mï¿½u th?p")]
     public GameObject lowHealthMonsterPrefab1;
     public GameObject lowHealthMonsterPrefab2;
     public GameObject lowHealthMonsterPrefab3;
     private bool hasLowHealthSummoned = false;
 
-    [Header("Âm thanh")]
+    [Header("ï¿½m thanh")]
     public AudioClip hurtClip;
     public AudioClip deathClip;
     private AudioSource audioSource;
@@ -37,7 +37,7 @@ public class Healthsystem1 : MonoBehaviour
         animator = GetComponent<Animator>();
         audioSource = GetComponent<AudioSource>();
 
-        // Spawn UI máu n?u có prefab
+        // Spawn UI mï¿½u n?u cï¿½ prefab
         if (healthBarPrefab != null)
         {
             healthBarUI = Instantiate(healthBarPrefab, transform.position + Vector3.up * 2f, Quaternion.identity);
@@ -47,7 +47,7 @@ public class Healthsystem1 : MonoBehaviour
 
     void Update()
     {
-        // C?p nh?t v? trí UI máu theo boss
+        // C?p nh?t v? trï¿½ UI mï¿½u theo boss
         if (healthBarUI != null)
         {
             healthBarUI.transform.position = transform.position + Vector3.up * 2f;
@@ -55,43 +55,51 @@ public class Healthsystem1 : MonoBehaviour
         }
     }
 
-    void OnTriggerEnter2D(Collider2D collision)
+    void OnTriggerEnter2D(Collider2D other)
     {
-        if (isDead) return;
-
-        if (collision.gameObject.CompareTag("Hit") ||
-            collision.gameObject.CompareTag("Bullet") ||
-            collision.gameObject.CompareTag("Bow"))
+        if (other.CompareTag("Hit"))
         {
-            int damage = 25; // có th? thay ð?i theo weapon
-            TakeDamage(damage);
+            float damage = Random.Range(1f, 6f);
+            TakeDamage(damage + GlobalData.damageBonus);
+        }
+        else if (other.CompareTag("Bullet"))
+        {
+            float damage = Random.Range(10f, 16f);
+            TakeDamage(damage + GlobalData.damageBonus);
+        }
+        else if (other.CompareTag("Bow"))
+        {
+            float damage = Random.Range(5f, 11f);
+            TakeDamage(damage + GlobalData.damageBonus);
         }
     }
 
-    void TakeDamage(int amount)
+
+
+    void TakeDamage(float amount)
     {
-        currentHealth -= amount;
+        currentHealth -= (int)amount;
         currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
 
-        // Animation b? thýõng
+        // Animation b? thï¿½ï¿½ng
         if (animator != null)
             animator.SetTrigger("Hurt");
 
-        // Âm thanh b? thýõng
+        // ï¿½m thanh b? thï¿½ï¿½ng
         if (hurtClip != null && audioSource != null)
             audioSource.PlayOneShot(hurtClip);
 
-        // Hi?n Damage Text (tránh l?i null)
+        // Hi?n Damage Text (trï¿½nh l?i null)
         if (DamageTextManager.Instance != null && DamageTextManager.Instance.worldCanvas != null)
         {
             DamageTextManager.Instance.ShowDamage(transform.position, amount);
         }
 
-        // C?p nh?t UI máu
+        // C?p nh?t UI mï¿½u
         if (healthFill != null)
             healthFill.fillAmount = (float)currentHealth / maxHealth;
 
-        // Tri?u h?i khi máu <= 50% và chýa tri?u h?i
+        // Tri?u h?i khi mï¿½u <= 50% vï¿½ chï¿½a tri?u h?i
         if (!hasLowHealthSummoned && currentHealth <= maxHealth * 0.5f)
         {
             SummonLowHealthMonsters();
@@ -138,23 +146,23 @@ public class Healthsystem1 : MonoBehaviour
         if (animator != null)
             animator.SetTrigger("Die");
 
-        // Âm thanh ch?t
+        // ï¿½m thanh ch?t
         if (deathClip != null && audioSource != null)
             audioSource.PlayOneShot(deathClip);
 
-        // Rõi vàng
+        // Rï¿½i vï¿½ng
         if (goldPrefab != null)
             Instantiate(goldPrefab, transform.position, Quaternion.identity);
 
-        // Rõi máu
+        // Rï¿½i mï¿½u
         if (healthPickupPrefab != null)
             Instantiate(healthPickupPrefab, transform.position + new Vector3(0.4f, 0.3f, 0), Quaternion.identity);
 
-        // Rõi XP
+        // Rï¿½i XP
         if (xpPrefab != null)
             Instantiate(xpPrefab, transform.position + new Vector3(0, 0.3f, 0), Quaternion.identity);
 
-        // Xoá thanh máu UI
+        // Xoï¿½ thanh mï¿½u UI
         if (healthBarUI != null)
             Destroy(healthBarUI);
 
