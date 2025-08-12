@@ -47,6 +47,7 @@ public class StoryManager : MonoBehaviour
     void ShowStory()
     {
         panel.SetActive(true);
+        Time.timeScale = 0f; // ⏸ Pause game khi hiện cốt truyện
         currentLine = 0;
         StartTyping();
     }
@@ -66,7 +67,7 @@ public class StoryManager : MonoBehaviour
         foreach (char c in line)
         {
             storyText.text += c;
-            yield return new WaitForSeconds(typingSpeed);
+            yield return new WaitForSecondsRealtime(typingSpeed); // Dùng WaitForSecondsRealtime vì đang pause game
         }
         isTyping = false;
     }
@@ -88,16 +89,20 @@ public class StoryManager : MonoBehaviour
         }
         else
         {
-            PlayerPrefs.SetInt(StoryKey, 1);
-            PlayerPrefs.Save();
-            panel.SetActive(false);
+            EndStory();
         }
     }
 
     void SkipStory()
     {
+        EndStory();
+    }
+
+    void EndStory()
+    {
         PlayerPrefs.SetInt(StoryKey, 1);
         PlayerPrefs.Save();
         panel.SetActive(false);
+        Time.timeScale = 1f; // ▶ Tiếp tục game
     }
 }
