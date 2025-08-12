@@ -31,15 +31,17 @@ public class Boss3Controller : MonoBehaviour
     public AudioSource audioSource;
     public AudioClip attackClip;
     public AudioClip walkClip;
+    public AudioClip skillClip;
     public AudioClip summonClip;
     public AudioClip fireClip;
     public AudioClip teleportClip;
 
-    [Header("Tri?u h?i khi m�u th?p")]
-    public GameObject lowHealthMonsterPrefab1;
-    public GameObject lowHealthMonsterPrefab2;
-    public GameObject lowHealthMonsterPrefab3;
-    private bool hasLowHealthSummoned = false;
+    [Header("Tri?u h?i")]
+    public GameObject skeletonPrefab;
+    public int summonCount = 3;
+    public float summonCooldown = 8f;
+    private float lastSummonTime;
+    private bool isLowHealthSummon = false;
 
     [Header("HP & Revive")]
     public int maxHealth = 300;
@@ -51,8 +53,8 @@ public class Boss3Controller : MonoBehaviour
 
     [Header("Fire Breath")]
     public ParticleSystem fireBreath;
-    public Transform firePoint;
-    public Transform mouthTransform;
+    public Transform firePoint;         // Child c?a mouthTransform
+    public Transform mouthTransform;    // G?n ��ng v? tr� mi?ng
     public float fireCooldown = 7f;
     public float fireDuration = 2f;
     public float fireDamagePerSecond = 15f;
@@ -74,16 +76,31 @@ public class Boss3Controller : MonoBehaviour
         originalScale = transform.localScale;
         currentHealth = maxHealth;
 
+        // T? t?m Animator n?u ch�a g�n
         if (animator == null)
             animator = GetComponent<Animator>();
+
+        // T? t?m firePoint n?u ch�a g�n
+        if (firePoint == null && mouthTransform != null)
+        {
+            Transform fp = mouthTransform.Find("FirePoint");
+            if (fp != null)
+                firePoint = fp;
+        }
+
+        // N?u v?n ch�a c� firePoint th? b�o l?i r? r�ng
+        if (firePoint == null)
+            Debug.LogError("Boss4Controller: FirePoint ch�a ��?c g�n v� kh�ng t?m th?y trong MouthTransform!");
+
+        // �?m b?o firePoint b�m v�o mouthTransform
+        if (mouthTransform != null && firePoint != null)
+            firePoint.SetParent(mouthTransform, false);
 
         if (fireBreath != null)
             fireBreath.Stop();
 
-        if (mouthTransform != null && firePoint != null)
-            firePoint.SetParent(mouthTransform, false);
-
         lastFireTime = -fireCooldown;
+        lastSummonTime = -summonCooldown;
         lastTeleportTime = -teleportCooldown;
     }
 
@@ -112,11 +129,16 @@ public class Boss3Controller : MonoBehaviour
         if (Time.time - lastTeleportTime >= teleportCooldown)
             TeleportToPlayer(target);
 
-        // Tri?u h?i 3 qu�i khi m�u <= 50%, ch? 1 l?n
-        if (!hasLowHealthSummoned && currentHealth <= maxHealth * 0.5f)
+        if (Time.time - lastSummonTime >= summonCooldown)
         {
-            StartCoroutine(SummonLowHealthMonsters());
-            hasLowHealthSummoned = true;
+            StartCoroutine(UseSkill());
+            lastSummonTime = Time.time;
+        }
+
+        if (!isLowHealthSummon && currentHealth <= maxHealth * 0.3f)
+        {
+            StartCoroutine(SummonSkeletons(5));
+            isLowHealthSummon = true;
         }
 
         if (distance <= attackRange)
@@ -213,6 +235,7 @@ public class Boss3Controller : MonoBehaviour
         Vector2 dir = (target.position - transform.position).normalized;
         FlipBoss(dir);
 
+        // Xoay mi?ng h�?ng v? player
         if (mouthTransform != null)
         {
             float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
@@ -240,11 +263,12 @@ public class Boss3Controller : MonoBehaviour
 
     IEnumerator FireOnce(Transform target)
     {
-        if (isDead) yield break;
+        if (isDead || firePoint == null) yield break;
 
         isFiring = true;
         lastFireTime = Time.time;
 
+        // Xoay mi?ng h�?ng v? player tr�?c khi b?n
         if (mouthTransform != null && target != null)
         {
             Vector2 dir = (target.position - mouthTransform.position).normalized;
@@ -293,27 +317,33 @@ public class Boss3Controller : MonoBehaviour
         isFiring = false;
     }
 
-    IEnumerator SummonLowHealthMonsters()
+    IEnumerator UseSkill()
     {
         if (isDead) yield break;
 
-        Vector3 pos1 = transform.position + new Vector3(Random.Range(-3f, 3f), Random.Range(-3f, 3f), 0);
-        Vector3 pos2 = transform.position + new Vector3(Random.Range(-3f, 3f), Random.Range(-3f, 3f), 0);
-        Vector3 pos3 = transform.position + new Vector3(Random.Range(-3f, 3f), Random.Range(-3f, 3f), 0);
+        if (skillClip != null) audioSource.PlayOneShot(skillClip);
 
-        if (lowHealthMonsterPrefab1 != null)
-            Instantiate(lowHealthMonsterPrefab1, pos1, Quaternion.identity);
+        animator.SetTrigger("Skill");
+        yield return new WaitForSeconds(0.5f);
+        yield return StartCoroutine(SummonSkeletons(summonCount));
+    }
 
-        if (lowHealthMonsterPrefab2 != null)
-            Instantiate(lowHealthMonsterPrefab2, pos2, Quaternion.identity);
+    IEnumerator SummonSkeletons(int count)
+    {
+        if (skeletonPrefab == null || isDead) yield break;
 
-        if (lowHealthMonsterPrefab3 != null)
-            Instantiate(lowHealthMonsterPrefab3, pos3, Quaternion.identity);
+        for (int i = 0; i < count; i++)
+        {
+            Vector3 pos = transform.position + new Vector3(Random.Range(-2f, 2f), Random.Range(-2f, 2f), 0);
+            GameObject skel = Instantiate(skeletonPrefab, pos, Quaternion.identity);
 
-        if (summonClip != null && audioSource != null)
-            audioSource.PlayOneShot(summonClip);
+            SmallSkeleton skelScript = skel.GetComponent<SmallSkeleton>();
+            if (skelScript != null)
+                skelScript.canRespawnSmall = true;
 
-        yield return null;
+            if (summonClip != null) audioSource.PlayOneShot(summonClip);
+            yield return new WaitForSeconds(0.3f);
+        }
     }
 
     public void TakeDamage(int amount)
@@ -366,6 +396,7 @@ public class Boss3Controller : MonoBehaviour
 
         animator.SetBool("isMoving", false);
         animator.ResetTrigger("Attack");
+        animator.ResetTrigger("Skill");
         animator.SetTrigger("Die");
 
         StartCoroutine(DelayedDestroyAfterAnimation("Demon die"));
@@ -381,6 +412,7 @@ public class Boss3Controller : MonoBehaviour
         }
 
         yield return new WaitForSeconds(stateInfo.length + 0.1f);
+
         Destroy(gameObject);
     }
 
