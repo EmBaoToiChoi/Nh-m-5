@@ -28871,12 +28871,13 @@ MonoBehaviour:
   audioSource: {fileID: 1608038799}
   attackClip: {fileID: 8300000, guid: ac926c10fc1a85f45a562ae70ff602ec, type: 3}
   walkClip: {fileID: 8300000, guid: 43bb18511e4a9124e954848a64506773, type: 3}
+  skillClip: {fileID: 0}
   summonClip: {fileID: 0}
   fireClip: {fileID: 0}
   teleportClip: {fileID: 0}
-  lowHealthMonsterPrefab1: {fileID: 1796678190}
-  lowHealthMonsterPrefab2: {fileID: 291539588}
-  lowHealthMonsterPrefab3: {fileID: 578833500}
+  skeletonPrefab: {fileID: 0}
+  summonCount: 3
+  summonCooldown: 8
   maxHealth: 300
   extraLives: 1
   reviveDelay: 1.5
@@ -31011,7 +31012,7 @@ MonoBehaviour:
   lowHealthMonsterPrefab1: {fileID: 1796678190}
   lowHealthMonsterPrefab2: {fileID: 291539588}
   lowHealthMonsterPrefab3: {fileID: 578833500}
-  hurtClip: {fileID: 8300000, guid: 6c3e52fb113a43542a0828b6fbecf744, type: 3}
+  hurtClip: {fileID: 0}
   deathClip: {fileID: 8300000, guid: fc70b942af7a5c24fb3b4227af4422b4, type: 3}
 --- !u!82 &1965234661
 AudioSource:

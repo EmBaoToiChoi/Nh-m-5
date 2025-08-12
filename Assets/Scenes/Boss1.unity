@@ -45161,6 +45161,14 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: -0.36
       objectReference: {fileID: 0}
+    - target: {fileID: 1778020044975417327, guid: d4b0a760eb6339b4485e9ddc7aff7abc, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2267057122496407312, guid: d4b0a760eb6339b4485e9ddc7aff7abc, type: 3}
+      propertyPath: damage
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2902517406912033718, guid: d4b0a760eb6339b4485e9ddc7aff7abc, type: 3}
       propertyPath: player
       value: 
@@ -45173,6 +45181,18 @@ PrefabInstance:
       propertyPath: player3
       value: 
       objectReference: {fileID: 14320210}
+    - target: {fileID: 2902517406912033718, guid: d4b0a760eb6339b4485e9ddc7aff7abc, type: 3}
+      propertyPath: moveSpeed
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2902517406912033718, guid: d4b0a760eb6339b4485e9ddc7aff7abc, type: 3}
+      propertyPath: attackDamage
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2902517406912033718, guid: d4b0a760eb6339b4485e9ddc7aff7abc, type: 3}
+      propertyPath: audioSourceWalk
+      value: 
+      objectReference: {fileID: 93890343715984303}
     - target: {fileID: 4640936059300662208, guid: d4b0a760eb6339b4485e9ddc7aff7abc, type: 3}
       propertyPath: m_LocalPosition.x
       value: 283.2
@@ -45225,6 +45245,10 @@ PrefabInstance:
       propertyPath: xpPrefab
       value: 
       objectReference: {fileID: 281708687}
+    - target: {fileID: 6496500137693310020, guid: d4b0a760eb6339b4485e9ddc7aff7abc, type: 3}
+      propertyPath: maxHealth
+      value: 500
+      objectReference: {fileID: 0}
     - target: {fileID: 6496500137693310020, guid: d4b0a760eb6339b4485e9ddc7aff7abc, type: 3}
       propertyPath: goldPrefab
       value: 
@@ -45312,6 +45336,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 281708687}
     - target: {fileID: 2348834901552316834, guid: db2d51b61f0a5024a8de555af7f2c23b, type: 3}
+      propertyPath: maxHealth
+      value: 1001
+      objectReference: {fileID: 0}
+    - target: {fileID: 2348834901552316834, guid: db2d51b61f0a5024a8de555af7f2c23b, type: 3}
       propertyPath: goldPrefab
       value: 
       objectReference: {fileID: 1440961757}
@@ -45336,9 +45364,21 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 14320210}
     - target: {fileID: 2367283009217081847, guid: db2d51b61f0a5024a8de555af7f2c23b, type: 3}
+      propertyPath: moveSpeed
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2367283009217081847, guid: db2d51b61f0a5024a8de555af7f2c23b, type: 3}
+      propertyPath: attackDamage
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2367283009217081847, guid: db2d51b61f0a5024a8de555af7f2c23b, type: 3}
       propertyPath: skeletonPrefab
       value: 
       objectReference: {fileID: 1865921621}
+    - target: {fileID: 2367283009217081847, guid: db2d51b61f0a5024a8de555af7f2c23b, type: 3}
+      propertyPath: audioSourceWalk
+      value: 
+      objectReference: {fileID: 3111568671332893480}
     - target: {fileID: 4038216308504101460, guid: db2d51b61f0a5024a8de555af7f2c23b, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.216
@@ -45362,6 +45402,10 @@ PrefabInstance:
     - target: {fileID: 6472941604425120340, guid: db2d51b61f0a5024a8de555af7f2c23b, type: 3}
       propertyPath: m_LocalPosition.z
       value: -0.29
+      objectReference: {fileID: 0}
+    - target: {fileID: 7349460649207606405, guid: db2d51b61f0a5024a8de555af7f2c23b, type: 3}
+      propertyPath: damage
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
