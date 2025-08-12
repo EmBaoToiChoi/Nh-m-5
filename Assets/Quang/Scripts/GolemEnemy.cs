@@ -4,7 +4,7 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public class GolemEnemy : MonoBehaviour
 {
-    [Header("Di chuy?n & T?n công")]
+    [Header("Di chuy?n & T?n cï¿½ng")]
     public float moveSpeed = 5f;
     public float chaseSpeedMultiplier = 1.5f;
     public float idlePatrolSpeed = 1f;
@@ -19,7 +19,7 @@ public class GolemEnemy : MonoBehaviour
     public Transform player3;
     public Animator animator;
 
-    [Header("Phát hi?n Player")]
+    [Header("Phï¿½t hi?n Player")]
     public float detectRange = 6f;
     private bool hasDetectedPlayer = false;
 
@@ -27,7 +27,7 @@ public class GolemEnemy : MonoBehaviour
     public float teleportCooldown = 5f;
     private float lastTeleportTime;
 
-    [Header("Âm thanh")]
+    [Header("ï¿½m thanh")]
     public AudioSource audioSource;
     public AudioClip attackClip;
     public AudioClip walkClip;
@@ -209,14 +209,6 @@ public class GolemEnemy : MonoBehaviour
         if (attackClip != null) audioSource.PlayOneShot(attackClip);
 
         Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, attackRange);
-        foreach (var hit in hits)
-        {
-            if (hit.CompareTag("Player1"))
-            {
-                Player1 p = hit.GetComponent<Player1>();
-                if (p != null) p.TakeDamage(attackDamage);
-            }
-        }
     }
 
     void EndAttack() => isAttacking = false;
