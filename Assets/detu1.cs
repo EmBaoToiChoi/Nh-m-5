@@ -29,10 +29,10 @@ public class detu1 : MonoBehaviour
     private Transform mainCam;
 
     private bool isChasing = false;
-    private float speed = 4f;
-    private float PVipHien = 15f;
+    private float speed = 2f;
+    private float PVipHien = 5f;
 
-    private float maxHealth = 80f;
+    private float maxHealth = 250f;
     private float currentHealth;
     [SerializeField] private GameObject[] extraEnemyPrefabs; // Thêm mảng 3 prefab quái khác
     [SerializeField] private float spawnDistance = 2f;

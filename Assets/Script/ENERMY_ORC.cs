@@ -28,7 +28,7 @@ public class ENERMY_ORC : MonoBehaviour
 
     private float speed = 2f;
     private float PVipHien = 10f;
-    private float maxHealth = 20f;
+    private float maxHealth = 50f;
     private float currentHealth;
 
     private bool isChasing = false;
