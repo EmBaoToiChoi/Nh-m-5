@@ -33,10 +33,10 @@ public class NGDA : MonoBehaviour
     private Transform mainCam;
 
     private bool isChasing = false;
-    private float speed = 2f;
+    private float speed = 3f;
     private float PVipHien = 5f;
 
-    private float maxHealth = 80f;
+    private float maxHealth = 200f;
     private float currentHealth;
 
     void Start()
