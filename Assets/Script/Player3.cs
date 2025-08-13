@@ -232,6 +232,24 @@ thanhmau.Capnhatthanhmau();
             thanhNangLuong.CapNhatThanhNangLuong(nangLuongHienTai, nangLuongToiDa);
         }
     }
+    void OnTriggerEnter2D(Collider2D cc)
+    {
+        if (cc.gameObject.CompareTag("enermy"))
+        {
+            audioSource.PlayOneShot(enemyHitSound);
+
+            // Trừ máu thông qua class quản lý máu
+            ThanhMauPl_1.Instance.TruMau(10f); // ✅ Dùng hàm có sẵn trong ThanhMauPl_1
+
+            if (ThanhMauPl_1.Instance.mauhientai <= 0)
+            {
+                PlayerPrefs.SetInt("PreviousScene", SceneManager.GetActiveScene().buildIndex);
+                loadsencethua();
+                Destroy(this.gameObject);
+            }
+        }
+    }
+    
 
     void OnCollisionEnter2D(Collision2D collision)
     {

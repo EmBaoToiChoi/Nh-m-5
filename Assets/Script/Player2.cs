@@ -14,14 +14,14 @@ public class Player2 : MonoBehaviour
     private float currentHealth;
 
     [SerializeField] private GameObject hit_right, hit_up, hit_down;
-    [SerializeField] private GameObject gunObject; 
+    [SerializeField] private GameObject gunObject;
     private bool is_attack;
     private float timer;
     [SerializeField] private AudioClip hit;
     [SerializeField] private AudioSource source;
-        [SerializeField] private AudioClip hit1;
+    [SerializeField] private AudioClip hit1;
     [SerializeField] private AudioSource source1;
-    [SerializeField] private AudioClip enemyHitSound; 
+    [SerializeField] private AudioClip enemyHitSound;
     [SerializeField] private AudioSource audioSource;
     [HideInInspector] public SpriteRenderer spriteRenderer;
     public ThanhMauPl_1 thanhmau;
@@ -32,10 +32,10 @@ public class Player2 : MonoBehaviour
     public static float mauLuuTru;
     public ThanhNangLuongPl_1 thanhNangLuong;
 
-    public float nangLuongHienTai;   
-    public float nangLuongToiDa = 100f; 
-    public float tocDoHoiNangLuong = 10f; 
-    public float tocDoTieuHaoNangLuong = 20f; 
+    public float nangLuongHienTai;
+    public float nangLuongToiDa = 100f;
+    public float tocDoHoiNangLuong = 10f;
+    public float tocDoTieuHaoNangLuong = 20f;
 
     private bool coTheChayNhanh = true;
     public static float nangLuongLuuTru;
@@ -50,12 +50,12 @@ public class Player2 : MonoBehaviour
     public int currentEnergy = 100;  // hoặc giá trị khởi đầu bạn muốn
     public int currentXP = 0;
     public int currentLevel = 0;
-[SerializeField] private GameObject fireballPrefab; 
-[SerializeField] private Transform firePoint;       
-[SerializeField] private float fireballSpeed = 8f;  
-[SerializeField] private float fireRate = 0.3f;     
-private float nextFireTime = 0f;
-    
+    [SerializeField] private GameObject fireballPrefab;
+    [SerializeField] private Transform firePoint;
+    [SerializeField] private float fireballSpeed = 8f;
+    [SerializeField] private float fireRate = 0.3f;
+    private float nextFireTime = 0f;
+
 
 
 
@@ -136,7 +136,7 @@ private float nextFireTime = 0f;
 
 
 
-    
+
     public void Heal(float amount)
     {
         currentHealth -= amount;
@@ -145,7 +145,7 @@ private float nextFireTime = 0f;
         thanhmau.Capnhatthanhmau();
         Debug.Log("❤️ Player hồi máu: +" + amount);
     }
-    
+
 
     void UpdateBowPosition()
     {
@@ -205,25 +205,25 @@ private float nextFireTime = 0f;
         thanhmau = FindObjectOfType<ThanhMauPl_1>();
         if (thanhmau != null)
         {
-        thanhmau.Capnhatthanhmau();
+            thanhmau.Capnhatthanhmau();
         }
     }
 
 
-// 
+    // 
     private void Awake()
     {
-        
+
         Play = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
-        gunObject.SetActive(false); 
+        gunObject.SetActive(false);
     }
 
     private void MovePlayer()
     {
         Vector2 input = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
         Play.velocity = input.normalized * move;
-        float speed = move; 
+        float speed = move;
 
         if (Input.GetKey(KeyCode.LeftShift) && coTheChayNhanh)
         {
@@ -234,9 +234,26 @@ private float nextFireTime = 0f;
             if (nangLuongHienTai <= 0)
             {
                 nangLuongHienTai = 0;
-                coTheChayNhanh = false; 
+                coTheChayNhanh = false;
             }
             thanhNangLuong.CapNhatThanhNangLuong(nangLuongHienTai, nangLuongToiDa);
+        }
+    }
+    void OnTriggerEnter2D(Collider2D cc)
+    {
+        if (cc.gameObject.CompareTag("enermy"))
+        {
+            audioSource.PlayOneShot(enemyHitSound);
+
+            // Trừ máu thông qua class quản lý máu
+            ThanhMauPl_1.Instance.TruMau(10f); // ✅ Dùng hàm có sẵn trong ThanhMauPl_1
+
+            if (ThanhMauPl_1.Instance.mauhientai <= 0)
+            {
+                PlayerPrefs.SetInt("PreviousScene", SceneManager.GetActiveScene().buildIndex);
+                loadsencethua();
+                Destroy(this.gameObject);
+            }
         }
     }
 
@@ -283,29 +300,29 @@ private float nextFireTime = 0f;
     void Start()
     {
         if (GameState.isContinue)
-    {
-        LoadPlayerData(); // chỉ load nếu là Continue
-    }
-    else
-    {
-        // setup ban đầu cho New Game nếu cần
-        currentHealth = baseMaxHealth;
-        currentXP = 0;
-        currentEnergy = 100;
-        coin = 0;
-        hasGun = false;
-        hasBow = false;
-    }
-    string path = Application.persistentDataPath + "/save.json";
-    if (System.IO.File.Exists(path))
-    {
+        {
+            LoadPlayerData(); // chỉ load nếu là Continue
+        }
+        else
+        {
+            // setup ban đầu cho New Game nếu cần
+            currentHealth = baseMaxHealth;
+            currentXP = 0;
+            currentEnergy = 100;
+            coin = 0;
+            hasGun = false;
+            hasBow = false;
+        }
+        string path = Application.persistentDataPath + "/save.json";
+        if (System.IO.File.Exists(path))
+        {
             LoadPlayerData(); // Gọi Load nếu có dữ liệu
-        Debug.Log("Đã load dữ liệu lưu game.");
-    }
-    else
-    {
-        Debug.Log("Không tìm thấy dữ liệu để load.");
-    }
+            Debug.Log("Đã load dữ liệu lưu game.");
+        }
+        else
+        {
+            Debug.Log("Không tìm thấy dữ liệu để load.");
+        }
 
 
         float bonus = GlobalData.healthBonus;
@@ -315,11 +332,11 @@ private float nextFireTime = 0f;
         thanhNangLuong.CapNhatThanhNangLuong(nangLuongHienTai, nangLuongToiDa);
 
 
-        if (mauLuuTru <= 0) 
+        if (mauLuuTru <= 0)
         {
             mauhientai = mautoida;
         }
-        else 
+        else
         {
             mauhientai = mauLuuTru;
         }
@@ -328,7 +345,7 @@ private float nextFireTime = 0f;
         thanhmau.Capnhatthanhmau();
 
 
-       
+
         if (nangLuongLuuTru <= 0)
         {
             nangLuongHienTai = nangLuongToiDa;
@@ -341,7 +358,7 @@ private float nextFireTime = 0f;
 
         thanhNangLuong.CapNhatThanhNangLuong(nangLuongHienTai, nangLuongToiDa);
 
-        
+
         if (mauLuuTru <= 0)
         {
             mauhientai = mautoida;
@@ -351,12 +368,12 @@ private float nextFireTime = 0f;
             mauhientai = mauLuuTru;
         }
         thanhmau.Capnhatthanhmau();
-    
-    
+
+
     }
     void OnDestroy()
     {
-        
+
         mauLuuTru = mauhientai;
         nangLuongLuuTru = nangLuongHienTai;
     }
@@ -368,7 +385,7 @@ private float nextFireTime = 0f;
         {
             SavePlayerData();  // gọi hàm lưu
             Debug.Log("Đã Lưu");
-    }
+        }
         // PHÍM 1 - Đánh cận chiến
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
@@ -534,7 +551,7 @@ private float nextFireTime = 0f;
             ShootTowardsMouse();
             nextFireTime = Time.time + fireRate;
         }
-    
+
     }
     void ShootTowardsMouse()
     {
@@ -573,17 +590,17 @@ private float nextFireTime = 0f;
     void HandleShooting()
     {
         float currentSpeed = move;
-    if (Input.GetKey(KeyCode.LeftShift) && nangLuongHienTai > 0)
-    {
-        currentSpeed = fastMove;
-        nangLuongHienTai -= tocDoTieuHaoNangLuong * Time.deltaTime;
-        if (nangLuongHienTai <= 0)
+        if (Input.GetKey(KeyCode.LeftShift) && nangLuongHienTai > 0)
         {
-            nangLuongHienTai = 0;
-            coTheChayNhanh = false;
+            currentSpeed = fastMove;
+            nangLuongHienTai -= tocDoTieuHaoNangLuong * Time.deltaTime;
+            if (nangLuongHienTai <= 0)
+            {
+                nangLuongHienTai = 0;
+                coTheChayNhanh = false;
+            }
+            thanhNangLuong.CapNhatThanhNangLuong(nangLuongHienTai, nangLuongToiDa);
         }
-        thanhNangLuong.CapNhatThanhNangLuong(nangLuongHienTai, nangLuongToiDa);
-    }
 
 
         ngang = Input.GetAxisRaw("Horizontal");
@@ -654,7 +671,7 @@ private float nextFireTime = 0f;
         else if (ngang < 0)
         {
             ani2.SetBool("chayad", true);
-            
+
             transform.localScale = new Vector3(5, 5, 5);
         }
         else
