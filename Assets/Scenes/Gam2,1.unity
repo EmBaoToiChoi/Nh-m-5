@@ -21222,7 +21222,7 @@ GameObject:
   - component: {fileID: 471160643}
   - component: {fileID: 471160645}
   - component: {fileID: 471160644}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: PL1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -23996,7 +23996,7 @@ GameObject:
   - component: {fileID: 793240103}
   - component: {fileID: 793240105}
   - component: {fileID: 793240104}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: PL2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24445,7 +24445,7 @@ GameObject:
   - component: {fileID: 826477865}
   - component: {fileID: 826477867}
   - component: {fileID: 826477866}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -25112,7 +25112,7 @@ GameObject:
   - component: {fileID: 890647462}
   - component: {fileID: 890647464}
   - component: {fileID: 890647463}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26293,7 +26293,7 @@ GameObject:
   - component: {fileID: 1050999467}
   - component: {fileID: 1050999469}
   - component: {fileID: 1050999468}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28806,9 +28806,7 @@ MonoBehaviour:
   sfxSlider: {fileID: 681236331}
   sfxAudioSources:
   - {fileID: 1669408699}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 1056318276}
   - {fileID: 1897082033}
   - {fileID: 1883463654}
   - {fileID: 1783017584}
@@ -43629,7 +43627,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!82 &1669408699
 AudioSource:
   m_ObjectHideFlags: 0
@@ -44102,7 +44100,7 @@ GameObject:
   - component: {fileID: 1777235134}
   - component: {fileID: 1777235136}
   - component: {fileID: 1777235135}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: PL3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -48976,6 +48974,10 @@ PrefabInstance:
     - target: {fileID: 6079489721208899486, guid: 921fbd1bdcdab8f4f8adba131aee2b4c, type: 3}
       propertyPath: m_Name
       value: projectile
+      objectReference: {fileID: 0}
+    - target: {fileID: 8773575265714375219, guid: 921fbd1bdcdab8f4f8adba131aee2b4c, type: 3}
+      propertyPath: m_Constraints
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

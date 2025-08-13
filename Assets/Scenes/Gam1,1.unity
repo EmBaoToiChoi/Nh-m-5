@@ -27750,9 +27750,7 @@ MonoBehaviour:
   sfxSlider: {fileID: 681236331}
   sfxAudioSources:
   - {fileID: 1669408699}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 904100892}
   - {fileID: 1628771483}
   - {fileID: 379341011}
   - {fileID: 2142109942}
