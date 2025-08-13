@@ -4610,9 +4610,7 @@ MonoBehaviour:
   sfxSlider: {fileID: 426424145}
   sfxAudioSources:
   - {fileID: 932869904}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 1059215638}
   - {fileID: 1021914436}
   - {fileID: 1622240788}
   - {fileID: 751527569}
