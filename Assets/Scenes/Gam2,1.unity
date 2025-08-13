@@ -48932,18 +48932,6 @@ PrefabInstance:
     m_TransformParent: {fileID: 2028931224}
     m_Modifications:
     - target: {fileID: 2824841254706491769, guid: 921fbd1bdcdab8f4f8adba131aee2b4c, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2824841254706491769, guid: 921fbd1bdcdab8f4f8adba131aee2b4c, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2824841254706491769, guid: 921fbd1bdcdab8f4f8adba131aee2b4c, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2824841254706491769, guid: 921fbd1bdcdab8f4f8adba131aee2b4c, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.208
       objectReference: {fileID: 0}
@@ -48983,13 +48971,13 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 180.844
       objectReference: {fileID: 0}
-    - target: {fileID: 3005092717188737617, guid: 921fbd1bdcdab8f4f8adba131aee2b4c, type: 3}
-      propertyPath: m_IsTrigger
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 6079489721208899486, guid: 921fbd1bdcdab8f4f8adba131aee2b4c, type: 3}
       propertyPath: m_Name
       value: projectile
+      objectReference: {fileID: 0}
+    - target: {fileID: 8773575265714375219, guid: 921fbd1bdcdab8f4f8adba131aee2b4c, type: 3}
+      propertyPath: m_Constraints
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
