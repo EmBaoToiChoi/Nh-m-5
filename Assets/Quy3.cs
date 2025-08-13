@@ -28,9 +28,9 @@ public class Quy3 : MonoBehaviour
 
     private bool isChasing = false;
     private float speed = 1f;
-    private float PVipHien = 15f;
+    private float PVipHien = 5f;
 
-    private float maxHealth = 80f;
+    private float maxHealth = 250f;
     private float currentHealth;
 
     [Header("Triệu hồi quái")]

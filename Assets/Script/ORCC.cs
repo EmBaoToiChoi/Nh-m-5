@@ -29,10 +29,10 @@ public class ORCC : MonoBehaviour
     private Transform mainCam;
 
     private bool isChasing = false;
-    private float speed = 4f;
-    private float PVipHien = 15f;
+    private float speed = 3f;
+    private float PVipHien = 5f;
 
-    private float maxHealth = 80f;
+    private float maxHealth = 150f;
     private float currentHealth;
     [SerializeField] private GameObject[] extraEnemyPrefabs; // Thêm mảng 3 prefab quái khác
     [SerializeField] private float spawnDistance = 2f;
