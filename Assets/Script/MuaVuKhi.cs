@@ -167,6 +167,40 @@ public class MuaVuKhi : MonoBehaviour
         if (btnMuaMau != null)
             btnMuaMau.interactable = soBinhMau < maxBinhMau;
     }
+    public void MuaTen()
+    {
+        int vang = PlayerPrefs.GetInt("Player1", 0);
+        if (vang >= 30) // giá 30 vàng
+        {
+            BOW bow = FindObjectOfType<BOW>();
+            if (bow != null)
+            {
+                if (bow.currentAmmo < bow.maxAmmo)
+                {
+                    int them = 10; // mua thêm 10 mũi tên
+                    bow.AddAmmo(them);
+
+                    vang -= 30;
+                    PlayerPrefs.SetInt("Player1", vang);
+                    PlayerPrefs.Save();
+
+                    CapNhatUI();
+                    Debug.Log($"✅ Đã mua {them} mũi tên.");
+                }
+                else
+                {
+                    Debug.Log("❌ Đã đủ 50 mũi tên, không thể mua thêm.");
+                }
+            }
+        }
+        else
+        {
+            Debug.Log("❌ Không đủ vàng để mua tên.");
+        }
+    }
+
+
+
 
 
 

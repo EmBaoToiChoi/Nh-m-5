@@ -98,8 +98,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd0d4922d747c704a832ce5158d2bbac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pickupSound: {fileID: 8300000, guid: a4b3f43431792a6408e0bd33dae73dc5, type: 3}
   xpAmount: 1
-  messageDuration: 0.5
   messageManager: {fileID: 0}
 --- !u!58 &6559656996965421747
 CircleCollider2D:

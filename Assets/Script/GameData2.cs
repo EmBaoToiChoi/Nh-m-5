@@ -3,10 +3,23 @@ using System.IO;
 
 public class GameData2 : MonoBehaviour
 {
+    [System.Serializable]
+    public class AmmoData
+    {
+        public int currentAmmo;
+        public int reserveAmmo;
+        public int bowAmmo;
+    }
+
     public static GameData2 Instance;
+
+    // Gun
     public int reserveAmmo = 25;
     public int currentAmmo = 25;
     public int maxAmmo = 25;
+
+    // Bow
+    public int bowAmmo = 50;  // chỉ có 50 mũi tên
 
     private string ammoSavePath => Application.persistentDataPath + "/ammo.json";
 
@@ -29,12 +42,13 @@ public class GameData2 : MonoBehaviour
         AmmoData data = new AmmoData()
         {
             currentAmmo = this.currentAmmo,
-            reserveAmmo = this.reserveAmmo
+            reserveAmmo = this.reserveAmmo,
+            bowAmmo = this.bowAmmo
         };
 
         string json = JsonUtility.ToJson(data, true);
         File.WriteAllText(ammoSavePath, json);
-        Debug.Log("Đã lưu ammo vào " + ammoSavePath);
+        Debug.Log("💾 Đã lưu dữ liệu ammo vào " + ammoSavePath);
     }
 
     public void LoadAmmo()
@@ -46,12 +60,16 @@ public class GameData2 : MonoBehaviour
 
             this.currentAmmo = data.currentAmmo;
             this.reserveAmmo = data.reserveAmmo;
+            this.bowAmmo = data.bowAmmo;
 
-            Debug.Log("Đã load lại ammo: " + currentAmmo + "/" + reserveAmmo);
+            Debug.Log($"🎯 Load thành công Gun: {currentAmmo}/{reserveAmmo}, Bow: {bowAmmo}");
         }
         else
         {
-            Debug.Log("Không tìm thấy file ammo.json, dùng giá trị mặc định.");
+            Debug.Log("⚠ Không tìm thấy ammo.json, dùng mặc định.");
+            currentAmmo = maxAmmo;
+            reserveAmmo = 25;
+            bowAmmo = 50;
         }
     }
 
@@ -59,6 +77,7 @@ public class GameData2 : MonoBehaviour
     {
         currentAmmo = maxAmmo;
         reserveAmmo = 25;
+        bowAmmo = 50;
         SaveAmmo();
     }
 }

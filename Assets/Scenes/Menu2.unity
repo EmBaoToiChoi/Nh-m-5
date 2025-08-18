@@ -295,6 +295,7 @@ MonoBehaviour:
   reserveAmmo: 25
   currentAmmo: 25
   maxAmmo: 25
+  bowAmmo: 50
 --- !u!4 &310057767
 Transform:
   m_ObjectHideFlags: 0
