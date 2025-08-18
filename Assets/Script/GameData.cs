@@ -11,10 +11,15 @@ public class GameData
     public int currentLevel;
     public int coin;
 
+    // Gun
     public int currentAmmo;
     public int reserveAmmo;
     public int maxAmmo;
 
+    // Bow
+    public int bowAmmo;
+
+    // Vũ khí
     public bool hasGun;
     public bool hasBow;
 

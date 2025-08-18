@@ -30,7 +30,7 @@ public class Quy3 : MonoBehaviour
     private float speed = 1f;
     private float PVipHien = 5f;
 
-    private float maxHealth = 250f;
+    private float maxHealth = 600f;
     private float currentHealth;
 
     [Header("Triệu hồi quái")]

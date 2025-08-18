@@ -51,6 +51,8 @@ public class Player3 : MonoBehaviour
     public int currentXP = 0;
    public int currentLevel = 0;
 
+    public int soBinhMau = 0;
+    public const int maxBinhMau = 5;
 
 
     //lưu 
@@ -67,10 +69,15 @@ public class Player3 : MonoBehaviour
 
         data.currentXP = currentXP;
         data.currentLevel = currentLevel;
+        data.soBinhMau = soBinhMau;
 
+        // Gun
         data.currentAmmo = GameData2.Instance.currentAmmo;
         data.reserveAmmo = GameData2.Instance.reserveAmmo;
         data.maxAmmo = GameData2.Instance.maxAmmo;
+
+        // Bow ✅ thêm dòng này
+        data.bowAmmo = GameData2.Instance.bowAmmo;
 
         data.coin = coin;
 
@@ -85,6 +92,8 @@ public class Player3 : MonoBehaviour
 
         Debug.Log("Đã lưu game vào: " + path);
     }
+
+
 
 
 
@@ -105,6 +114,7 @@ public class Player3 : MonoBehaviour
 
         mauhientai = data.currentHealth;
         nangLuongHienTai = data.currentEnergy;
+        soBinhMau = data.soBinhMau;
 
         currentXP = data.currentXP;
         currentLevel = data.currentLevel;
@@ -114,17 +124,23 @@ public class Player3 : MonoBehaviour
         hasGun = data.hasGun;
         hasBow = data.hasBow;
 
+        // Gun
         GameData2.Instance.currentAmmo = data.currentAmmo;
         GameData2.Instance.reserveAmmo = data.reserveAmmo;
         GameData2.Instance.maxAmmo = data.maxAmmo;
 
-thanhmau.Capnhatthanhmau();
+        // Bow ✅ load lại ammo cung
+        GameData2.Instance.bowAmmo = data.bowAmmo;
+
+        thanhmau.Capnhatthanhmau();
         thanhNangLuong.CapNhatThanhNangLuong(nangLuongHienTai, nangLuongToiDa);
 
         GameData2.Instance.SaveAmmo(); // đảm bảo đồng bộ lại sau khi load
 
         Debug.Log("Đã load dữ liệu từ: " + path);
     }
+
+
 
 
 

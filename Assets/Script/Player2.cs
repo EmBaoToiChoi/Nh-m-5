@@ -55,7 +55,8 @@ public class Player2 : MonoBehaviour
     [SerializeField] private float fireballSpeed = 8f;
     [SerializeField] private float fireRate = 0.3f;
     private float nextFireTime = 0f;
-
+    public int soBinhMau = 0;
+    public const int maxBinhMau = 5;
 
 
 
@@ -74,10 +75,15 @@ public class Player2 : MonoBehaviour
 
         data.currentXP = currentXP;
         data.currentLevel = currentLevel;
+        data.soBinhMau = soBinhMau;
 
+        // Gun
         data.currentAmmo = GameData2.Instance.currentAmmo;
         data.reserveAmmo = GameData2.Instance.reserveAmmo;
         data.maxAmmo = GameData2.Instance.maxAmmo;
+
+        // Bow ✅ thêm dòng này
+        data.bowAmmo = GameData2.Instance.bowAmmo;
 
         data.coin = coin;
 
@@ -92,6 +98,8 @@ public class Player2 : MonoBehaviour
 
         Debug.Log("Đã lưu game vào: " + path);
     }
+
+
 
 
 
@@ -112,6 +120,7 @@ public class Player2 : MonoBehaviour
 
         mauhientai = data.currentHealth;
         nangLuongHienTai = data.currentEnergy;
+        soBinhMau = data.soBinhMau;
 
         currentXP = data.currentXP;
         currentLevel = data.currentLevel;
@@ -121,9 +130,13 @@ public class Player2 : MonoBehaviour
         hasGun = data.hasGun;
         hasBow = data.hasBow;
 
+        // Gun
         GameData2.Instance.currentAmmo = data.currentAmmo;
         GameData2.Instance.reserveAmmo = data.reserveAmmo;
         GameData2.Instance.maxAmmo = data.maxAmmo;
+
+        // Bow ✅ load lại ammo cung
+        GameData2.Instance.bowAmmo = data.bowAmmo;
 
         thanhmau.Capnhatthanhmau();
         thanhNangLuong.CapNhatThanhNangLuong(nangLuongHienTai, nangLuongToiDa);
@@ -132,6 +145,8 @@ public class Player2 : MonoBehaviour
 
         Debug.Log("Đã load dữ liệu từ: " + path);
     }
+
+
 
 
 

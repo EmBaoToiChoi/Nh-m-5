@@ -53,7 +53,7 @@ public class Player1 : MonoBehaviour
     public int soBinhMau = 0;
     public const int maxBinhMau = 5;
 
-    
+
 
 
 
@@ -61,7 +61,6 @@ public class Player1 : MonoBehaviour
     public void SavePlayerData()
     {
         GameData2.Instance.SaveAmmo(); // Gọi hệ thống lưu đạn
-        
 
         GameData data = new GameData();
         data.playerX = transform.position.x;
@@ -74,9 +73,13 @@ public class Player1 : MonoBehaviour
         data.currentLevel = currentLevel;
         data.soBinhMau = soBinhMau;
 
+        // Gun
         data.currentAmmo = GameData2.Instance.currentAmmo;
         data.reserveAmmo = GameData2.Instance.reserveAmmo;
         data.maxAmmo = GameData2.Instance.maxAmmo;
+
+        // Bow ✅ thêm dòng này
+        data.bowAmmo = GameData2.Instance.bowAmmo;
 
         data.coin = coin;
 
@@ -91,6 +94,8 @@ public class Player1 : MonoBehaviour
 
         Debug.Log("Đã lưu game vào: " + path);
     }
+
+
 
 
 
@@ -125,9 +130,13 @@ public class Player1 : MonoBehaviour
         hasGun = data.hasGun;
         hasBow = data.hasBow;
 
+        // Gun
         GameData2.Instance.currentAmmo = data.currentAmmo;
         GameData2.Instance.reserveAmmo = data.reserveAmmo;
         GameData2.Instance.maxAmmo = data.maxAmmo;
+
+        // Bow ✅ load lại ammo cung
+        GameData2.Instance.bowAmmo = data.bowAmmo;
 
         thanhmau.Capnhatthanhmau();
         thanhNangLuong.CapNhatThanhNangLuong(nangLuongHienTai, nangLuongToiDa);
@@ -136,6 +145,8 @@ public class Player1 : MonoBehaviour
 
         Debug.Log("Đã load dữ liệu từ: " + path);
     }
+
+
 
 
 

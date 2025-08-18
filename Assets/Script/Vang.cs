@@ -3,6 +3,9 @@ using TMPro;
 
 public class Vang : MonoBehaviour
 {
+    public AudioClip pickupSound;   // Gắn file âm thanh ở Inspector
+    private AudioSource audioSource;
+
     [SerializeField] private TMP_Text scoreText;
     [SerializeField] private int scoreValue = 1;
 
@@ -11,7 +14,11 @@ public class Vang : MonoBehaviour
 
     void Start()
     {
-        int savedScore = PlayerPrefs.GetInt("Player1");
+        // Gắn AudioSource (nếu chưa có thì tự động thêm vào coin)
+        audioSource = gameObject.AddComponent<AudioSource>();
+        audioSource.playOnAwake = false;
+
+        int savedScore = PlayerPrefs.GetInt("Player1", 0); // có mặc định = 0 để tránh lỗi
         UpdateScoreText(savedScore);
     }
 
@@ -19,7 +26,7 @@ public class Vang : MonoBehaviour
     {
         if (other.CompareTag("Player1"))
         {
-            int currentScore = PlayerPrefs.GetInt("Player1");
+            int currentScore = PlayerPrefs.GetInt("Player1", 0);
             currentScore += scoreValue;
             PlayerPrefs.SetInt("Player1", currentScore);
             PlayerPrefs.Save();
@@ -30,7 +37,15 @@ public class Vang : MonoBehaviour
                 messageManager.ShowGoldMessageStackable(); // Cộng dồn vàng
             }
 
-            Destroy(gameObject);
+            // Phát âm thanh
+            audioSource.PlayOneShot(pickupSound);
+
+            // Ẩn coin để không bị nhặt lại
+            GetComponent<SpriteRenderer>().enabled = false;
+            GetComponent<Collider2D>().enabled = false;
+
+            // Xóa coin sau khi âm thanh kết thúc
+            Destroy(gameObject, pickupSound.length);
         }
     }
 
