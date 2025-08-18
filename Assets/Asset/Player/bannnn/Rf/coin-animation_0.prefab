@@ -183,7 +183,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10ba005ab451b15449a68c8236c23f87, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pickupSound: {fileID: 8300000, guid: a4b3f43431792a6408e0bd33dae73dc5, type: 3}
   scoreText: {fileID: 0}
-  scoreValue: 100
-  goldMessageUI: {fileID: 0}
-  messageDuration: 1.5
+  scoreValue: 1
+  messageManager: {fileID: 0}
