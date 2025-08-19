@@ -24659,7 +24659,7 @@ MonoBehaviour:
     tr\xEAn \u0111\u01B0\u1EDDng \u0111i v\xE0 thi\xEAu r\u1EE5i m\u1ECDi k\u1EBB
     d\xE1m l\u1EA1i g\u1EA7n. S\u1EF1 hi\u1EC7n di\u1EC7n c\u1EE7a n\xF3 l\xE0 l\u1EDDi
     c\u1EA3nh b\xE1o: \u0111\xE2y kh\xF4ng ph\u1EA3i cu\u1ED9c ch\u01A1i."
-  - "3. SLIME L\u1EECA \u2013 K\u1EBB Nh\u1ECF B\xE9 Kh\xF4ng Th\u1EC3 Khinh Th\u01B0\u1EDDng\nNg\u1EE1
+  - "3. SLIME L\u1EECA \u2013 K\u1EBB Nh\u1ECF B\xE9 Kh\xF4ng Th\u1EC3 Khinh Th\u01B0\u1EDDng\nNgo
     nh\u01B0 l\xE0 m\u1ED1i \u0111e d\u1ECDa nh\u1EB9 nh\xE0ng, nh\u01B0ng \u0111\u1EEBng
     \u0111\u1EC3 b\u1ECB \u0111\xE1nh l\u1EEBa. Slime L\u1EEDa di chuy\u1EC3n l\u1EB7ng
     l\u1EBD v\xE0 sinh s\xF4i kh\xF4ng ng\u1EEBng t\u1EEB nh\u1EEFng v\u0169ng dung
@@ -24671,9 +24671,9 @@ MonoBehaviour:
   - "H\u1EA7m S\u1ED1 1 kh\xF4ng ph\u1EA3i n\u01A1i cho nh\u1EEFng k\u1EBB y\u1EBFu
     tim. \u0110\xE2y l\xE0 b\xE0i ki\u1EC3m tra \u0111\u1EA7u ti\xEAn \u2013 n\u01A1i
     b\u1EA1n h\u1ECDc c\xE1ch s\u1ED1ng s\xF3t, c\xE1ch chi\u1EBFn \u0111\u1EA5u,
-    v\xE0 quan tr\u1ECDng nh\u1EA5t: c\xE1ch kh\xF4ng s\u1EE3 h\xE3i tr\u01B0\u1EDBc
-    c\xE1i ch\u1EBFt.\n\nLi\u1EC7u b\u1EA1n s\u1EBD v\u01B0\u1EE3t qua \u2013 hay
-    tr\u1EDF th\xE0nh m\u1ED3i cho b\u1EEFa ti\u1EC7c c\u1EE7a l\u0169 qu\xE1i v\u1EADt?"
+    v\xE0 quan tr\u1ECDng nh\u1EA5t: c\xE1ch kh\xF4ng so h\xE3i tr\u01B0\u1EDBc c\xE1i
+    ch\u1EBFt.\n\nLi\u1EC7u b\u1EA1n s\u1EBD v\u01B0ot qua \u2013 hay tr\u1EDF th\xE0nh
+    m\u1ED3i cho b\u1EEFa ti\u1EC7c c\u1EE7a l\u0169 qu\xE1i v\u1EADt?"
 --- !u!4 &747789806
 Transform:
   m_ObjectHideFlags: 0

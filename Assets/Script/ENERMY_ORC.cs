@@ -15,8 +15,7 @@ public class ENERMY_ORC : MonoBehaviour
 
 
     [Header("Âm thanh và animation")]
-    [SerializeField] private AudioClip hit;
-    [SerializeField] private AudioSource source2;
+
     [SerializeField] private Animator nie;
 
     [Header("UI máu")]
@@ -139,7 +138,7 @@ public class ENERMY_ORC : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player1"))
         {
-            source2.PlayOneShot(hit);
+         
             nie.SetBool("danh", true);
         }
     }
@@ -148,7 +147,7 @@ public class ENERMY_ORC : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player1"))
         {
-            source2.PlayOneShot(hit);
+           
             nie.SetBool("danh", true);
         }
     }

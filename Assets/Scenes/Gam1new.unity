@@ -13029,20 +13029,20 @@ MonoBehaviour:
     t\u1EED vong, gi\u1EEFa th\u1EBF gi\u1EDBi c\u1EE7a k\u1EBB c\xF2n t\u1EC9nh
     t\xE1o v\xE0 c\u01A1n \xE1c m\u1ED9ng v\xF4 t\u1EADn. Nh\u1EEFng b\u01B0\u1EDBc
     ch\xE2n \u0111\u1EA7u ti\xEAn n\u01A1i \u0111\xE2y khi\u1EBFn b\u1EA1n c\u1EA3m
-    nh\u1EADn r\xF5 r\u1EB1ng \u2014 t\u1EA7ng h\u1EA7m ti\u1EBFp theo kh\xF4ng gi\u1ED1ng
+    nh\u1EADn r\xF5 rang \u2014 t\u1EA7ng h\u1EA7m ti\u1EBFp theo kh\xF4ng gi\u1ED1ng
     b\u1EA5t c\u1EE9 n\u01A1i n\xE0o tr\u01B0\u1EDBc \u0111\xF3."
   - "T\u1EEBng \u0111\u1ED3ng xu r\u01A1i v\xE3i d\u01B0\u1EDBi ch\xE2n l\xE0 t\xE0n
     t\xEDch c\u1EE7a nh\u1EEFng k\u1EBB t\u1EEBng \u0111\u1EBFn \u0111\xE2y\u2026
-    nh\u01B0ng kh\xF4ng bao gi\u1EDD r\u1EDDi \u0111i.\r\n\u1EDE cu\u1ED1i h\xE0nh
-    lang, m\u1ED9t gi\u1ECDng n\xF3i th\xEC th\u1EA7m vang l\xEAn trong \u0111\u1EA7u
-    ng\u01B0\u1EDDi ch\u01A1i:\r\n"
-  - "\u201CNg\u01B0\u01A1i v\u1EABn c\xF2n mu\u1ED1n ti\u1EBFn s\xE2u h\u01A1n? M\u1ED7i
+    nh\u01B0ng kh\xF4ng bao gi\u1EDD r\u1EDDi \u0111i.\r\nO cu\u1ED1i h\xE0nh lang,
+    m\u1ED9t gi\u1ECDng n\xF3i th\xEC th\u1EA7m vang l\xEAn trong \u0111\u1EA7u ng\u01B0\u1EDDi
+    ch\u01A1i:\r\n"
+  - "\u201CNg\u01B0\u01A1i van c\xF2n mu\u1ED1n ti\u1EBFn s\xE2u h\u01A1n? M\u1ED7i
     b\u01B0\u1EDBc ti\u1EBFp theo s\u1EBD khi\u1EBFn ng\u01B0\u01A1i \u0111\xE1nh
     m\u1EA5t m\u1ED9t ph\u1EA7n c\u1EE7a ch\xEDnh m\xECnh\u2026\u201D Kh\xF4ng c\xF3
-    k\u1EBB \u0111\u1ECBch, nh\u01B0ng c\u0103ng th\u1EB3ng t\xE2m l\xFD c\u1EF1c
-    cao. C\xF3 th\u1EC3 c\xF3 h\u1ED3n ma l\u01B0\u1EDBt qua nhanh, ti\u1EBFng th\xEC
-    th\u1EA7m ho\u1EB7c \u1EA3o \u1EA3nh ng\u1EAFn khi\u1EBFn ng\u01B0\u1EDDi ch\u01A1i
-    nghi ng\u1EDD th\u1EF1c t\u1EA1i. "
+    k\u1EBB \u0111\u1ECBch, nh\u01B0ng c\u0103ng thang tam l\xFD c\u1EF1c cao. C\xF3
+    th\u1EC3 c\xF3 h\u1ED3n ma l\u01B0\u1EDBt qua nhanh, ti\u1EBFng th\xEC th\u1EA7m
+    ho\u1EB7c \u1EA3o \u1EA3nh ng\u1EAFn khi\u1EBFn ng\u01B0\u1EDDi ch\u01A1i nghi
+    ng\u1EDD th\u1EF1c t\u1EA1i. "
 --- !u!4 &1281740669
 Transform:
   m_ObjectHideFlags: 0
