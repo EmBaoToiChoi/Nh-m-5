@@ -38,7 +38,7 @@ public class Boss1Controller : MonoBehaviour
     private bool isLowHealthSummon = false;
 
     [Header("HP")]
-    public int maxHealth = 200;
+    public int maxHealth = 700;
     private int currentHealth;
     private bool isDead = false;
 
