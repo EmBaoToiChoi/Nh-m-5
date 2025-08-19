@@ -444,7 +444,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &6252287320731494392
 Transform:
   m_ObjectHideFlags: 0
@@ -619,7 +619,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 0b500d8a67967f947a9f9f76fac5fffa, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 7575f4814720b4b509b55764405171f1, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -920,7 +920,7 @@ MonoBehaviour:
   hit_up: {fileID: 1737205331829156688}
   hit_down: {fileID: 1028653618276477970}
   gunObject: {fileID: 0}
-  hit: {fileID: 8300000, guid: 0b500d8a67967f947a9f9f76fac5fffa, type: 3}
+  hit: {fileID: 8300000, guid: 7575f4814720b4b509b55764405171f1, type: 3}
   source: {fileID: 5887366881703734405}
   hit1: {fileID: 8300000, guid: 027c416d83fd7094f8a75bb58d331ea3, type: 3}
   source1: {fileID: 4473741557518129572}
@@ -948,3 +948,4 @@ MonoBehaviour:
   firePoint: {fileID: 8222806044046657343}
   fireballSpeed: 8
   fireRate: 0.3
+  soBinhMau: 0

@@ -27,6 +27,7 @@ TagManager:
   - Chest
   - Gun
   - Player2
+  - TT
   layers:
   - Default
   - TransparentFX
@@ -111,4 +112,7 @@ TagManager:
     locked: 0
   - name: Cottruyen
     uniqueID: 503607367
+    locked: 0
+  - name: hi
+    uniqueID: 1326997457
     locked: 0

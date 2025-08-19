@@ -9,6 +9,7 @@ public class CharacterSelector : MonoBehaviour
     public void SelectCharacter(int index)
     {
         PlayerPrefs.SetInt("SelectedCharacter", index);
+        PlayerPrefs.SetString("NextScene", "Gam1");
         SceneManager.LoadScene("Load"); // Hoặc scene đầu tiên bạn muốn chơi
     }
 }

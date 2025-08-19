@@ -38,7 +38,7 @@ public class Boss1Controller : MonoBehaviour
     private bool isLowHealthSummon = false;
 
     [Header("HP")]
-    public int maxHealth = 200;
+    public int maxHealth = 700;
     private int currentHealth;
     private bool isDead = false;
 
@@ -282,5 +282,23 @@ public class Boss1Controller : MonoBehaviour
 
         Gizmos.color = Color.magenta;
         Gizmos.DrawWireSphere(firePoint != null ? firePoint.position : transform.position, fireRadius);
+    }
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Hit"))
+        {
+            float damage = Random.Range(1f, 6f);
+            TakeDamage(damage + GlobalData.damageBonus);
+        }
+        else if (other.CompareTag("Bullet"))
+        {
+            float damage = Random.Range(10f, 16f);
+            TakeDamage(damage + GlobalData.damageBonus);
+        }
+        else if (other.CompareTag("Bow"))
+        {
+            float damage = Random.Range(5f, 11f);
+            TakeDamage(damage + GlobalData.damageBonus);
+        }
     }
 }

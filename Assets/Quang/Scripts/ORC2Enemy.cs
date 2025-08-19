@@ -242,11 +242,11 @@ public class ORC2Enemy : MonoBehaviour
         }
     }
 
-    public void TakeDamage(int amount)
+    public void TakeDamage(float amount)
     {
         if (isDead) return;
 
-        currentHealth -= amount;
+        currentHealth -= (int)amount;
 
         if (currentHealth <= 0)
         {
@@ -295,5 +295,23 @@ public class ORC2Enemy : MonoBehaviour
 
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, detectRange);
+    }
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Hit"))
+        {
+            float damage = Random.Range(1f, 6f);
+            TakeDamage(damage + GlobalData.damageBonus);
+        }
+        else if (other.CompareTag("Bullet"))
+        {
+            float damage = Random.Range(10f, 16f);
+            TakeDamage(damage + GlobalData.damageBonus);
+        }
+        else if (other.CompareTag("Bow"))
+        {
+            float damage = Random.Range(5f, 11f);
+            TakeDamage(damage + GlobalData.damageBonus);
+        }
     }
 }
