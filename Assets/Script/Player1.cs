@@ -174,12 +174,14 @@ public class Player1 : MonoBehaviour
     }
     void loadsence1()
     {
-        SceneManager.LoadScene("Gam1,1");
+        PlayerPrefs.SetString("NextScene", "Gam1,1");
+        SceneManager.LoadScene("Load");
 
     }
     void loadsence4()
     {
-        SceneManager.LoadScene("Gam1");
+        PlayerPrefs.SetString("NextScene", "Gam1");
+        SceneManager.LoadScene("Load");
 
     }
     void loadsencethua()
@@ -190,17 +192,20 @@ public class Player1 : MonoBehaviour
     // 
     void loadsence5()
     {
-        SceneManager.LoadScene("Gam1new");
+         PlayerPrefs.SetString("NextScene", "Gam1new");
+        SceneManager.LoadScene("Load");
 
     }
     void loadsence6()
     {
-        SceneManager.LoadScene("Gam2,1");
+         PlayerPrefs.SetString("NextScene", "Gam2,1");
+        SceneManager.LoadScene("Load");
 
     }
     void loadsence8()
     {
-        SceneManager.LoadScene("Boss1");
+         PlayerPrefs.SetString("NextScene", "Boss1");
+        SceneManager.LoadScene("Load");
 
     }
 

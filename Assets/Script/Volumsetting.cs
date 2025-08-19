@@ -1,31 +1,38 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
-using UnityEngine.Audio;
 
 public class Volumsetting : MonoBehaviour
 {
-    public Slider volumeSlider;     
-    public AudioSource audioSource; 
+    public static Volumsetting Instance;
+    public AudioSource musicSource;
 
-    void Start()
+    void Awake()
     {
-        // Load âm lượng đã lưu, mặc định là 1 nếu chưa có
-        float savedVolume = PlayerPrefs.GetFloat("MusicVolume", 1f);
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
 
-        volumeSlider.value = savedVolume;
-        audioSource.volume = savedVolume;
+        Instance = this;
+        DontDestroyOnLoad(gameObject);
 
-        volumeSlider.onValueChanged.AddListener(SetVolume);
+        if (musicSource != null)
+            musicSource.loop = true;
+
+        float savedVolume = PlayerPrefs.GetFloat("MusicVolume", 0.5f);
+        musicSource.volume = savedVolume;
     }
+
 
     public void SetVolume(float volume)
     {
-        audioSource.volume = volume;
-
-        // Lưu lại âm lượng vào PlayerPrefs
+        musicSource.volume = volume;
         PlayerPrefs.SetFloat("MusicVolume", volume);
-        PlayerPrefs.Save(); // Không bắt buộc, nhưng đảm bảo lưu ngay
+        PlayerPrefs.Save();
+    }
+
+    public float GetVolume()
+    {
+        return musicSource.volume;
     }
 }

@@ -297,15 +297,6 @@ public class Boss4Controller : MonoBehaviour
             {
                 damageTimer = 0f;
                 Collider2D[] hits = Physics2D.OverlapCircleAll(firePoint.position, fireRadius);
-                foreach (var hit in hits)
-                {
-                    if (hit.CompareTag("Player1"))
-                    {
-                        Player1 p = hit.GetComponent<Player1>();
-                        if (p != null)
-                            p.TakeDamage(Mathf.RoundToInt(fireDamagePerSecond * damageInterval));
-                    }
-                }
             }
 
             yield return null;
@@ -346,11 +337,11 @@ public class Boss4Controller : MonoBehaviour
         }
     }
 
-    public void TakeDamage(int amount)
+    public void TakeDamage(float amount)
     {
         if (isDead || isReviving) return;
 
-        currentHealth -= amount;
+        currentHealth -= (int)amount;
 
         if (currentHealth <= 0)
         {
@@ -427,5 +418,23 @@ public class Boss4Controller : MonoBehaviour
         Gizmos.color = Color.magenta;
         if (firePoint != null)
             Gizmos.DrawWireSphere(firePoint.position, fireRadius);
+    }
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Hit"))
+        {
+            float damage = Random.Range(1f, 6f);
+            TakeDamage(damage + GlobalData.damageBonus);
+        }
+        else if (other.CompareTag("Bullet"))
+        {
+            float damage = Random.Range(10f, 16f);
+            TakeDamage(damage + GlobalData.damageBonus);
+        }
+        else if (other.CompareTag("Bow"))
+        {
+            float damage = Random.Range(5f, 11f);
+            TakeDamage(damage + GlobalData.damageBonus);
+        }
     }
 }

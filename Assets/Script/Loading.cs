@@ -1,44 +1,72 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class Loading : MonoBehaviour
 {
-    public static string Next_Scene = "Gam1";
-    public GameObject progressBar;
-    public Text text;
-    private float fixedLoadingtime = 3f;
-    private void Start()
+    [Header("UI Loading")]
+    public GameObject loadingPanel;
+    public Slider progressBar;
+    public RectTransform characterImage; // Drag Image của nhân vật vào đây
+    public RectTransform sliderFillArea; // Fill Area của Slider
+
+    private string targetSceneName;
+
+    void Start()
     {
-        StartCoroutine(LoadScene2(Next_Scene));
-    }
-    public IEnumerator LoadScene(string sceneName)
-    {
-        AsyncOperation Operation = SceneManager.LoadSceneAsync(sceneName);
-        while (!Operation.isDone)
+        targetSceneName = PlayerPrefs.GetString("NextScene", "");
+
+        Debug.Log("Target scene: " + targetSceneName);
+
+        if (string.IsNullOrEmpty(targetSceneName))
         {
-            float progress = Mathf.Clamp01(Operation.progress / 0.9f);
-            progressBar.GetComponent<Image>().fillAmount = progress;
-            text.text = (progress * 100).ToString(format: "0") + "%";
+            Debug.LogError("Scene cần load không được thiết lập!");
+            return;
+        }
+
+        LoadTargetScene();
+    }
+
+    public void LoadTargetScene()
+    {
+        StartCoroutine(LoadAsyncScene());
+    }
+
+    IEnumerator LoadAsyncScene()
+    {
+        if (loadingPanel != null)
+            loadingPanel.SetActive(true);
+
+        AsyncOperation operation = SceneManager.LoadSceneAsync(targetSceneName);
+        operation.allowSceneActivation = false;
+
+        float loadingTime = 7f;
+        float timer = 0f;
+
+        while (timer < loadingTime)
+        {
+            timer += Time.deltaTime;
+            float progress = Mathf.Clamp01(timer / loadingTime);
+
+            if (progressBar != null)
+            {
+                progressBar.value = progress;
+                if (characterImage != null && sliderFillArea != null)
+                {
+                    float moveX = progress * sliderFillArea.rect.width;
+                    Vector2 anchoredPos = characterImage.anchoredPosition;
+                    anchoredPos.x = moveX;
+                    characterImage.anchoredPosition = anchoredPos;
+                }
+                Debug.Log("Slider value = " + progress);
+            }
 
             yield return null;
         }
 
+        // Sau 7 giây mới kích hoạt scene
+        operation.allowSceneActivation = true;
     }
-    public IEnumerator LoadScene2(string sceneName)
-    {
-        float elapsedTime = 0f;
-        while (elapsedTime < fixedLoadingtime)
-        {
-            float progress = Mathf.Clamp01(elapsedTime / fixedLoadingtime);
-            progressBar.GetComponent<Image>().fillAmount = progress;
-            text.text = (progress * 100).ToString(format: "0") + "%";
-            elapsedTime += Time.deltaTime;
-            yield return null;
-        }
-        SceneManager.LoadScene(sceneName);
-    }
+
 }
-
