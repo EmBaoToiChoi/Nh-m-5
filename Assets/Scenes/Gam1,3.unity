@@ -7183,9 +7183,9 @@ MonoBehaviour:
   maxHealth: 300
   healthBarPrefab: {fileID: 28632593}
   healthFill: {fileID: 1166264892}
-  goldPrefab: {fileID: 1237594286}
-  healthPickupPrefab: {fileID: 1336973989}
-  xpPrefab: {fileID: 1878351438}
+  goldPrefab: {fileID: 174850898538722151, guid: 60a6c28b559eba64ca40c92e02c13666, type: 3}
+  healthPickupPrefab: {fileID: 7803079515030092615, guid: 1d9511a9542b74e42bc1f8737d5f66a5, type: 3}
+  xpPrefab: {fileID: 2584105330908469930, guid: b5dcf1d5081c6124b89b0522234ef64a, type: 3}
   lowHealthMonsterPrefab1: {fileID: 0}
   lowHealthMonsterPrefab2: {fileID: 0}
   lowHealthMonsterPrefab3: {fileID: 0}
@@ -16899,9 +16899,9 @@ MonoBehaviour:
   maxHealth: 300
   healthBarPrefab: {fileID: 1396023586}
   healthFill: {fileID: 532441269}
-  goldPrefab: {fileID: 1237594286}
-  healthPickupPrefab: {fileID: 1336973989}
-  xpPrefab: {fileID: 1878351438}
+  goldPrefab: {fileID: 174850898538722151, guid: 60a6c28b559eba64ca40c92e02c13666, type: 3}
+  healthPickupPrefab: {fileID: 7803079515030092615, guid: 1d9511a9542b74e42bc1f8737d5f66a5, type: 3}
+  xpPrefab: {fileID: 2584105330908469930, guid: b5dcf1d5081c6124b89b0522234ef64a, type: 3}
   lowHealthMonsterPrefab1: {fileID: 0}
   lowHealthMonsterPrefab2: {fileID: 0}
   lowHealthMonsterPrefab3: {fileID: 0}
@@ -22214,11 +22214,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1222018294}
   m_CullTransparentMesh: 1
---- !u!1 &1237594286 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4292077801676729681, guid: fa73dd67afcf0b94dada05023c131e5d, type: 3}
-  m_PrefabInstance: {fileID: 1089380887}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1240144515
 GameObject:
   m_ObjectHideFlags: 0
@@ -28279,11 +28274,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1293857554}
   m_CullTransparentMesh: 1
---- !u!1 &1336973989 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8953718204239667911, guid: dbe0b2a502e298a4093ba8f5e62b1b26, type: 3}
-  m_PrefabInstance: {fileID: 1241587162}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1346182535
 GameObject:
   m_ObjectHideFlags: 0
@@ -29773,9 +29763,9 @@ MonoBehaviour:
   maxHealth: 700
   healthBarPrefab: {fileID: 823888240}
   healthFill: {fileID: 1741182375}
-  goldPrefab: {fileID: 1237594286}
-  healthPickupPrefab: {fileID: 1336973989}
-  xpPrefab: {fileID: 1878351438}
+  goldPrefab: {fileID: 174850898538722151, guid: 60a6c28b559eba64ca40c92e02c13666, type: 3}
+  healthPickupPrefab: {fileID: 7803079515030092615, guid: 1d9511a9542b74e42bc1f8737d5f66a5, type: 3}
+  xpPrefab: {fileID: 2584105330908469930, guid: b5dcf1d5081c6124b89b0522234ef64a, type: 3}
   lowHealthMonsterPrefab1: {fileID: 1796678190}
   lowHealthMonsterPrefab2: {fileID: 291539588}
   lowHealthMonsterPrefab3: {fileID: 578833500}
@@ -31380,9 +31370,9 @@ MonoBehaviour:
   maxHealth: 300
   healthBarPrefab: {fileID: 724067247}
   healthFill: {fileID: 2146859958}
-  goldPrefab: {fileID: 1237594286}
-  healthPickupPrefab: {fileID: 1336973989}
-  xpPrefab: {fileID: 1878351438}
+  goldPrefab: {fileID: 174850898538722151, guid: 60a6c28b559eba64ca40c92e02c13666, type: 3}
+  healthPickupPrefab: {fileID: 7803079515030092615, guid: 1d9511a9542b74e42bc1f8737d5f66a5, type: 3}
+  xpPrefab: {fileID: 2584105330908469930, guid: b5dcf1d5081c6124b89b0522234ef64a, type: 3}
   lowHealthMonsterPrefab1: {fileID: 0}
   lowHealthMonsterPrefab2: {fileID: 0}
   lowHealthMonsterPrefab3: {fileID: 0}
@@ -31532,11 +31522,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1835858540}
   m_CullTransparentMesh: 1
---- !u!1 &1878351438 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2856088066014722820, guid: 05471433bfdcdc348adb1a85a6fbba51, type: 3}
-  m_PrefabInstance: {fileID: 886199991}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1888551728
 GameObject:
   m_ObjectHideFlags: 0
@@ -32044,9 +32029,9 @@ MonoBehaviour:
   maxHealth: 700
   healthBarPrefab: {fileID: 1350362001}
   healthFill: {fileID: 471239908}
-  goldPrefab: {fileID: 1237594286}
-  healthPickupPrefab: {fileID: 1336973989}
-  xpPrefab: {fileID: 1878351438}
+  goldPrefab: {fileID: 174850898538722151, guid: 60a6c28b559eba64ca40c92e02c13666, type: 3}
+  healthPickupPrefab: {fileID: 7803079515030092615, guid: 1d9511a9542b74e42bc1f8737d5f66a5, type: 3}
+  xpPrefab: {fileID: 2584105330908469930, guid: b5dcf1d5081c6124b89b0522234ef64a, type: 3}
   lowHealthMonsterPrefab1: {fileID: 1796678190}
   lowHealthMonsterPrefab2: {fileID: 291539588}
   lowHealthMonsterPrefab3: {fileID: 578833500}
