@@ -190,7 +190,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &25089827
 RectTransform:
   m_ObjectHideFlags: 0
@@ -12980,8 +12980,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 4.01, y: 0.0050201}
-  m_SizeDelta: {x: 1912, y: 1080}
+  m_AnchoredPosition: {x: 0.004993, y: 0.0025216}
+  m_SizeDelta: {x: 1920, y: 1080}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &549904000
 MonoBehaviour:
@@ -16080,7 +16080,7 @@ MonoBehaviour:
   fireballPrefab: {fileID: 1706690159}
   firePoint: {fileID: 1455779843}
   fireballSpeed: 5
-  fireCooldown: 5
+  fireCooldown: 2
 --- !u!114 &973407241
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17018,7 +17018,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1164169918
 RectTransform:
   m_ObjectHideFlags: 0
@@ -20225,7 +20225,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1486330522
 RectTransform:
   m_ObjectHideFlags: 0
@@ -36644,7 +36644,7 @@ MonoBehaviour:
   fireballPrefab: {fileID: 1706690159}
   firePoint: {fileID: 134460478}
   fireballSpeed: 5
-  fireCooldown: 5
+  fireCooldown: 2
 --- !u!95 &1665271466
 Animator:
   serializedVersion: 5

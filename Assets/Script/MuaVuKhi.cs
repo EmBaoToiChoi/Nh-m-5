@@ -1,6 +1,7 @@
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using System.Collections;
 
 public class MuaVuKhi : MonoBehaviour
 {
@@ -24,12 +25,33 @@ public class MuaVuKhi : MonoBehaviour
     public static bool daMuaCung = false;
 
     public static object Instance { get; internal set; }
+    [Header("Thông báo")]
+    public GameObject thongBaoThanhCong; // ảnh ✅
+    public GameObject thongBaoThatBai;   // ảnh ❌
+      public float thongBaoTime = 1.5f;
+
+
 
     private void Start()
     {
         soBinhMau = PlayerPrefs.GetInt("SoBinhMau", 0);
 
         CapNhatUI();
+    if (thongBaoThanhCong != null) thongBaoThanhCong.SetActive(false);
+        if (thongBaoThatBai != null) thongBaoThatBai.SetActive(false);
+    }
+     private void HienThongBao(GameObject thongBao)
+    {
+        if (thongBao == null) return;
+        StopAllCoroutines();
+        StartCoroutine(ShowThongBao(thongBao));
+    }
+
+    private IEnumerator ShowThongBao(GameObject thongBao)
+    {
+        thongBao.SetActive(true);
+        yield return new WaitForSeconds(thongBaoTime);
+        thongBao.SetActive(false);
     }
 
     public void MuaGun()
@@ -42,9 +64,13 @@ public class MuaVuKhi : MonoBehaviour
             PlayerPrefs.Save();
 
             daMuaSung = true;
+            HienThongBao(thongBaoThanhCong);
             CapNhatUI();
         }
-        else { Debug.Log("Không đủ tiền mua súng."); }
+        else
+        {
+            Debug.Log("Không đủ tiền mua súng.");
+        HienThongBao(thongBaoThatBai); }
     }
 
     public void MuaBow()
@@ -57,9 +83,13 @@ public class MuaVuKhi : MonoBehaviour
             PlayerPrefs.Save();
 
             daMuaCung = true;
+            HienThongBao(thongBaoThanhCong);
             CapNhatUI();
         }
-        else { Debug.Log("Không đủ tiền mua cung."); }
+        else
+        {
+            Debug.Log("Không đủ tiền mua cung.");
+        HienThongBao(thongBaoThatBai); }
     }
 
     public void MuaDan()
@@ -99,6 +129,7 @@ public class MuaVuKhi : MonoBehaviour
                     gun.AddReserveAmmo(danThem);
                     gun.UpdateAmmoUI();
                 }
+                HienThongBao(thongBaoThanhCong);
 
                 Debug.Log($"Đã mua {danThem} viên đạn.");
             }
@@ -110,6 +141,7 @@ public class MuaVuKhi : MonoBehaviour
         else
         {
             Debug.Log("Không đủ tiền mua đạn");
+            HienThongBao(thongBaoThatBai);
         }
     }
 
@@ -131,10 +163,12 @@ public class MuaVuKhi : MonoBehaviour
             CapNhatUI();
 
             Debug.Log($"Đã mua bình máu. Tổng cộng: {soLuongHienTai}");
+            HienThongBao(thongBaoThanhCong);
         }
         else
         {
             Debug.Log("Không đủ vàng hoặc đã tối đa 5 bình máu");
+            HienThongBao(thongBaoThatBai);
         }
     }
 
@@ -186,6 +220,7 @@ public class MuaVuKhi : MonoBehaviour
 
                     CapNhatUI();
                     Debug.Log($"✅ Đã mua {them} mũi tên.");
+                    HienThongBao(thongBaoThanhCong);
                 }
                 else
                 {
@@ -196,6 +231,7 @@ public class MuaVuKhi : MonoBehaviour
         else
         {
             Debug.Log("❌ Không đủ vàng để mua tên.");
+            HienThongBao(thongBaoThatBai);
         }
     }
 
