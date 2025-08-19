@@ -46469,7 +46469,7 @@ PrefabInstance:
       objectReference: {fileID: 281708687}
     - target: {fileID: 2348834901552316834, guid: db2d51b61f0a5024a8de555af7f2c23b, type: 3}
       propertyPath: maxHealth
-      value: 1001
+      value: 700
       objectReference: {fileID: 0}
     - target: {fileID: 2348834901552316834, guid: db2d51b61f0a5024a8de555af7f2c23b, type: 3}
       propertyPath: goldPrefab

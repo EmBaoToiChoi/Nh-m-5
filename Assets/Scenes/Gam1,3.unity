@@ -122,6 +122,53 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &3692223
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3692225}
+  - component: {fileID: 3692224}
+  m_Layer: 0
+  m_Name: GameObject (2)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &3692224
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3692223}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ad8c6f9287a6f94bb46120341809e3f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  boss1: {fileID: 1608038790}
+  boss2: {fileID: 1965234651}
+  winSceneName: Win
+--- !u!4 &3692225
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3692223}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 3.1423597, y: -5.6874924, z: -2.3552275}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6916642
 GameObject:
   m_ObjectHideFlags: 0
@@ -7133,7 +7180,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e241d97e41e824843a385366f3543d08, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 500
+  maxHealth: 300
   healthBarPrefab: {fileID: 28632593}
   healthFill: {fileID: 1166264892}
   goldPrefab: {fileID: 1237594286}
@@ -16849,7 +16896,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e241d97e41e824843a385366f3543d08, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 500
+  maxHealth: 300
   healthBarPrefab: {fileID: 1396023586}
   healthFill: {fileID: 532441269}
   goldPrefab: {fileID: 1237594286}
@@ -29723,7 +29770,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e241d97e41e824843a385366f3543d08, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 1000
+  maxHealth: 700
   healthBarPrefab: {fileID: 823888240}
   healthFill: {fileID: 1741182375}
   goldPrefab: {fileID: 1237594286}
@@ -31330,7 +31377,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e241d97e41e824843a385366f3543d08, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 500
+  maxHealth: 300
   healthBarPrefab: {fileID: 724067247}
   healthFill: {fileID: 2146859958}
   goldPrefab: {fileID: 1237594286}
@@ -31994,7 +32041,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5c014db474e12f4fa9f7bb7b0d95d5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 1000
+  maxHealth: 700
   healthBarPrefab: {fileID: 1350362001}
   healthFill: {fileID: 471239908}
   goldPrefab: {fileID: 1237594286}
@@ -38180,3 +38227,4 @@ SceneRoots:
   - {fileID: 1600727344}
   - {fileID: 1800948474}
   - {fileID: 605611884}
+  - {fileID: 3692225}
