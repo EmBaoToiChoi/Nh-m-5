@@ -27,6 +27,7 @@ TagManager:
   - Chest
   - Gun
   - Player2
+  - TT
   layers:
   - Default
   - TransparentFX

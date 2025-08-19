@@ -12448,7 +12448,7 @@ GameObject:
   - component: {fileID: 1301290706}
   m_Layer: 0
   m_Name: Fore
-  m_TagString: Untagged
+  m_TagString: TT
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -45507,10 +45507,6 @@ PrefabInstance:
     - target: {fileID: 611772147715736746, guid: fd6858b8ad4a70341b0b15def6e0b7a0, type: 3}
       propertyPath: m_Name
       value: PL2
-      objectReference: {fileID: 0}
-    - target: {fileID: 611772147715736746, guid: fd6858b8ad4a70341b0b15def6e0b7a0, type: 3}
-      propertyPath: m_TagString
-      value: Hit
       objectReference: {fileID: 0}
     - target: {fileID: 2662579258344797346, guid: fd6858b8ad4a70341b0b15def6e0b7a0, type: 3}
       propertyPath: m_LocalPosition.x
