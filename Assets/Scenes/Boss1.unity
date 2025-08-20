@@ -46314,6 +46314,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 14320210}
     - target: {fileID: 2902517406912033718, guid: d4b0a760eb6339b4485e9ddc7aff7abc, type: 3}
+      propertyPath: maxHealth
+      value: 400
+      objectReference: {fileID: 0}
+    - target: {fileID: 2902517406912033718, guid: d4b0a760eb6339b4485e9ddc7aff7abc, type: 3}
       propertyPath: moveSpeed
       value: 5
       objectReference: {fileID: 0}
@@ -46495,6 +46499,10 @@ PrefabInstance:
       propertyPath: player3
       value: 
       objectReference: {fileID: 14320210}
+    - target: {fileID: 2367283009217081847, guid: db2d51b61f0a5024a8de555af7f2c23b, type: 3}
+      propertyPath: maxHealth
+      value: 700
+      objectReference: {fileID: 0}
     - target: {fileID: 2367283009217081847, guid: db2d51b61f0a5024a8de555af7f2c23b, type: 3}
       propertyPath: moveSpeed
       value: 1

@@ -672,7 +672,7 @@ MonoBehaviour:
   - {fileID: 1872077309}
   - {fileID: 467852683}
   - {fileID: 467852683}
-  spawnInterval: 20
+  spawnInterval: 15
   enemyLifetime: 100
 --- !u!4 &54264829
 Transform:
@@ -732,7 +732,7 @@ MonoBehaviour:
   - {fileID: 476743947}
   - {fileID: 1031030022}
   - {fileID: 1031030022}
-  spawnInterval: 20
+  spawnInterval: 15
   enemyLifetime: 100
 --- !u!4 &70362251
 Transform:
@@ -14504,7 +14504,7 @@ MonoBehaviour:
   - {fileID: 768439157}
   - {fileID: 1024453882}
   - {fileID: 1024453882}
-  spawnInterval: 20
+  spawnInterval: 15
   enemyLifetime: 100
 --- !u!4 &444793178
 Transform:
@@ -20464,7 +20464,7 @@ MonoBehaviour:
   - {fileID: 1340285732}
   - {fileID: 1865935786}
   - {fileID: 1865935786}
-  spawnInterval: 20
+  spawnInterval: 15
   enemyLifetime: 100
 --- !u!4 &1191168001
 Transform:
