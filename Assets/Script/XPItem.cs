@@ -3,51 +3,79 @@ using UnityEngine;
 public class XPItem : MonoBehaviour
 {
     [Header("Âm thanh")]
-    public AudioClip pickupSound;   // Gắn file âm thanh ở Inspector
+    [SerializeField] private AudioClip pickupSound;
     private AudioSource audioSource;
 
     [Header("Kinh nghiệm")]
-    public float xpAmount = 5f;
+    [SerializeField] private float xpAmount = 5f;
 
     [Header("Thông báo")]
     [SerializeField] private PickupMessageManager messageManager;
 
     private bool isCollected = false;
 
-    private void Start()
+    private SpriteRenderer sr;
+    private Collider2D col;
+
+    private void Awake()
     {
-        // Tự động gắn AudioSource nếu chưa có
-        audioSource = gameObject.AddComponent<AudioSource>();
+        // Lấy component sẵn có
+        audioSource = GetComponent<AudioSource>();
+        sr = GetComponent<SpriteRenderer>();
+        col = GetComponent<Collider2D>();
+
+        // Nếu chưa có AudioSource thì thêm
+        if (audioSource == null)
+        {
+            audioSource = gameObject.AddComponent<AudioSource>();
+        }
+
         audioSource.playOnAwake = false;
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (isCollected) return; // tránh nhặt 2 lần
+        if (isCollected) return;
 
-        if (other.CompareTag("Player1"))
+        if (!other.CompareTag("Player1")) return;
+
+        isCollected = true;
+
+        // ===== CỘNG XP =====
+        if (XPManager.Instance != null)
         {
-            isCollected = true;
-
-            // Cộng XP
             XPManager.Instance.AddXP(xpAmount);
-            Debug.Log("✅ Player nhận " + xpAmount + " kinh nghiệm");
-
-            // Hiện thông báo
-            if (messageManager != null)
-            {
-                messageManager.ShowXPMessageStackable(xpAmount);
-            }
-
-            // Phát âm thanh
-            audioSource.PlayOneShot(pickupSound);
-
-            // Ẩn object ngay (không bị nhặt lại)
-            GetComponent<SpriteRenderer>().enabled = false;
-            GetComponent<Collider2D>().enabled = false;
-
-            // Xoá object sau khi âm thanh chạy xong
-            Destroy(gameObject, pickupSound.length);
+            Debug.Log("✅ Player nhận " + xpAmount + " XP");
         }
+        else
+        {
+            Debug.LogError("❌ Không tìm thấy XPManager!");
+        }
+
+        // ===== HIỆN THÔNG BÁO =====
+        if (messageManager != null)
+        {
+            messageManager.ShowXPMessageStackable(xpAmount);
+        }
+
+        // ===== PHÁT ÂM THANH =====
+        float delay = 0f;
+
+        if (pickupSound != null)
+        {
+            audioSource.PlayOneShot(pickupSound);
+            delay = pickupSound.length;
+        }
+        else
+        {
+            Debug.LogWarning("⚠️ Chưa gán pickupSound!");
+        }
+
+        // ===== ẨN OBJECT =====
+        if (sr != null) sr.enabled = false;
+        if (col != null) col.enabled = false;
+
+        // ===== XOÁ OBJECT =====
+        Destroy(gameObject, delay);
     }
 }

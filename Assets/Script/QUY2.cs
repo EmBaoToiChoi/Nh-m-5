@@ -133,7 +133,7 @@ public class QUY2 : MonoBehaviour
         {
             GameObject fireball = Instantiate(fireballPrefab, firePoint.position, Quaternion.identity);
             Vector2 dir = (targetPlayer.position - firePoint.position).normalized;
-            fireball.GetComponent<Rigidbody2D>().velocity = dir * 5f;
+            fireball.GetComponent<Rigidbody2D>().linearVelocity = dir * 5f;
         }
     }
 

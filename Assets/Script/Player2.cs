@@ -242,7 +242,7 @@ public class Player2 : MonoBehaviour
     private void MovePlayer()
     {
         Vector2 input = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
-        Play.velocity = input.normalized * move;
+        Play.linearVelocity = input.normalized * move;
         float speed = move;
 
         if (Input.GetKey(KeyCode.LeftShift) && coTheChayNhanh)
@@ -475,7 +475,7 @@ public class Player2 : MonoBehaviour
         // Di chuyển nhân vật
         ngang = Input.GetAxisRaw("Horizontal");
         doc = Input.GetAxisRaw("Vertical");
-        Play.velocity = new Vector2(ngang * move, doc * move);
+        Play.linearVelocity = new Vector2(ngang * move, doc * move);
 
         // Âm thanh bước chân
         if (ngang != 0 || doc != 0)
@@ -532,7 +532,7 @@ public class Player2 : MonoBehaviour
         // Nhận input di chuyển
         ngang = Input.GetAxisRaw("Horizontal");
         doc = Input.GetAxisRaw("Vertical");
-        Play.velocity = new Vector2(ngang * currentSpeed, doc * currentSpeed);
+        Play.linearVelocity = new Vector2(ngang * currentSpeed, doc * currentSpeed);
 
         // Xử lý hướng & animation di chuyển
         if (ngang > 0)
@@ -594,7 +594,7 @@ public class Player2 : MonoBehaviour
 
         // Thêm vận tốc
         Rigidbody2D rb = fireball.GetComponent<Rigidbody2D>();
-        rb.velocity = direction * fireballSpeed;
+        rb.linearVelocity = direction * fireballSpeed;
 
         // Xoay fireball
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
@@ -625,7 +625,7 @@ public class Player2 : MonoBehaviour
 
         ngang = Input.GetAxisRaw("Horizontal");
         doc = Input.GetAxisRaw("Vertical");
-        Play.velocity = new Vector2(ngang * currentSpeed, doc * currentSpeed);
+        Play.linearVelocity = new Vector2(ngang * currentSpeed, doc * currentSpeed);
 
         if (ngang > 0)
         {
@@ -680,7 +680,7 @@ public class Player2 : MonoBehaviour
 
         ngang = Input.GetAxisRaw("Horizontal");
         doc = Input.GetAxisRaw("Vertical");
-        Play.velocity = new Vector2(ngang * currentSpeed, doc * currentSpeed);
+        Play.linearVelocity = new Vector2(ngang * currentSpeed, doc * currentSpeed);
 
         // ⚡ Flip mặt Player giống như cận chiến
         if (ngang > 0)

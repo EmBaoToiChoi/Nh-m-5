@@ -29,6 +29,7 @@ public class XPManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        
     }
 
     private void Start()

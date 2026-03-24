@@ -97,7 +97,7 @@ public class Boss1Controller : MonoBehaviour
         // Di chuyển hoặc tấn công
         if (distance <= attackRange)
         {
-            rb.velocity = Vector2.zero;
+            rb.linearVelocity = Vector2.zero;
 
             if (Time.time - lastAttackTime >= attackCooldown)
             {
@@ -142,7 +142,7 @@ public class Boss1Controller : MonoBehaviour
         if (isAttacking) return;
 
         Vector2 direction = (target.position - transform.position).normalized;
-        rb.velocity = direction * moveSpeed;
+        rb.linearVelocity = direction * moveSpeed;
         animator.SetBool("isMoving", true);
 
         // Flip Boss & firePoint hướng player
@@ -267,7 +267,7 @@ public class Boss1Controller : MonoBehaviour
     void Die()
     {
         isDead = true;
-        rb.velocity = Vector2.zero;
+        rb.linearVelocity = Vector2.zero;
         animator.SetTrigger("Die");
         Destroy(gameObject, 2f);
     }

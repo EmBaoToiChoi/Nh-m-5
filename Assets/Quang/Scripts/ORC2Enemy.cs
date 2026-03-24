@@ -107,7 +107,7 @@ public class ORC2Enemy : MonoBehaviour
 
         if (distance <= attackRange)
         {
-            rb.velocity = Vector2.zero;
+            rb.linearVelocity = Vector2.zero;
 
             if (Time.time - lastAttackTime >= attackCooldown)
             {
@@ -154,7 +154,7 @@ public class ORC2Enemy : MonoBehaviour
         }
 
         Vector2 patrolVelocity = new Vector2(patrolDirection * idlePatrolSpeed, 0f);
-        rb.velocity = patrolVelocity;
+        rb.linearVelocity = patrolVelocity;
         FlipBoss(patrolVelocity);
 
         animator.SetBool("isMoving", true);
@@ -168,7 +168,7 @@ public class ORC2Enemy : MonoBehaviour
         float speed = moveSpeed;
         if (distance < 4f) speed *= chaseSpeedMultiplier;
 
-        rb.velocity = direction * speed;
+        rb.linearVelocity = direction * speed;
         animator.SetBool("isMoving", true);
         FlipBoss(direction);
 
@@ -264,7 +264,7 @@ public class ORC2Enemy : MonoBehaviour
         if (isDead) return;
 
         isDead = true;
-        rb.velocity = Vector2.zero;
+        rb.linearVelocity = Vector2.zero;
 
         animator.SetBool("isMoving", false);
         animator.ResetTrigger("Attack");

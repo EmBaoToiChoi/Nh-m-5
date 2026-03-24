@@ -207,7 +207,7 @@ public class Quy3 : MonoBehaviour
             Vector2 direction = (targetPlayer.position - firePoint.position).normalized;
             Rigidbody2D rb = fireball.GetComponent<Rigidbody2D>();
             if (rb != null)
-                rb.velocity = direction * fireballSpeed;
+                rb.linearVelocity = direction * fireballSpeed;
             float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
             fireball.transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
         }

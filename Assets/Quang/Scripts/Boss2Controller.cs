@@ -127,7 +127,7 @@ public class Boss2Controller : MonoBehaviour
         // Di chuyển hoặc tấn công
         if (distance <= attackRange)
         {
-            rb.velocity = Vector2.zero;
+            rb.linearVelocity = Vector2.zero;
 
             if (Time.time - lastAttackTime >= attackCooldown)
             {
@@ -177,7 +177,7 @@ public class Boss2Controller : MonoBehaviour
             FlipBoss(new Vector2(patrolDirection, 0));
         }
 
-        rb.velocity = new Vector2(patrolDirection * idlePatrolSpeed, 0f);
+        rb.linearVelocity = new Vector2(patrolDirection * idlePatrolSpeed, 0f);
         animator.SetBool("isMoving", true);
     }
 
@@ -189,7 +189,7 @@ public class Boss2Controller : MonoBehaviour
         float speed = moveSpeed;
         if (distance < 4f) speed *= chaseSpeedMultiplier;
 
-        rb.velocity = direction * speed;
+        rb.linearVelocity = direction * speed;
         animator.SetBool("isMoving", true);
         FlipBoss(direction);
 
@@ -349,7 +349,7 @@ public class Boss2Controller : MonoBehaviour
     {
         isReviving = true;
         isDead = true;
-        rb.velocity = Vector2.zero;
+        rb.linearVelocity = Vector2.zero;
 
         animator.SetTrigger("Die");
         yield return new WaitForSeconds(reviveDelay);
@@ -366,7 +366,7 @@ public class Boss2Controller : MonoBehaviour
     void Die()
     {
         isDead = true;
-        rb.velocity = Vector2.zero;
+        rb.linearVelocity = Vector2.zero;
         animator.SetTrigger("Die");
         Destroy(gameObject, 2f);
     }

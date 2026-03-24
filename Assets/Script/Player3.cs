@@ -236,7 +236,7 @@ thanhmau.Capnhatthanhmau();
     private void MovePlayer()
     {
         Vector2 input = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
-        Play.velocity = input.normalized * move;
+        Play.linearVelocity = input.normalized * move;
         float speed = move; 
 
         if (Input.GetKey(KeyCode.LeftShift) && coTheChayNhanh)
@@ -470,7 +470,7 @@ thanhmau.Capnhatthanhmau();
         // Di chuyển nhân vật
         ngang = Input.GetAxisRaw("Horizontal");
         doc = Input.GetAxisRaw("Vertical");
-        Play.velocity = new Vector2(ngang * move, doc * move);
+        Play.linearVelocity = new Vector2(ngang * move, doc * move);
 
         // Âm thanh bước chân
         if (ngang != 0 || doc != 0)
@@ -527,7 +527,7 @@ thanhmau.Capnhatthanhmau();
         // Nhận input di chuyển
         ngang = Input.GetAxisRaw("Horizontal");
         doc = Input.GetAxisRaw("Vertical");
-        Play.velocity = new Vector2(ngang * currentSpeed, doc * currentSpeed);
+        Play.linearVelocity = new Vector2(ngang * currentSpeed, doc * currentSpeed);
 
         // Xử lý hướng & animation di chuyển
         if (ngang > 0)
@@ -626,7 +626,7 @@ thanhmau.Capnhatthanhmau();
 
         ngang = Input.GetAxisRaw("Horizontal");
         doc = Input.GetAxisRaw("Vertical");
-        Play.velocity = new Vector2(ngang * currentSpeed, doc * currentSpeed);
+        Play.linearVelocity = new Vector2(ngang * currentSpeed, doc * currentSpeed);
 
         if (ngang > 0)
         {
@@ -681,7 +681,7 @@ thanhmau.Capnhatthanhmau();
 
         ngang = Input.GetAxisRaw("Horizontal");
         doc = Input.GetAxisRaw("Vertical");
-        Play.velocity = new Vector2(ngang * currentSpeed, doc * currentSpeed);
+        Play.linearVelocity = new Vector2(ngang * currentSpeed, doc * currentSpeed);
 
         // ⚡ Flip mặt Player giống như cận chiến
         if (ngang > 0)
